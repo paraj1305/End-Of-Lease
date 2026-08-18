@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # End of Lease Cleaning Booking System
 
 A Django web application for booking end-of-lease cleaning services.
@@ -49,3 +50,6 @@ Once the server is running, you can access the application in your web browser a
 - **Booking Flow:** Fully integrated, liquid-glass designed booking form with dynamic price calculation and add-on selection.
 - **Payments:** Stripe integration for collecting a 10% upfront deposit securely.
 - **Admin Management:** Manage packages, add-ons (with image support), bookings, and time slots via the Django Admin interface.
+=======
+# End-Of-Lease
+>>>>>>> df794b65babec01d16fbac129b4f8c197a14e40c
