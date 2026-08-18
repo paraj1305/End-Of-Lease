@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block extra_head %}
+<!-- Stripe.js -->
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container section">
+    <div class="section-header">
+        <h2>Secure Payment</h2>
+        <p>Complete your booking by paying the 10% deposit.</p>
+    </div>
+
+    <div class="grid grid--2">
+        <div class="card" style="padding: var(--space-6); background: var(--color-white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            <h3 style="margin-bottom: var(--space-4);">Order Summary</h3>
+            <p><strong>Reference:</strong> {{ booking.reference }}</p>
+            <p><strong>Package:</strong> {{ booking.package_name_at_booking }}</p>
+            <p><strong>Total Cost:</strong> ${{ booking.subtotal }}</p>
+            <div class="divider" style="margin-block: var(--space-4);"></div>
+            <p class="text-primary-color" style="font-size: var(--text-xl); font-weight: bold;">Deposit Due: ${{ booking.deposit_amount }}</p>
+        </div>
+
+        <div class="card" style="padding: var(--space-6); background: var(--color-white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            <form id="payment-form">
+                <div id="payment-element" style="margin-bottom: var(--space-6);">
+                    <!-- Stripe Elements will be inserted here -->
+                </div>
+                <div id="error-message" role="alert" class="text-error" style="margin-bottom: var(--space-4); display: none;"></div>
+                
+                <button id="submit-button" type="submit" style="width: 100%; padding: var(--space-4); background: var(--color-primary); color: white; border: none; border-radius: var(--radius-md); font-weight: bold; cursor: pointer; font-size: var(--text-lg);">
+                    <span id="button-text">Pay ${{ booking.deposit_amount }}</span>
+                    <span id="spinner" style="display: none;">Processing...</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const stripe = Stripe('{{ stripe_public_key }}');
+    const options = {
+        clientSecret: '{{ client_secret }}',
+        appearance: {
+            theme: 'stripe',
+            variables: {
+                colorPrimary: '{{ "#"|add:"0052CC" }}', /* Using a hardcoded primary color for now, can be passed from context */
+            }
+        }
+    };
+    
+    const elements = stripe.elements(options);
+    const paymentElement = elements.create('payment');
+    paymentElement.mount('#payment-element');
+    
+    const form = document.getElementById('payment-form');
+    const submitBtn = document.getElementById('submit-button');
+    const errorEl = document.getElementById('error-message');
+    
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        
+        // Disable form to prevent multiple submissions
+        submitBtn.disabled = true;
+        document.getElementById('button-text').style.display = 'none';
+        document.getElementById('spinner').style.display = 'inline-block';
+        
+        const { error } = await stripe.confirmPayment({
+            elements,
+            confirmParams: {
+                return_url: `${window.location.origin}/success/{{ booking.reference }}/`,
+            },
+        });
+        
+        if (error) {
+            errorEl.textContent = error.message;
+            errorEl.style.display = 'block';
+            
+            // Re-enable form
+            submitBtn.disabled = false;
+            document.getElementById('button-text').style.display = 'inline-block';
+            document.getElementById('spinner').style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}

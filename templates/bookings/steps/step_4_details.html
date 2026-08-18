@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container section">
+    <div class="section-header">
+        <h2>Step 4: Your Details</h2>
+        <p>Please provide your contact and service address details.</p>
+    </div>
+
+    <form method="POST" action="{% url 'bookings:step_4_details' %}" class="grid" style="gap: var(--space-8);">
+        {% csrf_token %}
+        
+        <!-- Contact Details -->
+        <div class="card" style="padding: var(--space-6); background: var(--color-white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            <h3 style="margin-bottom: var(--space-6); border-bottom: 1px solid var(--border-color); padding-bottom: var(--space-3);">Contact Information</h3>
+            <div class="grid grid--2">
+                <div style="margin-bottom: var(--space-4);">
+                    <label style="display: block; font-weight: bold; margin-bottom: var(--space-2);">Full Name</label>
+                    {{ form.customer_name }}
+                    {{ form.customer_name.errors }}
+                </div>
+                <div style="margin-bottom: var(--space-4);">
+                    <label style="display: block; font-weight: bold; margin-bottom: var(--space-2);">Email Address</label>
+                    {{ form.customer_email }}
+                    {{ form.customer_email.errors }}
+                </div>
+                <div style="margin-bottom: var(--space-4);">
+                    <label style="display: block; font-weight: bold; margin-bottom: var(--space-2);">Phone Number</label>
+                    {{ form.customer_phone }}
+                    {{ form.customer_phone.errors }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Address -->
+        <div class="card" style="padding: var(--space-6); background: var(--color-white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            <h3 style="margin-bottom: var(--space-6); border-bottom: 1px solid var(--border-color); padding-bottom: var(--space-3);">Service Address</h3>
+            <div style="margin-bottom: var(--space-4);">
+                <label style="display: block; font-weight: bold; margin-bottom: var(--space-2);">Street Address</label>
+                {{ form.service_address_street }}
+                {{ form.service_address_street.errors }}
+            </div>
+            <div class="grid grid--3">
+                <div style="margin-bottom: var(--space-4);">
+                    <label style="display: block; font-weight: bold; margin-bottom: var(--space-2);">Suburb</label>
+                    {{ form.service_address_suburb }}
+                    {{ form.service_address_suburb.errors }}
+                </div>
+                <div style="margin-bottom: var(--space-4);">
+                    <label style="display: block; font-weight: bold; margin-bottom: var(--space-2);">State</label>
+                    {{ form.service_address_state }}
+                    {{ form.service_address_state.errors }}
+                </div>
+                <div style="margin-bottom: var(--space-4);">
+                    <label style="display: block; font-weight: bold; margin-bottom: var(--space-2);">Postcode</label>
+                    {{ form.service_address_postcode }}
+                    {{ form.service_address_postcode.errors }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Special Instructions -->
+        <div class="card" style="padding: var(--space-6); background: var(--color-white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            <h3 style="margin-bottom: var(--space-6); border-bottom: 1px solid var(--border-color); padding-bottom: var(--space-3);">Special Instructions</h3>
+            <div style="margin-bottom: var(--space-4);">
+                <label style="display: block; font-weight: bold; margin-bottom: var(--space-2);">Any special requirements or access instructions?</label>
+                {{ form.special_instructions }}
+                {{ form.special_instructions.errors }}
+            </div>
+        </div>
+        
+        <div class="flex-between" style="margin-top: var(--space-4);">
+            <a href="{% url 'bookings:step_3_datetime' %}" style="padding: var(--space-3) var(--space-8); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-weight: bold; color: var(--color-text-primary);">&larr; Back to Date & Time</a>
+            <button type="submit" style="padding: var(--space-3) var(--space-8); background: var(--color-primary); color: white; border: none; border-radius: var(--radius-md); font-weight: bold; cursor: pointer; font-size: var(--text-lg);">Review Booking &rarr;</button>
+        </div>
+    </form>
+</div>
+
+<style>
+/* Temporary inline styles for form inputs until components are implemented */
+.form-control {
+    width: 100%;
+    padding: var(--space-3);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-base);
+    font-family: inherit;
+}
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-alpha-20);
+}
+</style>
+{% endblock %}

@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+
+{% block title %}Book {{ package.name }} — MoveOut Cleaning{% endblock %}
+{% block meta_description %}Book your end of lease clean. Pay just 10% deposit today via Stripe.{% endblock %}
+
+{% block extra_head %}
+<style>
+    body {
+        background: linear-gradient(135deg, #525EA7 0%, #5FADD3 50%, #97DDE9 100%);
+        background-attachment: fixed;
+        min-height: 100vh;
+    }
+    .book-page { padding: 120px 5vw 80px; max-width: 100%; margin: 0; }
+    @property --progress { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
+    .pkg-banner { background: rgba(255,255,255,0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.9); border-radius: 20px; padding: 28px 36px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; flex-wrap: wrap; gap: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .pkg-banner-name { font-size: 1.6rem; font-weight: 900; color: #20243A; }
+    .pkg-banner-desc { color: #4B5563; font-size: 0.95rem; margin-top: 4px; }
+    .pkg-banner-price .from { font-size: 0.75rem; color: #6B7280; display: block; margin-bottom: 2px; }
+    .pkg-banner-price .amount { font-size: 2.2rem; font-weight: 900; color: #525EA7; }
+    
+    .form-card {
+        --progress: 0%;
+        background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)) padding-box,
+                    conic-gradient(from 0deg, #FFC349 var(--progress), rgba(255,255,255,0.9) 0) border-box;
+        border: 2px solid transparent;
+        backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+        border-radius: 20px; padding: 36px; margin-bottom: 28px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        transition: --progress 0.4s ease-out, box-shadow 0.4s ease;
+    }
+    .form-card.completed { box-shadow: 0 0 25px rgba(255,195,73,0.3); }
+    .cards-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 28px; }
+    .cards-row .form-card { margin-bottom: 0; padding: 24px; }
+    .form-card-title { font-size: 1.1rem; font-weight: 800; color: #20243A; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+    .form-card-title .icon { width: 32px; height: 32px; background: rgba(255,195,73,0.2); border: 1px solid rgba(255,195,73,0.4); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-grid.cols-3 { grid-template-columns: 2fr 1fr 1fr; }
+    .form-grid.cols-1 { grid-template-columns: 1fr; }
+    .field-full { grid-column: 1 / -1; }
+    .field label { display: block; font-size: 0.78rem; font-weight: 700; color: #4B5563; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+    .field input, .field select, .field textarea { width: 100%; padding: 13px 16px; background: rgba(255,255,255,0.9); border: 1px solid rgba(32,36,58,0.15); border-radius: 12px; color: #20243A; font-size: 0.95rem; font-family: inherit; transition: all 0.2s; box-sizing: border-box; }
+    .field input::placeholder, .field textarea::placeholder { color: #9CA3AF; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: #525EA7; box-shadow: 0 0 0 3px rgba(82,94,167,0.1); background: #fff; }
+    .field select option { background: #fff; color: #20243A; }
+    
+    /* Validation Errors */
+    .field.has-error input, .field.has-error select { border-color: #EF4444; background: rgba(239, 68, 68, 0.03); }
+    .field .error-text { color: #EF4444; font-size: 0.75rem; font-weight: 700; margin-top: 6px; display: none; }
+    .field.has-error .error-text { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .addon-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+    .addon-item { position: relative; aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: all 0.2s ease; background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: flex-end; padding: 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .addon-item.no-img { background: linear-gradient(135deg, #525EA7, #97DDE9); }
+    .addon-item:hover { border-color: #525EA7; transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+    .addon-item.selected { border-color: #525EA7; border-width: 3px; }
+    .addon-item input[type="checkbox"] { display: none; }
+    .addon-check { position: absolute; top: 12px; right: 12px; width: 24px; height: 24px; border: 2px solid rgba(255,255,255,0.7); border-radius: 6px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); z-index: 10; transition: all 0.2s; box-sizing: border-box; }
+    .addon-item.selected .addon-check { background: #525EA7; border-color: #525EA7; color: #fff; font-weight: 900; }
+    .addon-info-overlay { background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%); padding: 40px 14px 14px; width: 100%; box-sizing: border-box; }
+    .addon-name { font-weight: 700; color: #fff; font-size: 0.95rem; line-height: 1.2; margin-bottom: 4px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    .addon-price { font-weight: 800; color: #FFC349; font-size: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    
+    .price-summary { background: rgba(255,255,255,0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.9); border-radius: 20px; padding: 28px 36px; margin-bottom: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .price-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; color: #4B5563; font-size: 0.95rem; }
+    .price-row.divider { border-top: 1px solid rgba(32,36,58,0.1); margin-top: 8px; padding-top: 14px; }
+    .price-row.total { color: #20243A; font-weight: 900; font-size: 1.2rem; }
+    .price-row.deposit { color: #525EA7; font-weight: 800; font-size: 1.2rem; }
+    .btn-pay { width: 100%; padding: 18px; background: #FFC349; color: #20243A; font-size: 1.1rem; font-weight: 900; border: none; border-radius: 14px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(255,195,73,0.4); letter-spacing: 0.3px; margin-top: 8px; }
+    .btn-pay:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,195,73,0.6); }
+    .pay-note { text-align: center; color: rgba(255,255,255,0.6); font-size: 0.8rem; margin-top: 10px; }
+    .error-banner { background: rgba(220,50,50,0.2); border: 1px solid rgba(220,50,50,0.4); color: #fff; border-radius: 12px; padding: 14px 20px; margin-bottom: 24px; font-size: 0.9rem; }
+    @media (max-width: 900px) { .cards-row { grid-template-columns: 1fr; } }
+    @media (max-width: 680px) { .form-grid { grid-template-columns: 1fr; } .form-grid.cols-3 { grid-template-columns: 1fr; } .pkg-banner { flex-direction: column; } .book-page { padding: 100px 16px 60px; } .form-card { padding: 24px; } }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="book-page">
+    <a href="{% url 'public:services' %}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.9rem; font-weight:600; display:inline-flex; align-items:center; gap:6px; margin-bottom:28px;">
+        &larr; Back to Pricing
+    </a>
+    <div class="pkg-banner">
+        <div>
+            <div class="pkg-banner-name">{{ package.name }}</div>
+            <div class="pkg-banner-desc">{{ package.short_description }}</div>
+        </div>
+        <div class="pkg-banner-price">
+            <span class="from">from</span>
+            <span class="amount" id="banner-price">${{ package.base_price }}</span>
+        </div>
+    </div>
+    {% if messages %}
+    <div class="error-banner">
+        {% for msg in messages %}<div>&#9888; {{ msg }}</div>{% endfor %}
+    </div>
+    {% endif %}
+    <form method="post" id="booking-form">
+        {% csrf_token %}
+        <input type="hidden" name="package_id" value="{{ package.id }}">
+        <div class="cards-row">
+            <div class="form-card">
+                <div class="form-card-title"><div class="icon">&#128100;</div>Your Details</div>
+                <div class="form-grid cols-1">
+                    <div class="field"><label for="customer_name">Full Name *</label><input type="text" id="customer_name" name="customer_name" placeholder="Jane Smith" required></div>
+                    <div class="field"><label for="customer_email">Email *</label><input type="email" id="customer_email" name="customer_email" placeholder="jane@example.com" required></div>
+                    <div class="field"><label for="customer_phone">Phone *</label><input type="tel" id="customer_phone" name="customer_phone" placeholder="04xx xxx xxx" required></div>
+                </div>
+            </div>
+            <div class="form-card">
+                <div class="form-card-title"><div class="icon">&#128205;</div>Property Address</div>
+                <div class="form-grid cols-1">
+                    <div class="field"><label for="service_address_street">Street Address *</label><input type="text" id="service_address_street" name="service_address_street" placeholder="42 Ocean Street" required></div>
+                </div>
+                <div class="form-grid cols-1" style="margin-top:16px;">
+                    <div class="field"><label for="service_address_suburb">Suburb *</label><input type="text" id="service_address_suburb" name="service_address_suburb" placeholder="Bondi" required></div>
+                    <div class="field"><label for="service_address_postcode">Postcode *</label><input type="text" id="service_address_postcode" name="service_address_postcode" placeholder="2026" maxlength="4" required></div>
+                    <div class="field"><label for="service_address_state">State</label><select id="service_address_state" name="service_address_state"><option value="NSW" selected>NSW</option><option value="VIC">VIC</option><option value="QLD">QLD</option><option value="WA">WA</option><option value="SA">SA</option><option value="TAS">TAS</option><option value="ACT">ACT</option><option value="NT">NT</option></select></div>
+                </div>
+            </div>
+            <div class="form-card">
+                <div class="form-card-title"><div class="icon">&#128197;</div>Preferred Date &amp; Time</div>
+                <div class="form-grid cols-1">
+                    <div class="field"><label for="booking_date">Date *</label><input type="date" id="booking_date" name="booking_date" min="{{ min_date }}" required></div>
+                    <div class="field"><label for="time_slot_id">Time Slot *</label><select id="time_slot_id" name="time_slot_id" required><option value="">Select a time...</option>{% for slot in time_slots %}<option value="{{ slot.id }}">{{ slot.label }}</option>{% empty %}<option value="1">Morning (7am-12pm)</option><option value="2">Afternoon (12pm-5pm)</option>{% endfor %}</select></div>
+                    <div class="field"><label for="special_instructions">Special Instructions (optional)</label><textarea id="special_instructions" name="special_instructions" rows="2" placeholder="Access code, pets, parking notes..."></textarea></div>
+                </div>
+            </div>
+        </div>
+        {% if addons %}
+        <div class="form-card">
+            <div class="form-card-title"><div class="icon">&#10024;</div>Optional Add-ons</div>
+            <div class="addon-list">
+                {% for addon in addons %}
+                <label class="addon-item {% if not addon.image %}no-img{% endif %}" id="addon-label-{{ addon.id }}"
+                       {% if addon.image %}style="background-image: url('{{ addon.image.url }}');"{% endif %}>
+                    <input type="checkbox" name="addon_ids" value="{{ addon.id }}" data-price="{{ addon.price }}" onchange="updateTotal(this)">
+                    <div class="addon-check" id="addon-check-{{ addon.id }}"></div>
+                    <div class="addon-info-overlay">
+                        <div class="addon-name">{{ addon.name }}</div>
+                        <div class="addon-price">+${{ addon.price }}</div>
+                    </div>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        <div class="price-summary">
+            <div class="price-row"><span>{{ package.name }}</span><span>${{ package.base_price }}</span></div>
+            <div class="price-row" id="addons-row" style="display:none;"><span>Add-ons</span><span id="addons-total">$0.00</span></div>
+            <div class="price-row divider total"><span>Total</span><span id="total-display">${{ package.base_price }}</span></div>
+            <div class="price-row deposit"><span>&#128274; Deposit today (10%)</span><span id="deposit-display">$0.00</span></div>
+            <button type="submit" class="btn-pay">Pay 10% Deposit &mdash; <span id="deposit-btn-amount">$0.00</span> &rarr;</button>
+            <p class="pay-note">Secure payment via Stripe &middot; Balance due on the day</p>
+        </div>
+    </form>
+</div>
+<script>
+const basePrice = parseFloat("{{ package.base_price }}");
+let addonsTotal = 0;
+function updateTotal(checkbox) {
+    const label = checkbox.closest('.addon-item');
+    const checkIcon = label.querySelector('.addon-check');
+    const price = parseFloat(checkbox.getAttribute('data-price')) || 0;
+    if (checkbox.checked) { addonsTotal += price; label.classList.add('selected'); checkIcon.textContent = '\u2713'; }
+    else { addonsTotal -= price; label.classList.remove('selected'); checkIcon.textContent = ''; }
+    const total = basePrice + addonsTotal;
+    const deposit = total * 0.10;
+    document.getElementById('total-display').textContent = '$' + total.toFixed(2);
+    document.getElementById('deposit-display').textContent = '$' + deposit.toFixed(2);
+    document.getElementById('deposit-btn-amount').textContent = '$' + deposit.toFixed(2);
+    document.getElementById('banner-price').textContent = '$' + total.toFixed(2);
+    const addonsRow = document.getElementById('addons-row');
+    if (addonsTotal > 0) { addonsRow.style.display = 'flex'; document.getElementById('addons-total').textContent = '+$' + addonsTotal.toFixed(2); }
+    else { addonsRow.style.display = 'none'; }
+}
+window.addEventListener('DOMContentLoaded', () => {
+    const deposit = basePrice * 0.10;
+    document.getElementById('deposit-display').textContent = '$' + deposit.toFixed(2);
+    // Progress Border Effect for Cards
+    document.querySelectorAll('.form-card').forEach(card => {
+        const inputs = card.querySelectorAll('input[required], select[required]');
+        if (inputs.length === 0) return;
+
+        const updateProgress = () => {
+            let filled = 0;
+            inputs.forEach(input => {
+                if (input.value.trim() !== '') filled++;
+            });
+            const percent = (filled / inputs.length) * 100;
+            card.style.setProperty('--progress', `${percent}%`);
+            
+            if (percent === 100) {
+                card.classList.add('completed');
+            } else {
+                card.classList.remove('completed');
+            }
+        };
+
+        inputs.forEach(input => {
+            input.addEventListener('input', updateProgress);
+            input.addEventListener('change', updateProgress);
+        });
+
+        // Initialize on load
+        setTimeout(updateProgress, 100);
+    });
+
+    // Form Validation Logic
+    const validationRules = {
+        customer_phone: { pattern: /^[0-9\s\+\-]{8,15}$/, message: 'Please enter a valid phone number.' },
+        service_address_postcode: { pattern: /^\d{4}$/, message: 'Postcode must be 4 digits.' },
+    };
+
+    document.querySelectorAll('.field input[required], .field select[required]').forEach(input => {
+        // Inject error text element
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-text';
+        input.parentNode.appendChild(errorDiv);
+
+        const validateField = () => {
+            const field = input.closest('.field');
+            let errorMsg = '';
+            
+            if (input.validity.valueMissing) {
+                errorMsg = 'This field is required.';
+            } else if (input.validity.typeMismatch && input.type === 'email') {
+                errorMsg = 'Please enter a valid email address.';
+            } else if (validationRules[input.id] && input.value.trim() !== '') {
+                if (!validationRules[input.id].pattern.test(input.value)) {
+                    errorMsg = validationRules[input.id].message;
+                }
+            }
+
+            if (errorMsg) {
+                field.classList.add('has-error');
+                errorDiv.textContent = errorMsg;
+                return false;
+            } else {
+                field.classList.remove('has-error');
+                errorDiv.textContent = '';
+                return true;
+            }
+        };
+
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', validateField);
+    });
+
+    // Prevent submission if invalid
+    document.getElementById('booking-form').addEventListener('submit', (e) => {
+        let isValid = true;
+        document.querySelectorAll('.field input[required], .field select[required]').forEach(input => {
+            const field = input.closest('.field');
+            const errorDiv = field.querySelector('.error-text');
+            let errorMsg = '';
+
+            if (input.validity.valueMissing) { errorMsg = 'This field is required.'; }
+            else if (input.validity.typeMismatch && input.type === 'email') { errorMsg = 'Invalid email address.'; }
+            else if (validationRules[input.id] && !validationRules[input.id].pattern.test(input.value)) {
+                errorMsg = validationRules[input.id].message;
+            }
+
+            if (errorMsg) {
+                field.classList.add('has-error');
+                errorDiv.textContent = errorMsg;
+                isValid = false;
+            }
+        });
+        
+        if (!isValid) {
+            e.preventDefault();
+            const firstError = document.querySelector('.has-error');
+            if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    });
+});
+</script>
+{% endblock %}

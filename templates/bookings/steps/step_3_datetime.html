@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container section">
+    <div class="section-header">
+        <h2>Step 3: Select Date & Time</h2>
+        <p>Choose when you'd like the cleaning to take place.</p>
+    </div>
+
+    <!-- For a fully functional MVP, we'll use Alpine to fetch availability and slots -->
+    <div x-data="bookingCalendar()" x-init="initCalendar()">
+        <form method="POST" action="{% url 'bookings:step_3_datetime' %}">
+            {% csrf_token %}
+            
+            <div class="grid grid--2">
+                <!-- Date Picker -->
+                <div>
+                    <h3 style="margin-bottom: var(--space-4);">Select a Date</h3>
+                    <input type="date" name="date" x-model="selectedDate" @change="fetchTimeSlots()" 
+                           min="{{ ''|date:'Y-m-d' }}" required
+                           style="width: 100%; padding: var(--space-3); border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: var(--text-lg); margin-bottom: var(--space-6);">
+                </div>
+
+                <!-- Time Slots -->
+                <div>
+                    <h3 style="margin-bottom: var(--space-4);">Select a Time</h3>
+                    
+                    <div x-show="!selectedDate" class="text-muted" style="padding: var(--space-6); background: var(--color-grey-50); border-radius: var(--radius-sm); text-align: center;">
+                        Please select a date first to view available time slots.
+                    </div>
+                    
+                    <div x-show="selectedDate && loadingSlots" style="padding: var(--space-6); text-align: center;">
+                        Loading time slots...
+                    </div>
+                    
+                    <div x-show="selectedDate && !loadingSlots && timeSlots.length === 0" class="text-error" style="padding: var(--space-6); background: var(--color-error-bg); color: var(--color-error); border-radius: var(--radius-sm); text-align: center;">
+                        No time slots available for this date. Please select another date.
+                    </div>
+
+                    <div x-show="selectedDate && !loadingSlots && timeSlots.length > 0" class="grid" style="gap: var(--space-3);">
+                        <template x-for="slot in timeSlots" :key="slot.id">
+                            <label class="card" style="display: block; padding: var(--space-4); border: 2px solid var(--border-color); border-radius: var(--radius-md); cursor: pointer; text-align: center; transition: all var(--transition-fast);" :style="selectedSlot == slot.id ? 'border-color: var(--color-primary); background: var(--color-primary-alpha-10);' : ''">
+                                <input type="radio" name="time_slot_id" :value="slot.id" x-model="selectedSlot" class="sr-only" required>
+                                <span class="font-bold text-lg" x-text="slot.label"></span>
+                            </label>
+                        </template>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex-between" style="margin-top: var(--space-8);">
+                <a href="{% url 'bookings:step_2_addons' %}" style="padding: var(--space-3) var(--space-8); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-weight: bold; color: var(--color-text-primary);">&larr; Back to Add-ons</a>
+                <button type="submit" x-bind:disabled="!selectedDate || !selectedSlot" style="padding: var(--space-3) var(--space-8); background: var(--color-primary); color: white; border: none; border-radius: var(--radius-md); font-weight: bold; cursor: pointer; font-size: var(--text-lg);" :style="(!selectedDate || !selectedSlot) ? 'opacity: 0.5; cursor: not-allowed;' : ''">Continue to Details &rarr;</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function bookingCalendar() {
+    return {
+        selectedDate: '{{ selected_date|default:"" }}',
+        selectedSlot: '{{ selected_time_slot|default:"" }}',
+        timeSlots: [],
+        loadingSlots: false,
+        
+        initCalendar() {
+            if (this.selectedDate) {
+                this.fetchTimeSlots();
+            }
+        },
+        
+        async fetchTimeSlots() {
+            if (!this.selectedDate) return;
+            
+            this.loadingSlots = true;
+            try {
+                const response = await fetch(`/api/timeslots/?date=${this.selectedDate}`);
+                const data = await response.json();
+                this.timeSlots = data.slots || [];
+                
+                // Reset selected slot if it's no longer in the list
+                if (this.selectedSlot) {
+                    const slotExists = this.timeSlots.find(s => s.id == this.selectedSlot);
+                    if (!slotExists) {
+                        this.selectedSlot = '';
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching time slots:", error);
+                this.timeSlots = [];
+            } finally {
+                this.loadingSlots = false;
+            }
+        }
+    }
+}
+</script>
+{% endblock %}

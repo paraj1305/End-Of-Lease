@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container section">
+    <div class="section-header">
+        <h2>Step 5: Review & Confirm</h2>
+        <p>Please review your booking details before proceeding to payment.</p>
+    </div>
+
+    <div class="grid grid--2">
+        <!-- Details Column -->
+        <div style="display: flex; flex-direction: column; gap: var(--space-6);">
+            
+            <div class="card" style="padding: var(--space-6); background: var(--color-white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                <h3 style="margin-bottom: var(--space-4); border-bottom: 1px solid var(--border-color); padding-bottom: var(--space-2);">Service Details</h3>
+                <p><strong>Package:</strong> {{ package.name }}</p>
+                {% if addons %}
+                <p style="margin-top: var(--space-2);"><strong>Add-ons:</strong></p>
+                <ul style="list-style-type: disc; margin-left: var(--space-6);">
+                    {% for addon in addons %}
+                    <li>{{ addon.name }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="card" style="padding: var(--space-6); background: var(--color-white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                <h3 style="margin-bottom: var(--space-4); border-bottom: 1px solid var(--border-color); padding-bottom: var(--space-2);">Date & Time</h3>
+                <p><strong>Date:</strong> {{ date }}</p>
+                <p><strong>Time:</strong> {{ time_slot.label }}</p>
+            </div>
+
+            <div class="card" style="padding: var(--space-6); background: var(--color-white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                <h3 style="margin-bottom: var(--space-4); border-bottom: 1px solid var(--border-color); padding-bottom: var(--space-2);">Customer & Location</h3>
+                <p><strong>Name:</strong> {{ customer_details.customer_name }}</p>
+                <p><strong>Email:</strong> {{ customer_details.customer_email }}</p>
+                <p><strong>Phone:</strong> {{ customer_details.customer_phone }}</p>
+                <p style="margin-top: var(--space-2);"><strong>Address:</strong><br>
+                {{ customer_details.service_address_street }}<br>
+                {{ customer_details.service_address_suburb }} {{ customer_details.service_address_state }} {{ customer_details.service_address_postcode }}
+                </p>
+                {% if customer_details.special_instructions %}
+                <p style="margin-top: var(--space-2);"><strong>Instructions:</strong><br>
+                {{ customer_details.special_instructions }}
+                </p>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <!-- Pricing Summary Column -->
+        <div>
+            <div class="card" style="padding: var(--space-6); background: var(--color-grey-50); border: 2px solid var(--color-primary-alpha-20); border-radius: var(--radius-md); position: sticky; top: var(--space-6);">
+                <h3 style="margin-bottom: var(--space-6); border-bottom: 1px solid var(--border-color); padding-bottom: var(--space-3);">Order Summary</h3>
+                
+                <div class="flex-between" style="margin-bottom: var(--space-3);">
+                    <span>{{ package.name }}</span>
+                    <strong>${{ package.base_price }}</strong>
+                </div>
+                
+                {% for addon in addons %}
+                <div class="flex-between" style="margin-bottom: var(--space-3);">
+                    <span>+ {{ addon.name }}</span>
+                    <strong>${{ addon.price }}</strong>
+                </div>
+                {% endfor %}
+                
+                <div class="divider" style="margin-block: var(--space-4);"></div>
+                
+                <div class="flex-between" style="font-size: var(--text-lg); font-weight: bold; margin-bottom: var(--space-6);">
+                    <span>Total Estimated Cost</span>
+                    <span>${{ pricing.subtotal }}</span>
+                </div>
+                
+                <div class="flex-between text-primary-color" style="font-size: var(--text-xl); font-weight: 800; margin-bottom: var(--space-2);">
+                    <span>10% Deposit to Secure Booking</span>
+                    <span>${{ pricing.deposit_amount }}</span>
+                </div>
+                
+                <p class="text-sm text-muted" style="text-align: right; margin-bottom: var(--space-8);">
+                    Remaining balance of ${{ pricing.remaining_amount }} to be paid upon completion.
+                </p>
+                
+                <form method="POST" action="{% url 'bookings:step_5_review' %}">
+                    {% csrf_token %}
+                    <button type="submit" style="width: 100%; padding: var(--space-4); background: var(--color-primary); color: white; border: none; border-radius: var(--radius-md); font-weight: bold; cursor: pointer; font-size: var(--text-lg); display: flex; justify-content: center; align-items: center; gap: var(--space-2);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        Pay Deposit Securely
+                    </button>
+                    <p class="text-center text-xs text-muted" style="margin-top: var(--space-3);">Payments are processed securely via Stripe.</p>
+                </form>
+            </div>
+            
+            <div style="margin-top: var(--space-4);">
+                <a href="{% url 'bookings:step_4_details' %}" style="display: block; text-align: center; padding: var(--space-3); color: var(--color-text-primary); text-decoration: underline;">&larr; Go back and edit details</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block extra_head %}
+<style>
+    /* ════════════════════════════════════════ */
+    /* Services Hero                            */
+    /* ════════════════════════════════════════ */
+    .services-hero {
+        padding: 160px var(--space-6) 100px var(--space-6);
+        background: #97DDE9;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .services-badge {
+        display: inline-block;
+        padding: 6px 16px;
+        background: #FFC349;
+        color: #20243A;
+        font-weight: 800;
+        font-size: 12px;
+        letter-spacing: 2px;
+        border-radius: 100px;
+        margin-bottom: var(--space-6);
+        border: none;
+    }
+
+    .services-title {
+        font-size: 64px;
+        font-weight: 900;
+        color: #20243A;
+        line-height: 1.1;
+        letter-spacing: -2px;
+        margin-bottom: var(--space-6);
+    }
+
+    .services-subtitle {
+        font-size: 20px;
+        color: #20243A;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    /* ════════════════════════════════════════ */
+    /* Services Grid                            */
+    /* ════════════════════════════════════════ */
+    .services-grid-container {
+        padding: 0 var(--space-6) 120px var(--space-6);
+        max-width: 1200px;
+        margin: -60px auto 0 auto; /* Pull up over the hero slightly */
+        position: relative;
+        z-index: 10;
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 32px;
+    }
+
+    .service-card {
+        background: #FFFFFF;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 30px;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s, background 0.3s;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(255, 195, 73, 0.4);
+        box-shadow: 0 10px 30px rgba(255, 195, 73, 0.15);
+    }
+
+    .service-card-title {
+        font-size: 28px;
+        font-weight: 800;
+        color: #20243A;
+        margin-bottom: var(--space-2);
+        letter-spacing: -1px;
+    }
+
+    .service-card-area {
+        font-size: 14px;
+        font-weight: 600;
+        color: #6B7280;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: var(--space-6);
+    }
+
+    .service-card-price {
+        font-size: 48px;
+        font-weight: 900;
+        letter-spacing: -2px;
+        color: #525EA7;
+        line-height: 1;
+        margin-bottom: var(--space-6);
+    }
+
+    .service-card-desc {
+        font-size: 16px;
+        color: #6B7280;
+        line-height: 1.6;
+        margin-bottom: var(--space-8);
+        flex-grow: 1;
+    }
+
+    .btn-accent {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        padding: 16px 32px;
+        background: #FFC349;
+        color: #20243A;
+        font-weight: 800;
+        font-size: 16px;
+        text-decoration: none;
+        border-radius: 100px;
+        border: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 195, 73, 0.35);
+    }
+
+    .btn-accent:hover {
+        background: #FFD57F;
+        box-shadow: 0 8px 25px rgba(255, 195, 73, 0.55);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .services-title {
+            font-size: 48px;
+        }
+        .services-hero {
+            padding: 120px var(--space-4) 140px var(--space-4);
+        }
+        .services-grid-container {
+            padding: 0 var(--space-4) 80px var(--space-4);
+            margin-top: -80px;
+        }
+        .service-card {
+            padding: 30px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="services-hero">
+    <span class="services-badge">FIXED PRICE CLEANING</span>
+    <h1 class="services-title">Our Cleaning Packages</h1>
+    <p class="services-subtitle">Comprehensive end of lease cleaning designed specifically to pass real estate inspections. Includes a free 72-hour bond back guarantee.</p>
+</section>
+
+<div class="services-grid-container">
+    <div class="services-grid">
+        {% for package in packages %}
+        <div class="service-card">
+            <h3 class="service-card-title">{{ package.name }}</h3>
+            <div class="service-card-area">{{ package.approximate_area }}</div>
+            
+            <div class="service-card-price">${{ package.base_price }}</div>
+            
+            <p class="service-card-desc">{{ package.short_description }}</p>
+            
+            <a href="{% url 'bookings:quick_book' package.slug %}" class="btn-accent">Book Now &rarr;</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

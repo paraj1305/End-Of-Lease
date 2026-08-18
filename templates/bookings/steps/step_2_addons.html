@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container section">
+    <div class="section-header">
+        <h2>Step 2: Extra Add-ons</h2>
+        <p>Customize your clean with additional services.</p>
+    </div>
+
+    <form method="POST" action="{% url 'bookings:step_2_addons' %}">
+        {% csrf_token %}
+        <div class="grid grid--3">
+            {% for addon in addons %}
+            <label class="card" style="display: block; padding: var(--space-6); border: 2px solid {% if addon.id in selected_addons %}var(--color-primary){% else %}var(--border-color){% endif %}; border-radius: var(--radius-md); cursor: pointer; transition: all var(--transition-fast);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-2);">
+                    <h3 style="margin-bottom: 0;">{{ addon.name }}</h3>
+                    <input type="checkbox" name="addon_ids" value="{{ addon.id }}" {% if addon.id in selected_addons %}checked{% endif %} style="transform: scale(1.5);">
+                </div>
+                <p class="text-primary-color font-bold" style="font-size: var(--text-lg); margin-bottom: var(--space-4);">+${{ addon.price }}</p>
+                <p>{{ addon.short_description }}</p>
+            </label>
+            {% endfor %}
+        </div>
+        
+        <div class="flex-between" style="margin-top: var(--space-8);">
+            <a href="{% url 'bookings:step_1_package' %}" style="padding: var(--space-3) var(--space-8); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-weight: bold; color: var(--color-text-primary);">&larr; Back to Packages</a>
+            <button type="submit" style="padding: var(--space-3) var(--space-8); background: var(--color-primary); color: white; border: none; border-radius: var(--radius-md); font-weight: bold; cursor: pointer; font-size: var(--text-lg);">Continue to Date & Time &rarr;</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

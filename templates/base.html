@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}End of Lease Cleaning{% endblock %}</title>
+    <meta name="description"
+        content="{% block meta_description %}Professional end of lease cleaning service with a 100% bond back guarantee.{% endblock %}">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#1A1A2E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="EOL Cleaning">
+
+    <!-- SEO / Schema -->
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "End of Lease Cleaning",
+      "description": "Professional end of lease cleaning service.",
+      "url": "https://domain.com.au",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sydney",
+        "addressRegion": "NSW",
+        "addressCountry": "AU"
+      }
+    }
+    </script>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Architecture -->
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body class="bg-body text-primary" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: var(--space-4) 0;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+            transition: padding 0.3s, box-shadow 0.3s, background 0.3s;
+            color: #20243A;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar.scrolled {
+            padding: var(--space-3) 0;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
+        }
+    </style>
+    <!-- Glassmorphism Nav -->
+    <header id="main-nav" class="navbar">
+        <div class="container flex-between" style="align-items: center;">
+            <a href="/" style="text-decoration: none;">
+                <h1
+                    style="font-size: var(--text-xl); color: #20243A; margin: 0; font-weight: 800; letter-spacing: 2px;">
+                    MOVEOUT<span style="color: #FFC349;">✦</span></h1>
+            </a>
+            <nav style="display: flex; gap: var(--space-6); align-items: center;">
+                <a href="{% url 'public:services' %}"
+                    style="color: #525EA7; text-decoration: none; font-size: var(--text-sm); transition: color 0.2s, text-shadow 0.2s; font-weight: 600; text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.7);">Pricing</a>
+                <a href="{% url 'public:our_work' %}"
+                    style="color: #525EA7; text-decoration: none; font-size: var(--text-sm); transition: color 0.2s, text-shadow 0.2s; font-weight: 600; text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.7);">Our Work</a>
+                <a href="{% url 'public:about' %}"
+                    style="color: #525EA7; text-decoration: none; font-size: var(--text-sm); transition: color 0.2s, text-shadow 0.2s; font-weight: 600; text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.7);">Guarantee</a>
+                <a href="{% url 'public:faq' %}"
+                    style="color: #525EA7; text-decoration: none; font-size: var(--text-sm); transition: color 0.2s, text-shadow 0.2s; font-weight: 600; text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.7);">FAQ</a>
+                <div style="display: flex; align-items: center; gap: var(--space-4); margin-left: var(--space-6);">
+                    <a href="tel:0279889050"
+                        style="display: flex; align-items: center; gap: var(--space-2); color: #20243A; text-decoration: none; border: 1px solid rgba(32, 36, 58, 0.2); padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-weight: bold; font-size: var(--text-sm);">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #FFC349;">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        02 7988 9050
+                    </a>
+                    <a href="{% url 'bookings:step_1_package' %}"
+                        style="background: #FFC349; color: #20243A; padding: 10px 24px; border-radius: var(--radius-full); font-weight: 800; text-decoration: none; font-size: var(--text-sm); box-shadow: 0 4px 15px rgba(255, 195, 73, 0.3);">Get
+                        fixed price</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: 80px;">
+        {% if messages %}
+        <div class="container" style="margin-top: var(--space-4);">
+            {% for message in messages %}
+            <div
+                style="padding: var(--space-3); background: var(--color-warning-bg); color: var(--color-warning); margin-bottom: var(--space-2); border-radius: var(--radius-sm);">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Premium Footer -->
+    <footer
+        style="background: #525EA7; padding: 80px var(--space-6) 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; line-height: 1.6; margin-top: 0;">
+        <div class="container"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 60px;">
+            <div>
+                <h2 style="font-size: 24px; color: white; margin: 0 0 16px 0; font-weight: 800; letter-spacing: 2px;">
+                    MOVEOUT<span style="color: #FFC349;">✦</span></h2>
+                <p style="color: rgba(255,255,255,0.8); max-width: 250px;">Sydney's #1 premium end of lease cleaning
+                    service. Guaranteed to get your bond back.</p>
+            </div>
+            <div>
+                <h3 style="color: #fff; font-weight: 700; margin-bottom: 20px;">Services</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                    <li><a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s;"
+                            onmouseover="this.style.color='#fff'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.6)'">End of Lease Clean</a></li>
+                    <li><a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s;"
+                            onmouseover="this.style.color='#fff'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.6)'">Carpet Steam Cleaning</a></li>
+                    <li><a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s;"
+                            onmouseover="this.style.color='#fff'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.6)'">Pest Control</a></li>
+                    <li><a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s;"
+                            onmouseover="this.style.color='#fff'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.6)'">Upholstery Cleaning</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="color: #fff; font-weight: 700; margin-bottom: 20px;">Company</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                    <li><a href="{% url 'public:about' %}"
+                            style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s;"
+                            onmouseover="this.style.color='#fff'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.6)'">Our Guarantee</a></li>
+                    <li><a href="{% url 'public:faq' %}"
+                            style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s;"
+                            onmouseover="this.style.color='#fff'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.6)'">FAQ</a></li>
+                    <li><a href="{% url 'public:our_work' %}"
+                            style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s;"
+                            onmouseover="this.style.color='#fff'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.6)'">Our Work</a></li>
+                    <li><a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s;"
+                            onmouseover="this.style.color='#fff'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.6)'">Terms & Privacy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="color: #fff; font-weight: 700; margin-bottom: 20px;">Contact</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                    <li><a href="tel:0279889050" style="color: #FFC349; font-weight: 700; text-decoration: none;">02
+                            7988 9050</a></li>
+                    <li><a href="mailto:hello@moveout.com.au"
+                            style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s;"
+                            onmouseover="this.style.color='#fff'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.8)'">hello@moveout.com.au</a></li>
+                    <li style="color: rgba(255,255,255,0.8);">Available 24/7</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container"
+            style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+            <p style="color: rgba(255,255,255,0.4); margin: 0;">&copy; {% now "Y" %} MoveOut End of Lease Cleaning. All
+                rights reserved.</p>
+            <p style="color: rgba(255,255,255,0.4); margin: 0;">Sydney, Australia</p>
+        </div>
+    </footer>
+
+    <style>
+        /* Sparkle Trail Particles */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999998;
+            border-radius: 50%;
+            background: #FFFFFF;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            animation: cleanSparkle 0.8s ease-out forwards;
+        }
+
+        @keyframes cleanSparkle {
+            0% {
+                opacity: 0.8;
+                transform: scale(1) translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0) translateY(-20px) rotate(45deg);
+            }
+        }
+    </style>
+
+    <script>
+        // Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('SW registered'))
+                    .catch(err => console.error('SW registration failed:', err));
+            });
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        }, { passive: true });
+
+        // Cleaning Trail Effect (Default Cursor)
+        let lastX = 0;
+        let lastY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            // Calculate distance moved to spawn trail
+            const deltaX = e.clientX - lastX;
+            const deltaY = e.clientY - lastY;
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+            if (distance > 20) { // Spawn a sparkle every 20px
+                createSparkle(e.clientX, e.clientY);
+                lastX = e.clientX;
+                lastY = e.clientY;
+            }
+        });
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+
+            // Random size between 4px and 12px
+            const size = Math.random() * 8 + 4;
+            sparkle.style.width = size + 'px';
+            sparkle.style.height = size + 'px';
+
+            // Random offset around the cursor
+            const offsetX = (Math.random() - 0.5) * 40;
+            const offsetY = (Math.random() - 0.5) * 40;
+
+            sparkle.style.left = (x + offsetX) + 'px';
+            sparkle.style.top = (y + offsetY) + 'px';
+
+            document.body.appendChild(sparkle);
+
+            // Remove after animation completes (800ms)
+            setTimeout(() => {
+                sparkle.remove();
+            }, 800);
+        }
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

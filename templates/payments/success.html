@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container section">
+    <div class="card text-center" style="max-width: 600px; margin: 0 auto; padding: var(--space-8); background: var(--color-white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+        <div class="icon-circle" style="margin: 0 auto var(--space-6); background: var(--color-success-bg); color: var(--color-success); width: 80px; height: 80px;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        
+        <h2 style="margin-bottom: var(--space-4);">Booking Confirmed!</h2>
+        <p class="text-lg" style="margin-bottom: var(--space-2);">Thank you, {{ booking.customer_name }}.</p>
+        <p class="text-muted" style="margin-bottom: var(--space-6);">Your booking reference is <strong>{{ booking.reference }}</strong></p>
+        
+        <div style="background: var(--color-grey-50); padding: var(--space-6); border-radius: var(--radius-sm); text-align: left; margin-bottom: var(--space-6);">
+            <h4 style="margin-bottom: var(--space-4);">Service Details</h4>
+            <p><strong>Date:</strong> {{ booking.booking_date }}</p>
+            <p><strong>Time:</strong> {{ booking.time_slot.label }}</p>
+            <p><strong>Address:</strong> {{ booking.service_address_street }}, {{ booking.service_address_suburb }}</p>
+            <p style="margin-top: var(--space-4); font-size: var(--text-sm);" class="text-muted">A confirmation email has been sent to {{ booking.customer_email }}.</p>
+        </div>
+        
+        <a href="/" style="display: inline-block; padding: var(--space-3) var(--space-8); background: var(--color-primary); color: white; border: none; border-radius: var(--radius-md); font-weight: bold; font-size: var(--text-lg);">Return to Home</a>
+    </div>
+</div>
+{% endblock %}
