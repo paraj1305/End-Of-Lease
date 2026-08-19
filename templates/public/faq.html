@@ -1,27 +1,52 @@
 {% extends 'base.html' %}
 
+{% block title %}FAQ | MoveOut End of Lease Cleaning{% endblock %}
+
 {% block content %}
-<div class="container section">
-    <div class="section-header">
-        <h2>Frequently Asked Questions</h2>
-        <p>Common questions about our end of lease cleaning services.</p>
+<main style="padding-top: 140px; padding-bottom: 80px; position: relative; z-index: 2;">
+    <div class="faq-section-wrapper">
+        <div class="faq-container" x-data="{ activeIndex: null }">
+            <h2 class="faq-heading">Frequently Asked Questions</h2>
+            <p style="text-align: center; color: rgba(255,255,255,0.6); margin-bottom: 60px; font-size: 18px;">
+                Everything you need to know about our end of lease cleaning services.
+            </p>
+
+            <div class="faq-list">
+                <!-- Left Column FAQs -->
+                <div>
+                    {% for faq in faqs %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                    <div class="faq-item">
+                        <button class="faq-button" @click="activeIndex === {{ faq.id }} ? activeIndex = null : activeIndex = {{ faq.id }}">
+                            <span>{{ faq.question }}</span>
+                            <svg class="faq-icon" :style="activeIndex === {{ faq.id }} ? 'transform: rotate(180deg)' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-content" x-show="activeIndex === {{ faq.id }}" style="display: none;">
+                            <div class="faq-inner">{{ faq.answer }}</div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+                <!-- Right Column FAQs -->
+                <div>
+                    {% for faq in faqs %}
+                    {% if not forloop.counter0|divisibleby:2 %}
+                    <div class="faq-item">
+                        <button class="faq-button" @click="activeIndex === {{ faq.id }} ? activeIndex = null : activeIndex = {{ faq.id }}">
+                            <span>{{ faq.question }}</span>
+                            <svg class="faq-icon" :style="activeIndex === {{ faq.id }} ? 'transform: rotate(180deg)' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-content" x-show="activeIndex === {{ faq.id }}" style="display: none;">
+                            <div class="faq-inner">{{ faq.answer }}</div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
-    
-    <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-4);">
-        <div class="card" style="padding: var(--space-6); background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
-            <h3 style="margin-bottom: var(--space-2);">What is the 100% Bond Back Guarantee?</h3>
-            <p class="text-muted">If your real estate agent finds any issues with the cleaning during their inspection, we will return and fix those specific issues free of charge within 72 hours.</p>
-        </div>
-        
-        <div class="card" style="padding: var(--space-6); background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
-            <h3 style="margin-bottom: var(--space-2);">Do you bring your own equipment and supplies?</h3>
-            <p class="text-muted">Yes, our teams come fully equipped with all necessary commercial-grade cleaning products and equipment.</p>
-        </div>
-        
-        <div class="card" style="padding: var(--space-6); background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
-            <h3 style="margin-bottom: var(--space-2);">How does payment work?</h3>
-            <p class="text-muted">We take a 10% deposit online at the time of booking to secure your date and time. The remaining balance is paid directly to the cleaning team on the day of service.</p>
-        </div>
-    </div>
-</div>
+</main>
 {% endblock %}

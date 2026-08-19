@@ -6,22 +6,22 @@
 {% block extra_head %}
 <style>
     body {
-        background: linear-gradient(135deg, #525EA7 0%, #5FADD3 50%, #97DDE9 100%);
+        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 50%, var(--color-primary-lighter) 100%);
         background-attachment: fixed;
         min-height: 100vh;
     }
     .book-page { padding: 120px 5vw 80px; max-width: 100%; margin: 0; }
     @property --progress { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
     .pkg-banner { background: rgba(255,255,255,0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.9); border-radius: 20px; padding: 28px 36px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; flex-wrap: wrap; gap: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-    .pkg-banner-name { font-size: 1.6rem; font-weight: 900; color: #20243A; }
+    .pkg-banner-name { font-size: 1.6rem; font-weight: 900; color: var(--color-primary-dark); }
     .pkg-banner-desc { color: #4B5563; font-size: 0.95rem; margin-top: 4px; }
-    .pkg-banner-price .from { font-size: 0.75rem; color: #6B7280; display: block; margin-bottom: 2px; }
-    .pkg-banner-price .amount { font-size: 2.2rem; font-weight: 900; color: #525EA7; }
+    .pkg-banner-price .from { font-size: 0.75rem; color: var(--color-text-muted); display: block; margin-bottom: 2px; }
+    .pkg-banner-price .amount { font-size: 2.2rem; font-weight: 900; color: var(--color-primary); }
     
     .form-card {
         --progress: 0%;
         background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)) padding-box,
-                    conic-gradient(from 0deg, #FFC349 var(--progress), rgba(255,255,255,0.9) 0) border-box;
+                    conic-gradient(from 0deg, var(--color-accent) var(--progress), rgba(255,255,255,0.9) 0) border-box;
         border: 2px solid transparent;
         backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
         border-radius: 20px; padding: 36px; margin-bottom: 28px;
@@ -31,17 +31,17 @@
     .form-card.completed { box-shadow: 0 0 25px rgba(255,195,73,0.3); }
     .cards-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 28px; }
     .cards-row .form-card { margin-bottom: 0; padding: 24px; }
-    .form-card-title { font-size: 1.1rem; font-weight: 800; color: #20243A; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+    .form-card-title { font-size: 1.1rem; font-weight: 800; color: var(--color-primary-dark); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
     .form-card-title .icon { width: 32px; height: 32px; background: rgba(255,195,73,0.2); border: 1px solid rgba(255,195,73,0.4); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-grid.cols-3 { grid-template-columns: 2fr 1fr 1fr; }
     .form-grid.cols-1 { grid-template-columns: 1fr; }
     .field-full { grid-column: 1 / -1; }
     .field label { display: block; font-size: 0.78rem; font-weight: 700; color: #4B5563; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
-    .field input, .field select, .field textarea { width: 100%; padding: 13px 16px; background: rgba(255,255,255,0.9); border: 1px solid rgba(32,36,58,0.15); border-radius: 12px; color: #20243A; font-size: 0.95rem; font-family: inherit; transition: all 0.2s; box-sizing: border-box; }
+    .field input, .field select, .field textarea { width: 100%; padding: 13px 16px; background: rgba(255,255,255,0.9); border: 1px solid rgba(32,36,58,0.15); border-radius: 12px; color: var(--color-primary-dark); font-size: 0.95rem; font-family: inherit; transition: all 0.2s; box-sizing: border-box; }
     .field input::placeholder, .field textarea::placeholder { color: #9CA3AF; }
-    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: #525EA7; box-shadow: 0 0 0 3px rgba(82,94,167,0.1); background: #fff; }
-    .field select option { background: #fff; color: #20243A; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(82,94,167,0.1); background: var(--color-white); }
+    .field select option { background: var(--color-white); color: var(--color-primary-dark); }
     
     /* Validation Errors */
     .field.has-error input, .field.has-error select { border-color: #EF4444; background: rgba(239, 68, 68, 0.03); }
@@ -51,25 +51,25 @@
 
     .addon-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
     .addon-item { position: relative; aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: all 0.2s ease; background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: flex-end; padding: 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-    .addon-item.no-img { background: linear-gradient(135deg, #525EA7, #97DDE9); }
-    .addon-item:hover { border-color: #525EA7; transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-    .addon-item.selected { border-color: #525EA7; border-width: 3px; }
+    .addon-item.no-img { background: linear-gradient(135deg, var(--color-primary), var(--color-primary-lighter)); }
+    .addon-item:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+    .addon-item.selected { border-color: var(--color-primary); border-width: 3px; }
     .addon-item input[type="checkbox"] { display: none; }
     .addon-check { position: absolute; top: 12px; right: 12px; width: 24px; height: 24px; border: 2px solid rgba(255,255,255,0.7); border-radius: 6px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); z-index: 10; transition: all 0.2s; box-sizing: border-box; }
-    .addon-item.selected .addon-check { background: #525EA7; border-color: #525EA7; color: #fff; font-weight: 900; }
+    .addon-item.selected .addon-check { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-white); font-weight: 900; }
     .addon-info-overlay { background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%); padding: 40px 14px 14px; width: 100%; box-sizing: border-box; }
-    .addon-name { font-weight: 700; color: #fff; font-size: 0.95rem; line-height: 1.2; margin-bottom: 4px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-    .addon-price { font-weight: 800; color: #FFC349; font-size: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    .addon-name { font-weight: 700; color: var(--color-white); font-size: 0.95rem; line-height: 1.2; margin-bottom: 4px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    .addon-price { font-weight: 800; color: var(--color-accent); font-size: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
     
     .price-summary { background: rgba(255,255,255,0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.9); border-radius: 20px; padding: 28px 36px; margin-bottom: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
     .price-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; color: #4B5563; font-size: 0.95rem; }
     .price-row.divider { border-top: 1px solid rgba(32,36,58,0.1); margin-top: 8px; padding-top: 14px; }
-    .price-row.total { color: #20243A; font-weight: 900; font-size: 1.2rem; }
-    .price-row.deposit { color: #525EA7; font-weight: 800; font-size: 1.2rem; }
-    .btn-pay { width: 100%; padding: 18px; background: #FFC349; color: #20243A; font-size: 1.1rem; font-weight: 900; border: none; border-radius: 14px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(255,195,73,0.4); letter-spacing: 0.3px; margin-top: 8px; }
+    .price-row.total { color: var(--color-primary-dark); font-weight: 900; font-size: 1.2rem; }
+    .price-row.deposit { color: var(--color-primary); font-weight: 800; font-size: 1.2rem; }
+    .btn-pay { width: 100%; padding: 18px; background: var(--color-accent); color: var(--color-primary-dark); font-size: 1.1rem; font-weight: 900; border: none; border-radius: 14px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(255,195,73,0.4); letter-spacing: 0.3px; margin-top: 8px; }
     .btn-pay:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,195,73,0.6); }
     .pay-note { text-align: center; color: rgba(255,255,255,0.6); font-size: 0.8rem; margin-top: 10px; }
-    .error-banner { background: rgba(220,50,50,0.2); border: 1px solid rgba(220,50,50,0.4); color: #fff; border-radius: 12px; padding: 14px 20px; margin-bottom: 24px; font-size: 0.9rem; }
+    .error-banner { background: rgba(220,50,50,0.2); border: 1px solid rgba(220,50,50,0.4); color: var(--color-white); border-radius: 12px; padding: 14px 20px; margin-bottom: 24px; font-size: 0.9rem; }
     @media (max-width: 900px) { .cards-row { grid-template-columns: 1fr; } }
     @media (max-width: 680px) { .form-grid { grid-template-columns: 1fr; } .form-grid.cols-3 { grid-template-columns: 1fr; } .pkg-banner { flex-direction: column; } .book-page { padding: 100px 16px 60px; } .form-card { padding: 24px; } }
 </style>

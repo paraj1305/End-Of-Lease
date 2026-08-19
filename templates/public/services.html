@@ -7,7 +7,7 @@
     /* ════════════════════════════════════════ */
     .services-hero {
         padding: 160px var(--space-6) 100px var(--space-6);
-        background: #97DDE9;
+        background: var(--color-primary-lighter);
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -16,8 +16,8 @@
     .services-badge {
         display: inline-block;
         padding: 6px 16px;
-        background: #FFC349;
-        color: #20243A;
+        background: var(--color-accent);
+        color: var(--color-primary-dark);
         font-weight: 800;
         font-size: 12px;
         letter-spacing: 2px;
@@ -29,7 +29,7 @@
     .services-title {
         font-size: 64px;
         font-weight: 900;
-        color: #20243A;
+        color: var(--color-primary-dark);
         line-height: 1.1;
         letter-spacing: -2px;
         margin-bottom: var(--space-6);
@@ -37,7 +37,7 @@
 
     .services-subtitle {
         font-size: 20px;
-        color: #20243A;
+        color: var(--color-primary-dark);
         max-width: 600px;
         margin: 0 auto;
         line-height: 1.6;
@@ -61,7 +61,7 @@
     }
 
     .service-card {
-        background: #FFFFFF;
+        background: var(--color-white);
         border: 1px solid rgba(0, 0, 0, 0.05);
         border-radius: 30px;
         padding: 40px;
@@ -80,7 +80,7 @@
     .service-card-title {
         font-size: 28px;
         font-weight: 800;
-        color: #20243A;
+        color: var(--color-primary-dark);
         margin-bottom: var(--space-2);
         letter-spacing: -1px;
     }
@@ -88,7 +88,7 @@
     .service-card-area {
         font-size: 14px;
         font-weight: 600;
-        color: #6B7280;
+        color: var(--color-text-muted);
         text-transform: uppercase;
         letter-spacing: 1px;
         margin-bottom: var(--space-6);
@@ -98,14 +98,14 @@
         font-size: 48px;
         font-weight: 900;
         letter-spacing: -2px;
-        color: #525EA7;
+        color: var(--color-primary);
         line-height: 1;
         margin-bottom: var(--space-6);
     }
 
     .service-card-desc {
         font-size: 16px;
-        color: #6B7280;
+        color: var(--color-text-muted);
         line-height: 1.6;
         margin-bottom: var(--space-8);
         flex-grow: 1;
@@ -116,8 +116,8 @@
         width: 100%;
         text-align: center;
         padding: 16px 32px;
-        background: #FFC349;
-        color: #20243A;
+        background: var(--color-accent);
+        color: var(--color-primary-dark);
         font-weight: 800;
         font-size: 16px;
         text-decoration: none;
@@ -128,7 +128,7 @@
     }
 
     .btn-accent:hover {
-        background: #FFD57F;
+        background: var(--color-accent-light);
         box-shadow: 0 8px 25px rgba(255, 195, 73, 0.55);
         transform: translateY(-2px);
     }
@@ -165,9 +165,12 @@
             <h3 class="service-card-title">{{ package.name }}</h3>
             <div class="service-card-area">{{ package.approximate_area }}</div>
             
-            <div class="service-card-price">${{ package.base_price }}</div>
-            
             <p class="service-card-desc">{{ package.short_description }}</p>
+            
+            <div class="service-price-wrapper" style="margin-bottom: var(--space-6);">
+                <span style="font-size: 12px; color: var(--color-text-muted); text-transform: uppercase; font-weight: bold; display: block; margin-bottom: 4px;">from</span>
+                <div class="service-card-price" style="margin-bottom: 0;">${{ package.base_price }}</div>
+            </div>
             
             <a href="{% url 'bookings:quick_book' package.slug %}" class="btn-accent">Book Now &rarr;</a>
         </div>
