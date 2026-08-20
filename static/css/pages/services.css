@@ -444,11 +444,17 @@
     transform: scale(1.12);
     background: var(--color-primary-dark);
     box-shadow: 0 8px 20px var(--color-primary-alpha-20);
+    color: var(--color-white) !important;
 }
 
 .pkg-btn--accent:hover {
     background: var(--color-accent-dark);
     box-shadow: 0 8px 20px color-mix(in srgb, var(--color-accent) 50%, transparent);
+    color: var(--color-primary-dark) !important;
+}
+
+.pkg-btn:hover svg {
+    stroke: currentColor;
 }
 
 /* ════════════════════════════════════════
