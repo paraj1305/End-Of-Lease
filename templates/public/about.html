@@ -1,89 +1,132 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}About Us | MoveOut End of Lease Cleaning{% endblock %}
 
 {% block content %}
-<main style="padding-top: 140px; padding-bottom: 80px; position: relative; z-index: 2; overflow: hidden;">
-    
-    <!-- Background glow effects -->
-    <div style="position: absolute; top: -200px; left: -100px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,195,73,0.1) 0%, transparent 70%); pointer-events: none; z-index: 0;"></div>
-    <div style="position: absolute; bottom: 0px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(82,94,167,0.15) 0%, transparent 70%); pointer-events: none; z-index: 0;"></div>
+<main class="about-page-main">
 
-    <div class="container" style="position: relative; z-index: 2; max-width: 1100px;">
-        
-        <!-- Header Section -->
-        <div style="text-align: center; margin-bottom: 80px;">
-            <div style="display: inline-block; background: rgba(255,195,73,0.1); border: 1px solid rgba(255,195,73,0.2); color: var(--color-accent); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding: 6px 16px; border-radius: 100px; margin-bottom: 20px;">
-                Our Story
-            </div>
-            <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--color-white); line-height: 1.1; margin-bottom: 24px; letter-spacing: -1px;">
-                Sydney's Most Trusted<br>
-                <span style="color: var(--color-accent); font-style: italic; font-family: Georgia, serif; font-weight: 400;">Cleaning Specialists.</span>
-            </h1>
-            <p style="font-size: 18px; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; line-height: 1.6;">
-                We are a dedicated team of cleaning professionals specializing exclusively in end of lease and move-out cleaning services. We take the stress out of moving.
-            </p>
-        </div>
-
-        <!-- Main Content Grid -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 100px;">
-            
-            <!-- Left Side: Image -->
-            <div style="position: relative;">
-                <div style="position: absolute; inset: -20px; background: linear-gradient(135deg, var(--color-accent), var(--color-primary)); border-radius: 32px; filter: blur(30px); opacity: 0.3; z-index: 0;"></div>
-                <img src="/static/images/after_clean.png" alt="Sparkling clean apartment" style="width: 100%; height: auto; border-radius: 24px; position: relative; z-index: 1; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-                
-                <!-- Floating Trust Badge -->
-                <div style="position: absolute; bottom: -20px; right: -20px; background: var(--color-white); color: var(--color-primary-dark); padding: 24px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); z-index: 2; text-align: center; border: 4px solid var(--color-primary-dark);">
-                    <div style="font-size: 32px; font-weight: 900; color: var(--color-accent); line-height: 1;">100%</div>
-                    <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;">Bond Back<br>Guarantee</div>
+    <!-- 1. Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-bg-curve"></div>
+        <div class="container">
+            <div class="about-hero-grid">
+                <div class="about-hero-content">
+                    <div class="about-eyebrow">ABOUT US</div>
+                    <h1 class="about-hero-title">Cleaning Spaces.<br>Improving Lives.</h1>
+                    <p class="about-hero-text">
+                        At MoveOut, we believe a clean space is more than just a feeling — it's a fresh start. Whether you're moving in, moving out, or just need a reset, we're here to make your space shine.
+                    </p>
+                    <ul class="hero-feature-list">
+                        <li>
+                            <div class="feature-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                            Professional & Trusted Cleaners
+                        </li>
+                        <li>
+                            <div class="feature-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg></div>
+                            Eco-Friendly Products
+                        </li>
+                        <li>
+                            <div class="feature-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></div>
+                            100% Satisfaction Guarantee
+                        </li>
+                        <li>
+                            <div class="feature-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+                            On-Time & Reliable Service
+                        </li>
+                    </ul>
+                </div>
+                <div class="about-hero-image-col">
+                    <div class="about-hero-image-wrapper">
+                        <img src="{% static 'images/about_illustration.jpg' %}?v=3" alt="Cleaners working" class="about-hero-img">
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Right Side: Text Content -->
-            <div>
-                <h2 style="font-size: 32px; font-weight: 800; color: var(--color-white); margin-bottom: 24px; letter-spacing: -0.5px;">Why we started MoveOut</h2>
-                <p style="color: rgba(255,255,255,0.7); font-size: 16px; line-height: 1.8; margin-bottom: 24px;">
-                    Moving is consistently ranked as one of life's most stressful events. Between packing, organizing utilities, and coordinating movers, the last thing anyone wants to do is spend a weekend scrubbing ovens and skirting boards.
-                </p>
-                <p style="color: rgba(255,255,255,0.7); font-size: 16px; line-height: 1.8; margin-bottom: 32px;">
-                    We created MoveOut to provide a seamless, reliable, and premium service that guarantees you get your bond back. We don't do regular house cleaning; we only do end of lease cleaning. That means our teams know exactly what real estate agents look for during final inspections.
-                </p>
-
-                <!-- Value Props List -->
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
-                    <li style="display: flex; align-items: center; gap: 16px; color: var(--color-white); font-weight: 600; font-size: 16px;">
-                        <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,195,73,0.1); border: 1px solid rgba(255,195,73,0.3); display: flex; align-items: center; justify-content: center; color: var(--color-accent);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
-                        Fully Vetted & Insured Cleaning Teams
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 16px; color: var(--color-white); font-weight: 600; font-size: 16px;">
-                        <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,195,73,0.1); border: 1px solid rgba(255,195,73,0.3); display: flex; align-items: center; justify-content: center; color: var(--color-accent);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
-                        Commercial-grade Equipment & Supplies
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 16px; color: var(--color-white); font-weight: 600; font-size: 16px;">
-                        <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,195,73,0.1); border: 1px solid rgba(255,195,73,0.3); display: flex; align-items: center; justify-content: center; color: var(--color-accent);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
-                        Free 72-Hour Re-Clean Guarantee
-                    </li>
-                </ul>
+    <!-- 2. Our Story Section -->
+    <section class="about-story">
+        <div class="container">
+            <div class="about-story-grid">
+                <div class="story-image-col">
+                    <img src="{% static 'images/about_interior.jpg' %}?v=2" alt="Clean Interior" class="story-img">
+                </div>
+                <div class="story-content-col">
+                    <div class="about-eyebrow">OUR STORY</div>
+                    <h2 class="section-title">A Passion for Clean,<br>A Commitment to You</h2>
+                    <p class="story-text">
+                        MoveOut was founded with a simple goal – to offer high-quality, reliable cleaning services that people can truly count on. We know how important your time and space are, which is why we go the extra mile to deliver exceptional results every time.
+                    </p>
+                    <p class="story-text">
+                        From move-in/move-out cleaning to deep cleans and everything in between, we treat every home and office as if it were our own.
+                    </p>
+                    <div class="story-signature">Thank you for trusting us <span class="heart">💛</span></div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Call to Action Banner -->
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 24px; padding: 60px; text-align: center;">
-            <h2 style="font-size: 32px; font-weight: 900; color: var(--color-white); margin-bottom: 16px; letter-spacing: -0.5px;">Ready to secure your bond?</h2>
-            <p style="color: rgba(255,255,255,0.6); font-size: 18px; margin-bottom: 32px;">Book online in under 60 seconds and leave the rest to us.</p>
-            <a href="{% url 'public:services' %}" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 48px; background: var(--color-accent); color: var(--color-primary-dark); font-size: 18px; font-weight: 800; border-radius: 100px; text-decoration: none; box-shadow: 0 12px 40px rgba(255,195,73,0.4); transition: transform 0.25s, box-shadow 0.25s;">
-                Book My Clean
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
+    <!-- 3. Our Values Section -->
+    <section class="about-values">
+        <div class="container">
+            <div class="text-center">
+                <div class="about-eyebrow justify-center">OUR VALUES</div>
+                <h2 class="section-title">The Principles That Drive Us</h2>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon icon-primary">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                    </div>
+                    <h3>Integrity</h3>
+                    <p>We're honest, transparent, and committed to doing the right thing.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon icon-primary">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3>Reliability</h3>
+                    <p>We show up on time and get the job done – every single time.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon icon-light">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path></svg>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>We care for your space and the planet by using eco-friendly products.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon icon-accent">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>We strive for the highest standards in everything we do.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-    </div>
+
+
+    <!-- 6. Bottom CTA Section -->
+    <section class="about-bottom-banner">
+        <div class="container">
+            <div class="banner-glass-card">
+                <div class="banner-circle banner-circle-1"></div>
+                <div class="banner-circle banner-circle-2"></div>
+                <div class="banner-content">
+                    <h2 class="banner-title">Ready for a Cleaner, Fresher Space?</h2>
+                    <p class="banner-subtitle">Let us handle the cleaning while you focus on what matters most.</p>
+                    <a href="{% url 'public:services' %}" class="btn-cta-glow">
+                        Book My Clean Now 
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <div class="banner-note">Takes less than 60 seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </main>
 {% endblock %}

@@ -130,6 +130,11 @@
 
     <!-- Premium Footer -->
     <footer class="main-footer">
+        <div class="footer-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,42.7C672,32,768,32,864,42.7C960,53,1056,75,1152,74.7C1248,75,1344,53,1392,42.7L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+            </svg>
+        </div>
         <div class="container footer-grid">
             <div class="footer-col-brand">
                 <h2 class="footer-logo">MOVEOUT<span style="color: var(--color-accent);">✦</span></h2>
@@ -178,10 +183,31 @@
         /* ════════════════════════════════════════ */
         .main-footer {
             background: var(--color-primary-dark);
-            padding: 80px var(--space-6) 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0 var(--space-6) 40px;
             font-size: 14px;
             line-height: 1.6;
+            position: relative;
+            margin-top: 60px;
+            z-index: 10; /* Ensure footer and wave sit on top of bottom paddings */
+        }
+        
+        .footer-wave {
+            position: absolute;
+            top: -119px;
+            left: 0;
+            width: 100%;
+            line-height: 0;
+            overflow: hidden;
+        }
+
+        .footer-wave svg {
+            display: block;
+            width: 100%;
+            height: 120px;
+        }
+
+        .footer-wave path {
+            fill: var(--color-primary-dark);
         }
 
         .footer-grid {
@@ -189,6 +215,9 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
             margin-bottom: 60px;
+            padding-top: 40px; /* Space inside the footer below the wave */
+            position: relative;
+            z-index: 2;
         }
 
         .footer-col-brand .footer-logo {
