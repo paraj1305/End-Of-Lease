@@ -9,6 +9,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 50%, var(--color-primary-lighter) 100%);
         background-attachment: fixed;
         color: var(--color-white);
+        overflow-x: hidden;
+        width: 100%;
     }
 
     /* ════════════════════════════════════════
@@ -17,15 +19,15 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     .hero-section {
         position: relative;
         width: 100%;
-        height: 100vh;
-        min-height: 600px;
+        min-height: 100vh;
+        min-height: 100svh;
         overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding-top: 60px;
+        padding-top: 100px;
+        padding-bottom: 60px;
         margin-top: -80px;
-        /* offset fixed navbar */
 
         -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 L1440,0 L1440,50 C1080,120 360,-20 0,50 Z' fill='black'/%3E%3C/svg%3E"), linear-gradient(black, black);
         -webkit-mask-size: 100% 100px, 100% calc(100% - 99px);
@@ -55,7 +57,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         background-image: url('/static/images/after_clean.png');
         z-index: 2;
         clip-path: inset(0 50% 0 0);
-        /* starts at 50% */
     }
 
     /* Dark overlay on BEFORE side only */
@@ -63,7 +64,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.3) 100%);
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.35) 100%);
     }
 
     /* Slider handle */
@@ -84,10 +85,9 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         content: '';
         position: absolute;
         top: 0;
-        left: -20px;
-        width: 42px;
+        left: -24px;
+        width: 50px;
         height: 100%;
-        /* Invisible wider hit area */
     }
 
     .drag-btn {
@@ -95,8 +95,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 64px;
-        height: 64px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         background: var(--color-accent);
         color: var(--color-primary-dark);
@@ -108,13 +108,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         justify-content: center;
         cursor: ew-resize;
         user-select: none;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .drag-btn:hover {
         transform: translate(-50%, -50%) scale(1.1);
-        box-shadow: 0 8px 25px rgba(255, 195, 73, 0.4);
+        box-shadow: 0 8px 25px rgba(255, 195, 73, 0.5);
     }
 
     .drag-btn svg {
@@ -127,7 +127,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         top: 28px;
         z-index: 20;
         padding: 6px 16px;
-        border-radius: 4px;
+        border-radius: 6px;
         font-size: 11px;
         font-weight: 800;
         letter-spacing: 2px;
@@ -136,9 +136,9 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
     .label-before {
         left: 28px;
-        background: rgba(32, 36, 58, 0.8);
+        background: rgba(32, 36, 58, 0.85);
         color: var(--color-white);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(4px);
     }
 
@@ -154,7 +154,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         position: relative;
         z-index: 20;
         padding: 0 var(--space-6);
-        max-width: 620px;
+        max-width: 640px;
         margin: 0;
         margin-left: 6vw;
         text-align: left;
@@ -165,10 +165,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         align-items: center;
         justify-content: flex-start;
         gap: var(--space-2);
-        margin-bottom: var(--space-4);
+        margin-bottom: var(--space-3);
         font-size: var(--text-xs);
         font-weight: 700;
-        letter-spacing: 3px;
+        letter-spacing: 2.5px;
         text-transform: uppercase;
         color: var(--color-accent);
     }
@@ -182,25 +182,26 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     .hero-h1 {
-        font-size: clamp(2.4rem, 5vw, 5.5rem);
+        font-size: clamp(2.4rem, 5vw, 4.8rem);
         font-weight: 900;
         line-height: 1.1;
         margin-bottom: var(--space-4);
         color: var(--color-white);
+        letter-spacing: -1px;
     }
 
     .hero-h1 .gradient-text {
         font-style: normal;
-        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-lighter) 100%);
+        background: linear-gradient(135deg, #ffffff 0%, var(--color-accent) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     .hero-desc {
-        font-size: 1.15rem;
-        color: rgba(255, 255, 255, 0.85);
-        line-height: 1.7;
-        margin-bottom: var(--space-8);
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.65;
+        margin-bottom: var(--space-6);
         max-width: 520px;
     }
 
@@ -211,9 +212,9 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     .hero-ctas {
         display: flex;
         justify-content: flex-start;
-        gap: var(--space-4);
+        gap: var(--space-3);
         flex-wrap: wrap;
-        margin-bottom: var(--space-6);
+        margin-bottom: var(--space-5);
     }
 
     .btn-primary-hero {
@@ -227,13 +228,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         font-weight: 800;
         font-size: var(--text-base);
         text-decoration: none;
-        box-shadow: 0 4px 15px rgba(255, 195, 73, 0.35);
+        box-shadow: 0 4px 18px rgba(255, 195, 73, 0.4);
         transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .btn-primary-hero:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(255, 195, 73, 0.55);
+        box-shadow: 0 8px 25px rgba(255, 195, 73, 0.6);
         color: var(--color-primary-dark);
     }
 
@@ -241,8 +242,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        border: 2px solid rgba(32, 36, 58, 0.2);
-        color: var(--color-primary-dark);
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
+        color: var(--color-white);
         padding: 14px 24px;
         border-radius: var(--radius-full);
         font-weight: 700;
@@ -252,15 +255,16 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     .btn-call-hero:hover {
-        border-color: var(--color-primary-dark);
-        background: rgba(32, 36, 58, 0.05);
+        border-color: var(--color-white);
+        background: rgba(255, 255, 255, 0.25);
+        color: var(--color-white);
     }
 
     .hero-stats {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        gap: var(--space-4);
+        gap: var(--space-3);
         flex-wrap: wrap;
     }
 
@@ -272,24 +276,84 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
     .stat-text {
         font-size: var(--text-sm);
-        color: var(--color-white);
+        color: rgba(255, 255, 255, 0.95);
     }
 
     .stat-divider {
         width: 4px;
         height: 4px;
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.5);
         border-radius: 50%;
     }
 
-    /* Removed trust cards */
+    @media (max-width: 768px) {
+        .hero-section {
+            min-height: 560px;
+            padding-top: 90px;
+            padding-bottom: 50px;
+            justify-content: center;
+        }
+        .hero-copy {
+            margin-left: 0;
+            padding: 0 var(--space-4);
+            max-width: 100%;
+            text-align: center;
+        }
+        .hero-eyebrow {
+            justify-content: center;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .hero-h1 {
+            font-size: clamp(2rem, 7.5vw, 2.9rem);
+            margin-bottom: 12px;
+            line-height: 1.15;
+        }
+        .hero-desc {
+            font-size: 14.5px;
+            line-height: 1.55;
+            margin-inline: auto;
+            margin-bottom: 22px;
+        }
+        .hero-ctas {
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .btn-primary-hero, .btn-call-hero {
+            width: 100%;
+            justify-content: center;
+            padding: 14px 20px;
+            font-size: 15px;
+        }
+        .hero-stats {
+            justify-content: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+        .drag-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 9px;
+        }
+        .side-label {
+            top: 14px;
+            font-size: 9.5px;
+            padding: 4px 10px;
+            letter-spacing: 1px;
+        }
+        .label-before { left: 12px; }
+        .label-after { right: 12px; }
+    }
 
     /* ════════════════════════════════════════
        PACKAGES SECTION
     ════════════════════════════════════════ */
     .packages-section {
         background: transparent;
-        padding: 100px 0;
+        padding: 90px 0;
     }
 
     .packages-layout {
@@ -299,36 +363,16 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         align-items: start;
     }
 
-    @media (max-width: 900px) {
-        .packages-layout {
-            grid-template-columns: 1fr;
-            gap: var(--space-6);
-        }
-
-        .packages-left {
-            position: relative;
-            top: 0;
-            margin-bottom: var(--space-4);
-        }
-
-        .package-card-stack {
-            position: relative !important;
-            top: 0 !important;
-            margin-bottom: var(--space-4) !important;
-        }
-    }
-
     .packages-left {
         position: sticky;
         top: 120px;
         align-self: start;
-        /* CRITICAL: Allows it to be sticky within the grid */
     }
 
     .packages-right {
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: 20px;
         position: relative;
     }
 
@@ -345,7 +389,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         justify-content: space-between;
         align-items: center;
 
-        /* Reveal animation styles */
         opacity: 0;
         transform: translateY(40px);
         transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s, background 0.2s;
@@ -355,7 +398,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         background: rgba(255, 255, 255, 0.25);
         border: 2px solid var(--color-accent);
         transform: scale(1.02) translateY(40px);
-        /* Keeps animation translation */
         box-shadow: 0 12px 40px rgba(255, 195, 73, 0.15);
     }
 
@@ -420,6 +462,41 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         margin-top: 3px;
     }
 
+    @media (max-width: 900px) {
+        .packages-section {
+            padding: 50px 0;
+        }
+        .packages-layout {
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+        .packages-left {
+            position: static;
+            text-align: center;
+        }
+        .packages-left h2 {
+            font-size: clamp(1.8rem, 6.5vw, 2.5rem);
+        }
+        .packages-left p {
+            font-size: 14.5px;
+            line-height: 1.6;
+        }
+        .feature-list {
+            max-width: 360px;
+            margin: 16px auto 24px;
+            font-size: 13.5px;
+            text-align: left;
+        }
+        .packages-left .btn-primary-hero {
+            width: 100%;
+            justify-content: center;
+        }
+        .package-card-stack {
+            padding: 18px 20px;
+            border-radius: 16px;
+        }
+    }
+
     /* ════════════════════════════════════════ */
     /* Curved SVG Marquee Styles                */
     /* ════════════════════════════════════════ */
@@ -449,7 +526,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     ════════════════════════════════════════ */
     .watch-us-work {
         background: transparent;
-        padding: 100px 0;
+        padding: 90px 0;
         position: relative;
         z-index: 5;
     }
@@ -460,19 +537,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         gap: var(--space-6);
     }
 
-    @media (max-width: 900px) {
-        .spotlight-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
     .spotlight-card {
         position: relative;
         width: 100%;
         aspect-ratio: 4 / 5;
         border-radius: 16px;
         overflow: hidden;
-        cursor: none;
+        cursor: crosshair;
         background: var(--color-grey-800);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
@@ -495,7 +566,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         z-index: 2;
         clip-path: circle(0px at 50% 50%);
         transition: clip-path 0.1s ease-out;
-        /* Smooth follow */
         filter: brightness(1.1);
     }
 
@@ -542,8 +612,32 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     @media (max-width: 900px) {
+        .watch-us-work {
+            padding: 50px 0;
+        }
+        .watch-us-work h2 {
+            font-size: clamp(1.8rem, 6.5vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .spotlight-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .spotlight-card {
+            aspect-ratio: 1 / 1;
+            border-radius: 14px;
+        }
+        .spotlight-caption {
+            font-size: 11px;
+            padding: 16px 8px 8px;
+        }
+    }
+
+    @media (max-width: 480px) {
         .spotlight-grid {
             grid-template-columns: 1fr;
+            gap: 14px;
         }
     }
 
@@ -552,9 +646,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     /* ════════════════════════════════════════ */
 
     .marquee-container {
-        width: 105vw;
-        margin-left: -2.5vw;
-        transform: rotate(-3deg);
+        width: 100%;
         overflow: hidden;
         background: rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(10px);
@@ -581,13 +673,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     @keyframes marquee-scroll {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-50%);
-        }
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
     }
 
     .marquee-item {
@@ -611,12 +698,28 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         height: 32px;
     }
 
+    @media (max-width: 768px) {
+        .marquee-container {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            padding: var(--space-4) 0;
+        }
+        .marquee-item {
+            font-size: clamp(18px, 5vw, 26px);
+            gap: var(--space-6);
+        }
+        .sparkle-icon {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
     /* ════════════════════════════════════════ */
     /* Impact Stats Section (Bento Grid)        */
     /* ════════════════════════════════════════ */
 
     .impact-section {
-        padding: 120px var(--space-6);
+        padding: 100px var(--space-6);
         background: transparent;
     }
 
@@ -646,7 +749,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         backdrop-filter: blur(20px);
     }
 
-    /* Subtle glowing orb inside all cards (Top Right) */
     .bento-card::before {
         content: '';
         position: absolute;
@@ -661,7 +763,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         z-index: 0;
     }
 
-    /* Rising water bubbles effect */
     .bento-card::after {
         content: '';
         position: absolute;
@@ -701,7 +802,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         }
     }
 
-    /* Keep content above the background bubbles */
     .bento-card>* {
         position: relative;
         z-index: 1;
@@ -806,18 +906,14 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     @media (max-width: 900px) {
-        .marquee-container {
-            width: 110vw;
-            margin-left: -5vw;
-        }
-
         .impact-section {
-            padding: 60px var(--space-4);
+            padding: 50px var(--space-4);
         }
 
         .impact-bento {
             grid-template-columns: 1fr;
             grid-auto-rows: auto;
+            gap: 16px;
         }
 
         .bento-hero,
@@ -827,135 +923,49 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             grid-row: span 1;
         }
 
+        .bento-card {
+            padding: 24px 20px;
+            border-radius: 20px;
+        }
+
+        .impact-badge {
+            font-size: 10px;
+            padding: 4px 12px;
+            margin-bottom: 12px;
+        }
+
+        .impact-title {
+            font-size: clamp(1.4rem, 5.5vw, 1.8rem);
+            margin-bottom: 12px;
+        }
+
+        .impact-desc {
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
         .bento-wide {
-            flex-direction: column;
-            gap: 40px;
-            padding: 40px;
+            flex-direction: row;
+            justify-content: space-around;
+            padding: 20px 14px;
+            gap: 10px;
         }
 
         .stat-divider {
-            width: 80%;
-            height: 1px;
+            width: 1px;
+            height: 45px;
         }
 
-        .review-card {
-            min-width: 320px;
-            max-width: 350px;
-            flex-direction: column;
-            border-radius: 40px;
-            padding: 24px;
-            text-align: center;
+        .stat-item {
+            min-width: 80px;
         }
 
-        .review-image {
-            width: 100px;
-            height: 100px;
-        }
-    }
-
-    /* ════════════════════════════════════════ */
-    /* Reviews & Contact Sections Styles        */
-    /* ════════════════════════════════════════ */
-
-    .reviews-section {
-        padding: 120px 0;
-        background: transparent;
-        overflow: hidden;
-    }
-
-    .reviews-heading {
-        font-size: 40px;
-        font-weight: 800;
-        color: var(--color-primary-dark);
-        margin-bottom: var(--space-12);
-        letter-spacing: -1px;
-        text-align: center;
-    }
-
-    .reviews-marquee-container {
-        width: 100%;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        white-space: nowrap;
-    }
-
-    .reviews-marquee-track {
-        display: flex;
-        gap: var(--space-8);
-        animation: marquee-scroll 40s linear infinite;
-        align-items: center;
-        width: max-content;
-        padding-left: var(--space-8);
-    }
-
-    .review-card {
-        background: var(--color-primary-lighter);
-        border: none;
-        border-radius: 80px;
-        padding: 12px;
-        padding-right: 24px;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        min-width: 450px;
-        max-width: 500px;
-        white-space: normal;
-        /* Let text wrap */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    }
-
-    .review-image {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-        background: var(--color-white);
-        flex-shrink: 0;
-        border: 3px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .review-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .review-name-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 4px;
-    }
-
-    .review-stars {
-        color: #ffd700;
-        font-size: 14px;
-        letter-spacing: 1px;
-    }
-
-    .review-author {
-        font-size: 16px;
-        font-weight: 700;
-        color: var(--color-primary-dark);
-    }
-
-    .review-text {
-        font-size: 14px;
-        line-height: 1.4;
-        color: var(--color-text-muted);
-        margin: 0;
-    }
-
-    /* Contact section removed */
-
-    @media (max-width: 900px) {
-        .reviews-grid {
-            grid-template-columns: 1fr;
+        .stat-number {
+            font-size: 38px;
         }
 
-        .reviews-heading {
-            font-size: 32px;
+        .stat-label {
+            font-size: 12px;
         }
     }
 
@@ -992,7 +1002,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         height: 70px;
     }
     .comparison-section {
-        padding: 120px var(--space-4);
+        padding: 100px var(--space-4);
         position: relative;
         overflow: hidden;
         background: #f8fbff;
@@ -1012,7 +1022,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
     .comparison-heading-wrap {
         text-align: center;
-        margin-bottom: 60px;
+        margin-bottom: 50px;
         position: relative;
         z-index: 2;
     }
@@ -1029,13 +1039,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         background: var(--color-white);
         padding: 8px 18px;
         border-radius: 100px;
-        margin-bottom: 24px;
+        margin-bottom: 20px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.04);
     }
     .comp-pill svg { color: #ffc349; width: 14px; height: 14px; }
 
     .comparison-heading {
-        font-size: clamp(2.2rem, 4vw, 3.2rem);
+        font-size: clamp(2rem, 4vw, 3.2rem);
         font-weight: 900;
         margin-bottom: 12px;
         color: var(--color-primary-dark);
@@ -1045,7 +1055,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
     .comparison-subheading {
         color: var(--color-text-muted);
-        font-size: 17px;
+        font-size: 16px;
         font-weight: 500;
     }
 
@@ -1081,7 +1091,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
     /* Header row */
     .comp-cell-th {
-        padding: 30px 20px;
+        padding: 24px 16px;
         text-align: center;
         font-weight: 800;
         font-size: 14px;
@@ -1091,7 +1101,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 120px;
+        height: 110px;
         border-bottom: 1px solid rgba(0,0,0,0.05);
     }
     
@@ -1114,14 +1124,14 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: 1px;
-        padding: 5px 14px;
+        padding: 4px 12px;
         border-radius: 100px;
         display: inline-flex;
         align-items: center;
         gap: 4px;
     }
     .comp-center-title {
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 800;
         text-transform: none;
         letter-spacing: 0;
@@ -1137,8 +1147,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
     /* Data rows */
     .comp-cell {
-        padding: 20px 24px;
-        height: 75px;
+        padding: 16px 20px;
+        height: 72px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1151,15 +1161,15 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         font-size: 14px;
         font-weight: 700;
         color: var(--color-primary-dark);
-        gap: 16px;
+        gap: 14px;
     }
     .comp-col-center .comp-cell {
         border-bottom: 1px solid rgba(255,255,255,0.15);
     }
     
     .comp-icon-wrap {
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         background: color-mix(in srgb, var(--color-primary) 8%, transparent);
         display: flex;
@@ -1188,7 +1198,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     /* CTA */
     .comparison-cta {
         text-align: center;
-        margin-top: 70px;
+        margin-top: 50px;
         position: relative;
         z-index: 2;
     }
@@ -1197,7 +1207,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 16px 42px;
+        padding: 16px 36px;
         background: var(--color-primary);
         color: var(--color-white);
         font-size: 16px;
@@ -1214,7 +1224,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     .comparison-cta p {
-        margin-top: 16px;
+        margin-top: 14px;
         font-size: 13px;
         font-weight: 700;
         color: var(--color-primary);
@@ -1225,9 +1235,409 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     @media (max-width: 768px) {
-        .comp-card { flex-direction: column; }
-        .comp-col-center { transform: scale(1.02); }
-        .comp-cell-th, .comp-cell { height: auto; padding: 20px; }
+        .comparison-section {
+            padding: 50px var(--space-3);
+        }
+        .comparison-heading-wrap {
+            margin-bottom: 24px;
+        }
+        .comparison-heading {
+            font-size: clamp(1.7rem, 6vw, 2.3rem);
+        }
+        .comparison-subheading {
+            font-size: 13.5px;
+        }
+        .comp-star {
+            display: none;
+        }
+        .comp-card {
+            display: flex;
+            flex-direction: row;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .comp-col-left {
+            flex: 1.7;
+        }
+        .comp-col-center {
+            flex: 1;
+            transform: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .comp-col-right {
+            flex: 1;
+        }
+        .comp-cell-th {
+            height: 80px;
+            padding: 10px 4px;
+            font-size: 10.5px;
+            letter-spacing: 0.5px;
+        }
+        .comp-badge-sm {
+            font-size: 7.5px;
+            padding: 2px 6px;
+            letter-spacing: 0.5px;
+        }
+        .comp-center-title {
+            font-size: 15px;
+            margin-top: 2px;
+        }
+        .comp-center-sub {
+            font-size: 9px;
+            line-height: 1.1;
+        }
+        .comp-col-right .comp-cell-th {
+            font-size: 10px;
+            line-height: 1.2;
+        }
+        .comp-cell {
+            height: 58px;
+            padding: 6px 4px;
+        }
+        .comp-col-left .comp-cell {
+            font-size: 11px;
+            gap: 6px;
+            padding-left: 6px;
+            line-height: 1.2;
+        }
+        .comp-icon-wrap {
+            width: 24px;
+            height: 24px;
+        }
+        .comp-icon-wrap svg {
+            width: 12px;
+            height: 12px;
+        }
+        .ico-check-blue {
+            width: 20px;
+            height: 20px;
+        }
+        .ico-check-blue svg, .ico-check-grey svg, .ico-cross-grey svg {
+            width: 11px;
+            height: 11px;
+        }
+        .ico-check-grey, .ico-cross-grey {
+            width: 19px;
+            height: 19px;
+        }
+        .comparison-cta {
+            margin-top: 30px;
+        }
+        .comparison-cta a {
+            width: 100%;
+            justify-content: center;
+            padding: 14px 20px;
+            font-size: 15px;
+        }
+    }
+
+    /* ════════════════════════════════════════ */
+    /* Reviews Section Styles                   */
+    /* ════════════════════════════════════════ */
+
+    .reviews-section {
+        padding: 90px 0;
+        background: transparent;
+        overflow: hidden;
+    }
+
+    .reviews-heading {
+        font-size: 40px;
+        font-weight: 800;
+        color: var(--color-primary-dark);
+        margin-bottom: var(--space-10);
+        letter-spacing: -1px;
+        text-align: center;
+    }
+
+    .reviews-marquee-container {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+    .reviews-marquee-track {
+        display: flex;
+        gap: var(--space-6);
+        animation: marquee-scroll 40s linear infinite;
+        align-items: center;
+        width: max-content;
+        padding-left: var(--space-6);
+    }
+
+    .review-card {
+        background: var(--color-primary-lighter);
+        border: none;
+        border-radius: 80px;
+        padding: 12px 24px 12px 12px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        min-width: 420px;
+        max-width: 480px;
+        white-space: normal;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .review-image {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: var(--color-white);
+        flex-shrink: 0;
+        border: 3px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .review-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .review-name-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+    }
+
+    .review-stars {
+        color: #ffd700;
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+    .review-author {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--color-primary-dark);
+    }
+
+    .review-text {
+        font-size: 13.5px;
+        line-height: 1.45;
+        color: var(--color-text-muted);
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .reviews-section {
+            padding: 50px 0;
+        }
+        .reviews-heading {
+            font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+            margin-bottom: 24px;
+        }
+        .review-card {
+            min-width: 280px;
+            max-width: 300px;
+            padding: 12px 16px;
+            border-radius: 20px;
+            gap: 12px;
+        }
+        .review-image {
+            width: 48px;
+            height: 48px;
+        }
+        .review-author {
+            font-size: 13.5px;
+        }
+        .review-stars {
+            font-size: 12px;
+        }
+        .review-text {
+            font-size: 12.5px;
+        }
+    }
+
+    /* ════════════════════════════════════════ */
+    /* Premium FAQ Section                      */
+    /* ════════════════════════════════════════ */
+    .premium-faq-wrapper {
+        padding: 90px var(--space-4);
+        position: relative;
+        z-index: 2;
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        gap: 60px;
+        align-items: flex-start;
+    }
+    .premium-faq-left {
+        flex: 0 0 380px;
+        position: sticky;
+        top: 120px;
+    }
+    .premium-faq-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--color-primary-dark);
+        background: rgba(255,255,255,0.9);
+        backdrop-filter: blur(10px);
+        padding: 8px 18px;
+        border-radius: 100px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .premium-faq-title {
+        font-size: clamp(2.4rem, 4vw, 3.6rem);
+        font-weight: 900;
+        color: var(--color-white);
+        line-height: 1.1;
+        margin-bottom: 20px;
+        letter-spacing: -1px;
+    }
+    .premium-faq-text {
+        font-size: 15.5px;
+        color: rgba(255,255,255,0.88);
+        line-height: 1.6;
+        margin-bottom: 32px;
+    }
+    .premium-faq-contact {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        color: var(--color-white);
+        font-weight: 800;
+        text-decoration: none;
+        transition: opacity 0.2s;
+        font-size: 15px;
+    }
+    .premium-faq-contact:hover { opacity: 0.85; }
+    .premium-faq-contact .contact-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--color-white);
+        color: var(--color-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .premium-faq-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    .premium-faq-item {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 18px;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        border: 2px solid transparent;
+    }
+    .premium-faq-item:hover {
+        background: var(--color-white);
+        transform: translateY(-2px);
+    }
+    .premium-faq-item--open {
+        background: var(--color-white);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        border-color: rgba(82, 94, 167, 0.15);
+        transform: translateY(-2px);
+    }
+    .premium-faq-btn {
+        width: 100%;
+        background: transparent;
+        border: none;
+        padding: 20px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        text-align: left;
+    }
+    .premium-faq-btn-text {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--color-primary-dark);
+        padding-right: 16px;
+        transition: color 0.2s;
+    }
+    .premium-faq-item--open .premium-faq-btn-text {
+        color: var(--color-primary);
+    }
+    .premium-faq-btn-icon {
+        flex-shrink: 0;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #f0f4ff;
+        color: var(--color-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+    .premium-faq-item--open .premium-faq-btn-icon {
+        background: var(--color-primary);
+        color: var(--color-white);
+        transform: rotate(180deg);
+    }
+    .premium-faq-answer {
+        overflow: hidden;
+    }
+    .premium-faq-answer-inner {
+        padding: 0 24px 20px 24px;
+        font-size: 14.5px;
+        line-height: 1.65;
+        color: #4a5568;
+    }
+    @media (max-width: 900px) {
+        .premium-faq-wrapper {
+            flex-direction: column;
+            gap: 32px;
+            padding: 50px var(--space-4);
+        }
+        .premium-faq-left {
+            position: static;
+            flex: none;
+            width: 100%;
+            text-align: center;
+        }
+        .premium-faq-title {
+            font-size: clamp(2rem, 7vw, 2.6rem);
+            margin-bottom: 14px;
+        }
+        .premium-faq-text {
+            font-size: 14.5px;
+            margin-bottom: 20px;
+        }
+        .premium-faq-contact {
+            width: 100%;
+            justify-content: center;
+            font-size: 14px;
+        }
+        .premium-faq-item {
+            border-radius: 16px;
+        }
+        .premium-faq-btn {
+            padding: 16px 14px;
+        }
+        .premium-faq-btn-text {
+            font-size: 14.5px;
+        }
+        .premium-faq-btn-icon {
+            width: 30px;
+            height: 30px;
+        }
+        .premium-faq-answer-inner {
+            padding: 0 14px 16px;
+            font-size: 13.5px;
+        }
     }
 </style>
 {% endblock %}
@@ -1505,7 +1915,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="spotlight-grid">
                 <!-- Card 1 -->
                 <div class="spotlight-card" onmousemove="handleSpotlight(event, this)"
-                    onmouseleave="resetSpotlight(this)">
+                    onmouseleave="resetSpotlight(this)"
+                    ontouchstart="handleSpotlight(event, this)"
+                    ontouchmove="handleSpotlight(event, this)"
+                    ontouchend="resetSpotlight(this)">
                     <div class="spotlight-dirty" style="background-image: url('/static/images/before_clean.png');">
                     </div>
                     <div class="spotlight-clean" style="background-image: url('/static/images/after_clean.png');"></div>
@@ -1515,7 +1928,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
                 <!-- Card 2 -->
                 <div class="spotlight-card" onmousemove="handleSpotlight(event, this)"
-                    onmouseleave="resetSpotlight(this)">
+                    onmouseleave="resetSpotlight(this)"
+                    ontouchstart="handleSpotlight(event, this)"
+                    ontouchmove="handleSpotlight(event, this)"
+                    ontouchend="resetSpotlight(this)">
                     <div class="spotlight-dirty" style="background-image: url('/static/images/before_clean.png');">
                     </div>
                     <div class="spotlight-clean" style="background-image: url('/static/images/after_clean.png');"></div>
@@ -1525,7 +1941,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
                 <!-- Card 3 -->
                 <div class="spotlight-card" onmousemove="handleSpotlight(event, this)"
-                    onmouseleave="resetSpotlight(this)">
+                    onmouseleave="resetSpotlight(this)"
+                    ontouchstart="handleSpotlight(event, this)"
+                    ontouchmove="handleSpotlight(event, this)"
+                    ontouchend="resetSpotlight(this)">
                     <div class="spotlight-dirty" style="background-image: url('/static/images/before_clean.png');">
                     </div>
                     <div class="spotlight-clean" style="background-image: url('/static/images/after_clean.png');"></div>
@@ -1535,7 +1954,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
                 <!-- Card 4 -->
                 <div class="spotlight-card" onmousemove="handleSpotlight(event, this)"
-                    onmouseleave="resetSpotlight(this)">
+                    onmouseleave="resetSpotlight(this)"
+                    ontouchstart="handleSpotlight(event, this)"
+                    ontouchmove="handleSpotlight(event, this)"
+                    ontouchend="resetSpotlight(this)">
                     <div class="spotlight-dirty" style="background-image: url('/static/images/before_clean.png');">
                     </div>
                     <div class="spotlight-clean" style="background-image: url('/static/images/after_clean.png');"></div>
@@ -1702,67 +2124,40 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     </section>
 
     <!-- ════════════════════════════════════════ -->
-    <!-- FAQ Section                              -->
+    <!-- Premium FAQ Section                      -->
     <!-- ════════════════════════════════════════ -->
-    <section class="faq-section-wrapper" style="position: relative; z-index: 2;">
-        <div class="faq-container" x-data="{ activeIndex: null }">
-            <h2 class="faq-heading">Frequently Asked Questions</h2>
-
-            <div class="faq-list">
-                <!-- Left Column FAQs -->
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                    {% for faq in faqs %}
-                    {% if forloop.counter0|divisibleby:2 %}
-                    <div class="faq-item" :class="activeIndex === {{ faq.id }} ? 'faq-item--open' : ''">
-                        <button class="faq-btn"
-                            @click="activeIndex === {{ faq.id }} ? activeIndex = null : activeIndex = {{ faq.id }}">
-                            <span class="faq-btn-text">{{ faq.question }}</span>
-                            <span class="faq-btn-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="12" y1="5" x2="12" y2="19" class="faq-plus-vertical"
-                                        :class="activeIndex === {{ faq.id }} ? 'hidden' : ''"></line>
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                </svg>
-                            </span>
-                        </button>
-                        <div class="faq-answer" x-show="activeIndex === {{ faq.id }}"
-                            x-transition:enter="faq-answer-enter" x-transition:leave="faq-answer-leave"
-                            style="display:none;">
-                            <div class="faq-answer-inner">{{ faq.answer }}</div>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
+    <section class="premium-faq-wrapper" x-data="{ activeIndex: null }">
+        <div class="premium-faq-left">
+            <div class="premium-faq-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color: #ffc349;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Got Questions?
+            </div>
+            <h2 class="premium-faq-title">We've got<br>answers.</h2>
+            <p class="premium-faq-text">Everything you need to know about our end-of-lease cleaning service. Can't find the answer you're looking for?</p>
+            <a href="{% url 'public:contact' %}" class="premium-faq-contact">
+                <div class="contact-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
+                Contact our friendly team
+            </a>
+        </div>
 
-                <!-- Right Column FAQs -->
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                    {% for faq in faqs %}
-                    {% if not forloop.counter0|divisibleby:2 %}
-                    <div class="faq-item" :class="activeIndex === {{ faq.id }} ? 'faq-item--open' : ''">
-                        <button class="faq-btn"
-                            @click="activeIndex === {{ faq.id }} ? activeIndex = null : activeIndex = {{ faq.id }}">
-                            <span class="faq-btn-text">{{ faq.question }}</span>
-                            <span class="faq-btn-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="12" y1="5" x2="12" y2="19" class="faq-plus-vertical"
-                                        :class="activeIndex === {{ faq.id }} ? 'hidden' : ''"></line>
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                </svg>
-                            </span>
-                        </button>
-                        <div class="faq-answer" x-show="activeIndex === {{ faq.id }}"
-                            x-transition:enter="faq-answer-enter" x-transition:leave="faq-answer-leave"
-                            style="display:none;">
-                            <div class="faq-answer-inner">{{ faq.answer }}</div>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
+        <div class="premium-faq-right">
+            {% for faq in faqs %}
+            <div class="premium-faq-item" :class="activeIndex === {{ faq.id }} ? 'premium-faq-item--open' : ''">
+                <button class="premium-faq-btn" @click="activeIndex === {{ faq.id }} ? activeIndex = null : activeIndex = {{ faq.id }}">
+                    <span class="premium-faq-btn-text">{{ faq.question }}</span>
+                    <span class="premium-faq-btn-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </span>
+                </button>
+                <div class="premium-faq-answer" x-show="activeIndex === {{ faq.id }}" x-collapse style="display:none;">
+                    <div class="premium-faq-answer-inner">{{ faq.answer }}</div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </section>
 </div> <!-- Closing sparkles-glow-wrapper -->
@@ -1907,25 +2302,35 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     // ════════════════════════════════════════
     window.handleSpotlight = function (e, card) {
         const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        const clientX = (e.touches && e.touches.length) ? e.touches[0].clientX : e.clientX;
+        const clientY = (e.touches && e.touches.length) ? e.touches[0].clientY : e.clientY;
+        if (clientX === undefined || clientY === undefined) return;
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
 
         const cleanLayer = card.querySelector('.spotlight-clean');
         const cursor = card.querySelector('.spotlight-cursor-text');
 
         if (cleanLayer) {
-            cleanLayer.style.clipPath = `circle(120px at ${x}px ${y}px)`;
+            cleanLayer.style.clipPath = `circle(110px at ${x}px ${y}px)`;
         }
         if (cursor) {
             cursor.style.left = `${x}px`;
             cursor.style.top = `${y}px`;
+            cursor.style.opacity = '1';
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
         }
     };
 
     window.resetSpotlight = function (card) {
         const cleanLayer = card.querySelector('.spotlight-clean');
+        const cursor = card.querySelector('.spotlight-cursor-text');
         if (cleanLayer) {
             cleanLayer.style.clipPath = `circle(0px at 50% 50%)`;
+        }
+        if (cursor) {
+            cursor.style.opacity = '0';
+            cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
         }
     };
 
