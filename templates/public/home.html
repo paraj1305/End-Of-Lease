@@ -529,23 +529,47 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         padding: 90px 0;
         position: relative;
         z-index: 5;
+        width: 100%;
+    }
+
+    .watch-us-work-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 clamp(16px, 3.5vw, 56px);
+        margin: 0 auto;
+    }
+
+    .watch-us-work-heading {
+        font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+        line-height: 1.1;
+        font-weight: 900;
+        margin-bottom: var(--space-8);
+        color: var(--color-white);
+        letter-spacing: -1px;
     }
 
     .spotlight-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: var(--space-6);
+        gap: clamp(14px, 1.8vw, 24px);
+        width: 100%;
     }
 
     .spotlight-card {
         position: relative;
         width: 100%;
-        aspect-ratio: 4 / 5;
-        border-radius: 16px;
+        aspect-ratio: 16 / 11;
+        border-radius: 20px;
         overflow: hidden;
         cursor: crosshair;
         background: var(--color-grey-800);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+    }
+
+    .spotlight-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
     }
 
     .spotlight-dirty,
@@ -603,19 +627,30 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         left: 0;
         right: 0;
         padding: var(--space-8) var(--space-4) var(--space-4);
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
         color: var(--color-white);
-        font-size: 13px;
+        font-size: 13.5px;
+        font-weight: 600;
         margin: 0;
         z-index: 3;
         pointer-events: none;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
+        .spotlight-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .spotlight-card {
+            aspect-ratio: 4 / 3;
+        }
+    }
+
+    @media (max-width: 768px) {
         .watch-us-work {
             padding: 50px 0;
         }
-        .watch-us-work h2 {
+        .watch-us-work-heading {
             font-size: clamp(1.8rem, 6.5vw, 2.5rem);
             text-align: center;
             margin-bottom: 24px;
@@ -639,6 +674,51 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             grid-template-columns: 1fr;
             gap: 14px;
         }
+        .spotlight-card {
+            aspect-ratio: 16 / 11;
+        }
+    }
+
+    .watch-us-cta-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 12px;
+        margin-top: clamp(28px, 4vw, 44px);
+    }
+
+    .watch-us-cta-text {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 14.5px;
+        font-weight: 500;
+        margin: 0;
+        max-width: 620px;
+        line-height: 1.5;
+    }
+
+    .watch-us-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, #FFC349 0%, #FFB41F 100%);
+        color: var(--color-primary-dark);
+        font-weight: 800;
+        font-size: 14.5px;
+        padding: 12px 28px;
+        border-radius: var(--radius-full);
+        text-decoration: none;
+        box-shadow: 0 6px 22px rgba(255, 195, 73, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .watch-us-cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(255, 195, 73, 0.65);
+        filter: brightness(1.05);
+        color: var(--color-primary-dark);
     }
 
     /* ════════════════════════════════════════ */
@@ -749,62 +829,126 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         backdrop-filter: blur(20px);
     }
 
-    .bento-card::before {
-        content: '';
+    /* ════════════════════════════════════════ */
+    /* 3D Realistic Shampoo / Soap Bubble System */
+    /* ════════════════════════════════════════ */
+    .bento-bubbles-wrap {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
+        pointer-events: none !important;
+        z-index: 1 !important;
+        border-radius: inherit;
+    }
+
+    .shampoo-bubble {
         position: absolute;
-        top: -50px;
-        right: -50px;
-        width: 150px;
-        height: 150px;
-        background: radial-gradient(circle, rgba(73, 176, 228, 0.15) 0%, transparent 70%);
+        bottom: -50px;
         border-radius: 50%;
-        filter: blur(20px);
+        display: block;
+        /* Delicate, lightweight iridescent soap bubble */
+        background: radial-gradient(circle at 35% 30%, 
+            rgba(255, 255, 255, 0.75) 0%, 
+            rgba(255, 255, 255, 0.3) 22%, 
+            rgba(73, 176, 228, 0.18) 48%, 
+            rgba(255, 195, 73, 0.12) 70%, 
+            rgba(82, 94, 167, 0.15) 88%,
+            rgba(255, 255, 255, 0.5) 100%
+        );
+        border: 1px solid rgba(82, 94, 167, 0.22);
+        box-shadow: 
+            inset 0 1.5px 5px rgba(255, 255, 255, 0.8),
+            inset 0 -1.5px 5px rgba(73, 176, 228, 0.25),
+            0 2px 8px rgba(82, 94, 167, 0.08);
+        animation-name: bubbleRiseFloat, bubbleSwayFloat;
+        animation-timing-function: linear, ease-in-out;
+        animation-iteration-count: infinite, infinite;
+        animation-direction: normal, alternate;
+        will-change: transform, opacity;
         pointer-events: none;
-        z-index: 0;
     }
 
-    .bento-card::after {
+    /* Glossy specular highlight glint dot */
+    .shampoo-bubble::before {
         content: '';
         position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image:
-            radial-gradient(circle, transparent 3px, rgba(255, 255, 255, 0.8) 3px, rgba(255, 255, 255, 0.8) 4.5px, transparent 4.5px),
-            radial-gradient(circle, transparent 5px, rgba(73, 176, 228, 0.5) 5px, rgba(73, 176, 228, 0.5) 7px, transparent 7px),
-            radial-gradient(circle, transparent 4px, rgba(255, 255, 255, 0.6) 4px, rgba(255, 255, 255, 0.6) 5.5px, transparent 5.5px),
-            radial-gradient(circle, transparent 7px, rgba(255, 195, 73, 0.4) 7px, rgba(255, 195, 73, 0.4) 9px, transparent 9px),
-            radial-gradient(circle, transparent 2px, rgba(255, 255, 255, 0.9) 2px, rgba(255, 255, 255, 0.9) 3px, transparent 3px),
-            radial-gradient(circle, transparent 4px, rgba(82, 94, 167, 0.3) 4px, rgba(82, 94, 167, 0.3) 5px, transparent 5px),
-            radial-gradient(circle, transparent 6px, rgba(255, 255, 255, 0.5) 6px, rgba(255, 255, 255, 0.5) 7px, transparent 7px),
-            radial-gradient(circle, transparent 3px, rgba(73, 176, 228, 0.6) 3px, rgba(73, 176, 228, 0.6) 4px, transparent 4px);
-        background-size: 20px 20px, 30px 30px, 20px 20px, 40px 40px, 15px 15px, 25px 25px, 35px 35px, 18px 18px;
-        background-repeat: no-repeat;
+        top: 14%;
+        left: 18%;
+        width: 28%;
+        height: 28%;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.85);
+        box-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
         pointer-events: none;
-        z-index: 0;
-        animation: waterBubblesRise 5s infinite ease-in;
     }
 
-    @keyframes waterBubblesRise {
-        0% {
-            background-position:
-                15% 110%, 45% 120%, 75% 110%, 90% 130%,
-                5% 115%, 35% 125%, 65% 105%, 85% 120%;
-            opacity: 1;
-        }
+    /* Bottom-right delicate rim glint */
+    .shampoo-bubble::after {
+        content: '';
+        position: absolute;
+        bottom: 14%;
+        right: 16%;
+        width: 18%;
+        height: 18%;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        filter: blur(0.5px);
+        pointer-events: none;
+    }
 
+    @keyframes bubbleRiseFloat {
+        0% {
+            transform: translateY(0);
+            opacity: 0;
+        }
+        6% {
+            opacity: 0.65;
+        }
+        85% {
+            opacity: 0.65;
+        }
         100% {
-            background-position:
-                10% -10%, 50% -20%, 80% -15%, 85% -30%,
-                0% -5%, 30% -25%, 70% -10%, 95% -15%;
+            transform: translateY(-560px);
             opacity: 0;
         }
     }
 
-    .bento-card>* {
+    @keyframes bubbleSwayFloat {
+        0% {
+            margin-left: -14px;
+        }
+        100% {
+            margin-left: 14px;
+        }
+    }
+
+    /* Individual Bubble Timings, Sizes & Scatter Positions */
+    .b-1  { width: 28px; height: 28px; left: 8%;  animation-duration: 4.2s, 1.8s; animation-delay: -0.8s, 0s; }
+    .b-2  { width: 16px; height: 16px; left: 22%; animation-duration: 3.6s, 2.2s; animation-delay: -2.1s, -0.4s; }
+    .b-3  { width: 38px; height: 38px; left: 35%; animation-duration: 5.0s, 2.6s; animation-delay: -1.2s, -1.0s; }
+    .b-4  { width: 14px; height: 14px; left: 48%; animation-duration: 3.2s, 1.6s; animation-delay: -2.8s, -0.2s; }
+    .b-5  { width: 24px; height: 24px; left: 62%; animation-duration: 4.5s, 2.0s; animation-delay: -3.5s, -0.8s; }
+    .b-6  { width: 32px; height: 32px; left: 78%; animation-duration: 4.8s, 2.4s; animation-delay: -0.4s, -1.2s; }
+    .b-7  { width: 18px; height: 18px; left: 90%; animation-duration: 3.8s, 1.9s; animation-delay: -1.9s, -0.6s; }
+    .b-8  { width: 22px; height: 22px; left: 14%; animation-duration: 4.0s, 2.1s; animation-delay: -3.1s, -1.5s; }
+    .b-9  { width: 36px; height: 36px; left: 28%; animation-duration: 5.2s, 2.5s; animation-delay: -4.0s, -0.3s; }
+    .b-10 { width: 16px; height: 16px; left: 42%; animation-duration: 3.4s, 1.7s; animation-delay: -1.5s, -0.9s; }
+    .b-11 { width: 30px; height: 30px; left: 55%; animation-duration: 4.6s, 2.3s; animation-delay: -2.4s, -1.4s; }
+    .b-12 { width: 20px; height: 20px; left: 68%; animation-duration: 3.9s, 1.8s; animation-delay: -0.9s, -0.5s; }
+    .b-13 { width: 42px; height: 42px; left: 82%; animation-duration: 5.5s, 2.7s; animation-delay: -3.7s, -1.1s; }
+    .b-14 { width: 16px; height: 16px; left: 94%; animation-duration: 3.5s, 1.5s; animation-delay: -2.0s, -0.7s; }
+    .b-15 { width: 26px; height: 26px; left: 5%;  animation-duration: 4.4s, 2.2s; animation-delay: -1.7s, -1.3s; }
+    .b-16 { width: 12px; height: 12px; left: 50%; animation-duration: 3.0s, 1.4s; animation-delay: -0.5s, -0.1s; }
+
+    .bento-card:hover .shampoo-bubble {
+        filter: brightness(1.15);
+    }
+
+    .bento-card>*:not(.bento-bubbles-wrap) {
         position: relative;
-        z-index: 1;
+        z-index: 2;
     }
 
     .bento-card:hover {
@@ -1862,6 +2006,24 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         <div class="impact-bento">
             <!-- Hero Card (Spans 2x2) -->
             <div class="bento-card bento-hero">
+                <div class="bento-bubbles-wrap" aria-hidden="true">
+                    <div class="shampoo-bubble b-1"></div>
+                    <div class="shampoo-bubble b-2"></div>
+                    <div class="shampoo-bubble b-3"></div>
+                    <div class="shampoo-bubble b-4"></div>
+                    <div class="shampoo-bubble b-5"></div>
+                    <div class="shampoo-bubble b-6"></div>
+                    <div class="shampoo-bubble b-7"></div>
+                    <div class="shampoo-bubble b-8"></div>
+                    <div class="shampoo-bubble b-9"></div>
+                    <div class="shampoo-bubble b-10"></div>
+                    <div class="shampoo-bubble b-11"></div>
+                    <div class="shampoo-bubble b-12"></div>
+                    <div class="shampoo-bubble b-13"></div>
+                    <div class="shampoo-bubble b-14"></div>
+                    <div class="shampoo-bubble b-15"></div>
+                    <div class="shampoo-bubble b-16"></div>
+                </div>
                 <span class="impact-badge">THE MOVEOUT DIFFERENCE</span>
                 <h3 class="impact-title">Moving out is chaos.<br>We exist for the final inspection.</h3>
                 <p class="impact-desc">Every surface cleaned to your agent's own checklist, photographed, and guaranteed
@@ -1871,6 +2033,14 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
             <!-- Wide Card (Spans 2x1) -->
             <div class="bento-card bento-wide">
+                <div class="bento-bubbles-wrap" aria-hidden="true">
+                    <div class="shampoo-bubble b-2"></div>
+                    <div class="shampoo-bubble b-5"></div>
+                    <div class="shampoo-bubble b-8"></div>
+                    <div class="shampoo-bubble b-11"></div>
+                    <div class="shampoo-bubble b-14"></div>
+                    <div class="shampoo-bubble b-16"></div>
+                </div>
                 <div class="stat-item">
                     <div class="stat-number"><span class="counter-val" data-target="2347">0</span></div>
                     <div class="stat-label">cleans done</div>
@@ -1884,6 +2054,12 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
             <!-- Square Card 1 -->
             <div class="bento-card bento-square">
+                <div class="bento-bubbles-wrap" aria-hidden="true">
+                    <div class="shampoo-bubble b-1"></div>
+                    <div class="shampoo-bubble b-4"></div>
+                    <div class="shampoo-bubble b-7"></div>
+                    <div class="shampoo-bubble b-10"></div>
+                </div>
                 <div class="stat-item">
                     <div class="stat-number"><span class="counter-val" data-target="99.4">0.0</span>%</div>
                     <div class="stat-label">pass rate</div>
@@ -1892,6 +2068,12 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
             <!-- Square Card 2 -->
             <div class="bento-card bento-square">
+                <div class="bento-bubbles-wrap" aria-hidden="true">
+                    <div class="shampoo-bubble b-3"></div>
+                    <div class="shampoo-bubble b-6"></div>
+                    <div class="shampoo-bubble b-9"></div>
+                    <div class="shampoo-bubble b-12"></div>
+                </div>
                 <div class="stat-item">
                     <div class="stat-number"><span class="counter-val" data-target="4.9">0.0</span>★</div>
                     <div class="stat-label">rating</div>
@@ -1904,10 +2086,9 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     <!-- Watch Us Work Section (Spotlight Reveal) -->
     <!-- ════════════════════════════════════════ -->
     <section class="watch-us-work">
-        <div class="container">
-            <h2
-                style="font-size: clamp(2.5rem, 4vw, 4rem); line-height: 1.1; font-weight: 900; margin-bottom: var(--space-8); color: var(--color-white);">
-                Move your cursor —<br>
+        <div class="watch-us-work-container">
+            <h2 class="watch-us-work-heading">
+                Move your cursor<br>
                 <span class="gradient-text" style="color: var(--color-accent);">watch us work.</span>
             </h2>
 
@@ -1966,12 +2147,14 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 </div>
             </div>
 
-            <p style="text-align: center; color: rgba(255,255,255,0.6); font-size: 13px; margin-top: var(--space-8);">
-                Same property. Same afternoon. Before &amp; after photos like these are included with every clean.
-                <a href="{% url 'public:services' %}"
-                    style="color: var(--color-primary-light); text-decoration: none; font-weight: bold;">Get yours
-                    &rarr;</a>
-            </p>
+            <div class="watch-us-cta-wrap">
+                <p class="watch-us-cta-text">
+                    Same property. Same afternoon. Before &amp; after photos like these are included with every clean.
+                </p>
+                <a href="{% url 'public:services' %}" class="watch-us-cta-btn">
+                    <span>Get yours &rarr;</span>
+                </a>
+            </div>
         </div>
     </section>
 
