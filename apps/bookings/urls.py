@@ -10,8 +10,11 @@ urlpatterns = [
     path('api/timeslots/', api.timeslots_api, name='api_timeslots'),
     path('api/price/', api.price_calculation_api, name='api_price'),
 
-    # Quick single-page booking (new)
-    path('book/<slug:package_slug>/', views.quick_book, name='quick_book'),
+    # Quick single-page booking (legacy)
+    path('book/quick/<slug:package_slug>/', views.quick_book, name='quick_book'),
+    
+    # New Multi-step Alpine.js booking
+    path('book/', views.multi_step_booking, name='multi_step_booking'),
 
     # Legacy multi-step wizard
     path('book/package/', views.step_1_package, name='step_1_package'),

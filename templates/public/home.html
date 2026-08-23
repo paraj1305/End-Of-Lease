@@ -1481,17 +1481,79 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     /* ════════════════════════════════════════ */
 
     .reviews-section {
-        padding: 90px 0;
+        padding: 90px 0 80px;
         background: transparent;
         overflow: hidden;
     }
 
-    .reviews-heading {
-        font-size: 40px;
+    .reviews-header-container {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 40px;
+        padding: 0 var(--space-6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .google-trust-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--color-white);
+        border: 1.5px solid rgba(82, 94, 167, 0.15);
+        padding: 8px 22px;
+        border-radius: var(--radius-full);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        margin-bottom: 18px;
+        transition: transform 0.2s ease;
+    }
+
+    .google-trust-badge:hover {
+        transform: translateY(-2px);
+    }
+
+    .google-badge-logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .google-badge-stars {
+        color: #FBBC05;
+        font-size: 14px;
+        letter-spacing: 1.5px;
+    }
+
+    .google-badge-text {
+        font-size: 13.5px;
         font-weight: 800;
         color: var(--color-primary-dark);
-        margin-bottom: var(--space-10);
-        letter-spacing: -1px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .google-badge-count {
+        color: var(--color-text-muted);
+        font-weight: 600;
+        font-size: 12.5px;
+    }
+
+    .reviews-heading {
+        font-size: clamp(2rem, 4vw, 2.85rem);
+        font-weight: 900;
+        color: var(--color-primary-dark);
+        margin-bottom: 12px;
+        letter-spacing: -0.8px;
+        line-height: 1.15;
+        text-align: center;
+    }
+
+    .reviews-subheading {
+        font-size: 16px;
+        color: var(--color-text-muted);
+        line-height: 1.6;
+        margin: 0;
         text-align: center;
     }
 
@@ -2258,47 +2320,64 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     </div>
 
     <!-- ════════════════════════════════════════ -->
-    <!-- Reviews Section                          -->
+    <!-- Reviews Section (Google Trust)           -->
     <!-- ════════════════════════════════════════ -->
     <section class="reviews-section">
-        <h2 class="reviews-heading">Loved by tenants and agents.</h2>
+        <div class="reviews-header-container">
+            <div class="google-trust-badge">
+                <div class="google-badge-logo">
+                    <svg width="22" height="22" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.35 24 12 24z"/>
+                        <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                    </svg>
+                </div>
+                <div class="google-badge-stars">★★★★★</div>
+                <div class="google-badge-text">
+                    4.9 / 5.0 Rating <span class="google-badge-count">&bull; 350+ Google Reviews</span>
+                </div>
+            </div>
+            <h2 class="reviews-heading">Loved by tenants and real estate agents.</h2>
+            <p class="reviews-subheading">
+                Sydney renters trust us to secure 100% of their bond back. Read our latest verified customer reviews.
+            </p>
+        </div>
+
         <div class="reviews-marquee-container">
             <div class="reviews-marquee-track">
                 {% for i in '123' %}
                 <div class="review-card">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" class="review-image" alt="Reviewer">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" class="review-image" alt="Reviewer Sarah J.">
                     <div class="review-content">
                         <div class="review-name-row">
                             <div class="review-author">Sarah J.</div>
                             <div class="review-stars">★★★★★</div>
+                            <span style="font-size: 11px; color: #059669; font-weight: 700; background: rgba(5,150,105,0.12); padding: 2px 8px; border-radius: 999px; margin-left: auto;">Verified Google Review</span>
                         </div>
-                        <p class="review-text">"Absolutely spotless. The real estate agent was impressed and we got our
-                            full
-                            bond back the next day. Highly recommended."</p>
+                        <p class="review-text">"Absolutely spotless. The real estate agent was impressed and we got our full bond back the next day. Highly recommended."</p>
                     </div>
                 </div>
                 <div class="review-card">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" class="review-image" alt="Reviewer">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" class="review-image" alt="Reviewer David C.">
                     <div class="review-content">
                         <div class="review-name-row">
                             <div class="review-author">David C.</div>
                             <div class="review-stars">★★★★★</div>
+                            <span style="font-size: 11px; color: #059669; font-weight: 700; background: rgba(5,150,105,0.12); padding: 2px 8px; border-radius: 999px; margin-left: auto;">Verified Google Review</span>
                         </div>
-                        <p class="review-text">"I tried cleaning it myself before giving up. MoveOut came in on a Sunday
-                            and
-                            made the place look brand new. Worth every cent."</p>
+                        <p class="review-text">"I tried cleaning it myself before giving up. MoveOut came in on a Sunday and made the place look brand new. Worth every cent."</p>
                     </div>
                 </div>
                 <div class="review-card">
-                    <img src="https://randomuser.me/api/portraits/women/68.jpg" class="review-image" alt="Reviewer">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" class="review-image" alt="Reviewer Emma R.">
                     <div class="review-content">
                         <div class="review-name-row">
                             <div class="review-author">Emma R.</div>
                             <div class="review-stars">★★★★★</div>
+                            <span style="font-size: 11px; color: #059669; font-weight: 700; background: rgba(5,150,105,0.12); padding: 2px 8px; border-radius: 999px; margin-left: auto;">Verified Google Review</span>
                         </div>
-                        <p class="review-text">"So easy to book and the price was exactly what they quoted — no hidden
-                            fees.
-                            The team left the carpets looking flawless."</p>
+                        <p class="review-text">"So easy to book and the price was exactly what they quoted — no hidden fees. The team left the carpets looking flawless."</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -2307,7 +2386,158 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     </section>
 
     <!-- ════════════════════════════════════════ -->
-    <!-- Premium FAQ Section                      -->
+    <!-- Visual Service Areas & Cities Section     -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="seo-cities-section">
+        <!-- Top Curved Shape Divider (White Cutout from previous section) -->
+        <div class="seo-curve-top">
+            <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+                <path d="M0,0 C320,60 880,60 1200,0 L1200,0 L0,0 Z" fill="#FFFFFF"></path>
+            </svg>
+        </div>
+
+        <div class="seo-cities-container">
+            <!-- Header -->
+            <div class="seo-cities-header">
+                <div class="seo-cities-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    Sydney-Wide Coverage
+                </div>
+                <h2 class="seo-cities-title">End of Lease Cleaning in <span class="highlight">Your Suburb</span></h2>
+                <p class="seo-cities-sub">
+                    Our certified bond cleaning specialists operate 7 days a week across all Sydney metropolitan zones with a 100% bond-back guarantee.
+                </p>
+            </div>
+
+            <!-- ════════════════════════════════════════ -->
+            <!-- Interactive Service Route Map Track      -->
+            <!-- ════════════════════════════════════════ -->
+            <div class="service-route-scroll-container">
+                <div class="service-route-track">
+
+                    <!-- SVG Winding Dashed Route Line -->
+                    <svg class="service-route-svg" viewBox="0 0 1240 350" fill="none" preserveAspectRatio="none">
+                        <path d="M 80 200 C 140 200, 160 120, 200 120 C 260 120, 290 215, 350 215 C 420 215, 450 115, 510 115 C 570 115, 590 220, 640 220 C 710 220, 740 120, 800 120 C 860 120, 880 225, 940 225 C 1000 225, 1030 135, 1070 135 C 1110 135, 1140 230, 1175 230" 
+                              stroke="rgba(255, 255, 255, 0.9)" 
+                              stroke-width="3.5" 
+                              stroke-dasharray="10 10" 
+                              stroke-linecap="round"/>
+                    </svg>
+
+                    <!-- Start Point: House with Pin Badge -->
+                    <div class="route-start-house" style="left: 20px; top: 125px;">
+                        <div class="house-pin-badge">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="house-pin-shadow"></div>
+                        <svg class="house-illustration-svg" viewBox="0 0 80 65" fill="none">
+                            <polygon points="40,4 8,30 72,30" fill="#20243A"/>
+                            <polygon points="40,8 14,29 66,29" fill="#525EA7"/>
+                            <rect x="14" y="29" width="52" height="32" rx="2" fill="#FFFFFF"/>
+                            <rect x="33" y="38" width="14" height="23" rx="2" fill="#525EA7"/>
+                            <circle cx="43" cy="50" r="1.5" fill="#FFC349"/>
+                            <rect x="20" y="36" width="10" height="12" rx="1" fill="#5FADD3"/>
+                            <rect x="50" y="36" width="10" height="12" rx="1" fill="#5FADD3"/>
+                            <line x1="25" y1="36" x2="25" y2="48" stroke="#FFFFFF" stroke-width="1.5"/>
+                            <line x1="20" y1="42" x2="30" y2="42" stroke="#FFFFFF" stroke-width="1.5"/>
+                            <line x1="55" y1="36" x2="55" y2="48" stroke="#FFFFFF" stroke-width="1.5"/>
+                            <line x1="50" y1="42" x2="60" y2="42" stroke="#FFFFFF" stroke-width="1.5"/>
+                            <rect x="8" y="59" width="64" height="4" rx="2" fill="#059669"/>
+                        </svg>
+                    </div>
+
+                    <!-- Stop 1: Parramatta & Surrounds (Top) -->
+                    <div class="route-waypoint-dot" style="left: 200px; top: 120px;"></div>
+                    <a href="{% url 'bookings:multi_step_booking' %}?package=parramatta" class="route-city-card" style="left: 200px; top: 50px;">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Parramatta</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- Stop 2: Ryde & Surrounds (Bottom) -->
+                    <div class="route-waypoint-dot" style="left: 350px; top: 215px;"></div>
+                    <a href="{% url 'bookings:multi_step_booking' %}?package=ryde" class="route-city-card" style="left: 350px; top: 290px;">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Ryde</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- Stop 3: Chatswood & Surrounds (Top) -->
+                    <div class="route-waypoint-dot" style="left: 510px; top: 115px;"></div>
+                    <a href="{% url 'bookings:multi_step_booking' %}?package=chatswood" class="route-city-card" style="left: 510px; top: 45px;">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Chatswood</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- Stop 4: Inner West & Surrounds (Bottom) -->
+                    <div class="route-waypoint-dot" style="left: 640px; top: 220px;"></div>
+                    <a href="{% url 'bookings:multi_step_booking' %}?package=inner-west" class="route-city-card" style="left: 640px; top: 295px;">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Inner West</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- Stop 5: Northern Beaches & Surrounds (Top) -->
+                    <div class="route-waypoint-dot" style="left: 800px; top: 120px;"></div>
+                    <a href="{% url 'bookings:multi_step_booking' %}?package=northern-beaches" class="route-city-card" style="left: 800px; top: 50px;">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Northern Beaches</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- Stop 6: Sutherland Shire & Surrounds (Bottom) -->
+                    <div class="route-waypoint-dot" style="left: 940px; top: 225px;"></div>
+                    <a href="{% url 'bookings:multi_step_booking' %}?package=sutherland-shire" class="route-city-card" style="left: 940px; top: 300px;">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Sutherland Shire</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- Stop 7: Eastern Suburbs & Surrounds (Top) -->
+                    <div class="route-waypoint-dot" style="left: 1070px; top: 135px;"></div>
+                    <a href="{% url 'bookings:multi_step_booking' %}?package=eastern-suburbs" class="route-city-card" style="left: 1070px; top: 65px;">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Eastern Suburbs</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- End Destination Pin Marker -->
+                    <div class="route-end-pin" style="left: 1175px; top: 220px; transform: translate(-50%, -50%);">
+                        <div class="end-pin-badge">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="end-pin-ring"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Curved Shape Divider (White Cutout to FAQ section) -->
+        <div class="seo-curve-bottom">
+            <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+                <path d="M0,60 C320,0 880,0 1200,60 L1200,60 L0,60 Z" fill="#FFFFFF"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- Premium FAQ Section (Last Section)       -->
     <!-- ════════════════════════════════════════ -->
     <section class="premium-faq-wrapper" x-data="{ activeIndex: null }">
         <div class="premium-faq-left">
@@ -2343,11 +2573,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             {% endfor %}
         </div>
     </section>
-</div> <!-- Closing sparkles-glow-wrapper -->
-
-<!-- Contact section removed -->
 
 {% endblock %}
+
+
 
 {% block extra_js %}
 <script>

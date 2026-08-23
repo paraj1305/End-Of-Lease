@@ -20,6 +20,7 @@
 @import url('./components/forms.css');
 @import url('./components/footer.css');
 @import url('./components/sticky-cta.css');
+@import url('./components/clean-window-popup.css');
 
 /* Sections */
 @import url('./sections/trust.css');
@@ -38,3 +39,4 @@
 @import url('./pages/about.css');
 @import url('./pages/contact.css');
 @import url('./pages/confirmation.css');
+@import url('./pages/our_work.css');

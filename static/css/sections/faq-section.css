@@ -6,6 +6,7 @@
 .faq-page-main {
     background: var(--color-white);
     min-height: 100vh;
+    margin-top: -80px;
 }
 
 /* ════════════════════════════════════════
@@ -14,7 +15,7 @@
 .faq-hero {
     position: relative;
     background: var(--color-primary-light);
-    padding: 100px 0 0;
+    padding: 120px 0 0;
     /* padding bottom handled by wave */
     overflow: hidden;
     z-index: 1;
@@ -423,23 +424,4 @@
     .faq-cta-content {
         flex-direction: column;
     }
-}
-
-width: 100%;
-max-width: 100%;
-}
-
-.faq-accordion-wrapper {
-    width: 100%;
-}
-
-.faq-cta-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 24px;
-}
-
-.faq-cta-content {
-    flex-direction: column;
-}
 }

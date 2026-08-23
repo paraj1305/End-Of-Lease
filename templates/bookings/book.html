@@ -1,0 +1,1191 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Your Clean — End of Lease Cleaning{% endblock %}
+{% block meta_description %}Get your instant, transparent price and confirm your end-of-lease cleaning booking online.{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* =====================================================
+   BOOKING PAGE — Matches site theme (light bg, purple hero)
+   ===================================================== */
+
+/* PAGE SHELL — same light bg as services page */
+.book-page {
+    background: var(--color-primary-alpha-10);
+    min-height: 100vh;
+    padding-bottom: 80px;
+    margin-top: -80px;
+}
+
+/* ── HERO ─── same gradient as services hero */
+.book-hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 55%, var(--color-primary-lighter) 100%);
+    padding: calc(var(--nav-height) + 40px) var(--space-section-x) 54px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+/* Subtle decorative circles — same feel as your hero */
+.book-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    pointer-events: none;
+}
+.book-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    pointer-events: none;
+}
+
+.book-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: var(--container-narrow);
+    margin: 0 auto;
+}
+
+/* Small pill — same pattern as services badge */
+.book-pill {
+    display: inline-block;
+    padding: 7px 20px;
+    background: rgba(255,195,73,0.2);
+    color: var(--color-accent);
+    border: 1px solid rgba(255,195,73,0.35);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-xs);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-4);
+}
+
+.book-hero h1 {
+    font-size: var(--text-3xl);
+    font-weight: 900;
+    color: var(--color-white);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.5px;
+    margin: 0 0 14px;
+}
+.book-hero h1 .accent { color: var(--color-accent); }
+
+.book-hero p {
+    font-size: var(--text-md);
+    color: rgba(255,255,255,0.82);
+    line-height: var(--leading-relaxed);
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+/* ── TRUST STRIP — white bar, exactly like services.css ── */
+.book-trust-strip {
+    background: var(--color-white);
+    box-shadow: var(--shadow-sm);
+    padding: 20px var(--space-section-x);
+    position: relative;
+    z-index: 10;
+}
+.book-trust-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+.book-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-muted);
+}
+.book-trust-item .trust-icon-box,
+.book-trust-item i {
+    width: 38px; height: 38px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary-alpha-10);
+    color: var(--color-primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+}
+
+/* ── MAIN LAYOUT ── */
+.book-layout {
+    max-width: var(--container-max);
+    margin: 40px auto 0;
+    padding: 0 var(--space-section-x);
+    display: grid;
+    grid-template-columns: 1fr 370px;
+    gap: var(--space-8);
+    align-items: start;
+}
+
+/* ── FORM CARD — white, same as pkg-card ── */
+.form-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-grey-200);
+    box-shadow: var(--shadow-md);
+    overflow: visible;
+}
+
+.form-section {
+    padding: var(--space-8) var(--space-10);
+    border-bottom: 1px solid var(--color-grey-100);
+}
+.form-section:last-child { border-bottom: none; }
+
+/* Section title */
+.sec-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: var(--space-6);
+}
+.sec-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.sec-title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    color: var(--color-primary-dark);
+    margin: 0;
+}
+
+/* Address field */
+.addr-wrap { position: relative; }
+.addr-icon {
+    position: absolute;
+    left: 14px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-grey-400);
+    pointer-events: none;
+}
+.addr-input {
+    width: 100%; box-sizing: border-box;
+    padding: 13px 14px 13px 42px;
+    border: 1.5px solid var(--color-grey-200);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    font-family: var(--font-body);
+    color: var(--color-text-primary);
+    background: var(--color-grey-50);
+    transition: border-color var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+    outline: none;
+}
+.addr-input:focus {
+    border-color: var(--color-primary);
+    background: var(--color-white);
+    box-shadow: 0 0 0 3px var(--color-primary-alpha-10);
+}
+.addr-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+    background: var(--color-white);
+    border: 1.5px solid var(--color-grey-200);
+    border-radius: var(--radius-md);
+    z-index: 20;
+    max-height: 220px; overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+}
+.addr-option {
+    padding: 12px 16px;
+    font-size: var(--text-sm);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-grey-100);
+    line-height: var(--leading-snug);
+    transition: background var(--transition-fast);
+}
+.addr-option:last-child { border-bottom: none; }
+.addr-option:hover { background: var(--color-grey-50); }
+.addr-confirmed {
+    display: flex; align-items: center; gap: 6px;
+    font-size: var(--text-xs); font-weight: var(--weight-semibold);
+    color: var(--color-success); margin-top: 8px;
+}
+
+/* 4 Counters in 1 Row */
+.counter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+}
+.counter-label {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    color: var(--color-grey-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+.counter-ctrl {
+    display: flex; align-items: center;
+    border: 1.5px solid var(--color-grey-200);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    overflow: hidden;
+    transition: border-color var(--transition-fast);
+}
+.counter-ctrl:hover { border-color: var(--color-primary); }
+.c-btn {
+    width: 40px; height: 44px;
+    border: none; background: none;
+    color: var(--color-primary);
+    font-size: 1.25rem; font-weight: var(--weight-bold);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background var(--transition-fast);
+    flex-shrink: 0; line-height: 1;
+}
+.c-btn:hover { background: var(--color-primary-alpha-10); }
+.c-val {
+    font-size: var(--text-md); font-weight: var(--weight-extrabold);
+    color: var(--color-primary-dark); text-align: center; flex: 1;
+}
+
+/* Add-on Cards */
+.addon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 14px;
+}
+.addon-card {
+    border: 1.5px solid var(--color-grey-200);
+    border-radius: var(--radius-md);
+    padding: 18px 12px 14px;
+    cursor: pointer;
+    position: relative;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px;
+    text-align: center;
+    transition: all var(--transition-base);
+    background: var(--color-white);
+    user-select: none;
+}
+.addon-card:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary-alpha-10);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+.addon-card.is-selected {
+    border-color: var(--color-primary);
+    background: var(--color-primary-alpha-10);
+    box-shadow: 0 0 0 3px var(--color-primary-alpha-10);
+}
+.addon-icon-wrap {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--color-primary-alpha-10);
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--transition-base);
+}
+.addon-card.is-selected .addon-icon-wrap {
+    background: var(--color-primary);
+}
+.addon-icon-wrap i {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    transition: color var(--transition-base);
+}
+.addon-card.is-selected .addon-icon-wrap i {
+    color: var(--color-white);
+}
+.addon-name-text {
+    font-size: var(--text-sm); font-weight: var(--weight-semibold);
+    color: var(--color-primary-dark); line-height: var(--leading-snug);
+}
+.addon-price-text {
+    font-size: var(--text-sm); font-weight: var(--weight-bold);
+    color: var(--color-primary);
+}
+.addon-action-btn {
+    margin-top: 4px;
+    padding: 5px 14px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    border: 1.5px solid var(--color-grey-200);
+    background: var(--color-grey-50);
+    color: var(--color-text-muted);
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.addon-card:hover .addon-action-btn {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+.addon-card.is-selected .addon-action-btn {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: 0 2px 8px var(--color-primary-alpha-20);
+}
+
+/* Standard text inputs */
+.two-col {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label {
+    font-size: var(--text-xs); font-weight: var(--weight-semibold);
+    color: var(--color-grey-500);
+    text-transform: uppercase; letter-spacing: 0.5px;
+}
+.field-input {
+    width: 100%; box-sizing: border-box;
+    padding: 13px 16px;
+    border: 1.5px solid var(--color-grey-200);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base); font-family: var(--font-body);
+    color: var(--color-text-primary);
+    background: var(--color-grey-50);
+    transition: border-color var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+    outline: none;
+    -webkit-appearance: none; appearance: none;
+}
+.field-input:focus {
+    border-color: var(--color-primary);
+    background: var(--color-white);
+    box-shadow: 0 0 0 3px var(--color-primary-alpha-10);
+}
+.full { grid-column: 1 / -1; }
+
+/* ── SUMMARY CARD ── */
+.summary-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-grey-200);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    position: sticky;
+    top: calc(var(--nav-height) + 20px);
+}
+
+/* Summary header — uses primary purple like pkg-card accents */
+.summary-head {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--color-white);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-md);
+}
+.summary-head i { color: var(--color-accent); font-size: 1.1rem; }
+
+.summary-body { padding: 22px 24px; }
+
+.s-label-tag {
+    font-size: var(--text-2xs);
+    font-weight: var(--weight-bold);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    display: block;
+}
+
+.s-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px dashed var(--color-grey-100);
+    font-size: var(--text-sm); color: var(--color-text-muted);
+}
+.s-row:last-child { border-bottom: none; }
+.s-row-label { display: flex; align-items: center; gap: 10px; }
+.s-row-label i { color: var(--color-grey-300); width: 16px; text-align: center; }
+.s-row-val { font-weight: var(--weight-bold); color: var(--color-primary-dark); }
+
+.s-divider { height: 1px; background: var(--color-grey-200); margin: 18px 0; }
+
+.s-total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 18px;
+}
+.s-total-label { font-size: var(--text-base); font-weight: var(--weight-bold); color: var(--color-primary-dark); }
+.s-total-price { font-size: 2rem; font-weight: 900; color: var(--color-primary); line-height: 1; }
+
+/* Deposit box — green accent, same semantic */
+.deposit-box {
+    background: var(--color-success-bg);
+    border: 1.5px solid rgba(5, 150, 105, 0.25);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 18px;
+}
+.dep-main {
+    display: flex; justify-content: space-between;
+    font-weight: var(--weight-bold); color: #065F46;
+    font-size: var(--text-md); margin-bottom: 8px;
+}
+.dep-sub {
+    display: flex; justify-content: space-between;
+    font-size: var(--text-sm); color: var(--color-text-muted);
+}
+
+/* Terms Agreement */
+.terms-agreement-wrap {
+    margin: 16px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+.terms-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.terms-link {
+    color: var(--color-primary);
+    font-weight: var(--weight-bold);
+    text-decoration: underline;
+    transition: color var(--transition-fast);
+}
+.terms-link:hover {
+    color: var(--color-primary-dark);
+}
+
+/* CTA — accent yellow, same as customize-btn on services page */
+.btn-book {
+    display: block; width: 100%;
+    padding: 15px;
+    background: var(--color-accent);
+    color: var(--color-primary-dark);
+    border: none; border-radius: var(--radius-md);
+    font-size: var(--text-md); font-weight: 800;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+.btn-book:hover {
+    background: var(--color-accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255,195,73,0.35);
+}
+.btn-book:active { transform: translateY(0); }
+.secure-note {
+    text-align: center; margin-top: 12px;
+    font-size: var(--text-xs); color: var(--color-grey-400);
+}
+.secure-note i { margin-right: 4px; }
+
+/* ═══════════════════════════════════════════════════════════
+   LIVE BOOKING PROGRESS BAR (STICKY)
+   ═══════════════════════════════════════════════════════════ */
+.book-progress-card {
+    position: sticky;
+    top: 86px;
+    z-index: 25;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-grey-200);
+    border-bottom: 1.5px solid var(--color-grey-200);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: 16px 24px;
+    margin-bottom: 0;
+    box-shadow: 0 4px 20px rgba(82, 94, 167, 0.09);
+    transition: box-shadow var(--transition-fast);
+}
+
+.book-progress-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.book-progress-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.book-progress-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--color-primary-alpha-10);
+    color: var(--color-primary);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+}
+
+.book-progress-hint {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.book-progress-percent {
+    font-size: var(--text-sm);
+    font-weight: 900;
+    color: var(--color-primary);
+}
+
+.book-progress-track {
+    width: 100%;
+    height: 8px;
+    background: var(--color-grey-100);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: 14px;
+    position: relative;
+}
+
+.book-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light), var(--color-accent));
+    border-radius: var(--radius-full);
+    transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.book-progress-steps-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.book-progress-step {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--color-grey-400);
+    transition: color var(--transition-fast);
+}
+
+.book-progress-step.is-complete {
+    color: var(--color-success);
+}
+
+.book-progress-step-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-grey-200);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    flex-shrink: 0;
+    transition: background var(--transition-fast);
+}
+
+.book-progress-step.is-complete .book-progress-step-icon {
+    background: var(--color-success);
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 991px) {
+    .counter-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+
+@media (max-width: 900px) {
+    .book-hero { padding: calc(var(--nav-height) + 20px) 20px 36px; }
+    .book-layout { grid-template-columns: 1fr; padding: 20px 16px; margin-top: 24px; }
+    .form-section { padding: 24px 20px; }
+    .two-col { grid-template-columns: 1fr; }
+    .two-col .full { grid-column: 1; }
+    .addon-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    .book-progress-card { top: 68px; padding: 12px 16px; border-radius: var(--radius-md) var(--radius-md) 0 0; }
+    .book-progress-steps-list { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+    /* Summary pinned to bottom on mobile */
+    .summary-card {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        z-index: var(--z-sticky);
+        max-height: 82vh;
+        overflow-y: auto;
+        box-shadow: 0 -6px 30px rgba(82,94,167,0.18);
+        border-left: none; border-right: none; border-bottom: none;
+    }
+    .summary-card.is-collapsed { max-height: 72px; overflow: hidden; }
+    .summary-head { cursor: pointer; padding: 20px 20px; justify-content: space-between; position: relative; }
+    .summary-head-title { display: flex; align-items: center; gap: 10px; }
+    .summary-head-chevron { transition: transform var(--transition-base); }
+    .summary-card.is-collapsed .summary-head-chevron { transform: rotate(180deg); }
+    .mobile-total { display: none; font-size: var(--text-xl); font-weight: 900; color: var(--color-accent); }
+    .summary-card.is-collapsed .mobile-total { display: block; }
+    .book-page { padding-bottom: 90px; }
+}
+
+@media (max-width: 480px) {
+    .book-hero h1 { font-size: var(--text-2xl); }
+    .book-trust-inner { gap: 20px; }
+    .counter-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .c-btn { width: 36px; height: 40px; }
+}
+</style>
+<script>
+const __PRICING = {
+    baseFee:      parseFloat("{{ pricing_config.base_fee|default:0 }}"),
+    bedPrice:     parseFloat("{{ pricing_config.bedroom_price|default:49 }}"),
+    bathPrice:    parseFloat("{{ pricing_config.bathroom_price|default:30 }}"),
+    livingPrice:  parseFloat("{{ pricing_config.living_area_price|default:15 }}"),
+    balconyPrice: parseFloat("{{ pricing_config.balcony_price|default:10 }}"),
+};
+const __ADDON_PRICES = {
+    {% for addon in addons %}"{{ addon.id }}": parseFloat("{{ addon.price }}"),{% endfor %}
+};
+
+function bookingApp() {
+    return {
+        baseFee:      __PRICING.baseFee,
+        bedPrice:     __PRICING.bedPrice,
+        bathPrice:    __PRICING.bathPrice,
+        livingPrice:  __PRICING.livingPrice,
+        balconyPrice: __PRICING.balconyPrice,
+
+        bedrooms: 1, bathrooms: 1, livingAreas: 1, balconies: 0,
+        selectedAddons: [],
+        termsAccepted: false,
+        couponCode: '',
+        discountPercent: 0,
+
+        addrQuery: '', addrResults: [],
+        address: { street: '', suburb: '', postcode: '', state: 'NSW' },
+
+        // Form Fields for Live Progress
+        customerName: '',
+        customerEmail: '',
+        customerPhone: '',
+        bookingDate: '',
+        timeSlotId: '',
+
+        isMobile: false, stickyCollapsed: true,
+
+        init() {
+            this.isMobile = window.innerWidth <= 900;
+            window.addEventListener('resize', () => {
+                this.isMobile = window.innerWidth <= 900;
+            });
+            const params = new URLSearchParams(window.location.search);
+
+            // Coupon / Discount Param
+            if (params.get('coupon') === 'CLEAN10' || params.get('discount') === '10') {
+                this.couponCode = 'CLEAN10';
+                this.discountPercent = 0.10;
+            }
+
+            // Room Counts from URL Parameters
+            const pBeds = parseInt(params.get('bedrooms') || params.get('beds'));
+            if (!isNaN(pBeds) && pBeds >= 0) this.bedrooms = pBeds;
+
+            const pBaths = parseInt(params.get('bathrooms') || params.get('baths'));
+            if (!isNaN(pBaths) && pBaths >= 1) this.bathrooms = pBaths;
+
+            const pLiving = parseInt(params.get('living') || params.get('living_areas') || params.get('livingAreas'));
+            if (!isNaN(pLiving) && pLiving >= 0) this.livingAreas = pLiving;
+
+            const pBalconies = parseInt(params.get('balconies') || params.get('balcony'));
+            if (!isNaN(pBalconies) && pBalconies >= 0) this.balconies = pBalconies;
+
+            // Optional Add-ons pre-selection from URL (e.g. ?addons=1,3)
+            const pAddons = params.get('addons');
+            if (pAddons) {
+                pAddons.split(',').forEach(id => {
+                    const cleanId = id.trim();
+                    if (cleanId && !this.selectedAddons.includes(cleanId)) {
+                        this.selectedAddons.push(cleanId);
+                    }
+                });
+            }
+
+            // Package Slug Fallback Parser
+            const pkg = (params.get('package') || '').toLowerCase();
+            if (pkg) {
+                if (pkg.includes('studio')) { this.bedrooms = 1; this.bathrooms = 1; }
+                else if (pkg.includes('1-bhk') || pkg.includes('1-bed')) { this.bedrooms = 1; this.bathrooms = 1; }
+                else if (pkg.includes('2-bhk') || pkg.includes('2-bed')) { this.bedrooms = 2; this.bathrooms = 1; }
+                else if (pkg.includes('3-bhk') || pkg.includes('3-bed')) { this.bedrooms = 3; this.bathrooms = 2; }
+                else if (pkg.includes('4-bhk') || pkg.includes('4-bed')) { this.bedrooms = 4; this.bathrooms = 2; }
+                else if (pkg.includes('10-bhk')) { this.bedrooms = 10; this.bathrooms = 5; }
+                else if (pkg.includes('villa')) { this.bedrooms = 4; this.bathrooms = 3; this.livingAreas = 2; this.balconies = 1; }
+            }
+        },
+
+        toggleAddon(id) {
+            const key = String(id);
+            if (this.selectedAddons.includes(key)) {
+                this.selectedAddons = this.selectedAddons.filter(item => item !== key);
+            } else {
+                this.selectedAddons.push(key);
+            }
+        },
+
+        isAddonSelected(id) {
+            return this.selectedAddons.includes(String(id));
+        },
+
+        get baseCleanPrice() {
+            return this.baseFee
+                 + (this.bedrooms    * this.bedPrice)
+                 + (this.bathrooms   * this.bathPrice)
+                 + (this.livingAreas * this.livingPrice)
+                 + (this.balconies   * this.balconyPrice);
+        },
+        get addonsTotal()    { return this.selectedAddons.reduce((s, id) => s + (__ADDON_PRICES[String(id)] || 0), 0); },
+        get subtotalPrice()  { return this.baseCleanPrice + this.addonsTotal; },
+        get discountAmount() { return this.subtotalPrice * this.discountPercent; },
+        get totalPrice()     { return Math.max(0, this.subtotalPrice - this.discountAmount); },
+        get depositAmount()  { return this.totalPrice * 0.10; },
+        get balanceAmount()  { return this.totalPrice - this.depositAmount; },
+
+        // Progress Calculation Properties
+        get isPropertyValid() {
+            return (this.address.street.length > 0 || this.addrQuery.trim().length > 3);
+        },
+        get isDateTimeValid() {
+            return this.bookingDate.length > 0 && this.timeSlotId.length > 0;
+        },
+        get isContactValid() {
+            return this.customerName.trim().length > 1 && this.customerEmail.includes('@') && this.customerPhone.trim().length >= 6;
+        },
+        get isTermsValid() {
+            return this.termsAccepted === true;
+        },
+        get completionScore() {
+            let score = 10; // Initial state with default bedrooms
+            if (this.isPropertyValid) score += 25;
+            if (this.selectedAddons.length > 0) score += 5;
+            if (this.bookingDate.length > 0) score += 15;
+            if (this.timeSlotId.length > 0) score += 15;
+            if (this.customerName.trim().length > 1) score += 10;
+            if (this.customerEmail.includes('@')) score += 10;
+            if (this.customerPhone.trim().length >= 6) score += 10;
+            if (this.isTermsValid) score += 10;
+            return Math.min(100, score);
+        },
+        get completionStatusMessage() {
+            if (this.completionScore >= 100) return '🎉 All details complete! Ready to book';
+            if (!this.isPropertyValid) return 'Enter your property address';
+            if (!this.isDateTimeValid) return 'Select your cleaning date & time';
+            if (!this.isContactValid) return 'Enter your contact details';
+            if (!this.isTermsValid) return 'Check agreement to confirm';
+            return 'Complete the remaining fields';
+        },
+
+        async fetchAddress() {
+            if (this.addrQuery.length < 3) { this.addrResults = []; return; }
+            try {
+                const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&countrycodes=au&q=${encodeURIComponent(this.addrQuery)}&addressdetails=1&limit=5`);
+                this.addrResults = await res.json();
+            } catch (e) { console.error(e); }
+        },
+        pickAddress(r) {
+            const a = r.address;
+            this.address.street   = (`${a.house_number || ''} ${a.road || ''}`).trim() || r.display_name.split(',')[0];
+            this.address.suburb   = a.suburb || a.city || a.town || a.village || '';
+            this.address.postcode = a.postcode || '';
+            const map = { 'New South Wales':'NSW','Victoria':'VIC','Queensland':'QLD','Western Australia':'WA','South Australia':'SA','Tasmania':'TAS','Australian Capital Territory':'ACT','Northern Territory':'NT' };
+            this.address.state    = map[a.state] || a.state || 'NSW';
+            this.addrQuery        = r.display_name;
+            this.addrResults      = [];
+        }
+    };
+}
+window.bookingApp = bookingApp;
+document.addEventListener('alpine:init', () => {
+    if (window.Alpine) {
+        window.Alpine.data('bookingApp', bookingApp);
+    }
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="book-page" x-data="bookingApp()">
+
+    <!-- Hero — purple gradient, exactly like services hero -->
+    <div class="book-hero">
+        <div class="book-hero-inner">
+            <div class="book-pill">Instant Price</div>
+            <h1>Book Your Clean <span class="accent">✨</span></h1>
+            <p>Fill in the details below to get your instant price and confirm your booking.</p>
+        </div>
+    </div>
+
+    <!-- Trust strip — white bar, exactly like services trust strip -->
+    <div class="book-trust-strip">
+        <div class="book-trust-inner">
+            <div class="book-trust-item">
+                <div class="trust-icon-box">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <span>Police Verified Cleaners</span>
+            </div>
+            <div class="book-trust-item">
+                <div class="trust-icon-box">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+                </div>
+                <span>100% Satisfaction Guarantee</span>
+            </div>
+            <div class="book-trust-item">
+                <div class="trust-icon-box">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <span>On-time Service</span>
+            </div>
+            <div class="book-trust-item">
+                <div class="trust-icon-box">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <span>5 Star Rated Service</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content grid -->
+    <div class="book-layout">
+
+        <!-- ===== LEFT: FORM CARD ===== -->
+        <div class="form-card">
+
+            <!-- Live Booking Completion Progress Bar -->
+            <div class="book-progress-card">
+                <div class="book-progress-top">
+                    <div class="book-progress-info">
+                        <span class="book-progress-badge">
+                            <i class="fa-solid fa-list-check"></i> Booking Progress
+                        </span>
+                        <span class="book-progress-hint" x-text="completionStatusMessage">Fill in your property address to begin</span>
+                    </div>
+                    <span class="book-progress-percent" x-text="`${completionScore}%`">10%</span>
+                </div>
+
+                <div class="book-progress-track">
+                    <div class="book-progress-fill" :style="`width: ${completionScore}%;`"></div>
+                </div>
+
+                <div class="book-progress-steps-list">
+                    <div class="book-progress-step" :class="{ 'is-complete': isPropertyValid }">
+                        <div class="book-progress-step-icon">
+                            <i class="fa-solid" :class="isPropertyValid ? 'fa-check' : 'fa-house'"></i>
+                        </div>
+                        <span>1. Property</span>
+                    </div>
+                    <div class="book-progress-step" :class="{ 'is-complete': selectedAddons.length > 0 }">
+                        <div class="book-progress-step-icon">
+                            <i class="fa-solid" :class="selectedAddons.length > 0 ? 'fa-check' : 'fa-plus'"></i>
+                        </div>
+                        <span>2. Add-ons <template x-if="selectedAddons.length > 0">(<span x-text="selectedAddons.length"></span>)</template></span>
+                    </div>
+                    <div class="book-progress-step" :class="{ 'is-complete': isDateTimeValid }">
+                        <div class="book-progress-step-icon">
+                            <i class="fa-solid" :class="isDateTimeValid ? 'fa-check' : 'fa-calendar'"></i>
+                        </div>
+                        <span>3. Date &amp; Time</span>
+                    </div>
+                    <div class="book-progress-step" :class="{ 'is-complete': isContactValid && isTermsValid }">
+                        <div class="book-progress-step-icon">
+                            <i class="fa-solid" :class="(isContactValid && isTermsValid) ? 'fa-check' : 'fa-user'"></i>
+                        </div>
+                        <span>4. Contact &amp; Terms</span>
+                    </div>
+                </div>
+            </div>
+
+            <form method="post" id="book-form">
+                {% csrf_token %}
+                <input type="hidden" name="bedrooms"                  :value="bedrooms">
+                <input type="hidden" name="bathrooms"                 :value="bathrooms">
+                <input type="hidden" name="living_areas"              :value="livingAreas">
+                <input type="hidden" name="balconies"                 :value="balconies">
+                <input type="hidden" name="service_address_street"    :value="address.street">
+                <input type="hidden" name="service_address_suburb"    :value="address.suburb">
+                <input type="hidden" name="service_address_postcode"  :value="address.postcode">
+                <input type="hidden" name="service_address_state"     :value="address.state">
+                <input type="hidden" name="coupon_code"               :value="couponCode">
+                <input type="hidden" name="discount_amount"           :value="discountAmount">
+
+                <!-- ① Property Details -->
+                <div class="form-section">
+                    <div class="sec-head">
+                        <div class="sec-num">1</div>
+                        <h2 class="sec-title">Property Details</h2>
+                    </div>
+
+                    <div style="margin-bottom: 0;">
+                        <label class="counter-label" style="margin-bottom:8px;">Property Address *</label>
+                        <div class="addr-wrap">
+                            <i class="fa-solid fa-location-dot addr-icon"></i>
+                            <input type="text" class="addr-input" placeholder="Start typing your address..."
+                                   x-model="addrQuery" @input.debounce.500ms="fetchAddress()" autocomplete="off" required>
+                            <div class="addr-dropdown" x-show="addrResults.length > 0" @click.away="addrResults = []">
+                                <template x-for="r in addrResults" :key="r.place_id">
+                                    <div class="addr-option" @click="pickAddress(r)" x-text="r.display_name"></div>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="addr-confirmed" x-show="address.street">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span x-text="`${address.street}, ${address.suburb} ${address.state} ${address.postcode}`"></span>
+                        </div>
+                    </div>
+
+                    <div class="counter-grid">
+                        <div>
+                            <span class="counter-label">Bedrooms *</span>
+                            <div class="counter-ctrl">
+                                <button type="button" class="c-btn" @click="bedrooms = Math.max(1, bedrooms - 1)">−</button>
+                                <div class="c-val" x-text="bedrooms">1</div>
+                                <button type="button" class="c-btn" @click="bedrooms++">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="counter-label">Bathrooms *</span>
+                            <div class="counter-ctrl">
+                                <button type="button" class="c-btn" @click="bathrooms = Math.max(1, bathrooms - 1)">−</button>
+                                <div class="c-val" x-text="bathrooms">1</div>
+                                <button type="button" class="c-btn" @click="bathrooms++">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="counter-label">Living Areas</span>
+                            <div class="counter-ctrl">
+                                <button type="button" class="c-btn" @click="livingAreas = Math.max(0, livingAreas - 1)">−</button>
+                                <div class="c-val" x-text="livingAreas">1</div>
+                                <button type="button" class="c-btn" @click="livingAreas++">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="counter-label">Balconies</span>
+                            <div class="counter-ctrl">
+                                <button type="button" class="c-btn" @click="balconies = Math.max(0, balconies - 1)">−</button>
+                                <div class="c-val" x-text="balconies">0</div>
+                                <button type="button" class="c-btn" @click="balconies++">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ② Optional Add-ons -->
+                {% if addons %}
+                <div class="form-section">
+                    <div class="sec-head">
+                        <div class="sec-num">2</div>
+                        <h2 class="sec-title">Optional Add-ons</h2>
+                    </div>
+                    <div class="addon-grid">
+                        {% for addon in addons %}
+                        <div class="addon-card"
+                             :class="{ 'is-selected': isAddonSelected('{{ addon.id }}') }"
+                             @click="toggleAddon('{{ addon.id }}')">
+                            <input type="checkbox" name="addon_ids" value="{{ addon.id }}" :checked="isAddonSelected('{{ addon.id }}')" style="display:none;">
+                            <div class="addon-icon-wrap">
+                                {% if "balcony" in addon.name|lower %}<i class="fa-solid fa-leaf"></i>
+                                {% elif "garage" in addon.name|lower %}<i class="fa-solid fa-warehouse"></i>
+                                {% elif "blind" in addon.name|lower %}<i class="fa-solid fa-bars"></i>
+                                {% elif "carpet" in addon.name|lower %}<i class="fa-solid fa-brush"></i>
+                                {% elif "window" in addon.name|lower %}<i class="fa-regular fa-window-maximize"></i>
+                                {% elif "oven" in addon.name|lower %}<i class="fa-solid fa-fire-burner"></i>
+                                {% elif "fridge" in addon.name|lower %}<i class="fa-solid fa-temperature-low"></i>
+                                {% else %}<i class="fa-solid fa-broom"></i>
+                                {% endif %}
+                            </div>
+                            <div class="addon-name-text">{{ addon.name }}</div>
+                            <div class="addon-price-text">+${{ addon.price }}</div>
+                            <div class="addon-action-btn">
+                                <span x-show="!isAddonSelected('{{ addon.id }}')"><i class="fa-solid fa-plus"></i> Add</span>
+                                <span x-show="isAddonSelected('{{ addon.id }}')" style="display:none;"><i class="fa-solid fa-check"></i> Added</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- ③ Date & Time -->
+                <div class="form-section">
+                    <div class="sec-head">
+                        <div class="sec-num">3</div>
+                        <h2 class="sec-title">Date &amp; Time</h2>
+                    </div>
+                    <div class="two-col">
+                        <div class="field">
+                            <label for="booking_date">Preferred Date *</label>
+                            <input type="date" id="booking_date" name="booking_date" class="field-input" min="{{ min_date }}" x-model="bookingDate" required>
+                        </div>
+                        <div class="field">
+                            <label for="time_slot_id">Time Slot *</label>
+                            <select id="time_slot_id" name="time_slot_id" class="field-input" x-model="timeSlotId" required>
+                                <option value="">Select a time...</option>
+                                {% for slot in time_slots %}
+                                <option value="{{ slot.id }}">{{ slot.label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ④ Your Details -->
+                <div class="form-section">
+                    <div class="sec-head">
+                        <div class="sec-num">4</div>
+                        <h2 class="sec-title">Your Details</h2>
+                    </div>
+                    <div class="two-col">
+                        <div class="field full">
+                            <label for="customer_name">Full Name *</label>
+                            <input type="text" id="customer_name" name="customer_name" class="field-input" placeholder="Jane Smith" x-model="customerName" required>
+                        </div>
+                        <div class="field">
+                            <label for="customer_email">Email Address *</label>
+                            <input type="email" id="customer_email" name="customer_email" class="field-input" placeholder="jane@email.com" x-model="customerEmail" required>
+                        </div>
+                        <div class="field">
+                            <label for="customer_phone">Phone Number *</label>
+                            <input type="tel" id="customer_phone" name="customer_phone" class="field-input" placeholder="04xx xxx xxx" x-model="customerPhone" required>
+                        </div>
+                        <div class="field full">
+                            <label for="special_instructions">Notes <span style="font-weight:400; text-transform:none; letter-spacing:0;">(Optional)</span></label>
+                            <textarea id="special_instructions" name="special_instructions" class="field-input" rows="3" placeholder="Access code, pets, parking info..."></textarea>
+                        </div>
+                        <div class="field full">
+                            <label class="terms-agreement-wrap" for="terms_agree">
+                                <input type="checkbox" id="terms_agree" name="terms_agree" class="terms-checkbox" x-model="termsAccepted" required>
+                                <span>I have read and agree to the <a href="{% url 'public:terms' %}" target="_blank" class="terms-link">Terms &amp; Conditions</a> and 72-Hour Bond Back Guarantee Policy *</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- ===== RIGHT: SUMMARY CARD ===== -->
+        <div class="summary-card" :class="{ 'is-collapsed': isMobile && stickyCollapsed }">
+            <div class="summary-head" @click="if(isMobile) stickyCollapsed = !stickyCollapsed">
+                <div class="summary-head-title">
+                    <i class="fa-solid fa-receipt"></i> Your Price Estimate
+                </div>
+                <div class="mobile-total" x-text="`$${totalPrice.toFixed(2)}`"></div>
+                <i class="fa-solid fa-chevron-up summary-head-chevron" style="color:rgba(255,255,255,0.7);"></i>
+            </div>
+
+            <div class="summary-body">
+                <span class="s-label-tag">Standard Cleaning</span>
+
+                <template x-if="baseFee > 0">
+                    <div class="s-row">
+                        <div class="s-row-label"><i class="fa-solid fa-house"></i> Base Fee</div>
+                        <div class="s-row-val" x-text="`$${baseFee.toFixed(2)}`"></div>
+                    </div>
+                </template>
+                <div class="s-row">
+                    <div class="s-row-label"><i class="fa-solid fa-bed"></i><span x-text="`${bedrooms} Bedroom(s)`"></span></div>
+                    <div class="s-row-val" x-text="`$${(bedrooms * bedPrice).toFixed(2)}`"></div>
+                </div>
+                <div class="s-row">
+                    <div class="s-row-label"><i class="fa-solid fa-bath"></i><span x-text="`${bathrooms} Bathroom(s)`"></span></div>
+                    <div class="s-row-val" x-text="`$${(bathrooms * bathPrice).toFixed(2)}`"></div>
+                </div>
+                <div class="s-row" x-show="livingAreas > 0">
+                    <div class="s-row-label"><i class="fa-solid fa-couch"></i><span x-text="`${livingAreas} Living Area(s)`"></span></div>
+                    <div class="s-row-val" x-text="`$${(livingAreas * livingPrice).toFixed(2)}`"></div>
+                </div>
+                <div class="s-row" x-show="balconies > 0">
+                    <div class="s-row-label"><i class="fa-solid fa-leaf"></i><span x-text="`${balconies} Balcony(s)`"></span></div>
+                    <div class="s-row-val" x-text="`$${(balconies * balconyPrice).toFixed(2)}`"></div>
+                </div>
+
+                <template x-if="selectedAddons.length > 0">
+                    <div>
+                        <div class="s-divider"></div>
+                        <span class="s-label-tag">Add-ons</span>
+                        {% for addon in addons %}
+                        <div class="s-row" x-show="isAddonSelected('{{ addon.id }}')">
+                            <div class="s-row-label"><i class="fa-solid fa-plus"></i> {{ addon.name }}</div>
+                            <div class="s-row-val">+${{ addon.price }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </template>
+
+                <template x-if="discountPercent > 0">
+                    <div class="s-row" style="color: var(--color-success); background: rgba(5,150,105,0.06); padding: 8px 10px; border-radius: var(--radius-sm); margin: 6px 0;">
+                        <div class="s-row-label" style="color: var(--color-success); font-weight: 700;">
+                            <i class="fa-solid fa-tag" style="color: var(--color-success);"></i> 10% Discount (CLEAN10)
+                        </div>
+                        <div class="s-row-val" style="color: var(--color-success);" x-text="`- $${discountAmount.toFixed(2)}`"></div>
+                    </div>
+                </template>
+
+                <div class="s-divider"></div>
+
+                <div class="s-total">
+                    <div class="s-total-label">Total (incl. GST)</div>
+                    <div class="s-total-price" x-text="`$${totalPrice.toFixed(2)}`"></div>
+                </div>
+
+                <div class="deposit-box">
+                    <div class="dep-main">
+                        <span>Deposit Now (10%)</span>
+                        <span x-text="`$${depositAmount.toFixed(2)}`"></span>
+                    </div>
+                    <div class="dep-sub">
+                        <span>Balance on Day</span>
+                        <span x-text="`$${balanceAmount.toFixed(2)}`"></span>
+                    </div>
+                </div>
+
+                <div class="terms-agreement-wrap">
+                    <input type="checkbox" id="terms_agree_summary" class="terms-checkbox" x-model="termsAccepted" required>
+                    <label for="terms_agree_summary">
+                        I agree to the <a href="{% url 'public:terms' %}" target="_blank" class="terms-link">Terms &amp; Conditions</a> *
+                    </label>
+                </div>
+
+                <button type="submit" form="book-form" class="btn-book">
+                    Book &amp; Pay Deposit →
+                </button>
+                <div class="secure-note">
+                    <i class="fa-solid fa-lock"></i> Secure checkout via Stripe
+                </div>
+            </div>
+        </div>
+
+    </div><!-- end .book-layout -->
+</div><!-- end .book-page -->
+{% endblock %}
+

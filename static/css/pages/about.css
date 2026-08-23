@@ -6,6 +6,7 @@
 .about-page-main {
     background: var(--color-white);
     overflow: hidden;
+    margin-top: -80px;
 }
 
 /* ════════════════════════════════════════
@@ -14,7 +15,7 @@
 .about-eyebrow {
     font-size: 13px;
     font-weight: 800;
-    color: #49B0E4; /* Light blue accent from design */
+    color: var(--color-primary-light);
     text-transform: uppercase;
     letter-spacing: 1.5px;
     margin-bottom: 20px;
@@ -45,7 +46,7 @@
 ════════════════════════════════════════ */
 .about-hero {
     position: relative;
-    padding: 60px 0 100px;
+    padding: 120px 0 80px;
     min-height: 650px;
     display: flex;
     align-items: center;
@@ -57,7 +58,7 @@
     left: 0;
     width: 65%;
     height: 100%;
-    background: #E8F3FA; /* Very light blue */
+    background: var(--color-primary-alpha-10);
     border-radius: 0 0 50% 0;
     z-index: 0;
 }

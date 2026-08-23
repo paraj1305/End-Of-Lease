@@ -10,6 +10,7 @@
     background: var(--color-primary-alpha-10);
     min-height: 100vh;
     padding-bottom: 80px;
+    margin-top: -80px;
 }
 
 /* ════════════════════════════════════════
@@ -17,7 +18,8 @@
 ════════════════════════════════════════ */
 .packages-hero {
     height: 60vh;
-    min-height: 420px;
+    min-height: 480px;
+    padding-top: 80px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -544,7 +546,7 @@
 @media (max-width: 900px) {
     .packages-hero {
         height: auto;
-        padding: 80px 0 40px;
+        padding: 110px 0 40px;
     }
     .packages-hero-inner {
         flex-direction: column;

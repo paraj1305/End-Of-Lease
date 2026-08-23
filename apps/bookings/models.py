@@ -24,6 +24,27 @@ class CleaningPackage(models.Model):
         return f"{self.name} (${self.base_price})"
 
 
+class PricingConfig(models.Model):
+    """Singleton model to store base pricing for properties."""
+    base_fee = models.DecimalField(max_digits=8, decimal_places=2, default=0.00, help_text="Fixed base fee for all bookings.")
+    bedroom_price = models.DecimalField(max_digits=8, decimal_places=2, default=49.00)
+    bathroom_price = models.DecimalField(max_digits=8, decimal_places=2, default=30.00)
+    living_area_price = models.DecimalField(max_digits=8, decimal_places=2, default=15.00)
+    balcony_price = models.DecimalField(max_digits=8, decimal_places=2, default=10.00)
+    
+    class Meta:
+        verbose_name = "Pricing Configuration"
+        verbose_name_plural = "Pricing Configuration"
+
+    def __str__(self):
+        return "Current Pricing Configuration"
+
+    @classmethod
+    def get_solo(cls):
+        obj, created = cls.objects.get_or_create(id=1)
+        return obj
+
+
 class AddOnService(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
@@ -86,9 +107,18 @@ class Booking(models.Model):
     )
 
     reference = models.CharField(max_length=20, unique=True, blank=True)
-    package = models.ForeignKey(CleaningPackage, on_delete=models.PROTECT)
-    package_name_at_booking = models.CharField(max_length=100)
-    package_price_at_booking = models.DecimalField(max_digits=8, decimal_places=2)
+    package = models.ForeignKey(CleaningPackage, on_delete=models.SET_NULL, null=True, blank=True)
+    
+    # Property Details (New Architecture)
+    bedrooms = models.IntegerField(default=1)
+    bathrooms = models.IntegerField(default=1)
+    living_areas = models.IntegerField(default=1)
+    balconies = models.IntegerField(default=0)
+    base_clean_price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+
+    # Legacy fields
+    package_name_at_booking = models.CharField(max_length=100, blank=True)
+    package_price_at_booking = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     addons_total_at_booking = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     subtotal = models.DecimalField(max_digits=8, decimal_places=2)
     deposit_percentage = models.DecimalField(max_digits=5, decimal_places=2, default=10)

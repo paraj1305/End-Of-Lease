@@ -28,3 +28,6 @@ def faq_view(request):
 
 def our_work_view(request):
     return render(request, 'public/our_work.html')
+
+def terms_view(request):
+    return render(request, 'public/terms.html')

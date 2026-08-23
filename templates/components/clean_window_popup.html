@@ -1,0 +1,412 @@
+{% load static %}
+<!-- ══════════════════════════════════════════════════ -->
+<!-- Clean This Window — Interactive 10% OFF Game Modal -->
+<!-- ══════════════════════════════════════════════════ -->
+<div id="clean-window-modal" class="window-popup-backdrop" aria-hidden="true">
+    <div class="window-popup-modal" role="dialog" aria-modal="true" aria-labelledby="popup-window-title">
+        
+        <!-- Close Button -->
+        <button type="button" class="window-popup-close" id="popup-close-btn" aria-label="Close modal">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+
+        <!-- Top Blue Section -->
+        <div class="window-popup-top">
+            <!-- Sparkles -->
+            <div class="window-popup-sparkle sparkle-1">✦</div>
+            <div class="window-popup-sparkle sparkle-2">✨</div>
+            <div class="window-popup-sparkle sparkle-3">✦</div>
+
+            <div class="window-popup-content">
+                <div class="window-popup-badge-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                        <line x1="12" y1="3" x2="12" y2="21"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <path d="M7 7l2 2"></path>
+                    </svg>
+                </div>
+                <h3 class="window-popup-title" id="popup-window-title">Clean This Window</h3>
+                <div class="window-popup-offer">
+                    Get <span class="offer-yellow">10% OFF!</span>
+                </div>
+                <p class="window-popup-desc">
+                    Help us make things sparkle! Wipe the dirty window on the right to unlock 10% discount on your booking.
+                </p>
+            </div>
+
+            <!-- Interactive Window Clean Box -->
+            <div class="window-clean-box" id="window-clean-box">
+                <!-- Clean Sunny City Scene Underneath -->
+                <div class="window-clean-scene">
+                    <svg class="window-skyline-svg" viewBox="0 0 240 75" preserveAspectRatio="none" fill="currentColor" style="color: rgba(30, 58, 138, 0.45);">
+                        <rect x="10" y="25" width="22" height="50" rx="1"/>
+                        <rect x="36" y="15" width="28" height="60" rx="1"/>
+                        <rect x="68" y="32" width="18" height="43" rx="1"/>
+                        <rect x="90" y="8" width="34" height="67" rx="1"/>
+                        <polygon points="107,0 105,8 109,8"/>
+                        <rect x="128" y="22" width="24" height="53" rx="1"/>
+                        <rect x="156" y="18" width="30" height="57" rx="1"/>
+                        <rect x="190" y="30" width="22" height="45" rx="1"/>
+                        <rect x="216" y="12" width="20" height="63" rx="1"/>
+                    </svg>
+                </div>
+
+                <!-- Window Panes Cross Frame -->
+                <div class="window-panes-frame"></div>
+
+                <!-- Dirty Overlay Canvas for Scratching/Wiping -->
+                <canvas class="window-dirt-canvas" id="window-dirt-canvas" width="240" height="190"></canvas>
+
+                <!-- Animated Squeegee Wiper Guide -->
+                <div class="window-squeegee-guide" id="squeegee-guide">
+                    <div class="squeegee-icon-wrap">
+                        <svg viewBox="0 0 70 60" fill="none">
+                            <rect x="6" y="14" width="58" height="8" rx="2" fill="#1E293B"/>
+                            <rect x="10" y="10" width="50" height="4" rx="1" fill="#38BDF8"/>
+                            <path d="M35 22 L35 48" stroke="#EAB308" stroke-width="6" stroke-linecap="round"/>
+                            <path d="M28 22 L42 22 L35 30 Z" fill="#94A3B8"/>
+                        </svg>
+                    </div>
+                    <div class="squeegee-arrow-hint">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 9l-6 6 6 6"/></svg>
+                        Wipe to clean!
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Progress Bar Strip -->
+        <div class="window-popup-progress-wrap">
+            <span class="progress-label" id="progress-percent-text">0% Cleaned</span>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-bar-fill"></div>
+            </div>
+            <span class="progress-label-end">100%</span>
+        </div>
+
+        <!-- Bottom Reward & Action Box -->
+        <div class="window-popup-bottom">
+            <div class="window-reward-card" id="window-reward-card">
+                <div class="reward-left">
+                    <div class="reward-percent-circle" id="reward-circle-icon">%</div>
+                    <div>
+                        <div class="reward-text-tag" id="reward-status-tag">Wipe window to unlock</div>
+                        <h4 class="reward-text-title" id="reward-main-title">
+                            Earn <span class="color-blue">10% OFF</span> on your clean
+                        </h4>
+                    </div>
+                </div>
+                <div class="reward-coupon-box">
+                    <div class="coupon-box-label">Use code:</div>
+                    <div class="coupon-code-pill" id="coupon-code-pill" title="Click to copy">
+                        CLEAN10
+                    </div>
+                </div>
+            </div>
+
+            <a href="{% url 'bookings:multi_step_booking' %}?coupon=CLEAN10" class="window-claim-btn" id="claim-discount-btn">
+                <span>Claim My 10% Discount &rarr;</span>
+            </a>
+
+            <p class="window-popup-urgency">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Hurry! Offer valid for today only.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Reopen Trigger Floating Badge -->
+<button type="button" class="window-popup-trigger-pill" id="reopen-window-modal-btn" aria-label="Open 10% discount game">
+    <span>🎁</span>
+    <span>Get 10% OFF Clean</span>
+</button>
+
+<!-- Squeegee Cleaning Logic & Celebration Script -->
+<script>
+(function() {
+    const modal      = document.getElementById('clean-window-modal');
+    const closeBtn   = document.getElementById('popup-close-btn');
+    const reopenBtn  = document.getElementById('reopen-window-modal-btn');
+    const canvas     = document.getElementById('window-dirt-canvas');
+    const box        = document.getElementById('window-clean-box');
+    const guide      = document.getElementById('squeegee-guide');
+    const progressTxt= document.getElementById('progress-percent-text');
+    const progressFill= document.getElementById('progress-bar-fill');
+    const rewardCard = document.getElementById('window-reward-card');
+    const rewardTag  = document.getElementById('reward-status-tag');
+    const rewardTitle= document.getElementById('reward-main-title');
+    const couponPill = document.getElementById('coupon-code-pill');
+
+    if (!canvas || !modal) return;
+
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let isCleaned = false;
+    let totalPixels = 0;
+    let cleanedPercentage = 0;
+
+    // Initialize dirt canvas texture
+    function initDirtCanvas() {
+        const w = canvas.width;
+        const h = canvas.height;
+        totalPixels = (w * h) / 16; // 4x4 grid sampling
+        
+        ctx.globalCompositeOperation = 'source-over';
+        
+        // Steam / Frosted Grey-Blue Grime Base
+        const grad = ctx.createLinearGradient(0, 0, w, h);
+        grad.addColorStop(0, '#5C6B7E');
+        grad.addColorStop(0.5, '#475569');
+        grad.addColorStop(1, '#334155');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        // Add dirt specks / smudge particles
+        ctx.fillStyle = 'rgba(30, 41, 59, 0.45)';
+        for (let i = 0; i < 300; i++) {
+            const x = Math.random() * w;
+            const y = Math.random() * h;
+            const r = Math.random() * 3 + 1;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Add subtle water droplet streaks
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+        for (let i = 0; i < 15; i++) {
+            const x = Math.random() * w;
+            const y = Math.random() * (h - 30);
+            const lh = Math.random() * 25 + 10;
+            ctx.fillRect(x, y, 1.5, lh);
+        }
+    }
+
+    initDirtCanvas();
+
+    // Scratch / Wipe Squeegee Brush
+    let lastPoint = null;
+
+    function wipeAt(clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const currentX = (clientX - rect.left) * scaleX;
+        const currentY = (clientY - rect.top) * scaleY;
+
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.lineWidth = 60;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        if (lastPoint) {
+            ctx.beginPath();
+            ctx.moveTo(lastPoint.x, lastPoint.y);
+            ctx.lineTo(currentX, currentY);
+            ctx.stroke();
+        } else {
+            ctx.beginPath();
+            ctx.arc(currentX, currentY, 32, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        lastPoint = { x: currentX, y: currentY };
+
+        // Fade out squeegee guide after first touch
+        if (guide) {
+            guide.style.opacity = '0';
+            guide.style.pointerEvents = 'none';
+        }
+
+        calculateCleanPercentage();
+    }
+
+    // Calculate Cleanliness Percentage
+    let checkTimeout = null;
+    function calculateCleanPercentage() {
+        if (isCleaned) return;
+
+        if (checkTimeout) return;
+        checkTimeout = setTimeout(() => {
+            checkTimeout = null;
+            try {
+                const w = canvas.width;
+                const h = canvas.height;
+                const imgData = ctx.getImageData(0, 0, w, h);
+                const data = imgData.data;
+                let transparentPixels = 0;
+                let totalSampled = 0;
+
+                // Sample every 4th pixel for high responsiveness
+                for (let i = 3; i < data.length; i += 16) {
+                    totalSampled++;
+                    // If pixel alpha is erased or transparent (< 180 out of 255)
+                    if (data[i] < 180) {
+                        transparentPixels++;
+                    }
+                }
+
+                if (totalSampled > 0) {
+                    const rawPct = (transparentPixels / totalSampled) * 100;
+                    // Scale progress smoothly so wiping feels rewarding
+                    const pct = Math.min(100, Math.round(rawPct * 1.5));
+                    cleanedPercentage = pct;
+
+                    progressTxt.innerText = `${pct}% Cleaned`;
+                    progressFill.style.width = `${pct}%`;
+
+                    if (pct >= 50 && !isCleaned) {
+                        completeCleaning();
+                    }
+                }
+            } catch (err) {
+                console.error('Error calculating clean percentage:', err);
+            }
+        }, 50);
+    }
+
+    // Reward Unlock & Confetti Celebration
+    function completeCleaning() {
+        isCleaned = true;
+        
+        // Clear all remaining grime smoothly
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        progressTxt.innerText = '100% Cleaned!';
+        progressFill.style.width = '100%';
+        progressFill.style.background = 'linear-gradient(90deg, #10B981, #059669)';
+
+        // Update Reward Card
+        if (rewardCard) rewardCard.classList.add('is-unlocked');
+        if (rewardTag) rewardTag.innerText = 'Nice! You earned';
+        if (rewardTitle) rewardTitle.innerHTML = '<span class="color-blue">10% OFF</span> on your booking';
+
+        triggerConfettiBurst();
+    }
+
+    // Confetti Animation
+    function triggerConfettiBurst() {
+        const colors = ['#FFC349', '#525EA7', '#5FADD3', '#10B981', '#F43F5E', '#A855F7'];
+        const modalEl = modal.querySelector('.window-popup-modal');
+        if (!modalEl) return;
+        const modalRect = modalEl.getBoundingClientRect();
+        const centerX = modalRect.left + modalRect.width / 2;
+        const centerY = modalRect.top + modalRect.height * 0.4;
+
+        for (let i = 0; i < 45; i++) {
+            const el = document.createElement('div');
+            el.className = 'window-confetti-particle';
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            el.style.backgroundColor = color;
+            el.style.left = `${centerX}px`;
+            el.style.top = `${centerY}px`;
+
+            const angle = Math.random() * Math.PI * 2;
+            const distance = Math.random() * 220 + 60;
+            const dx = Math.cos(angle) * distance;
+            const dy = Math.sin(angle) * distance - 40;
+            const rot = (Math.random() - 0.5) * 720;
+
+            el.style.setProperty('--dx', `${dx}px`);
+            el.style.setProperty('--dy', `${dy}px`);
+            el.style.setProperty('--rot', `${rot}deg`);
+
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 2500);
+        }
+    }
+
+    // Mouse & Touch Interaction Listeners (Drag + Hover friendly)
+    box.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        lastPoint = null;
+        wipeAt(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDrawing) return;
+        wipeAt(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mouseup', () => { 
+        isDrawing = false; 
+        lastPoint = null; 
+    });
+
+    // Also allow wiping when moving across the box
+    box.addEventListener('mousemove', (e) => {
+        wipeAt(e.clientX, e.clientY);
+    });
+
+    box.addEventListener('touchstart', (e) => {
+        isDrawing = true;
+        lastPoint = null;
+        const touch = e.touches[0];
+        wipeAt(touch.clientX, touch.clientY);
+    }, { passive: true });
+
+    box.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        wipeAt(touch.clientX, touch.clientY);
+    }, { passive: true });
+
+    box.addEventListener('touchend', () => { 
+        isDrawing = false; 
+        lastPoint = null; 
+    });
+
+
+    // Open / Close Modal Logic
+    function openModal() {
+        modal.classList.add('is-active');
+        modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+        modal.classList.remove('is-active');
+        modal.setAttribute('aria-hidden', 'true');
+        sessionStorage.setItem('eol_window_popup_dismissed', 'true');
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    if (reopenBtn) {
+        reopenBtn.addEventListener('click', openModal);
+    }
+
+    // 1-Click Copy Coupon
+    if (couponPill) {
+        couponPill.addEventListener('click', () => {
+            navigator.clipboard.writeText('CLEAN10').then(() => {
+                const orig = couponPill.innerText;
+                couponPill.innerText = 'COPIED!';
+                couponPill.style.background = '#D1FAE5';
+                couponPill.style.color = '#059669';
+                couponPill.style.borderColor = '#059669';
+                setTimeout(() => {
+                    couponPill.innerText = orig;
+                    couponPill.style.background = '';
+                    couponPill.style.color = '';
+                    couponPill.style.borderColor = '';
+                }, 1800);
+            }).catch(() => {});
+        });
+    }
+
+    // Auto-open on initial visit after 1.4s
+    window.addEventListener('load', () => {
+        const dismissed = sessionStorage.getItem('eol_window_popup_dismissed');
+        if (!dismissed) {
+            setTimeout(openModal, 1400);
+        }
+    });
+})();
+</script>

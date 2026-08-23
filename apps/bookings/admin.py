@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CleaningPackage, AddOnService, TimeSlot, BlockedDate, Booking, BookingAddOn
+from .models import CleaningPackage, AddOnService, TimeSlot, BlockedDate, Booking, BookingAddOn, PricingConfig
 
 @admin.register(CleaningPackage)
 class CleaningPackageAdmin(admin.ModelAdmin):
@@ -27,6 +27,15 @@ class BlockedDateAdmin(admin.ModelAdmin):
     list_filter = ('date',)
     search_fields = ('reason',)
 
+@admin.register(PricingConfig)
+class PricingConfigAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'base_fee', 'bedroom_price', 'bathroom_price', 'living_area_price', 'balcony_price')
+
+    def has_add_permission(self, request):
+        if self.model.objects.count() >= 1:
+            return False
+        return super().has_add_permission(request)
+
 class BookingAddOnInline(admin.TabularInline):
     model = BookingAddOn
     extra = 0
@@ -50,8 +59,11 @@ class BookingAdmin(admin.ModelAdmin):
         ('Service Address', {
             'fields': ('service_address_street', 'service_address_suburb', 'service_address_state', 'service_address_postcode')
         }),
+        ('Property Details', {
+            'fields': ('bedrooms', 'bathrooms', 'living_areas', 'balconies')
+        }),
         ('Pricing', {
-            'fields': ('package', 'package_name_at_booking', 'package_price_at_booking', 'addons_total_at_booking', 'subtotal', 'deposit_percentage', 'deposit_amount', 'remaining_amount')
+            'fields': ('base_clean_price', 'addons_total_at_booking', 'subtotal', 'deposit_percentage', 'deposit_amount', 'remaining_amount', 'package', 'package_name_at_booking', 'package_price_at_booking')
         }),
         ('Additional Info', {
             'fields': ('special_instructions', 'admin_notes', 'stripe_payment_intent_id', 'google_calendar_event_id')

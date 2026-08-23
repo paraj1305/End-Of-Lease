@@ -1,20 +1,61 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
-from .models import CleaningPackage, AddOnService, TimeSlot, Booking, BookingAddOn
+from .models import CleaningPackage, AddOnService, TimeSlot, Booking, BookingAddOn, PricingConfig
 from .forms import CustomerDetailsForm
 from .services.pricing import calculate_booking_price
 import datetime
 
 
 def quick_book(request, package_slug):
-    """Single-page booking form: info + add-ons + 10% Stripe deposit."""
-    package = get_object_or_404(CleaningPackage, slug=package_slug, is_active=True)
+    """Redirects to main booking page (/book/) with pre-filled property counters from selected package."""
+    import re
+    package_map = {
+        'studio-cleaning': {'bedrooms': 1, 'bathrooms': 1, 'living': 1, 'balconies': 0},
+        '1-bhk-cleaning': {'bedrooms': 1, 'bathrooms': 1, 'living': 1, 'balconies': 0},
+        '2-bhk-cleaning': {'bedrooms': 2, 'bathrooms': 1, 'living': 1, 'balconies': 0},
+        '3-bhk-cleaning': {'bedrooms': 3, 'bathrooms': 2, 'living': 1, 'balconies': 1},
+        '4-bhk-cleaning': {'bedrooms': 4, 'bathrooms': 2, 'living': 2, 'balconies': 1},
+        'villa': {'bedrooms': 4, 'bathrooms': 3, 'living': 2, 'balconies': 1},
+        '10-bhk-villa': {'bedrooms': 10, 'bathrooms': 5, 'living': 3, 'balconies': 2},
+        'beach-villa': {'bedrooms': 4, 'bathrooms': 3, 'living': 2, 'balconies': 1},
+        'hill-villa': {'bedrooms': 3, 'bathrooms': 2, 'living': 1, 'balconies': 1},
+        'garder-villa': {'bedrooms': 4, 'bathrooms': 2, 'living': 2, 'balconies': 1},
+    }
+
+    params = package_map.get(package_slug.lower(), None)
+    if not params:
+        bhk_match = re.search(r'(\d+)[-_]?(?:bhk|bed)', package_slug.lower())
+        if bhk_match:
+            beds = int(bhk_match.group(1))
+            params = {
+                'bedrooms': beds,
+                'bathrooms': max(1, beds // 2 + (1 if beds > 1 else 0)),
+                'living': 1 if beds <= 3 else 2,
+                'balconies': 1 if beds >= 2 else 0,
+            }
+        else:
+            params = {'bedrooms': 2, 'bathrooms': 1, 'living': 1, 'balconies': 0}
+
+    query_str = f"?bedrooms={params.get('bedrooms', 1)}&bathrooms={params.get('bathrooms', 1)}&living={params.get('living', 1)}&balconies={params.get('balconies', 0)}&package={package_slug}"
+    return redirect(reverse('bookings:multi_step_booking') + query_str)
+
+
+def multi_step_booking(request):
+    """Single-page Alpine.js booking form with dynamic property pricing."""
+    pricing_config = PricingConfig.get_solo()
     addons = AddOnService.objects.filter(is_active=True)
     time_slots = TimeSlot.objects.filter(is_active=True)
 
     if request.method == 'POST':
-        # --- collect form data ---
+        try:
+            bedrooms = int(request.POST.get('bedrooms', 1))
+            bathrooms = int(request.POST.get('bathrooms', 1))
+            living_areas = int(request.POST.get('living_areas', 1))
+            balconies = int(request.POST.get('balconies', 0))
+        except ValueError:
+            bedrooms, bathrooms, living_areas, balconies = 1, 1, 1, 0
+
         name = request.POST.get('customer_name', '').strip()
         email = request.POST.get('customer_email', '').strip()
         phone = request.POST.get('customer_phone', '').strip()
@@ -28,6 +69,7 @@ def quick_book(request, package_slug):
         special_instructions = request.POST.get('special_instructions', '').strip()
 
         errors = []
+
         if not all([name, email, phone, street, suburb, postcode, date_str, time_slot_id]):
             errors.append('Please fill in all required fields.')
 
@@ -51,12 +93,24 @@ def quick_book(request, package_slug):
             for e in errors:
                 messages.error(request, e)
         else:
-            pricing = calculate_booking_price(package.base_price, [a.price for a in selected_addons])
+            from decimal import Decimal
+            base_clean_price = (
+                pricing_config.base_fee +
+                (Decimal(bedrooms) * pricing_config.bedroom_price) +
+                (Decimal(bathrooms) * pricing_config.bathroom_price) +
+                (Decimal(living_areas) * pricing_config.living_area_price) +
+                (Decimal(balconies) * pricing_config.balcony_price)
+            )
+
+            pricing = calculate_booking_price(base_clean_price, [a.price for a in selected_addons])
 
             booking = Booking.objects.create(
-                package=package,
-                package_name_at_booking=package.name,
-                package_price_at_booking=package.base_price,
+                package=None, # No package
+                bedrooms=bedrooms,
+                bathrooms=bathrooms,
+                living_areas=living_areas,
+                balconies=balconies,
+                base_clean_price=base_clean_price,
                 addons_total_at_booking=pricing['addons_total'],
                 subtotal=pricing['subtotal'],
                 deposit_amount=pricing['deposit_amount'],
@@ -83,12 +137,12 @@ def quick_book(request, package_slug):
             return redirect('payments:checkout', reference=booking.reference)
 
     context = {
-        'package': package,
+        'pricing_config': pricing_config,
         'addons': addons,
         'time_slots': time_slots,
         'min_date': datetime.date.today().strftime('%Y-%m-%d'),
     }
-    return render(request, 'bookings/quick_book.html', context)
+    return render(request, 'bookings/book.html', context)
 
 def get_booking_session(request):
     if 'booking_data' not in request.session:
