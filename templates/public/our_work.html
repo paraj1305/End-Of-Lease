@@ -17,7 +17,7 @@
             <div class="work-pill">Proven Results</div>
             <h1 class="work-hero-title">Real Cleans. <span class="accent">100% Bond Back.</span></h1>
             <p class="work-hero-sub">
-                Slide through 10 real property transformations completed by our Sydney team. Every clean strictly adheres to the official real estate agent handover checklist.
+                Hover over any card below to compare before &amp; after results from our Sydney cleans. Every clean strictly adheres to the official real estate agent handover checklist.
             </p>
         </div>
     </section>
@@ -74,36 +74,24 @@
         </button>
     </div>
 
-    <!-- ─── 10 Interactive Before / After Comparison Cards ─── -->
+    <!-- ─── 10 Interactive Before / After Comparison Cards (3 per row) ─── -->
     <div class="work-grid-wrap">
         <div class="work-grid">
 
             <!-- 1. OVEN & STOVETOP -->
-            <div class="work-card" x-show="matchesFilter('kitchen')" x-data="baSlider(50)">
-                <div class="ba-container"
-                     @mousedown="startDrag($event)"
-                     @touchstart.passive="startDrag($event)"
-                     @mousemove="onDrag($event)"
-                     @touchmove.passive="onDrag($event)"
-                     @mouseup="endDrag()"
-                     @touchend="endDrag()"
-                     @mouseleave="endDrag()">
-                    
+            <div class="work-card" x-show="matchesFilter('kitchen')">
+                <div class="ba-container">
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <!-- Dirty Background -->
                     <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/before_clean.png' %}');"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <!-- Clean Foreground Clip -->
-                    <div class="ba-clean-wrapper" :style="`width: ${pos}%;`">
-                        <div class="ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}'); width: 100vw; max-width: 800px;"></div>
+                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}');">
                         <div class="ba-clean-shine"></div>
                     </div>
 
-                    <!-- Draggable Slider Handle -->
-                    <div class="ba-slider-line" :style="`left: ${pos}%;`">
+                    <div class="ba-slider-line">
                         <div class="ba-slider-handle">
                             <i class="fa-solid fa-chevron-left"></i>
                             <i class="fa-solid fa-chevron-right"></i>
@@ -111,49 +99,40 @@
                     </div>
 
                     <div class="ba-hint">
-                        <i class="fa-solid fa-arrows-left-right"></i> Drag slider to compare
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Hover to compare
                     </div>
                 </div>
 
                 <div class="work-card-body">
                     <div class="work-card-meta">
                         <span class="work-room-pill"><i class="fa-solid fa-utensils"></i> Kitchen</span>
-                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Inspection Passed</span>
+                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Passed</span>
                     </div>
                     <h3 class="work-card-title">1. Heavy Oven &amp; Cooktop De-carbonising</h3>
                     <p class="work-card-desc">
-                        Baked-on carbon residue, oil drippings, and burnt grease on glass door and wire racks completely stripped down to bare, sparkling chrome enamel.
+                        Baked-on carbon residue, oil drippings, and burnt grease on glass door stripped down to bare chrome enamel.
                     </p>
                     <div class="work-card-footer">
-                        <span class="work-detail-item"><i class="fa-regular fa-clock"></i> 2.5 Hours Deep Dip</span>
-                        <span class="work-detail-item"><i class="fa-solid fa-shield-halved"></i> 100% Non-Caustic</span>
+                        <span class="work-detail-item"><i class="fa-regular fa-clock"></i> 2.5h Deep Dip</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-shield-halved"></i> Non-Caustic</span>
                     </div>
                 </div>
             </div>
 
             <!-- 2. SHOWER SCREEN & GROUT -->
-            <div class="work-card" x-show="matchesFilter('bathroom')" x-data="baSlider(50)">
-                <div class="ba-container"
-                     @mousedown="startDrag($event)"
-                     @touchstart.passive="startDrag($event)"
-                     @mousemove="onDrag($event)"
-                     @touchmove.passive="onDrag($event)"
-                     @mouseup="endDrag()"
-                     @touchend="endDrag()"
-                     @mouseleave="endDrag()">
-                    
+            <div class="work-card" x-show="matchesFilter('bathroom')">
+                <div class="ba-container">
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
                     <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/before_clean.png' %}'); filter: sepia(0.3) contrast(1.3) brightness(0.8);"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-clean-wrapper" :style="`width: ${pos}%;`">
-                        <div class="ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}'); width: 100vw; max-width: 800px; filter: brightness(1.08) contrast(1.05);"></div>
+                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}'); filter: brightness(1.08) contrast(1.05);">
                         <div class="ba-clean-shine"></div>
                     </div>
 
-                    <div class="ba-slider-line" :style="`left: ${pos}%;`">
+                    <div class="ba-slider-line">
                         <div class="ba-slider-handle">
                             <i class="fa-solid fa-chevron-left"></i>
                             <i class="fa-solid fa-chevron-right"></i>
@@ -161,18 +140,18 @@
                     </div>
 
                     <div class="ba-hint">
-                        <i class="fa-solid fa-arrows-left-right"></i> Drag slider to compare
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Hover to compare
                     </div>
                 </div>
 
                 <div class="work-card-body">
                     <div class="work-card-meta">
                         <span class="work-room-pill"><i class="fa-solid fa-bath"></i> Bathroom</span>
-                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Inspection Passed</span>
+                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Passed</span>
                     </div>
                     <h3 class="work-card-title">2. Shower Screen Limescale &amp; Tile Grout</h3>
                     <p class="work-card-desc">
-                        Cloudy etched soap scum and yellow hard-water calcium deposits eliminated. Grout lines treated with anti-fungal solution to restore original bright finish.
+                        Cloudy etched soap scum and yellow calcium deposits eliminated. Anti-fungal grout seal applied.
                     </p>
                     <div class="work-card-footer">
                         <span class="work-detail-item"><i class="fa-regular fa-clock"></i> Anti-Mildew Seal</span>
@@ -182,28 +161,19 @@
             </div>
 
             <!-- 3. CARPET STEAM EXTRACTION -->
-            <div class="work-card" x-show="matchesFilter('carpet')" x-data="baSlider(50)">
-                <div class="ba-container"
-                     @mousedown="startDrag($event)"
-                     @touchstart.passive="startDrag($event)"
-                     @mousemove="onDrag($event)"
-                     @touchmove.passive="onDrag($event)"
-                     @mouseup="endDrag()"
-                     @touchend="endDrag()"
-                     @mouseleave="endDrag()">
-                    
+            <div class="work-card" x-show="matchesFilter('carpet')">
+                <div class="ba-container">
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
                     <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); filter: saturate(0.5) contrast(1.4) brightness(0.75);"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-clean-wrapper" :style="`width: ${pos}%;`">
-                        <div class="ba-clean-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); width: 100vw; max-width: 800px; filter: saturate(1.2) brightness(1.1);"></div>
+                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); filter: saturate(1.2) brightness(1.1);">
                         <div class="ba-clean-shine"></div>
                     </div>
 
-                    <div class="ba-slider-line" :style="`left: ${pos}%;`">
+                    <div class="ba-slider-line">
                         <div class="ba-slider-handle">
                             <i class="fa-solid fa-chevron-left"></i>
                             <i class="fa-solid fa-chevron-right"></i>
@@ -211,49 +181,40 @@
                     </div>
 
                     <div class="ba-hint">
-                        <i class="fa-solid fa-arrows-left-right"></i> Drag slider to compare
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Hover to compare
                     </div>
                 </div>
 
                 <div class="work-card-body">
                     <div class="work-card-meta">
                         <span class="work-room-pill"><i class="fa-solid fa-brush"></i> Carpet</span>
-                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Inspection Passed</span>
+                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Passed</span>
                     </div>
                     <h3 class="work-card-title">3. High-Traffic Hallway Carpet Steam Clean</h3>
                     <p class="work-card-desc">
-                        Deep embedded mud tracks, stubborn furniture indentations, and accidental drink spills hot-water extracted with hospital-grade sanitiser.
+                        Deep mud tracks, stubborn furniture indentations, and drink spills hot-water extracted with hospital-grade sanitiser.
                     </p>
                     <div class="work-card-footer">
-                        <span class="work-detail-item"><i class="fa-solid fa-certificate"></i> Carpet Receipt Provided</span>
-                        <span class="work-detail-item"><i class="fa-solid fa-wind"></i> Quick 2-Hr Drying</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-certificate"></i> Carpet Receipt</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-wind"></i> 2-Hr Drying</span>
                     </div>
                 </div>
             </div>
 
             <!-- 4. RANGEHOOD & FILTERS -->
-            <div class="work-card" x-show="matchesFilter('kitchen')" x-data="baSlider(50)">
-                <div class="ba-container"
-                     @mousedown="startDrag($event)"
-                     @touchstart.passive="startDrag($event)"
-                     @mousemove="onDrag($event)"
-                     @touchmove.passive="onDrag($event)"
-                     @mouseup="endDrag()"
-                     @touchend="endDrag()"
-                     @mouseleave="endDrag()">
-                    
+            <div class="work-card" x-show="matchesFilter('kitchen')">
+                <div class="ba-container">
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
                     <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/before_clean.png' %}'); filter: hue-rotate(15deg) contrast(1.3) brightness(0.8);"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-clean-wrapper" :style="`width: ${pos}%;`">
-                        <div class="ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}'); width: 100vw; max-width: 800px;"></div>
+                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}');">
                         <div class="ba-clean-shine"></div>
                     </div>
 
-                    <div class="ba-slider-line" :style="`left: ${pos}%;`">
+                    <div class="ba-slider-line">
                         <div class="ba-slider-handle">
                             <i class="fa-solid fa-chevron-left"></i>
                             <i class="fa-solid fa-chevron-right"></i>
@@ -261,49 +222,40 @@
                     </div>
 
                     <div class="ba-hint">
-                        <i class="fa-solid fa-arrows-left-right"></i> Drag slider to compare
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Hover to compare
                     </div>
                 </div>
 
                 <div class="work-card-body">
                     <div class="work-card-meta">
                         <span class="work-room-pill"><i class="fa-solid fa-utensils"></i> Kitchen</span>
-                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Inspection Passed</span>
+                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Passed</span>
                     </div>
                     <h3 class="work-card-title">4. Rangehood Mesh Degreasing &amp; Canopy</h3>
                     <p class="work-card-desc">
-                        Heavy yellow cooking oils and grease trapped inside the aluminum filtration mesh dissolved completely; stainless steel canopy micro-buffed.
+                        Heavy yellow cooking oils inside aluminum filtration mesh dissolved; stainless canopy micro-buffed streak-free.
                     </p>
                     <div class="work-card-footer">
                         <span class="work-detail-item"><i class="fa-solid fa-fire-burner"></i> Filters Degreased</span>
-                        <span class="work-detail-item"><i class="fa-solid fa-check"></i> Zero Fingerprint Residue</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-check"></i> Zero Fingerprints</span>
                     </div>
                 </div>
             </div>
 
             <!-- 5. WINDOW TRACKS & SLIDING GLASS -->
-            <div class="work-card" x-show="matchesFilter('windows')" x-data="baSlider(50)">
-                <div class="ba-container"
-                     @mousedown="startDrag($event)"
-                     @touchstart.passive="startDrag($event)"
-                     @mousemove="onDrag($event)"
-                     @touchmove.passive="onDrag($event)"
-                     @mouseup="endDrag()"
-                     @touchend="endDrag()"
-                     @mouseleave="endDrag()">
-                    
+            <div class="work-card" x-show="matchesFilter('windows')">
+                <div class="ba-container">
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
                     <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/about_interior.jpg' %}'); filter: saturate(0.4) contrast(1.5) brightness(0.7);"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-clean-wrapper" :style="`width: ${pos}%;`">
-                        <div class="ba-clean-layer" style="background-image: url('{% static 'images/about_interior.jpg' %}'); width: 100vw; max-width: 800px; filter: brightness(1.15) contrast(1.05);"></div>
+                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/about_interior.jpg' %}'); filter: brightness(1.15) contrast(1.05);">
                         <div class="ba-clean-shine"></div>
                     </div>
 
-                    <div class="ba-slider-line" :style="`left: ${pos}%;`">
+                    <div class="ba-slider-line">
                         <div class="ba-slider-handle">
                             <i class="fa-solid fa-chevron-left"></i>
                             <i class="fa-solid fa-chevron-right"></i>
@@ -311,49 +263,40 @@
                     </div>
 
                     <div class="ba-hint">
-                        <i class="fa-solid fa-arrows-left-right"></i> Drag slider to compare
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Hover to compare
                     </div>
                 </div>
 
                 <div class="work-card-body">
                     <div class="work-card-meta">
                         <span class="work-room-pill"><i class="fa-regular fa-window-maximize"></i> Windows</span>
-                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Inspection Passed</span>
+                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Passed</span>
                     </div>
                     <h3 class="work-card-title">5. Sliding Window Tracks &amp; Double Glazing</h3>
                     <p class="work-card-desc">
-                        Black mold gunk, accumulated bug debris, and grit deep in the track channels thoroughly vacuumed, steam-blasted, and wiped pristine.
+                        Black mold gunk, bug debris, and grit deep in track channels vacuumed, steam-blasted, and wiped pristine.
                     </p>
                     <div class="work-card-footer">
-                        <span class="work-detail-item"><i class="fa-solid fa-bars"></i> Full Track Extraction</span>
-                        <span class="work-detail-item"><i class="fa-solid fa-gem"></i> Streak-Free Squeegee</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-bars"></i> Track Extraction</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-gem"></i> Squeegee Clean</span>
                     </div>
                 </div>
             </div>
 
             <!-- 6. BALCONY PRESSURE WASH -->
-            <div class="work-card" x-show="matchesFilter('windows')" x-data="baSlider(50)">
-                <div class="ba-container"
-                     @mousedown="startDrag($event)"
-                     @touchstart.passive="startDrag($event)"
-                     @mousemove="onDrag($event)"
-                     @touchmove.passive="onDrag($event)"
-                     @mouseup="endDrag()"
-                     @touchend="endDrag()"
-                     @mouseleave="endDrag()">
-                    
+            <div class="work-card" x-show="matchesFilter('windows')">
+                <div class="ba-container">
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
                     <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/before_clean.png' %}'); filter: contrast(1.4) brightness(0.7) sepia(0.2);"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-clean-wrapper" :style="`width: ${pos}%;`">
-                        <div class="ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}'); width: 100vw; max-width: 800px;"></div>
+                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}');">
                         <div class="ba-clean-shine"></div>
                     </div>
 
-                    <div class="ba-slider-line" :style="`left: ${pos}%;`">
+                    <div class="ba-slider-line">
                         <div class="ba-slider-handle">
                             <i class="fa-solid fa-chevron-left"></i>
                             <i class="fa-solid fa-chevron-right"></i>
@@ -361,49 +304,40 @@
                     </div>
 
                     <div class="ba-hint">
-                        <i class="fa-solid fa-arrows-left-right"></i> Drag slider to compare
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Hover to compare
                     </div>
                 </div>
 
                 <div class="work-card-body">
                     <div class="work-card-meta">
                         <span class="work-room-pill"><i class="fa-solid fa-leaf"></i> Outdoor</span>
-                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Inspection Passed</span>
+                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Passed</span>
                     </div>
                     <h3 class="work-card-title">6. Balcony Floor Tiles &amp; Glass Balustrades</h3>
                     <p class="work-card-desc">
-                        Sydney weather pollution, dust buildup, and outdoor tile grime power-washed to like-new condition, with glass railings left crystal clear.
+                        Sydney weather pollution, dust buildup, and outdoor grime power-washed to like-new condition.
                     </p>
                     <div class="work-card-footer">
-                        <span class="work-detail-item"><i class="fa-solid fa-water"></i> High-Pressure Wash</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-water"></i> High-Pressure</span>
                         <span class="work-detail-item"><i class="fa-solid fa-shield"></i> Drain Scrubbed</span>
                     </div>
                 </div>
             </div>
 
             <!-- 7. SKIRTING BOARDS & WALL SCUFFS -->
-            <div class="work-card" x-show="matchesFilter('walls')" x-data="baSlider(50)">
-                <div class="ba-container"
-                     @mousedown="startDrag($event)"
-                     @touchstart.passive="startDrag($event)"
-                     @mousemove="onDrag($event)"
-                     @touchmove.passive="onDrag($event)"
-                     @mouseup="endDrag()"
-                     @touchend="endDrag()"
-                     @mouseleave="endDrag()">
-                    
+            <div class="work-card" x-show="matchesFilter('walls')">
+                <div class="ba-container">
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
                     <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); filter: saturate(0.3) contrast(1.6) brightness(0.65);"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-clean-wrapper" :style="`width: ${pos}%;`">
-                        <div class="ba-clean-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); width: 100vw; max-width: 800px; filter: brightness(1.1);"></div>
+                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); filter: brightness(1.15);">
                         <div class="ba-clean-shine"></div>
                     </div>
 
-                    <div class="ba-slider-line" :style="`left: ${pos}%;`">
+                    <div class="ba-slider-line">
                         <div class="ba-slider-handle">
                             <i class="fa-solid fa-chevron-left"></i>
                             <i class="fa-solid fa-chevron-right"></i>
@@ -411,49 +345,40 @@
                     </div>
 
                     <div class="ba-hint">
-                        <i class="fa-solid fa-arrows-left-right"></i> Drag slider to compare
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Hover to compare
                     </div>
                 </div>
 
                 <div class="work-card-body">
                     <div class="work-card-meta">
-                        <span class="work-room-pill"><i class="fa-solid fa-paint-roller"></i> Walls &amp; Base</span>
-                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Inspection Passed</span>
+                        <span class="work-room-pill"><i class="fa-solid fa-paint-roller"></i> Walls &amp; Skirting</span>
+                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Passed</span>
                     </div>
-                    <h3 class="work-card-title">7. Moving Scuff Removal &amp; Skirting Boards</h3>
+                    <h3 class="work-card-title">7. Black Shoe Scuffs &amp; Door Frame Marks</h3>
                     <p class="work-card-desc">
-                        Dark furniture scuffs, blu-tack marks, and baseboard dust lines gently lifted without damaging paintwork, passing strict property manager tests.
+                        Hallway shoe marks, dark furniture rubs, and finger smudges removed with sugar-soap sponges without damaging wall paint.
                     </p>
                     <div class="work-card-footer">
-                        <span class="work-detail-item"><i class="fa-solid fa-wand-magic-sparkles"></i> Paint-Safe Sponges</span>
-                        <span class="work-detail-item"><i class="fa-solid fa-square-check"></i> Light Switches Cleaned</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-eraser"></i> Paint-Safe Formula</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-check-double"></i> 100% Perimeter</span>
                     </div>
                 </div>
             </div>
 
-            <!-- 8. LAUNDRY TUB & TILES -->
-            <div class="work-card" x-show="matchesFilter('bathroom')" x-data="baSlider(50)">
-                <div class="ba-container"
-                     @mousedown="startDrag($event)"
-                     @touchstart.passive="startDrag($event)"
-                     @mousemove="onDrag($event)"
-                     @touchmove.passive="onDrag($event)"
-                     @mouseup="endDrag()"
-                     @touchend="endDrag()"
-                     @mouseleave="endDrag()">
-                    
+            <!-- 8. TOILET DESCALING & TILE STERILISATION -->
+            <div class="work-card" x-show="matchesFilter('bathroom')">
+                <div class="ba-container">
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/before_clean.png' %}'); filter: sepia(0.4) contrast(1.2) brightness(0.85);"></div>
+                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/before_clean.png' %}'); filter: sepia(0.4) contrast(1.4) brightness(0.7);"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-clean-wrapper" :style="`width: ${pos}%;`">
-                        <div class="ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}'); width: 100vw; max-width: 800px;"></div>
+                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}'); filter: brightness(1.1);">
                         <div class="ba-clean-shine"></div>
                     </div>
 
-                    <div class="ba-slider-line" :style="`left: ${pos}%;`">
+                    <div class="ba-slider-line">
                         <div class="ba-slider-handle">
                             <i class="fa-solid fa-chevron-left"></i>
                             <i class="fa-solid fa-chevron-right"></i>
@@ -461,49 +386,40 @@
                     </div>
 
                     <div class="ba-hint">
-                        <i class="fa-solid fa-arrows-left-right"></i> Drag slider to compare
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Hover to compare
                     </div>
                 </div>
 
                 <div class="work-card-body">
                     <div class="work-card-meta">
-                        <span class="work-room-pill"><i class="fa-solid fa-soap"></i> Laundry</span>
-                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Inspection Passed</span>
+                        <span class="work-room-pill"><i class="fa-solid fa-toilet"></i> Bathroom</span>
+                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Passed</span>
                     </div>
-                    <h3 class="work-card-title">8. Laundry Sink Basin &amp; Splashback Tiles</h3>
+                    <h3 class="work-card-title">8. Toilet Bowl Descaling &amp; Disinfection</h3>
                     <p class="work-card-desc">
-                        Caked washing powder grime, lint buildup behind dryers, and stubborn rust stains completely scrubbed, leaving chrome faucets and sinks spotless.
+                        Hard water scale in U-bend, under-rim calcium staining, and hinges descaled and sterilised with hospital-grade disinfectant.
                     </p>
                     <div class="work-card-footer">
-                        <span class="work-detail-item"><i class="fa-solid fa-sink"></i> Basin Polished</span>
-                        <span class="work-detail-item"><i class="fa-solid fa-broom"></i> Behind Washer Sanitised</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-shield-virus"></i> 99.9% Bacteria Kill</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-wand-magic-sparkles"></i> Polish Finish</span>
                     </div>
                 </div>
             </div>
 
-            <!-- 9. BUILT-IN WARDROBES & MIRRORS -->
-            <div class="work-card" x-show="matchesFilter('kitchen')" x-data="baSlider(50)">
-                <div class="ba-container"
-                     @mousedown="startDrag($event)"
-                     @touchstart.passive="startDrag($event)"
-                     @mousemove="onDrag($event)"
-                     @touchmove.passive="onDrag($event)"
-                     @mouseup="endDrag()"
-                     @touchend="endDrag()"
-                     @mouseleave="endDrag()">
-                    
+            <!-- 9. INSIDE CUPBOARDS & DRAWERS -->
+            <div class="work-card" x-show="matchesFilter('kitchen')">
+                <div class="ba-container">
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/about_interior.jpg' %}'); filter: saturate(0.3) contrast(1.4) brightness(0.7);"></div>
+                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/about_interior.jpg' %}'); filter: saturate(0.3) contrast(1.5) brightness(0.6);"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-clean-wrapper" :style="`width: ${pos}%;`">
-                        <div class="ba-clean-layer" style="background-image: url('{% static 'images/about_interior.jpg' %}'); width: 100vw; max-width: 800px; filter: brightness(1.12);"></div>
+                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/about_interior.jpg' %}'); filter: brightness(1.12);">
                         <div class="ba-clean-shine"></div>
                     </div>
 
-                    <div class="ba-slider-line" :style="`left: ${pos}%;`">
+                    <div class="ba-slider-line">
                         <div class="ba-slider-handle">
                             <i class="fa-solid fa-chevron-left"></i>
                             <i class="fa-solid fa-chevron-right"></i>
@@ -511,49 +427,40 @@
                     </div>
 
                     <div class="ba-hint">
-                        <i class="fa-solid fa-arrows-left-right"></i> Drag slider to compare
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Hover to compare
                     </div>
                 </div>
 
                 <div class="work-card-body">
                     <div class="work-card-meta">
-                        <span class="work-room-pill"><i class="fa-solid fa-box-open"></i> Kitchen Cupboards</span>
-                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Inspection Passed</span>
+                        <span class="work-room-pill"><i class="fa-solid fa-box-open"></i> Cupboards</span>
+                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Passed</span>
                     </div>
                     <h3 class="work-card-title">9. Inside Cupboards, Drawers &amp; Shelves</h3>
                     <p class="work-card-desc">
-                        Food crumbs, oil residue in corner joints, and sticky shelf lining removed inside and out from all kitchen cupboards and pantry shelving.
+                        Food crumbs, oil residue in corner joints, and sticky shelf lining removed inside and out from all kitchen cabinetry.
                     </p>
                     <div class="work-card-footer">
-                        <span class="work-detail-item"><i class="fa-solid fa-layer-group"></i> Inside &amp; Outside</span>
-                        <span class="work-detail-item"><i class="fa-solid fa-spray-can"></i> Food-Safe Sanitised</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-layer-group"></i> Inside &amp; Out</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-spray-can"></i> Food-Safe</span>
                     </div>
                 </div>
             </div>
 
             <!-- 10. HARDWOOD LIVING ROOM FLOOR -->
-            <div class="work-card" x-show="matchesFilter('carpet')" x-data="baSlider(50)">
-                <div class="ba-container"
-                     @mousedown="startDrag($event)"
-                     @touchstart.passive="startDrag($event)"
-                     @mousemove="onDrag($event)"
-                     @touchmove.passive="onDrag($event)"
-                     @mouseup="endDrag()"
-                     @touchend="endDrag()"
-                     @mouseleave="endDrag()">
-                    
+            <div class="work-card" x-show="matchesFilter('carpet')">
+                <div class="ba-container">
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
                     <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); filter: saturate(0.5) contrast(1.5) brightness(0.65);"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-clean-wrapper" :style="`width: ${pos}%;`">
-                        <div class="ba-clean-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); width: 100vw; max-width: 800px; filter: saturate(1.15) brightness(1.12);"></div>
+                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); filter: saturate(1.15) brightness(1.12);">
                         <div class="ba-clean-shine"></div>
                     </div>
 
-                    <div class="ba-slider-line" :style="`left: ${pos}%;`">
+                    <div class="ba-slider-line">
                         <div class="ba-slider-handle">
                             <i class="fa-solid fa-chevron-left"></i>
                             <i class="fa-solid fa-chevron-right"></i>
@@ -561,22 +468,22 @@
                     </div>
 
                     <div class="ba-hint">
-                        <i class="fa-solid fa-arrows-left-right"></i> Drag slider to compare
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Hover to compare
                     </div>
                 </div>
 
                 <div class="work-card-body">
                     <div class="work-card-meta">
                         <span class="work-room-pill"><i class="fa-solid fa-couch"></i> Living Area</span>
-                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Inspection Passed</span>
+                        <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Passed</span>
                     </div>
                     <h3 class="work-card-title">10. Hardwood Timber Floor Wash &amp; Buff</h3>
                     <p class="work-card-desc">
-                        Heavy foot traffic dust, sticky residues, and dull marks lifted with pH-neutral wood care formulas, leaving a lustrous natural satin glow.
+                        Heavy foot traffic dust, sticky residues, and dull marks lifted with pH-neutral wood care formulas, leaving a satin glow.
                     </p>
                     <div class="work-card-footer">
-                        <span class="work-detail-item"><i class="fa-solid fa-shield-halved"></i> pH-Neutral Timber Safe</span>
-                        <span class="work-detail-item"><i class="fa-solid fa-sun"></i> Streak-Free Shine</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-shield-halved"></i> Timber Safe</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-sun"></i> Satin Glow</span>
                     </div>
                 </div>
             </div>
@@ -652,36 +559,74 @@ function ourWorkPage() {
     };
 }
 
-function baSlider(initialPos = 50) {
-    return {
-        pos: initialPos,
-        isDragging: false,
-        
-        startDrag(e) {
-            this.isDragging = true;
-            this.updatePos(e);
-        },
-        
-        onDrag(e) {
-            if (!this.isDragging) return;
-            this.updatePos(e);
-        },
-        
-        endDrag() {
-            this.isDragging = false;
-        },
-        
-        updatePos(e) {
-            const container = e.currentTarget.closest('.ba-container') || e.currentTarget;
+// ═════════════════════════════════════════════════════════════════
+// 60FPS LERP Slider Animation (Identical smooth engine as Home Page)
+// ═════════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+    const containers = document.querySelectorAll('.ba-container');
+
+    containers.forEach((container, idx) => {
+        let current = 25 + (idx % 4) * 15; // Staggered initial positions
+        let target = 75;
+        let isHovered = false;
+        let rafId = null;
+
+        const LERP_HOVER = 0.09; // Buttery smooth, responsive mouse tracking (like home hero)
+        const LERP_AUTO  = 0.018; // Silky auto-scanning glide
+
+        const applyPos = (pct) => {
+            container.style.setProperty('--pos', `${pct.toFixed(2)}%`);
+        };
+
+        const tick = () => {
+            const lerp = isHovered ? LERP_HOVER : LERP_AUTO;
+            current += (target - current) * lerp;
+            applyPos(current);
+
+            // In auto-mode, ping-pong when reaching ends
+            if (!isHovered) {
+                if (Math.abs(target - current) < 2.0) {
+                    target = (target > 50) ? 18 : 82;
+                }
+            }
+
+            rafId = requestAnimationFrame(tick);
+        };
+
+        // Start 60fps rAF loop
+        rafId = requestAnimationFrame(tick);
+
+        // Hover follow: smooth cursor tracking (no click needed)
+        const handleMove = (clientX) => {
+            isHovered = true;
             const rect = container.getBoundingClientRect();
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const x = clientX - rect.left;
-            let percentage = (x / rect.width) * 100;
-            if (percentage < 3) percentage = 3;
-            if (percentage > 97) percentage = 97;
-            this.pos = Math.round(percentage);
-        }
-    };
-}
+            let pct = ((clientX - rect.left) / rect.width) * 100;
+            target = Math.min(Math.max(pct, 2), 98);
+        };
+
+        container.addEventListener('mousemove', (e) => handleMove(e.clientX));
+        container.addEventListener('mouseenter', (e) => handleMove(e.clientX));
+
+        // Touch follow for mobile
+        container.addEventListener('touchstart', (e) => {
+            handleMove(e.touches[0].clientX);
+        }, { passive: true });
+
+        container.addEventListener('touchmove', (e) => {
+            handleMove(e.touches[0].clientX);
+        }, { passive: true });
+
+        // Resume auto-glide on leave / touch end
+        container.addEventListener('mouseleave', () => {
+            isHovered = false;
+            target = current > 50 ? 18 : 82;
+        });
+
+        container.addEventListener('touchend', () => {
+            isHovered = false;
+            target = current > 50 ? 18 : 82;
+        });
+    });
+});
 </script>
 {% endblock %}
