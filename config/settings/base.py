@@ -76,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'config.context_processors.site_constants',
             ],
         },
     },
@@ -137,17 +138,29 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Stripe settings
-STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
-STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
+# ── Stripe (COMMENTED OUT — not live yet) ──
+# STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+# STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+# STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
 
 
-# Email
-# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
-
+# ── Email (Django 6.1 MAILERS format) ──
+# https://docs.djangoproject.com/en/6.1/topics/email/
 MAILERS = {
     'default': {
-        'BACKEND': 'django.core.mail.backends.console.EmailBackend',
+        'BACKEND': os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend'),
+        'HOST': os.getenv('EMAIL_HOST', 'smtp.gmail.com'),
+        'PORT': int(os.getenv('EMAIL_PORT', 587)),
+        'USE_TLS': os.getenv('EMAIL_USE_TLS', 'True') == 'True',
+        'USERNAME': os.getenv('EMAIL_HOST_USER', ''),
+        'PASSWORD': os.getenv('EMAIL_HOST_PASSWORD', ''),
+        'DEFAULT_FROM_EMAIL': os.getenv(
+            'DEFAULT_FROM_EMAIL',
+            'MoveOut Cleaning <noreply@moveoutcleaning.com.au>'
+        ),
     },
 }
+
+# ── Notification Emails (from .env) ──
+BOOKING_NOTIFICATION_EMAIL = os.getenv('BOOKING_NOTIFICATION_EMAIL', 'parajbhatasana@gmail.com')
+ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'parajbhatasana@gmail.com')

@@ -145,7 +145,7 @@
 
                             <button type="submit" class="contact-submit-btn" :disabled="loading">
                                 <span x-show="!loading">Send Message &amp; Request Callback &rarr;</span>
-                                <span x-show="loading" style="display: none;">Sending your request...</span>
+                                <span x-show="loading" class="contact-loading-text">Sending your request...</span>
                             </button>
                         </form>
                     </template>
@@ -154,11 +154,11 @@
                     <template x-if="submitted">
                         <div class="contact-success-state">
                             <div class="contact-success-icon">✓</div>
-                            <h3 style="font-size: 20px; font-weight: 800; color: var(--color-primary-dark); margin-bottom: 8px;">Message Received!</h3>
-                            <p style="font-size: 14.5px; color: var(--color-text-muted); line-height: 1.5; max-width: 480px; margin: 0 auto 20px;">
+                            <h3 class="contact-success-title">Message Received!</h3>
+                            <p class="contact-success-desc">
                                 Thank you for contacting MoveOut. One of our bond cleaning coordinators is reviewing your details and will get in touch with you shortly.
                             </p>
-                            <button type="button" @click="submitted = false" class="sidebar-quote-btn" style="background: var(--color-primary); color: var(--color-white); max-width: 200px; margin: 0 auto;">
+                            <button type="button" @click="submitted = false" class="contact-reset-btn">
                                 Send Another Message
                             </button>
                         </div>
@@ -200,7 +200,7 @@
                     <!-- Coverage Areas Card -->
                     <div class="sidebar-coverage-card">
                         <h4 class="coverage-title">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="coverage-pin-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                             Areas We Service in Sydney
                         </h4>
                         <p class="coverage-desc">

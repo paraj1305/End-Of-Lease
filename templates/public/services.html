@@ -9,12 +9,12 @@
     <!-- ─── Hero ─── -->
     <section class="packages-hero">
         <div class="packages-hero-inner">
-            <div class="packages-hero-text">
+            <div class="packages-hero-text reveal-left">
                 <div class="services-badge">Fixed Price Cleaning</div>
                 <h1 class="packages-hero-title">Our Cleaning Packages</h1>
                 <p class="packages-hero-subtitle">Comprehensive end of lease cleaning designed specifically to pass real estate inspections. Includes a free 72-hour bond back guarantee.</p>
             </div>
-            <div class="packages-hero-image-wrap">
+            <div class="packages-hero-image-wrap reveal-right">
                 <img src="{% static 'images/services_hero.jpg' %}" alt="Cleaning professionals" class="packages-hero-img">
             </div>
         </div>
@@ -22,12 +22,12 @@
 
     <!-- ─── Trust Strip ─── -->
     <div class="trust-strip">
-        <div class="trust-strip-inner">
+        <div class="trust-strip-inner reveal-stagger">
             <div class="trust-item">
                 <div class="trust-icon">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
-                <span>Trained & Verified<br>Cleaning Professionals</span>
+                <span>Trained &amp; Verified<br>Cleaning Professionals</span>
             </div>
             <div class="trust-item">
                 <div class="trust-icon">
@@ -51,7 +51,7 @@
     </div>
 
     <!-- ─── Section Header ─── -->
-    <div class="packages-section-header">
+    <div class="packages-section-header reveal-fade-up">
         <div class="packages-section-pill">Our Cleaning Packages</div>
         <h2 class="packages-section-title">Choose the <span class="packages-highlight">Perfect Clean</span> for Your Home</h2>
         <p class="packages-section-sub">Simple, transparent packages. Professional cleaning you can trust.</p>
@@ -59,7 +59,7 @@
 
     <!-- ─── Packages Grid ─── -->
     <div class="packages-grid-wrap">
-        <div class="packages-grid">
+        <div class="packages-grid reveal-stagger">
             {% for package in packages|slice:":4" %}
             <div class="pkg-card {% if forloop.counter == 2 %}pkg-card--popular{% endif %}">
                 {% if forloop.counter == 2 %}
@@ -110,7 +110,7 @@
                         <div class="pkg-price-wrap">
                             <span class="pkg-price-label">Starting from</span>
                             <div class="pkg-price">
-                                <span class="pkg-currency">$</span>{{ package.base_price }}<span class="pkg-per"> / service</span>
+                                <span class="pkg-currency">$</span>{{ package.calculated_price|floatformat:0 }}<span class="pkg-per"> / service</span>
                             </div>
                         </div>
                         <a href="{% url 'bookings:quick_book' package.slug %}" class="pkg-btn {% if forloop.counter == 2 %}pkg-btn--accent{% endif %}">
@@ -124,7 +124,7 @@
     </div>
 
     <!-- ─── Customize CTA ─── -->
-    <div class="customize-cta">
+    <div class="customize-cta reveal-zoom">
         <div class="customize-cta-inner">
             <div class="customize-icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>

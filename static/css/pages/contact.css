@@ -254,12 +254,56 @@
     filter: brightness(1.04);
 }
 
+.contact-loading-text {
+    display: none;
+}
+
 .contact-success-state {
     padding: 30px 20px;
     text-align: center;
     background: rgba(82, 94, 167, 0.05);
     border-radius: 20px;
     border: 1px dashed var(--color-primary);
+}
+
+.contact-success-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--color-primary-dark);
+    margin-bottom: 8px;
+}
+
+.contact-success-desc {
+    font-size: 14.5px;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    max-width: 480px;
+    margin: 0 auto 20px;
+}
+
+.contact-reset-btn {
+    background: var(--color-primary);
+    color: var(--color-white);
+    max-width: 200px;
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.contact-reset-btn:hover {
+    transform: translateY(-2px);
+    background: var(--color-primary-dark);
+}
+
+.coverage-pin-icon {
+    color: var(--color-primary);
 }
 
 .contact-success-icon {

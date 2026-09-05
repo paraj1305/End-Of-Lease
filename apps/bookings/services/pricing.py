@@ -1,18 +1,15 @@
 from decimal import Decimal
-from typing import List, Tuple
+from typing import List
+from config import constants
 
-def calculate_booking_price(package_price: Decimal, addon_prices: List[Decimal], deposit_percentage: Decimal = Decimal('10.0')) -> dict:
+
+def calculate_booking_price(package_price: Decimal, addon_prices: List[Decimal], deposit_percentage: Decimal = None) -> dict:
     """
     Calculates the subtotal, deposit, and remaining amount for a booking.
-    
-    Returns a dictionary:
-    {
-        'subtotal': Decimal,
-        'addons_total': Decimal,
-        'deposit_amount': Decimal,
-        'remaining_amount': Decimal
-    }
     """
+    if deposit_percentage is None:
+        deposit_percentage = Decimal(str(constants.DEPOSIT_PERCENTAGE))
+
     addons_total = sum(addon_prices)
     subtotal = package_price + addons_total
     

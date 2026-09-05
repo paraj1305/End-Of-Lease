@@ -148,10 +148,9 @@
         <div class="price-summary">
             <div class="price-row"><span>{{ package.name }}</span><span>${{ package.base_price }}</span></div>
             <div class="price-row" id="addons-row" style="display:none;"><span>Add-ons</span><span id="addons-total">$0.00</span></div>
-            <div class="price-row divider total"><span>Total</span><span id="total-display">${{ package.base_price }}</span></div>
-            <div class="price-row deposit"><span>&#128274; Deposit today (10%)</span><span id="deposit-display">$0.00</span></div>
-            <button type="submit" class="btn-pay">Pay 10% Deposit &mdash; <span id="deposit-btn-amount">$0.00</span> &rarr;</button>
-            <p class="pay-note">Secure payment via Stripe &middot; Balance due on the day</p>
+            <div class="price-row divider total"><span>Total (inc. GST)</span><span id="total-display">${{ package.base_price }}</span></div>
+            <button type="submit" class="btn-pay">Confirm Booking &mdash; <span id="deposit-btn-amount">${{ package.base_price }}</span> &rarr;</button>
+            <p class="pay-note">&#9990; Our team will call you within {{ CALLBACK_ESTIMATE_MINUTES|default:5 }} minutes to confirm details &middot; Pay on completion</p>
         </div>
     </form>
 </div>
@@ -165,18 +164,15 @@ function updateTotal(checkbox) {
     if (checkbox.checked) { addonsTotal += price; label.classList.add('selected'); checkIcon.textContent = '\u2713'; }
     else { addonsTotal -= price; label.classList.remove('selected'); checkIcon.textContent = ''; }
     const total = basePrice + addonsTotal;
-    const deposit = total * 0.10;
     document.getElementById('total-display').textContent = '$' + total.toFixed(2);
-    document.getElementById('deposit-display').textContent = '$' + deposit.toFixed(2);
-    document.getElementById('deposit-btn-amount').textContent = '$' + deposit.toFixed(2);
+    document.getElementById('deposit-btn-amount').textContent = '$' + total.toFixed(2);
     document.getElementById('banner-price').textContent = '$' + total.toFixed(2);
     const addonsRow = document.getElementById('addons-row');
     if (addonsTotal > 0) { addonsRow.style.display = 'flex'; document.getElementById('addons-total').textContent = '+$' + addonsTotal.toFixed(2); }
     else { addonsRow.style.display = 'none'; }
 }
 window.addEventListener('DOMContentLoaded', () => {
-    const deposit = basePrice * 0.10;
-    document.getElementById('deposit-display').textContent = '$' + deposit.toFixed(2);
+    document.getElementById('deposit-btn-amount').textContent = '$' + basePrice.toFixed(2);
     // Progress Border Effect for Cards
     document.querySelectorAll('.form-card').forEach(card => {
         const inputs = card.querySelectorAll('input[required], select[required]');

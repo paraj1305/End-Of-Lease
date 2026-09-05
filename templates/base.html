@@ -70,17 +70,16 @@
             pointer-events: auto;
             padding: 10px 24px;
             /* Liquid Glassmorphism Core */
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.55) 0%, 
-                rgba(255, 255, 255, 0.25) 40%, 
-                rgba(73, 176, 228, 0.16) 75%, 
-                rgba(255, 195, 73, 0.12) 100%
-            );
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.55) 0%,
+                    rgba(255, 255, 255, 0.25) 40%,
+                    rgba(73, 176, 228, 0.16) 75%,
+                    rgba(255, 195, 73, 0.12) 100%);
             backdrop-filter: blur(28px) saturate(210%) contrast(105%);
             -webkit-backdrop-filter: blur(28px) saturate(210%) contrast(105%);
             border: 1.5px solid rgba(255, 255, 255, 0.75);
             border-radius: var(--radius-full);
-            box-shadow: 
+            box-shadow:
                 0 16px 40px rgba(0, 0, 0, 0.12),
                 inset 0 2px 3px rgba(255, 255, 255, 0.95),
                 inset 0 -2px 3px rgba(73, 176, 228, 0.25),
@@ -98,15 +97,14 @@
 
         .navbar-wrapper.scrolled .navbar {
             padding: 8px 20px;
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.82) 0%, 
-                rgba(255, 255, 255, 0.52) 50%, 
-                rgba(73, 176, 228, 0.20) 100%
-            );
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.82) 0%,
+                    rgba(255, 255, 255, 0.52) 50%,
+                    rgba(73, 176, 228, 0.20) 100%);
             backdrop-filter: blur(34px) saturate(230%);
             -webkit-backdrop-filter: blur(34px) saturate(230%);
             border-color: rgba(255, 255, 255, 0.9);
-            box-shadow: 
+            box-shadow:
                 0 18px 45px rgba(0, 0, 0, 0.16),
                 inset 0 2px 4px rgba(255, 255, 255, 1),
                 inset 0 -2px 4px rgba(73, 176, 228, 0.35);
@@ -256,25 +254,45 @@
             .navbar-wrapper {
                 padding: 10px 14px;
             }
+
             .navbar {
                 padding: 8px 16px;
                 border-radius: 18px;
             }
-            .desktop-nav { display: none !important; }
-            .desktop-actions { display: none !important; }
-            .mobile-nav-controls { display: flex !important; }
-            .mobile-nav-toggle { display: flex !important; }
-            .mobile-drawer { display: flex; }
+
+            .desktop-nav {
+                display: none !important;
+            }
+
+            .desktop-actions {
+                display: none !important;
+            }
+
+            .mobile-nav-controls {
+                display: flex !important;
+            }
+
+            .mobile-nav-toggle {
+                display: flex !important;
+            }
+
+            .mobile-drawer {
+                display: flex;
+            }
         }
     </style>
 
     <!-- Liquid Glass Floating Island Nav -->
-    <div id="main-nav" class="navbar-wrapper" x-data="{ mobileMenuOpen: false }" @click.outside="mobileMenuOpen = false">
+    <div id="main-nav" class="navbar-wrapper" x-data="{ mobileMenuOpen: false }"
+        @click.outside="mobileMenuOpen = false">
         <header class="navbar">
             <!-- Brand / Logo at the Start -->
-            <a href="/" class="nav-brand" style="text-decoration: none; display: flex; align-items: center; flex: 0 0 auto;">
-                <span style="font-size: clamp(1.2rem, 3.5vw, 1.45rem); color: var(--color-primary-dark); font-weight: 900; letter-spacing: 2px;">
-                    MOVEOUT<span style="color: var(--color-accent); text-shadow: 0 0 14px rgba(255, 195, 73, 0.75);">✦</span>
+            <a href="/" class="nav-brand"
+                style="text-decoration: none; display: flex; align-items: center; flex: 0 0 auto;">
+                <span
+                    style="font-size: clamp(1.2rem, 3.5vw, 1.45rem); color: var(--color-primary-dark); font-weight: 900; letter-spacing: 2px;">
+                    MOVEOUT<span
+                        style="color: var(--color-accent); text-shadow: 0 0 14px rgba(255, 195, 73, 0.75);">✦</span>
                 </span>
             </a>
 
@@ -289,8 +307,8 @@
             <!-- Actions (Phone & Fixed Price Button) at the End -->
             <div class="desktop-actions">
                 <a href="tel:0279889050" class="nav-phone-btn">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-accent);">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-accent);">
                         <path
                             d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                         </path>
@@ -304,19 +322,38 @@
 
             <!-- Mobile Controls -->
             <div class="mobile-nav-controls" style="display: none; align-items: center; gap: 8px;">
-                <a href="tel:0279889050" class="mobile-nav-toggle" aria-label="Call MoveOut" style="display: none; padding: 7px 12px; font-weight: 700; font-size: 13px; gap: 4px; text-decoration: none;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <a href="tel:0279889050" class="mobile-nav-toggle" aria-label="Call MoveOut"
+                    style="display: none; padding: 7px 12px; font-weight: 700; font-size: 13px; gap: 4px; text-decoration: none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
                     Call
                 </a>
                 <button class="mobile-nav-toggle" @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Open menu">
-                    <svg x-show="!mobileMenuOpen" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-                    <svg x-show="mobileMenuOpen" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <svg x-show="!mobileMenuOpen" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    <svg x-show="mobileMenuOpen" style="display: none;" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
                 </button>
             </div>
         </header>
 
         <!-- Mobile Drawer -->
-        <div class="mobile-drawer" x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-4" style="display: none;">
+        <div class="mobile-drawer" x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-4" style="display: none;">
             <a href="{% url 'public:services' %}" class="nav-link" @click="mobileMenuOpen = false">
                 <span>Pricing &amp; Packages</span>
                 <span style="color: var(--color-primary);">&rarr;</span>
@@ -333,13 +370,20 @@
                 <span>Frequently Asked Questions</span>
                 <span style="color: var(--color-primary);">&rarr;</span>
             </a>
-            
+
             <div class="mobile-drawer-cta">
-                <a href="tel:0279889050" style="display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--color-primary-dark); text-decoration: none; border: 1.5px solid rgba(82, 94, 167, 0.25); padding: 14px; border-radius: var(--radius-full); font-weight: 800; font-size: 15px; background: rgba(255, 255, 255, 0.5);">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-accent);"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <a href="tel:0279889050"
+                    style="display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--color-primary-dark); text-decoration: none; border: 1.5px solid rgba(82, 94, 167, 0.25); padding: 14px; border-radius: var(--radius-full); font-weight: 800; font-size: 15px; background: rgba(255, 255, 255, 0.5);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-accent);">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
                     Call 02 7988 9050
                 </a>
-                <a href="{% url 'bookings:multi_step_booking' %}" style="display: flex; align-items: center; justify-content: center; background: var(--color-accent); color: var(--color-primary-dark); padding: 14px; border-radius: var(--radius-full); font-weight: 800; text-decoration: none; font-size: 15px; box-shadow: 0 4px 18px rgba(255, 195, 73, 0.45);">
+                <a href="{% url 'bookings:multi_step_booking' %}"
+                    style="display: flex; align-items: center; justify-content: center; background: var(--color-accent); color: var(--color-primary-dark); padding: 14px; border-radius: var(--radius-full); font-weight: 800; text-decoration: none; font-size: 15px; box-shadow: 0 4px 18px rgba(255, 195, 73, 0.45);">
                     Get Fixed Price &rarr;
                 </a>
             </div>
@@ -365,15 +409,18 @@
     <footer class="main-footer">
         <div class="footer-wave">
             <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-                <path d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,42.7C672,32,768,32,864,42.7C960,53,1056,75,1152,74.7C1248,75,1344,53,1392,42.7L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+                <path
+                    d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,42.7C672,32,768,32,864,42.7C960,53,1056,75,1152,74.7C1248,75,1344,53,1392,42.7L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z">
+                </path>
             </svg>
         </div>
         <div class="container footer-grid">
             <div class="footer-col-brand">
                 <h2 class="footer-logo">MOVEOUT<span style="color: var(--color-accent);">✦</span></h2>
-                <p class="footer-tagline">Sydney's #1 premium end of lease cleaning service. Guaranteed to get your bond back.</p>
+                <p class="footer-tagline">Sydney's #1 premium end of lease cleaning service. Guaranteed to get your bond
+                    back.</p>
             </div>
-            
+
             <div class="footer-col">
                 <h3 class="footer-title">Services</h3>
                 <ul class="footer-links">
@@ -383,7 +430,7 @@
                     <li><a href="#">Upholstery Cleaning</a></li>
                 </ul>
             </div>
-            
+
             <div class="footer-col">
                 <h3 class="footer-title">Company</h3>
                 <ul class="footer-links">
@@ -393,7 +440,7 @@
                     <li><a href="#">Terms & Privacy</a></li>
                 </ul>
             </div>
-            
+
             <div class="footer-col">
                 <h3 class="footer-title">Contact</h3>
                 <ul class="footer-links">
@@ -403,7 +450,7 @@
                 </ul>
             </div>
         </div>
-        
+
         <div class="container footer-bottom">
             <p>&copy; {% now "Y" %} MoveOut End of Lease Cleaning. All rights reserved.</p>
             <p>Sydney, Australia</p>
@@ -421,9 +468,10 @@
             line-height: 1.6;
             position: relative;
             margin-top: 60px;
-            z-index: 10; /* Ensure footer and wave sit on top of bottom paddings */
+            z-index: 10;
+            /* Ensure footer and wave sit on top of bottom paddings */
         }
-        
+
         .footer-wave {
             position: absolute;
             top: -119px;
@@ -448,7 +496,8 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
             margin-bottom: 60px;
-            padding-top: 40px; /* Space inside the footer below the wave */
+            padding-top: 40px;
+            /* Space inside the footer below the wave */
             position: relative;
             z-index: 2;
         }
@@ -516,6 +565,7 @@
                 padding: 0 var(--space-4) 30px;
                 margin-top: 40px;
             }
+
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
@@ -523,10 +573,12 @@
                 margin-bottom: 40px;
                 padding-top: 24px;
             }
+
             .footer-col-brand .footer-tagline {
                 max-width: 100%;
                 margin-inline: auto;
             }
+
             .footer-bottom {
                 flex-direction: column;
                 align-items: center;
@@ -621,9 +673,9 @@
                 sparkle.remove();
             }, 800);
         }
-    </script>
-    {% include 'components/clean_window_popup.html' %}
+        {% include 'components/clean_window_popup.html' %}
 
+        <script src="/static/js/scroll-animations.js" defer></script>
     {% block extra_js %}{% endblock %}
 </body>
 

@@ -7,9 +7,16 @@ from django.utils import timezone
 class CleaningPackage(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
-    approximate_area = models.CharField(max_length=100)
-    base_price = models.DecimalField(max_digits=8, decimal_places=2)
-    short_description = models.TextField()
+    approximate_area = models.CharField(max_length=100, blank=True)
+    
+    # Property room counts for dynamic pricing
+    bedrooms = models.IntegerField(default=1, help_text="Number of bedrooms")
+    bathrooms = models.IntegerField(default=1, help_text="Number of bathrooms")
+    living_areas = models.IntegerField(default=1, help_text="Number of living areas")
+    balconies = models.IntegerField(default=0, help_text="Number of balconies")
+
+    base_price = models.DecimalField(max_digits=8, decimal_places=2, default=0, help_text="Auto-synced or fallback base price")
+    short_description = models.TextField(blank=True)
     long_description = models.TextField(blank=True)
     included_services = models.JSONField(default=list, blank=True)
     is_active = models.BooleanField(default=True)
@@ -20,8 +27,28 @@ class CleaningPackage(models.Model):
     class Meta:
         ordering = ['display_order', 'name']
 
+    @property
+    def calculated_price(self):
+        """Calculate package price dynamically based on PricingConfig formula."""
+        cfg = PricingConfig.get_solo()
+        return (
+            cfg.base_fee +
+            (self.bedrooms * cfg.bedroom_price) +
+            (self.bathrooms * cfg.bathroom_price) +
+            (self.living_areas * cfg.living_area_price) +
+            (self.balconies * cfg.balcony_price)
+        )
+
+    def save(self, *args, **kwargs):
+        # Auto-update base_price if not manually locked
+        try:
+            self.base_price = self.calculated_price
+        except Exception:
+            pass
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return f"{self.name} (${self.base_price})"
+        return f"{self.name} ({self.bedrooms}B/{self.bathrooms}B - ${self.calculated_price})"
 
 
 class PricingConfig(models.Model):

@@ -4,40 +4,33 @@ from django.contrib import messages
 from .models import CleaningPackage, AddOnService, TimeSlot, Booking, BookingAddOn, PricingConfig
 from .forms import CustomerDetailsForm
 from .services.pricing import calculate_booking_price
+from .emails import send_booking_confirmation
 import datetime
 
 
 def quick_book(request, package_slug):
     """Redirects to main booking page (/book/) with pre-filled property counters from selected package."""
     import re
-    package_map = {
-        'studio-cleaning': {'bedrooms': 1, 'bathrooms': 1, 'living': 1, 'balconies': 0},
-        '1-bhk-cleaning': {'bedrooms': 1, 'bathrooms': 1, 'living': 1, 'balconies': 0},
-        '2-bhk-cleaning': {'bedrooms': 2, 'bathrooms': 1, 'living': 1, 'balconies': 0},
-        '3-bhk-cleaning': {'bedrooms': 3, 'bathrooms': 2, 'living': 1, 'balconies': 1},
-        '4-bhk-cleaning': {'bedrooms': 4, 'bathrooms': 2, 'living': 2, 'balconies': 1},
-        'villa': {'bedrooms': 4, 'bathrooms': 3, 'living': 2, 'balconies': 1},
-        '10-bhk-villa': {'bedrooms': 10, 'bathrooms': 5, 'living': 3, 'balconies': 2},
-        'beach-villa': {'bedrooms': 4, 'bathrooms': 3, 'living': 2, 'balconies': 1},
-        'hill-villa': {'bedrooms': 3, 'bathrooms': 2, 'living': 1, 'balconies': 1},
-        'garder-villa': {'bedrooms': 4, 'bathrooms': 2, 'living': 2, 'balconies': 1},
-    }
-
-    params = package_map.get(package_slug.lower(), None)
-    if not params:
+    package = CleaningPackage.objects.filter(slug=package_slug, is_active=True).first()
+    
+    if package:
+        bedrooms = package.bedrooms
+        bathrooms = package.bathrooms
+        living = package.living_areas
+        balconies = package.balconies
+    else:
+        # Fallback for dynamic / regex matching
         bhk_match = re.search(r'(\d+)[-_]?(?:bhk|bed)', package_slug.lower())
         if bhk_match:
             beds = int(bhk_match.group(1))
-            params = {
-                'bedrooms': beds,
-                'bathrooms': max(1, beds // 2 + (1 if beds > 1 else 0)),
-                'living': 1 if beds <= 3 else 2,
-                'balconies': 1 if beds >= 2 else 0,
-            }
+            bedrooms = beds
+            bathrooms = max(1, beds // 2 + (1 if beds > 1 else 0))
+            living = 1 if beds <= 3 else 2
+            balconies = 1 if beds >= 2 else 0
         else:
-            params = {'bedrooms': 2, 'bathrooms': 1, 'living': 1, 'balconies': 0}
+            bedrooms, bathrooms, living, balconies = 1, 1, 1, 0
 
-    query_str = f"?bedrooms={params.get('bedrooms', 1)}&bathrooms={params.get('bathrooms', 1)}&living={params.get('living', 1)}&balconies={params.get('balconies', 0)}&package={package_slug}"
+    query_str = f"?bedrooms={bedrooms}&bathrooms={bathrooms}&living={living}&balconies={balconies}&package={package_slug}"
     return redirect(reverse('bookings:multi_step_booking') + query_str)
 
 
@@ -63,6 +56,21 @@ def multi_step_booking(request):
         suburb = request.POST.get('service_address_suburb', '').strip()
         postcode = request.POST.get('service_address_postcode', '').strip()
         state = request.POST.get('service_address_state', 'NSW').strip()
+        addr_query = request.POST.get('addr_query', '').strip()
+
+        # Fallback if user manually typed address without clicking dropdown
+        if not street and addr_query:
+            parts = [p.strip() for p in addr_query.split(',') if p.strip()]
+            street = parts[0] if parts else addr_query
+            if not suburb and len(parts) > 1:
+                suburb = parts[1]
+            if not suburb:
+                suburb = 'Sydney'
+            if not postcode:
+                import re
+                pc_match = re.search(r'\b\d{4}\b', addr_query)
+                postcode = pc_match.group(0) if pc_match else '2000'
+
         date_str = request.POST.get('booking_date', '').strip()
         time_slot_id = request.POST.get('time_slot_id', '').strip()
         addon_ids = request.POST.getlist('addon_ids')
@@ -134,7 +142,21 @@ def multi_step_booking(request):
                     price_at_booking=addon.price,
                 )
 
-            return redirect('payments:checkout', reference=booking.reference)
+            # ── Confirm booking ──
+            booking.status = 'confirmed'
+            booking.save()
+
+            # ── Send emails (customer + admin) ──
+            try:
+                send_booking_confirmation(booking)
+            except Exception:
+                # Email failure should not break the booking flow
+                pass
+
+            # ── Payment gateway (Stripe) — COMMENTED OUT, not live yet ──
+            # return redirect('payments:checkout', reference=booking.reference)
+
+            return redirect('payments:payment_success', reference=booking.reference)
 
     context = {
         'pricing_config': pricing_config,
@@ -296,10 +318,23 @@ def step_5_review(request):
                 price_at_booking=addon.price
             )
             
-        # Store the created booking ID in session for payment flow
-        request.session['draft_booking_id'] = booking.id
+        # ── Confirm booking ──
+        booking.status = 'confirmed'
+        booking.save()
+
+        # ── Send emails (customer + admin) ──
+        try:
+            send_booking_confirmation(booking)
+        except Exception:
+            pass
+
         clear_booking_session(request)
-        
-        return redirect('payments:checkout', reference=booking.reference)
+
+        # ── Payment gateway (Stripe) — COMMENTED OUT, not live yet ──
+        # Store the created booking ID in session for payment flow
+        # request.session['draft_booking_id'] = booking.id
+        # return redirect('payments:checkout', reference=booking.reference)
+
+        return redirect('payments:payment_success', reference=booking.reference)
         
     return render(request, 'bookings/steps/step_5_review.html', context)

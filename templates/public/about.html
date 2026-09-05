@@ -11,16 +11,16 @@
         <div class="about-hero-bg-curve"></div>
         <div class="container">
             <div class="about-hero-grid">
-                <div class="about-hero-content">
+                <div class="about-hero-content reveal-left">
                     <div class="about-eyebrow">ABOUT US</div>
                     <h1 class="about-hero-title">Cleaning Spaces.<br>Improving Lives.</h1>
                     <p class="about-hero-text">
                         At MoveOut, we believe a clean space is more than just a feeling — it's a fresh start. Whether you're moving in, moving out, or just need a reset, we're here to make your space shine.
                     </p>
-                    <ul class="hero-feature-list">
+                    <ul class="hero-feature-list reveal-stagger">
                         <li>
                             <div class="feature-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
-                            Professional & Trusted Cleaners
+                            Professional &amp; Trusted Cleaners
                         </li>
                         <li>
                             <div class="feature-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg></div>
@@ -32,11 +32,11 @@
                         </li>
                         <li>
                             <div class="feature-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
-                            On-Time & Reliable Service
+                            On-Time &amp; Reliable Service
                         </li>
                     </ul>
                 </div>
-                <div class="about-hero-image-col">
+                <div class="about-hero-image-col reveal-right">
                     <div class="about-hero-image-wrapper">
                         <img src="{% static 'images/about_illustration.jpg' %}?v=3" alt="Cleaners working" class="about-hero-img">
                     </div>
@@ -49,10 +49,10 @@
     <section class="about-story">
         <div class="container">
             <div class="about-story-grid">
-                <div class="story-image-col">
+                <div class="story-image-col reveal-left">
                     <img src="{% static 'images/about_interior.jpg' %}?v=2" alt="Clean Interior" class="story-img">
                 </div>
-                <div class="story-content-col">
+                <div class="story-content-col reveal-right">
                     <div class="about-eyebrow">OUR STORY</div>
                     <h2 class="section-title">A Passion for Clean,<br>A Commitment to You</h2>
                     <p class="story-text">
@@ -70,11 +70,11 @@
     <!-- 3. Our Values Section -->
     <section class="about-values">
         <div class="container">
-            <div class="text-center">
+            <div class="text-center reveal-fade-up">
                 <div class="about-eyebrow justify-center">OUR VALUES</div>
                 <h2 class="section-title">The Principles That Drive Us</h2>
             </div>
-            <div class="values-grid">
+            <div class="values-grid reveal-stagger">
                 <div class="value-card">
                     <div class="value-icon icon-primary">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
@@ -107,16 +107,14 @@
         </div>
     </section>
 
-
-
     <!-- 6. Bottom CTA Section -->
     <section class="about-bottom-banner">
         <div class="container">
-            <div class="banner-glass-card">
+            <div class="banner-glass-card reveal-zoom">
                 <div class="banner-circle banner-circle-1"></div>
                 <div class="banner-circle banner-circle-2"></div>
                 <div class="banner-content">
-                    <h2 class="banner-title">Ready for a Cleaner, Fresher Space?</h2>
+                    <h2 class="banner-title"><span class="text-sky">Ready for a</span> Cleaner, Fresher Space?</h2>
                     <p class="banner-subtitle">Let us handle the cleaning while you focus on what matters most.</p>
                     <a href="{% url 'public:services' %}" class="btn-cta-glow">
                         Book My Clean Now 

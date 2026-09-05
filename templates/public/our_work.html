@@ -13,7 +13,7 @@
 
     <!-- ─── Hero Section ─── -->
     <section class="work-hero">
-        <div class="work-hero-inner">
+        <div class="work-hero-inner reveal-fade-up">
             <div class="work-pill">Proven Results</div>
             <h1 class="work-hero-title">Real Cleans. <span class="accent">100% Bond Back.</span></h1>
             <p class="work-hero-sub">
@@ -24,7 +24,7 @@
 
     <!-- ─── Trust Strip ─── -->
     <div class="work-trust-strip">
-        <div class="work-trust-inner">
+        <div class="work-trust-inner reveal-stagger">
             <div class="work-trust-item">
                 <div class="work-trust-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -53,7 +53,7 @@
     </div>
 
     <!-- ─── Category Filter Tabs ─── -->
-    <div class="work-filter-wrap">
+    <div class="work-filter-wrap reveal-fade-up">
         <button class="work-filter-btn" :class="{ 'is-active': activeFilter === 'all' }" @click="activeFilter = 'all'">
             All Transformations (10)
         </button>
@@ -76,7 +76,7 @@
 
     <!-- ─── 10 Interactive Before / After Comparison Cards (3 per row) ─── -->
     <div class="work-grid-wrap">
-        <div class="work-grid">
+        <div class="work-grid reveal-stagger">
 
             <!-- 1. OVEN & STOVETOP -->
             <div class="work-card" x-show="matchesFilter('kitchen')">
@@ -84,10 +84,10 @@
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/before_clean.png' %}');"></div>
+                    <div class="ba-image-layer ba-dirty-layer ba-img-1-dirty"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}');">
+                    <div class="ba-image-layer ba-clean-layer ba-img-1-clean">
                         <div class="ba-clean-shine"></div>
                     </div>
 
@@ -125,10 +125,10 @@
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/before_clean.png' %}'); filter: sepia(0.3) contrast(1.3) brightness(0.8);"></div>
+                    <div class="ba-image-layer ba-dirty-layer ba-img-2-dirty"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}'); filter: brightness(1.08) contrast(1.05);">
+                    <div class="ba-image-layer ba-clean-layer ba-img-2-clean">
                         <div class="ba-clean-shine"></div>
                     </div>
 
@@ -166,10 +166,10 @@
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); filter: saturate(0.5) contrast(1.4) brightness(0.75);"></div>
+                    <div class="ba-image-layer ba-dirty-layer ba-img-3-dirty"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); filter: saturate(1.2) brightness(1.1);">
+                    <div class="ba-image-layer ba-clean-layer ba-img-3-clean">
                         <div class="ba-clean-shine"></div>
                     </div>
 
@@ -207,10 +207,10 @@
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/before_clean.png' %}'); filter: hue-rotate(15deg) contrast(1.3) brightness(0.8);"></div>
+                    <div class="ba-image-layer ba-dirty-layer ba-img-4-dirty"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}');">
+                    <div class="ba-image-layer ba-clean-layer ba-img-4-clean">
                         <div class="ba-clean-shine"></div>
                     </div>
 
@@ -248,10 +248,10 @@
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/about_interior.jpg' %}'); filter: saturate(0.4) contrast(1.5) brightness(0.7);"></div>
+                    <div class="ba-image-layer ba-dirty-layer ba-img-5-dirty"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/about_interior.jpg' %}'); filter: brightness(1.15) contrast(1.05);">
+                    <div class="ba-image-layer ba-clean-layer ba-img-5-clean">
                         <div class="ba-clean-shine"></div>
                     </div>
 
@@ -289,10 +289,10 @@
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/before_clean.png' %}'); filter: contrast(1.4) brightness(0.7) sepia(0.2);"></div>
+                    <div class="ba-image-layer ba-dirty-layer ba-img-6-dirty"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}');">
+                    <div class="ba-image-layer ba-clean-layer ba-img-6-clean">
                         <div class="ba-clean-shine"></div>
                     </div>
 
@@ -330,10 +330,10 @@
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); filter: saturate(0.3) contrast(1.6) brightness(0.65);"></div>
+                    <div class="ba-image-layer ba-dirty-layer ba-img-7-dirty"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); filter: brightness(1.15);">
+                    <div class="ba-image-layer ba-clean-layer ba-img-7-clean">
                         <div class="ba-clean-shine"></div>
                     </div>
 
@@ -371,10 +371,10 @@
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/before_clean.png' %}'); filter: sepia(0.4) contrast(1.4) brightness(0.7);"></div>
+                    <div class="ba-image-layer ba-dirty-layer ba-img-8-dirty"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/after_clean.png' %}'); filter: brightness(1.1);">
+                    <div class="ba-image-layer ba-clean-layer ba-img-8-clean">
                         <div class="ba-clean-shine"></div>
                     </div>
 
@@ -412,10 +412,10 @@
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/about_interior.jpg' %}'); filter: saturate(0.3) contrast(1.5) brightness(0.6);"></div>
+                    <div class="ba-image-layer ba-dirty-layer ba-img-9-dirty"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/about_interior.jpg' %}'); filter: brightness(1.12);">
+                    <div class="ba-image-layer ba-clean-layer ba-img-9-clean">
                         <div class="ba-clean-shine"></div>
                     </div>
 
@@ -453,10 +453,10 @@
                     <span class="ba-tag-after">AFTER</span>
                     <span class="ba-tag-before">BEFORE</span>
 
-                    <div class="ba-image-layer ba-dirty-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); filter: saturate(0.5) contrast(1.5) brightness(0.65);"></div>
+                    <div class="ba-image-layer ba-dirty-layer ba-img-10-dirty"></div>
                     <div class="ba-dirty-overlay"></div>
 
-                    <div class="ba-image-layer ba-clean-layer" style="background-image: url('{% static 'images/room_placeholder.jpg' %}'); filter: saturate(1.15) brightness(1.12);">
+                    <div class="ba-image-layer ba-clean-layer ba-img-10-clean">
                         <div class="ba-clean-shine"></div>
                     </div>
 
@@ -493,7 +493,7 @@
 
     <!-- ─── What Real Estate Agents Check ─── -->
     <section class="work-checklist-section">
-        <div class="work-section-header">
+        <div class="work-section-header reveal-fade-up">
             <div class="work-section-pill">Inspection Standards</div>
             <h2 class="work-section-title">Why Property Managers <span class="highlight">Love Our Cleans</span></h2>
             <p class="work-section-desc">
@@ -501,7 +501,7 @@
             </p>
         </div>
 
-        <div class="work-checklist-grid">
+        <div class="work-checklist-grid reveal-stagger">
             <div class="work-check-card">
                 <div class="work-check-icon"><i class="fa-solid fa-clipboard-check"></i></div>
                 <h4 class="work-check-title">Comprehensive Checklist</h4>
@@ -526,10 +526,10 @@
     </section>
 
     <!-- ─── Bottom CTA Banner ─── -->
-    <div class="work-cta-wrap">
+    <div class="work-cta-wrap reveal-zoom">
         <div class="work-cta-card">
             <div class="work-cta-text">
-                <h2>Ready for a <span class="accent">Guaranteed Bond Return?</span></h2>
+                <h2><span class="text-sky">Ready for a</span> <span class="accent">Guaranteed Bond Return?</span></h2>
                 <p>Book online in under 60 seconds. Transparent pricing with no hidden surprises on cleaning day.</p>
             </div>
             <div class="work-cta-actions">

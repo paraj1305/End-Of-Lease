@@ -655,3 +655,37 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ════════════════════════════════════════
+   Before/After Card Image Layer Presets
+   ════════════════════════════════════════ */
+.ba-img-1-dirty { background-image: url('/static/images/before_clean.png'); }
+.ba-img-1-clean { background-image: url('/static/images/after_clean.png'); }
+
+.ba-img-2-dirty { background-image: url('/static/images/before_clean.png'); filter: sepia(0.3) contrast(1.3) brightness(0.8); }
+.ba-img-2-clean { background-image: url('/static/images/after_clean.png'); filter: brightness(1.08) contrast(1.05); }
+
+.ba-img-3-dirty { background-image: url('/static/images/room_placeholder.jpg'); filter: saturate(0.5) contrast(1.4) brightness(0.75); }
+.ba-img-3-clean { background-image: url('/static/images/room_placeholder.jpg'); filter: saturate(1.2) brightness(1.1); }
+
+.ba-img-4-dirty { background-image: url('/static/images/before_clean.png'); filter: hue-rotate(15deg) contrast(1.3) brightness(0.8); }
+.ba-img-4-clean { background-image: url('/static/images/after_clean.png'); }
+
+.ba-img-5-dirty { background-image: url('/static/images/about_interior.jpg'); filter: saturate(0.4) contrast(1.5) brightness(0.7); }
+.ba-img-5-clean { background-image: url('/static/images/about_interior.jpg'); filter: brightness(1.15) contrast(1.05); }
+
+.ba-img-6-dirty { background-image: url('/static/images/before_clean.png'); filter: contrast(1.4) brightness(0.7) sepia(0.2); }
+.ba-img-6-clean { background-image: url('/static/images/after_clean.png'); }
+
+.ba-img-7-dirty { background-image: url('/static/images/room_placeholder.jpg'); filter: saturate(0.3) contrast(1.6) brightness(0.65); }
+.ba-img-7-clean { background-image: url('/static/images/room_placeholder.jpg'); filter: brightness(1.15); }
+
+.ba-img-8-dirty { background-image: url('/static/images/before_clean.png'); filter: sepia(0.4) contrast(1.4) brightness(0.7); }
+.ba-img-8-clean { background-image: url('/static/images/after_clean.png'); filter: brightness(1.1); }
+
+.ba-img-9-dirty { background-image: url('/static/images/about_interior.jpg'); filter: saturate(0.3) contrast(1.5) brightness(0.6); }
+.ba-img-9-clean { background-image: url('/static/images/about_interior.jpg'); filter: brightness(1.12); }
+
+.ba-img-10-dirty { background-image: url('/static/images/room_placeholder.jpg'); filter: saturate(0.5) contrast(1.5) brightness(0.65); }
+.ba-img-10-clean { background-image: url('/static/images/room_placeholder.jpg'); filter: saturate(1.15) brightness(1.12); }
+

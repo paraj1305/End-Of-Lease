@@ -19,6 +19,8 @@
 .text-right  { text-align: right; }
 .text-primary-color { color: var(--color-primary); }
 .text-accent-color  { color: var(--color-accent); }
+.text-sky           { color: var(--color-primary-lighter); }
+.text-sky-light     { color: var(--color-primary-light); }
 .text-muted         { color: var(--color-text-muted); }
 .text-on-dark       { color: var(--color-text-on-dark); }
 

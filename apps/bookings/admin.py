@@ -3,10 +3,15 @@ from .models import CleaningPackage, AddOnService, TimeSlot, BlockedDate, Bookin
 
 @admin.register(CleaningPackage)
 class CleaningPackageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'base_price', 'is_active', 'display_order')
+    list_display = ('name', 'bedrooms', 'bathrooms', 'living_areas', 'balconies', 'get_calculated_price', 'is_active', 'display_order')
     list_editable = ('is_active', 'display_order')
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name',)
+    fields = ('name', 'slug', 'approximate_area', 'bedrooms', 'bathrooms', 'living_areas', 'balconies', 'short_description', 'long_description', 'included_services', 'is_active', 'display_order')
+
+    @admin.display(description="Calculated Price ($)")
+    def get_calculated_price(self, obj):
+        return f"${obj.calculated_price:.2f}"
 
 @admin.register(AddOnService)
 class AddOnServiceAdmin(admin.ModelAdmin):
