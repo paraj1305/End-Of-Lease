@@ -1,15 +1,17 @@
 from django.shortcuts import render
-from apps.bookings.models import CleaningPackage, AddOnService
+from apps.bookings.models import CleaningPackage, AddOnService, PricingConfig
 from .models import FAQ
 
 def home_view(request):
     packages = CleaningPackage.objects.filter(is_active=True)[:4]
     addons = AddOnService.objects.filter(is_active=True)[:6]
     faqs = FAQ.objects.filter(is_active=True).order_by('order')
+    pricing_cfg = PricingConfig.get_solo()
     return render(request, 'public/home.html', {
         'packages': packages, 
         'addons': addons,
-        'faqs': faqs
+        'faqs': faqs,
+        'pricing_cfg': pricing_cfg,
     })
 
 def about_view(request):

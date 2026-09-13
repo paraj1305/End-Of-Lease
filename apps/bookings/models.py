@@ -68,8 +68,17 @@ class PricingConfig(models.Model):
 
     @classmethod
     def get_solo(cls):
-        obj, created = cls.objects.get_or_create(id=1)
+        from django.core.cache import cache
+        obj = cache.get('pricing_config_solo')
+        if obj is None:
+            obj, _ = cls.objects.get_or_create(id=1)
+            cache.set('pricing_config_solo', obj, 3600)
         return obj
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        from django.core.cache import cache
+        cache.set('pricing_config_solo', self, 3600)
 
 
 class AddOnService(models.Model):

@@ -375,20 +375,22 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     ════════════════════════════════════════ */
     .packages-section {
         background: transparent;
-        padding: 90px 0;
+        padding: 100px 0 90px;
+        scroll-margin-top: 90px;
     }
 
     .packages-layout {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-12);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: clamp(24px, 3.5vw, 44px);
         align-items: start;
     }
 
     .packages-left {
         position: sticky;
-        top: 120px;
+        top: 130px;
         align-self: start;
+        min-width: 0;
     }
 
     .packages-right {
@@ -396,6 +398,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         flex-direction: column;
         gap: 20px;
         position: relative;
+        min-width: 0;
+        width: 100%;
+        max-width: 550px;
+        justify-self: end;
     }
 
     .package-card-stack {
@@ -756,6 +762,623 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         .package-card-stack {
             padding: 18px 20px;
             border-radius: 16px;
+        }
+
+        .packages-right {
+            max-width: 100%;
+            justify-self: center;
+        }
+    }
+
+    /* ════════════════════════════════════════ */
+    /* INSTANT PRICE CALCULATOR — Liquid Glass  */
+    /* ════════════════════════════════════════ */
+
+    @keyframes calcSparkle {
+        0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.85; }
+        50%      { transform: scale(1.25) rotate(15deg); opacity: 1; filter: drop-shadow(0 0 6px rgba(255,255,255,0.9)); }
+    }
+
+    @keyframes calcPriceBump {
+        0%   { transform: scale(1); }
+        40%  { transform: scale(1.12); }
+        100% { transform: scale(1); }
+    }
+
+    /* Outer Wrapper */
+    .calc-widget-wrap {
+        position: relative;
+        margin-top: 14px;
+        margin-bottom: 24px;
+        z-index: 10;
+        width: 100%;
+        max-width: 550px;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    /* Main Liquid Glass White Card */
+    .calc-widget {
+        position: relative;
+        background: linear-gradient(180deg, #ffffff 0%, #f6faff 70%, #edf4fe 100%);
+        border-radius: 40px;
+        border: 2px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 25px 65px -10px rgba(37, 99, 235, 0.16), 0 8px 30px rgba(0, 0, 0, 0.04), inset 0 2px 4px rgba(255, 255, 255, 1);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 34px 28px 24px;
+        width: 100%;
+        max-width: 550px;
+        min-width: 0;
+        box-sizing: border-box;
+        overflow: visible;
+    }
+
+    /* 3D Cute House Illustration on Top-Right */
+    .calc-3d-house {
+        position: absolute;
+        top: -46px;
+        right: 14px;
+        width: 130px;
+        height: 130px;
+        object-fit: contain;
+        pointer-events: none;
+        z-index: 5;
+        filter: drop-shadow(0 12px 20px rgba(37, 99, 235, 0.18));
+        transition: transform 0.3s ease;
+    }
+
+    .calc-widget:hover .calc-3d-house {
+        transform: translateY(-3px) rotate(1deg);
+    }
+
+    /* ── Header ── */
+    .calc-widget-eyebrow {
+        font-family: 'Caveat', cursive, sans-serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: #2563eb;
+        line-height: 1;
+        display: inline-block;
+        transform: rotate(-3deg);
+        transform-origin: left bottom;
+        margin: 0 0 2px 0;
+    }
+
+    .calc-widget-title {
+        font-size: 26px;
+        font-weight: 900;
+        color: #0f172a;
+        margin: 2px 0 6px 0;
+        letter-spacing: -0.5px;
+        line-height: 1.2;
+        display: block;
+        text-shadow: none;
+    }
+
+    .calc-widget-subtitle {
+        font-size: 13.5px;
+        color: #475569;
+        margin: 0 0 20px 0;
+        font-weight: 500;
+        line-height: 1.4;
+        max-width: 275px;
+    }
+
+    /* ── Room Counters Inner Card ── */
+    .calc-rows-card {
+        background: #ffffff;
+        border-radius: 24px;
+        border: 1.5px solid #e2eeff;
+        box-shadow: 0 4px 16px rgba(37, 99, 235, 0.04), inset 0 1px 0 rgba(255, 255, 255, 1);
+        padding: 4px 18px;
+        margin-bottom: 18px;
+    }
+
+    .calc-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .calc-row:last-child {
+        border-bottom: none;
+    }
+
+    .calc-row-icon {
+        width: 32px;
+        font-size: 22px;
+        color: #2563eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .calc-row-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .calc-row-label {
+        font-size: 15.5px;
+        font-weight: 800;
+        color: #0f172a;
+        letter-spacing: -0.1px;
+        text-shadow: none;
+        line-height: 1.2;
+    }
+
+    .calc-row-hint {
+        font-size: 12px;
+        color: #64748b;
+        font-weight: 400;
+    }
+
+    /* Stepper pill */
+    .calc-stepper {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: transparent;
+        border: none;
+    }
+
+    .calc-stepper-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        background: #dbeafe;
+        color: #2563eb;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+        user-select: none;
+        -webkit-user-select: none;
+        padding: 0;
+        box-shadow: 0 2px 6px rgba(37, 99, 235, 0.08);
+    }
+
+    .calc-stepper-btn:hover {
+        background: #bfdbfe;
+        color: #1d4ed8;
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+    }
+
+    .calc-stepper-btn:active {
+        transform: scale(0.94);
+    }
+
+    .calc-stepper-btn:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+    .calc-stepper-val {
+        min-width: 34px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 900;
+        color: #0f172a;
+        text-shadow: none;
+    }
+
+    /* ── Add-ons Wrap ── */
+    .calc-addons-wrap {
+        margin-bottom: 18px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .calc-addons-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 0 2px;
+    }
+
+    .calc-addons-title {
+        font-size: 15px;
+        font-weight: 800;
+        text-transform: none;
+        letter-spacing: 0;
+        color: #1d4ed8;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 0;
+    }
+
+    .calc-addons-title-icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #2563eb;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 900;
+        flex-shrink: 0;
+    }
+
+    .calc-addons-hint {
+        font-size: 12.5px;
+        color: #64748b;
+        font-weight: 400;
+    }
+
+    /* Marquee & Scrollable Cards Container */
+    .calc-addons-marquee-wrapper {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 4px 2px 8px;
+    }
+
+    .calc-addons-track {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch;
+        cursor: grab;
+        user-select: none;
+        padding: 2px 2px 6px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .calc-addons-track::-webkit-scrollbar {
+        display: none;
+    }
+
+    .calc-addons-track.is-dragging {
+        cursor: grabbing;
+    }
+
+    /* Individual Add-on Card */
+    .calc-addon-card {
+        flex: 0 0 138px;
+        width: 138px;
+        background: #ffffff;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 18px;
+        padding: 14px 10px 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    .calc-addon-card:hover {
+        transform: translateY(-2px);
+        border-color: #93c5fd;
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
+    }
+
+    .calc-addon-card.is-selected {
+        border-color: #2563eb;
+        background: #f8faff;
+        box-shadow: 0 8px 22px rgba(37, 99, 235, 0.16);
+    }
+
+    .calc-addon-card-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #eef2ff;
+        color: #4338ca;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        margin-bottom: 8px;
+        transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    .calc-addon-card.is-selected .calc-addon-card-icon {
+        background: #dbeafe;
+        color: #1d4ed8;
+        transform: scale(1.06);
+    }
+
+    .calc-addon-card-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: #1e293b;
+        line-height: 1.25;
+        margin-bottom: 4px;
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        word-break: break-word;
+    }
+
+    .calc-addon-card-price {
+        font-size: 14px;
+        font-weight: 800;
+        color: #312e81;
+        margin-bottom: 10px;
+        white-space: nowrap;
+    }
+
+    .calc-addon-card.is-selected .calc-addon-card-price {
+        color: #1d4ed8;
+    }
+
+    .calc-addon-card-btn {
+        width: 100%;
+        border: 1.5px solid #e2e8f0;
+        border-radius: var(--radius-full);
+        background: #ffffff;
+        color: #475569;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 6px 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        transition: all 0.15s ease;
+        line-height: 1;
+        box-sizing: border-box;
+    }
+
+    .calc-addon-card:hover .calc-addon-card-btn {
+        border-color: #93c5fd;
+        color: #2563eb;
+        background: #f0f7ff;
+    }
+
+    .calc-addon-card.is-selected .calc-addon-card-btn {
+        background: #2563eb;
+        border-color: #2563eb;
+        color: #ffffff;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+    }
+
+    /* ── Price Result Banner ── */
+    .calc-result {
+        background: linear-gradient(100deg, #d3e6fe 0%, #8ec0fc 45%, #2c6fef 85%, #2059db 100%);
+        border: none;
+        border-radius: 20px;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 16px;
+    }
+
+    .calc-result-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+    }
+
+    .calc-result-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2563eb;
+        font-size: 18px;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+    }
+
+    .calc-result-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .calc-result-label {
+        font-size: 15.5px;
+        font-weight: 800;
+        text-transform: none;
+        letter-spacing: -0.2px;
+        color: #0f172a;
+        line-height: 1.2;
+    }
+
+    .calc-result-incgst {
+        font-size: 12px;
+        font-weight: 600;
+        color: #1e3a8a;
+        margin-top: 2px;
+    }
+
+    .calc-result-right {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .calc-sparkle-star {
+        width: 18px;
+        height: 18px;
+        color: rgba(255, 255, 255, 0.9);
+        animation: calcSparkle 2.2s ease-in-out infinite;
+        flex-shrink: 0;
+    }
+
+    .calc-result-price {
+        font-size: 40px;
+        font-weight: 900;
+        color: #ffffff;
+        letter-spacing: -1.5px;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        text-shadow: 0 2px 10px rgba(29, 78, 216, 0.4);
+        line-height: 1;
+    }
+
+    .calc-price-bump {
+        animation: calcPriceBump 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ── CTA Button & Doodle Layout ── */
+    .calc-cta-block {
+        margin-top: 6px;
+        position: relative;
+    }
+
+    .calc-btn-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        position: relative;
+        width: 100%;
+    }
+
+    .calc-book-btn {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: linear-gradient(180deg, #fed74a 0%, #fbc21d 60%, #eab308 100%);
+        color: #0f172a;
+        font-size: 16.5px;
+        font-weight: 900;
+        padding: 16px 20px;
+        border-radius: var(--radius-full);
+        text-decoration: none;
+        transition: background 0.2s ease, transform 0.18s ease, box-shadow 0.2s ease;
+        box-shadow: 0 8px 24px -2px rgba(234, 179, 8, 0.5), 0 2px 6px rgba(0, 0, 0, 0.04);
+        letter-spacing: -0.1px;
+        white-space: nowrap;
+    }
+
+    .calc-book-btn:hover {
+        background: linear-gradient(180deg, #ffe066 0%, #fac829 60%, #e5aa00 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px -2px rgba(234, 179, 8, 0.65);
+        color: #0f172a;
+    }
+
+    .calc-book-btn:active {
+        transform: translateY(0);
+    }
+
+    /* Hand-drawn Doodle Note & Arrow to the right */
+    .calc-doodle-wrap {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+        pointer-events: none;
+    }
+
+    .calc-doodle-arrow {
+        width: 44px;
+        height: 22px;
+        flex-shrink: 0;
+    }
+
+    .calc-doodle-text {
+        font-family: 'Caveat', cursive, sans-serif;
+        font-size: 19px;
+        font-weight: 700;
+        color: #2563eb;
+        line-height: 1.05;
+        transform: rotate(3deg);
+        white-space: nowrap;
+    }
+
+    .calc-lock-note {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        margin-top: 14px;
+        font-size: 12.5px;
+        color: #475569;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    @media (max-width: 640px) {
+        .calc-widget {
+            padding: 28px 18px 20px;
+            border-radius: 32px;
+        }
+
+        .calc-3d-house {
+            width: 95px;
+            height: 95px;
+            top: -34px;
+            right: 8px;
+        }
+
+        .calc-widget-title {
+            font-size: 22px;
+        }
+
+        .calc-widget-subtitle {
+            max-width: 200px;
+        }
+
+        .calc-result-price {
+            font-size: 32px;
+        }
+
+        .calc-btn-row {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .calc-book-btn {
+            width: 100%;
+        }
+
+        .calc-doodle-wrap {
+            margin-top: 6px;
+            justify-content: center;
         }
     }
 
@@ -2799,6 +3422,196 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
         <!-- Right stacking cards -->
         <div class="packages-right reveal-stagger">
+
+            <!-- Instant Price Calculator (at top of right column) -->
+            <div class="calc-widget-wrap">
+            <div class="calc-widget"
+                 x-data="instantCalc()"
+                 x-init="calcInit()">
+
+                <!-- 3D Cute House Illustration -->
+                <img src="/static/images/calc_3d_house.png" alt="Clean Home" class="calc-3d-house" />
+
+                <!-- Header -->
+                <span class="calc-widget-eyebrow">Get your</span>
+                <h3 class="calc-widget-title">Instant Price Estimate</h3>
+                <p class="calc-widget-subtitle">Adjust your details and see your fixed price in real time.</p>
+
+                <!-- Room Counters Inner Card -->
+                <div class="calc-rows-card">
+                    <div class="calc-row">
+                        <div class="calc-row-icon"><i class="fa-solid fa-bed"></i></div>
+                        <div class="calc-row-info">
+                            <span class="calc-row-label">Bedrooms</span>
+                            <span class="calc-row-hint">How many bedrooms?</span>
+                        </div>
+                        <div class="calc-stepper">
+                            <button class="calc-stepper-btn" type="button"
+                                    :disabled="bedrooms <= 1" @click="decr('bedrooms')"
+                                    aria-label="Decrease bedrooms">−</button>
+                            <span class="calc-stepper-val" x-text="bedrooms"></span>
+                            <button class="calc-stepper-btn" type="button"
+                                    :disabled="bedrooms >= 8" @click="incr('bedrooms')"
+                                    aria-label="Increase bedrooms">+</button>
+                        </div>
+                    </div>
+
+                    <div class="calc-row">
+                        <div class="calc-row-icon"><i class="fa-solid fa-bath"></i></div>
+                        <div class="calc-row-info">
+                            <span class="calc-row-label">Bathrooms</span>
+                            <span class="calc-row-hint">How many bathrooms?</span>
+                        </div>
+                        <div class="calc-stepper">
+                            <button class="calc-stepper-btn" type="button"
+                                    :disabled="bathrooms <= 1" @click="decr('bathrooms')"
+                                    aria-label="Decrease bathrooms">−</button>
+                            <span class="calc-stepper-val" x-text="bathrooms"></span>
+                            <button class="calc-stepper-btn" type="button"
+                                    :disabled="bathrooms >= 6" @click="incr('bathrooms')"
+                                    aria-label="Increase bathrooms">+</button>
+                        </div>
+                    </div>
+
+                    <div class="calc-row">
+                        <div class="calc-row-icon"><i class="fa-solid fa-couch"></i></div>
+                        <div class="calc-row-info">
+                            <span class="calc-row-label">Living Areas</span>
+                            <span class="calc-row-hint">e.g. lounge, dining, family</span>
+                        </div>
+                        <div class="calc-stepper">
+                            <button class="calc-stepper-btn" type="button"
+                                    :disabled="living_areas <= 1" @click="decr('living_areas')"
+                                    aria-label="Decrease living areas">−</button>
+                            <span class="calc-stepper-val" x-text="living_areas"></span>
+                            <button class="calc-stepper-btn" type="button"
+                                    :disabled="living_areas >= 4" @click="incr('living_areas')"
+                                    aria-label="Increase living areas">+</button>
+                        </div>
+                    </div>
+
+                    <div class="calc-row">
+                        <div class="calc-row-icon"><i class="fa-solid fa-table-cells-large"></i></div>
+                        <div class="calc-row-info">
+                            <span class="calc-row-label">Balconies</span>
+                            <span class="calc-row-hint">How many balconies?</span>
+                        </div>
+                        <div class="calc-stepper">
+                            <button class="calc-stepper-btn" type="button"
+                                    :disabled="balconies <= 0" @click="decr('balconies')"
+                                    aria-label="Decrease balconies">−</button>
+                            <span class="calc-stepper-val" x-text="balconies"></span>
+                            <button class="calc-stepper-btn" type="button"
+                                    :disabled="balconies >= 4" @click="incr('balconies')"
+                                    aria-label="Increase balconies">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Optional Add-ons (Marquee Cards) -->
+                {% if addons %}
+                <div class="calc-addons-wrap">
+                    <div class="calc-addons-header">
+                        <div class="calc-addons-title">
+                            <div class="calc-addons-title-icon">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </div>
+                            Optional Add-ons
+                        </div>
+                        <span class="calc-addons-hint">Add extra services if needed</span>
+                    </div>
+
+                    <div class="calc-addons-marquee-wrapper">
+                        <div class="calc-addons-track" id="calc-addons-track">
+                            {% for pass in '123' %}
+                            {% for addon in addons %}
+                            <div class="calc-addon-card"
+                                 @click="handleCardClick($event, {{ addon.id }}, {{ addon.price }})"
+                                 :class="{ 'is-selected': isAddonSelected({{ addon.id }}) }"
+                                 role="button"
+                                 tabindex="0"
+                                 :aria-pressed="isAddonSelected({{ addon.id }})"
+                                 @keydown.space.prevent="toggleAddon({{ addon.id }}, {{ addon.price }})">
+                                <div class="calc-addon-card-icon">
+                                    {% if "balcon" in addon.slug or "balcon" in addon.name|lower %}
+                                        <i class="fa-solid fa-leaf"></i>
+                                    {% elif "garage" in addon.slug or "garage" in addon.name|lower %}
+                                        <i class="fa-solid fa-warehouse"></i>
+                                    {% elif "blind" in addon.slug or "blind" in addon.name|lower %}
+                                        <i class="fa-solid fa-bars"></i>
+                                    {% elif "carpet" in addon.slug or "carpet" in addon.name|lower %}
+                                        <i class="fa-solid fa-rug"></i>
+                                    {% elif "oven" in addon.slug or "oven" in addon.name|lower %}
+                                        <i class="fa-solid fa-kitchen-set"></i>
+                                    {% else %}
+                                        <i class="fa-solid fa-paintbrush"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="calc-addon-card-name">{{ addon.name }}</div>
+                                <div class="calc-addon-card-price">+${{ addon.price|floatformat:2 }}</div>
+                                <button type="button" class="calc-addon-card-btn" tabindex="-1">
+                                    <span x-show="!isAddonSelected({{ addon.id }})">+ Add</span>
+                                    <span x-show="isAddonSelected({{ addon.id }})" x-cloak>✓ Added</span>
+                                </button>
+                            </div>
+                            {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Price Result Banner -->
+                <div class="calc-result">
+                    <div class="calc-result-left">
+                        <div class="calc-result-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                <circle cx="7" cy="7" r="1.5" fill="#2563eb"></circle>
+                            </svg>
+                        </div>
+                        <div class="calc-result-info">
+                            <span class="calc-result-label">Estimated Price</span>
+                            <span class="calc-result-incgst">Inc. GST - No hidden fees</span>
+                        </div>
+                    </div>
+                    <div class="calc-result-right">
+                        <svg class="calc-sparkle-star" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
+                        </svg>
+                        <div class="calc-result-price"
+                             x-ref="priceDisplay"
+                             x-text="'$' + totalPrice">$244</div>
+                    </div>
+                </div>
+
+                <!-- CTA Button and Hand-drawn Doodle Row -->
+                <div class="calc-cta-block">
+                    <div class="calc-btn-row">
+                        <a :href="bookUrl" class="calc-book-btn">
+                            <span>Book Now for $<span x-text="totalPrice">244</span> &rarr;</span>
+                        </a>
+                        <div class="calc-doodle-wrap">
+                            <svg class="calc-doodle-arrow" viewBox="0 0 46 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M44 17 C 30 19, 14 15, 5 4" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round"/>
+                                <path d="M5 4 L 14 4 M 5 4 L 7 12" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="calc-doodle-text">Your clean<br>home awaits!</span>
+                        </div>
+                    </div>
+                    <div class="calc-lock-note">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="#2563eb">
+                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                        </svg>
+                        <span>Your price is locked in. No surprise fees.</span>
+                    </div>
+                </div>
+            </div>
+            </div><!-- /.calc-widget-wrap -->
+
             {% for package in packages %}
             <a href="{% url 'bookings:quick_book' package.slug %}"
                 class="package-card-stack {% if forloop.counter == 2 %}popular{% endif %}"
@@ -3851,6 +4664,211 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
             }
         };
+
+        // ════════════════════════════════════════
+        // Instant Price Calculator (Alpine.js)
+        // ════════════════════════════════════════
+        function instantCalc() {
+            // Pricing config injected by Django — no API call needed
+            const BASE_FEE        = {{ pricing_cfg.base_fee|default:"150" }};
+            const BEDROOM_PRICE   = {{ pricing_cfg.bedroom_price|default:"49" }};
+            const BATHROOM_PRICE  = {{ pricing_cfg.bathroom_price|default:"30" }};
+            const LIVING_PRICE    = {{ pricing_cfg.living_area_price|default:"15" }};
+            const BALCONY_PRICE   = {{ pricing_cfg.balcony_price|default:"10" }};
+            const BOOK_URL        = "{% url 'bookings:multi_step_booking' %}";
+
+            return {
+                bedrooms:      1,
+                bathrooms:     1,
+                living_areas:  1,
+                balconies:     0,
+                selectedAddons: {},
+
+                get totalPrice() {
+                    let base = BASE_FEE
+                        + (this.bedrooms     * BEDROOM_PRICE)
+                        + (this.bathrooms    * BATHROOM_PRICE)
+                        + (this.living_areas * LIVING_PRICE)
+                        + (this.balconies    * BALCONY_PRICE);
+
+                    let addonsTotal = 0;
+                    for (let id in this.selectedAddons) {
+                        addonsTotal += this.selectedAddons[id];
+                    }
+                    return Math.round(base + addonsTotal);
+                },
+
+                get bookUrl() {
+                    return `${BOOK_URL}?bedrooms=${this.bedrooms}&bathrooms=${this.bathrooms}&living=${this.living_areas}&balconies=${this.balconies}`;
+                },
+
+                incr(field) {
+                    this[field]++;
+                    this._bump();
+                },
+
+                decr(field) {
+                    const minimums = { bedrooms: 1, bathrooms: 1, living_areas: 1, balconies: 0 };
+                    if (this[field] > minimums[field]) {
+                        this[field]--;
+                        this._bump();
+                    }
+                },
+
+                toggleAddon(id, price) {
+                    const copy = Object.assign({}, this.selectedAddons);
+                    if (copy[id] !== undefined) {
+                        delete copy[id];
+                    } else {
+                        copy[id] = parseFloat(price);
+                    }
+                    this.selectedAddons = copy;
+                    this._bump();
+                },
+
+                isAddonSelected(id) {
+                    return this.selectedAddons[id] !== undefined;
+                },
+
+                handleCardClick(e, id, price) {
+                    if (window._addonsHasDragged) {
+                        window._addonsHasDragged = false;
+                        return;
+                    }
+                    this.toggleAddon(id, price);
+                },
+
+                _bump() {
+                    const el = this.$refs.priceDisplay;
+                    if (!el) return;
+                    el.classList.remove('calc-price-bump');
+                    void el.offsetWidth;  // reflow to restart animation
+                    el.classList.add('calc-price-bump');
+                },
+
+                calcInit() {
+                    // Pre-loaded and reactive
+                },
+            };
+        }
+
+        // ════════════════════════════════════════
+        // Add-ons Card Marquee & Manual Drag Scroll
+        // ════════════════════════════════════════
+        (function initAddonsMarquee() {
+            const track = document.getElementById('calc-addons-track');
+            if (!track) return;
+
+            let isDown = false;
+            let startX = 0;
+            let scrollLeftStart = 0;
+            let isPaused = false;
+            let resumeTimer = null;
+            let rafId = null;
+            const SPEED = 0.65; // pixels per frame
+
+            function getLoopWidth() {
+                return track.scrollWidth / 3;
+            }
+
+            function tick() {
+                if (!isPaused && !isDown) {
+                    track.scrollLeft += SPEED;
+                    const loopWidth = getLoopWidth();
+                    if (loopWidth > 0 && track.scrollLeft >= loopWidth * 2) {
+                        track.scrollLeft -= loopWidth;
+                    }
+                }
+                rafId = requestAnimationFrame(tick);
+            }
+
+            // Start loop after layout has settled
+            setTimeout(() => {
+                const loopWidth = getLoopWidth();
+                if (loopWidth > 0 && track.scrollLeft < loopWidth * 0.5) {
+                    track.scrollLeft = loopWidth * 0.5;
+                }
+                rafId = requestAnimationFrame(tick);
+            }, 300);
+
+            // Pause on hover
+            track.addEventListener('mouseenter', () => {
+                isPaused = true;
+            });
+
+            track.addEventListener('mouseleave', () => {
+                if (!isDown) {
+                    isPaused = false;
+                }
+            });
+
+            // Drag to scroll (mouse)
+            track.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isPaused = true;
+                window._addonsHasDragged = false;
+                track.classList.add('is-dragging');
+                startX = e.pageX - track.offsetLeft;
+                scrollLeftStart = track.scrollLeft;
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (isDown) {
+                    isDown = false;
+                    track.classList.remove('is-dragging');
+                    clearTimeout(resumeTimer);
+                    resumeTimer = setTimeout(() => {
+                        isPaused = false;
+                    }, 1500);
+                }
+            });
+
+            track.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                const x = e.pageX - track.offsetLeft;
+                const walk = (x - startX);
+                if (Math.abs(walk) > 4) {
+                    window._addonsHasDragged = true;
+                }
+                e.preventDefault();
+                track.scrollLeft = scrollLeftStart - walk;
+
+                // Loop wrap while dragging
+                const loopWidth = getLoopWidth();
+                if (loopWidth > 0) {
+                    if (track.scrollLeft >= loopWidth * 2) track.scrollLeft -= loopWidth;
+                    else if (track.scrollLeft <= loopWidth * 0.2) track.scrollLeft += loopWidth;
+                }
+            });
+
+            // Touch support for mobile swipe
+            track.addEventListener('touchstart', () => {
+                isPaused = true;
+                clearTimeout(resumeTimer);
+            }, { passive: true });
+
+            track.addEventListener('touchend', () => {
+                clearTimeout(resumeTimer);
+                resumeTimer = setTimeout(() => {
+                    isPaused = false;
+                }, 1800);
+            }, { passive: true });
+
+            // Wheel horizontal scroll
+            track.addEventListener('wheel', (e) => {
+                isPaused = true;
+                clearTimeout(resumeTimer);
+                resumeTimer = setTimeout(() => {
+                    isPaused = false;
+                }, 1500);
+
+                const loopWidth = getLoopWidth();
+                if (loopWidth > 0) {
+                    if (track.scrollLeft >= loopWidth * 2) track.scrollLeft -= loopWidth;
+                    else if (track.scrollLeft <= loopWidth * 0.2) track.scrollLeft += loopWidth;
+                }
+            }, { passive: true });
+        })();
 
     </script>
     {% endblock %}

@@ -42,7 +42,10 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- CSS Architecture -->
     <link rel="stylesheet" href="/static/css/main.css">
@@ -51,6 +54,270 @@
 </head>
 
 <body class="bg-body text-primary" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+
+    <!-- ══════════════════════════════════════════════
+         CLEANING PRELOADER — hidden once page loads
+         ══════════════════════════════════════════════ -->
+    <div id="site-preloader" aria-hidden="true">
+        <div class="preloader-inner">
+            <!-- Animated Spray Bottle + Bubbles Scene -->
+            <div class="preloader-scene">
+                <!-- Spray Bottle SVG -->
+                <svg class="preloader-bottle" viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- bottle body -->
+                    <rect x="20" y="50" width="44" height="62" rx="10" fill="url(#bottleGrad)"/>
+                    <!-- label -->
+                    <rect x="26" y="65" width="32" height="30" rx="5" fill="rgba(255,255,255,0.25)"/>
+                    <text x="42" y="77" text-anchor="middle" font-size="5" fill="white" font-family="Inter,sans-serif" font-weight="700">CLEAN</text>
+                    <text x="42" y="85" text-anchor="middle" font-size="4" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif">✦ PRO</text>
+                    <!-- nozzle -->
+                    <rect x="46" y="34" width="22" height="10" rx="5" fill="#FFC349"/>
+                    <!-- trigger -->
+                    <path d="M48 44 Q52 52 44 56 L36 56 Q36 50 42 48Z" fill="#FFC349"/>
+                    <!-- handle -->
+                    <rect x="20" y="38" width="12" height="26" rx="6" fill="#3B4EA6"/>
+                    <!-- cap -->
+                    <rect x="30" y="30" width="24" height="22" rx="6" fill="#4A5DC8"/>
+                    <!-- shine -->
+                    <ellipse cx="35" cy="60" rx="3" ry="8" fill="rgba(255,255,255,0.18)" transform="rotate(-10 35 60)"/>
+                    <defs>
+                        <linearGradient id="bottleGrad" x1="20" y1="50" x2="64" y2="112" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#525EA7"/>
+                            <stop offset="1" stop-color="#3B4EA6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <!-- Spray particles -->
+                <div class="spray-wrap">
+                    <div class="spray-dot s1"></div>
+                    <div class="spray-dot s2"></div>
+                    <div class="spray-dot s3"></div>
+                    <div class="spray-dot s4"></div>
+                    <div class="spray-dot s5"></div>
+                    <div class="spray-dot s6"></div>
+                </div>
+
+                <!-- Floating bubbles -->
+                <div class="preloader-bubble pb1"></div>
+                <div class="preloader-bubble pb2"></div>
+                <div class="preloader-bubble pb3"></div>
+                <div class="preloader-bubble pb4"></div>
+            </div>
+
+            <!-- Brand name -->
+            <div class="preloader-brand">MOVEOUT<span class="preloader-star">✦</span></div>
+            <div class="preloader-tagline">Preparing your sparkling experience…</div>
+
+            <!-- Progress bar -->
+            <div class="preloader-progress-wrap">
+                <div class="preloader-progress-bar" id="preloader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* ── Preloader Shell ── */
+        #site-preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg,
+                #0f1340 0%,
+                #1a2a6c 35%,
+                #1e3a7b 65%,
+                #0d1a4a 100%);
+            transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+                        visibility 0.65s;
+        }
+
+        #site-preloader.preloader-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .preloader-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            user-select: none;
+        }
+
+        /* ── Spray Bottle ── */
+        .preloader-bottle {
+            width: 90px;
+            height: 135px;
+            animation: bottleShake 1.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+            filter: drop-shadow(0 12px 28px rgba(73, 93, 199, 0.55));
+        }
+
+        @keyframes bottleShake {
+            0%, 100% { transform: rotate(-4deg) translateY(0px); }
+            20%       { transform: rotate(4deg)  translateY(-4px); }
+            40%       { transform: rotate(-3deg) translateY(0px); }
+            60%       { transform: rotate(3deg)  translateY(-3px); }
+            80%       { transform: rotate(-2deg) translateY(0px); }
+        }
+
+        /* ── Spray Particles ── */
+        .spray-wrap {
+            position: absolute;
+            top: 28px;
+            left: 50%;
+            transform: translateX(18px);
+            width: 60px;
+            height: 50px;
+        }
+
+        .spray-dot {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%,
+                rgba(255,255,255,0.95) 0%,
+                rgba(151,221,233,0.85) 40%,
+                rgba(73,176,228,0.6) 100%);
+            box-shadow: 0 0 6px rgba(151,221,233,0.7);
+            animation: sprayFly 1.8s ease-out infinite;
+            opacity: 0;
+        }
+
+        .s1 { width: 6px;  height: 6px;  animation-delay: 0s;    --tx: 30px; --ty: -8px; }
+        .s2 { width: 5px;  height: 5px;  animation-delay: 0.2s;  --tx: 38px; --ty: 5px; }
+        .s3 { width: 7px;  height: 7px;  animation-delay: 0.35s; --tx: 26px; --ty: 14px; }
+        .s4 { width: 4px;  height: 4px;  animation-delay: 0.5s;  --tx: 44px; --ty: -3px; }
+        .s5 { width: 5px;  height: 5px;  animation-delay: 0.65s; --tx: 34px; --ty: 20px; }
+        .s6 { width: 6px;  height: 6px;  animation-delay: 0.8s;  --tx: 48px; --ty: 10px; }
+
+        @keyframes sprayFly {
+            0%   { opacity: 0;   transform: translate(0, 0)     scale(0.4); }
+            15%  { opacity: 0.9; transform: translate(calc(var(--tx) * 0.3), calc(var(--ty) * 0.3)) scale(1); }
+            70%  { opacity: 0.7; transform: translate(var(--tx), var(--ty)) scale(0.9); }
+            100% { opacity: 0;   transform: translate(calc(var(--tx) * 1.4), calc(var(--ty) * 1.5)) scale(0.3); }
+        }
+
+        /* ── Floating Bubbles ── */
+        .preloader-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 33% 28%,
+                rgba(255,255,255,0.9) 0%,
+                rgba(151,221,233,0.6) 35%,
+                rgba(82,94,167,0.3) 75%,
+                rgba(255,195,73,0.25) 100%);
+            border: 1px solid rgba(255,255,255,0.7);
+            box-shadow: inset -1px -2px 4px rgba(82,94,167,0.3),
+                        inset 1px 1px 3px rgba(255,255,255,0.9),
+                        0 0 8px rgba(151,221,233,0.5);
+            animation: bubbleRise linear infinite;
+            pointer-events: none;
+        }
+
+        .pb1 { width: 18px; height: 18px; bottom: -20px; left: 15%;  animation-duration: 3.2s; animation-delay: 0s; }
+        .pb2 { width: 12px; height: 12px; bottom: -20px; left: 42%;  animation-duration: 2.6s; animation-delay: 0.6s; }
+        .pb3 { width: 22px; height: 22px; bottom: -20px; left: 65%;  animation-duration: 3.8s; animation-delay: 1.1s; }
+        .pb4 { width: 10px; height: 10px; bottom: -20px; left: 78%;  animation-duration: 2.9s; animation-delay: 1.7s; }
+
+        @keyframes bubbleRise {
+            0%   { transform: translate(0, 0)     scale(0.5); opacity: 0; }
+            10%  { opacity: 0.85; }
+            80%  { opacity: 0.6; }
+            100% { transform: translate(calc((var(--rand, 0.5) - 0.5) * 40px), -260px) scale(1); opacity: 0; }
+        }
+
+        /* ── Brand ── */
+        .preloader-brand {
+            font-family: var(--font-body, 'Inter', sans-serif);
+            font-size: 28px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 4px;
+            margin-top: 8px;
+        }
+
+        .preloader-star {
+            color: #FFC349;
+        }
+
+        .preloader-tagline {
+            font-family: var(--font-body, 'Inter', sans-serif);
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.5px;
+            animation: taglinePulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes taglinePulse {
+            0%, 100% { opacity: 0.6; }
+            50%       { opacity: 1; }
+        }
+
+        /* ── Progress Bar ── */
+        .preloader-progress-wrap {
+            width: 200px;
+            height: 4px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 99px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .preloader-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #525EA7 0%, #FFC349 100%);
+            border-radius: 99px;
+            transition: width 0.3s ease;
+        }
+
+        /* ── Body locked while loading ── */
+        body.preloading {
+            overflow: hidden;
+        }
+    </style>
+
+    <script>
+        // Lock scroll immediately
+        document.body.classList.add('preloading');
+
+        // Animate the progress bar to reflect real load state
+        (function () {
+            const bar = document.getElementById('preloader-bar');
+            let progress = 0;
+            let interval;
+
+            // Simulate steady progress up to 85%
+            interval = setInterval(() => {
+                const step = progress < 60 ? 3 : progress < 80 ? 1 : 0.4;
+                progress = Math.min(progress + step, 85);
+                if (bar) bar.style.width = progress + '%';
+            }, 100);
+
+            function hidePreloader() {
+                clearInterval(interval);
+                // Jump to 100%
+                if (bar) bar.style.width = '100%';
+                setTimeout(() => {
+                    const preloader = document.getElementById('site-preloader');
+                    if (preloader) preloader.classList.add('preloader-hidden');
+                    document.body.classList.remove('preloading');
+                }, 350);
+            }
+
+            if (document.readyState === 'complete') {
+                hidePreloader();
+            } else {
+                window.addEventListener('load', hidePreloader, { once: true });
+                // Safety fallback — hide after 5s no matter what
+                setTimeout(hidePreloader, 5000);
+            }
+        })();
+    </script>
 
     <style>
         .navbar-wrapper {
