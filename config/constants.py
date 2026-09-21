@@ -13,4 +13,4 @@ DEPOSIT_PERCENTAGE = 0
 
 # Support & Contact
 CONTACT_PHONE = "02 7988 9050"
-CONTACT_EMAIL = "hello@moveout.com.au"
+CONTACT_EMAIL = "hello@finalclean.com.au"

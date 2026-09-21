@@ -175,7 +175,7 @@ MAILERS = {
         'PASSWORD': os.getenv('EMAIL_HOST_PASSWORD', ''),
         'DEFAULT_FROM_EMAIL': os.getenv(
             'DEFAULT_FROM_EMAIL',
-            'MoveOut Cleaning <noreply@moveoutcleaning.com.au>'
+            'Final Clean <noreply@finalclean.com.au>'
         ),
     },
 }

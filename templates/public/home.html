@@ -39,6 +39,16 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         mask-repeat: no-repeat, no-repeat;
     }
 
+    /* Hero Slider Stage (visual comparison container) */
+    .hero-slider-stage {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+    }
+
     /* Image containers */
     .hero-before,
     .hero-after {
@@ -59,12 +69,20 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         clip-path: inset(0 50% 0 0);
     }
 
-    /* Dark overlay on BEFORE side only */
+    /* Dark overlay on BEFORE side */
     .hero-before::after {
         content: '';
         position: absolute;
         inset: 0;
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.35) 100%);
+    }
+
+    /* Subtle contrast tint on AFTER side for text balance */
+    .hero-after::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.42) 0%, rgba(15, 23, 42, 0.15) 100%);
     }
 
     /* Slider handle */
@@ -288,79 +306,194 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
     @media (max-width: 768px) {
         .hero-section {
-            min-height: 560px;
-            padding-top: 90px;
-            padding-bottom: 50px;
-            justify-content: center;
+            -webkit-mask-image: none !important;
+            mask-image: none !important;
+            min-height: auto;
+            padding-top: 70px;
+            padding-bottom: 24px;
+            margin-top: -80px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            overflow: visible;
+            background: #0b1329;
         }
 
+        /* Top Half: Dedicated ONLY to Before/After visual comparison with full image */
+        .hero-slider-stage {
+            position: relative;
+            width: 100%;
+            height: 46vh;
+            min-height: 280px;
+            max-height: 420px;
+            overflow: hidden;
+            border-bottom: 2px solid rgba(255, 195, 73, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            background: #0f172a;
+            user-select: none;
+            touch-action: pan-y;
+        }
+
+        .hero-before,
+        .hero-after {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slider-handle {
+            display: block !important;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2.5px;
+            background: var(--color-accent);
+            z-index: 10;
+            box-shadow: 0 0 12px 2px rgba(255, 195, 73, 0.9);
+            transform: translateX(-50%);
+        }
+
+        .slider-handle::before {
+            left: -20px;
+            width: 42px;
+        }
+
+        .drag-btn {
+            display: flex !important;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            font-size: 8px;
+            background: var(--color-accent);
+            color: var(--color-primary-dark);
+            border: 2.5px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.55), 0 0 14px rgba(255, 195, 73, 0.85);
+            cursor: ew-resize;
+            touch-action: none;
+        }
+
+        .drag-btn svg {
+            width: 16px;
+            height: 10px;
+        }
+
+        .side-label {
+            position: absolute;
+            top: 14px;
+            z-index: 15;
+            padding: 5px 12px;
+            font-size: 9.5px;
+            letter-spacing: 1px;
+            border-radius: var(--radius-full);
+            pointer-events: none;
+        }
+
+        .label-before {
+            left: 14px;
+        }
+
+        .label-after {
+            right: 14px;
+        }
+
+        /* Bottom Half: Content sits below the visual slider with zero overlap on image */
         .hero-copy {
+            position: relative;
+            z-index: 5;
             margin-left: 0;
-            padding: 0 var(--space-4);
+            padding: 24px 18px 20px;
             max-width: 100%;
+            width: 100%;
             text-align: center;
+            box-sizing: border-box;
+            background: transparent;
+            box-shadow: none;
+            border: none;
+            border-radius: 0;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
         }
 
         .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
+            gap: 8px;
             font-size: 11px;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+            font-weight: 750;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            background: rgba(255, 195, 73, 0.14);
+            border: 1px solid rgba(255, 195, 73, 0.3);
+            padding: 5px 14px;
+            border-radius: var(--radius-full);
+            color: var(--color-accent);
         }
 
         .hero-h1 {
-            font-size: clamp(2rem, 7.5vw, 2.9rem);
+            font-size: clamp(1.95rem, 7.2vw, 2.6rem);
             margin-bottom: 12px;
-            line-height: 1.15;
+            line-height: 1.16;
+            letter-spacing: -0.5px;
         }
 
         .hero-desc {
-            font-size: 14.5px;
-            line-height: 1.55;
+            font-size: 14px;
+            line-height: 1.52;
+            color: rgba(255, 255, 255, 0.92);
             margin-inline: auto;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
+            max-width: 440px;
         }
 
         .hero-ctas {
+            display: flex;
             flex-direction: column;
             width: 100%;
+            max-width: 380px;
+            margin: 0 auto 18px auto;
             gap: 10px;
-            margin-bottom: 20px;
         }
 
         .btn-primary-hero,
         .btn-call-hero {
             width: 100%;
             justify-content: center;
-            padding: 14px 20px;
+            padding: 13px 20px;
             font-size: 15px;
         }
 
+        .btn-call-hero {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1.5px solid rgba(255, 255, 255, 0.32);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
         .hero-stats {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 6px 10px;
             font-size: 12px;
-        }
-
-        .drag-btn {
-            width: 50px;
-            height: 50px;
-            font-size: 9px;
-        }
-
-        .side-label {
-            top: 14px;
-            font-size: 9.5px;
-            padding: 4px 10px;
-            letter-spacing: 1px;
-        }
-
-        .label-before {
-            left: 12px;
-        }
-
-        .label-after {
-            right: 12px;
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-full);
+            padding: 7px 14px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            max-width: 95%;
+            box-sizing: border-box;
         }
 
         .hero-trust-item {
@@ -775,14 +908,32 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     /* ════════════════════════════════════════ */
 
     @keyframes calcSparkle {
-        0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.85; }
-        50%      { transform: scale(1.25) rotate(15deg); opacity: 1; filter: drop-shadow(0 0 6px rgba(255,255,255,0.9)); }
+
+        0%,
+        100% {
+            transform: scale(1) rotate(0deg);
+            opacity: 0.85;
+        }
+
+        50% {
+            transform: scale(1.25) rotate(15deg);
+            opacity: 1;
+            filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
+        }
     }
 
     @keyframes calcPriceBump {
-        0%   { transform: scale(1); }
-        40%  { transform: scale(1.12); }
-        100% { transform: scale(1); }
+        0% {
+            transform: scale(1);
+        }
+
+        40% {
+            transform: scale(1.12);
+        }
+
+        100% {
+            transform: scale(1);
+        }
     }
 
     /* Outer Wrapper */
@@ -977,12 +1128,11 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         text-shadow: none;
     }
 
-    /* ── Add-ons Wrap ── */
+    /* ── Add-ons Section (Direct on Main Card, No Nested Box) ── */
     .calc-addons-wrap {
-        margin-bottom: 18px;
+        margin-bottom: 20px;
+        position: relative;
         width: 100%;
-        max-width: 100%;
-        min-width: 0;
         box-sizing: border-box;
     }
 
@@ -998,7 +1148,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         font-size: 15px;
         font-weight: 800;
         text-transform: none;
-        letter-spacing: 0;
+        letter-spacing: -0.2px;
         color: #1d4ed8;
         display: flex;
         align-items: center;
@@ -1007,8 +1157,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     .calc-addons-title-icon {
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
         border-radius: 50%;
         background: #2563eb;
         color: #fff;
@@ -1021,25 +1171,27 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     .calc-addons-hint {
-        font-size: 12.5px;
+        font-size: 12px;
         color: #64748b;
-        font-weight: 400;
+        font-weight: 500;
     }
 
-    /* Marquee & Scrollable Cards Container */
+    /* Marquee Spanning Edge-to-Edge with Curved Fades on Both Sides of Main Card */
     .calc-addons-marquee-wrapper {
         position: relative;
         overflow: hidden;
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
+        width: calc(100% + 56px);
+        margin: 0 -28px;
+        padding: 4px 0 6px;
         box-sizing: border-box;
-        margin: 0;
-        padding: 4px 2px 8px;
+        /* Curved edge masks on BOTH sides matching main card curves */
+        mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 12px, black 34px, black calc(100% - 34px), rgba(0, 0, 0, 0.25) calc(100% - 12px), transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 12px, black 34px, black calc(100% - 34px), rgba(0, 0, 0, 0.25) calc(100% - 12px), transparent 100%);
     }
 
     .calc-addons-track {
         display: flex;
+        align-items: center;
         gap: 10px;
         overflow-x: auto;
         overflow-y: hidden;
@@ -1049,10 +1201,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         -webkit-overflow-scrolling: touch;
         cursor: grab;
         user-select: none;
-        padding: 2px 2px 6px;
+        padding: 6px 28px 12px 28px;
         width: 100%;
-        max-width: 100%;
-        min-width: 0;
         box-sizing: border-box;
     }
 
@@ -1064,114 +1214,479 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         cursor: grabbing;
     }
 
-    /* Individual Add-on Card */
+    /* Add-on Square Box — Modern Expanded Square Interactive Card */
+    .calc-addon-pill,
     .calc-addon-card {
-        flex: 0 0 138px;
-        width: 138px;
-        background: #ffffff;
-        border: 1.5px solid #e2e8f0;
-        border-radius: 18px;
-        padding: 14px 10px 12px;
-        display: flex;
+        flex: 0 0 118px;
+        width: 118px;
+        height: 118px;
+        display: inline-flex;
         flex-direction: column;
         align-items: center;
-        text-align: center;
+        justify-content: space-between;
+        padding: 11px 8px 10px;
+        background: #ffffff;
+        border: 1.5px solid #dbeafe;
+        border-radius: 20px; /* Perfectly proportioned modern square box */
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.08);
         cursor: pointer;
-        transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
-        position: relative;
+        user-select: none;
+        -webkit-user-select: none;
+        text-align: center;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
         box-sizing: border-box;
+        position: relative;
     }
 
+    .calc-addon-pill:hover,
     .calc-addon-card:hover {
-        transform: translateY(-2px);
+        transform: translateY(-3px);
         border-color: #93c5fd;
-        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
+        background: #f0f7ff;
+        box-shadow: 0 8px 22px rgba(37, 99, 235, 0.15);
     }
 
+    .calc-addon-pill.is-selected,
     .calc-addon-card.is-selected {
-        border-color: #2563eb;
-        background: #f8faff;
-        box-shadow: 0 8px 22px rgba(37, 99, 235, 0.16);
+        background: linear-gradient(145deg, #2563eb 0%, #1d4ed8 100%);
+        border-color: #1d4ed8;
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+        transform: translateY(-2px);
     }
 
+    .calc-addon-pill-icon,
     .calc-addon-card-icon {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
         background: #eef2ff;
-        color: #4338ca;
+        color: #2563eb;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
-        margin-bottom: 8px;
-        transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+        font-size: 16px;
         flex-shrink: 0;
+        margin-bottom: 2px;
+        transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
 
+    .calc-addon-pill:hover .calc-addon-pill-icon,
+    .calc-addon-card:hover .calc-addon-card-icon {
+        transform: scale(1.08);
+    }
+
+    .calc-addon-pill.is-selected .calc-addon-pill-icon,
     .calc-addon-card.is-selected .calc-addon-card-icon {
-        background: #dbeafe;
-        color: #1d4ed8;
-        transform: scale(1.06);
+        background: rgba(255, 255, 255, 0.22);
+        color: #ffffff;
     }
 
+    .calc-addon-pill-name,
     .calc-addon-card-name {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 700;
         color: #1e293b;
         line-height: 1.25;
-        margin-bottom: 4px;
-        min-height: 32px;
+        margin: 2px 0;
+        max-width: 104px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        transition: color 0.18s ease;
+    }
+
+    .calc-addon-pill.is-selected .calc-addon-pill-name,
+    .calc-addon-card.is-selected .calc-addon-card-name {
+        color: #ffffff;
+    }
+
+    .calc-addon-pill-price,
+    .calc-addon-card-price {
+        font-size: 11.5px;
+        font-weight: 800;
+        color: #2563eb;
+        line-height: 1;
+        margin-bottom: 0;
+        padding: 3px 9px;
+        border-radius: 9999px;
+        background: #eff6ff;
+        white-space: nowrap;
+        transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    .calc-addon-pill.is-selected .calc-addon-pill-price,
+    .calc-addon-card.is-selected .calc-addon-card-price {
+        background: rgba(255, 255, 255, 0.22);
+        color: #ffffff;
+    }
+
+    .calc-addon-pill-action {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #f1f5f9;
+        color: #64748b;
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
-        word-break: break-word;
-    }
-
-    .calc-addon-card-price {
-        font-size: 14px;
+        font-size: 10px;
         font-weight: 800;
-        color: #312e81;
-        margin-bottom: 10px;
-        white-space: nowrap;
+        flex-shrink: 0;
+        line-height: 1;
+        transition: all 0.18s ease;
     }
 
-    .calc-addon-card.is-selected .calc-addon-card-price {
+    .calc-addon-pill:hover .calc-addon-pill-action {
+        background: #dbeafe;
         color: #1d4ed8;
     }
 
-    .calc-addon-card-btn {
-        width: 100%;
-        border: 1.5px solid #e2e8f0;
-        border-radius: var(--radius-full);
+    .calc-addon-pill.is-selected .calc-addon-pill-action {
         background: #ffffff;
-        color: #475569;
+        color: #2563eb;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+    }
+
+    /* ── Wizard Progress Bar & Header ── */
+    .calc-wizard-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .calc-step-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
         font-size: 12px;
-        font-weight: 700;
-        padding: 6px 10px;
-        cursor: pointer;
+        font-weight: 800;
+        color: #2563eb;
+        background: #eff6ff;
+        padding: 4px 10px;
+        border-radius: var(--radius-full);
+        border: 1px solid #dbeafe;
+    }
+
+    .calc-step-dots {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .calc-step-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #cbd5e1;
+        transition: all 0.25s ease;
+    }
+
+    .calc-step-dot.active {
+        width: 22px;
+        border-radius: 9999px;
+        background: #2563eb;
+    }
+
+    .calc-step-dot.completed {
+        background: #10b981;
+    }
+
+    .calc-progress-track {
+        width: 100%;
+        height: 4px;
+        background: #e2e8f0;
+        border-radius: 9999px;
+        overflow: hidden;
+        margin-bottom: 14px;
+    }
+
+    .calc-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #3b82f6, #2563eb);
+        transition: width 0.3s ease;
+    }
+
+    .calc-progress-bar.step-1 {
+        width: 33.33%;
+    }
+
+    .calc-progress-bar.step-2 {
+        width: 66.66%;
+    }
+
+    .calc-progress-bar.step-3 {
+        width: 100%;
+    }
+
+    .calc-step-panel {
+        animation: calcFadeIn 0.25s ease;
+    }
+
+    @keyframes calcFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(4px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ── Wizard Navigation Actions ── */
+    .calc-step-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 14px;
+    }
+
+    .calc-step-next-btn {
+        flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 4px;
-        transition: all 0.15s ease;
-        line-height: 1;
-        box-sizing: border-box;
+        gap: 8px;
+        background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 800;
+        padding: 14px 20px;
+        border-radius: var(--radius-full);
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);
     }
 
-    .calc-addon-card:hover .calc-addon-card-btn {
-        border-color: #93c5fd;
+    .calc-step-next-btn:hover {
+        background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    .calc-step-next-btn:active {
+        transform: translateY(0);
+    }
+
+    .calc-step-back-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        background: #ffffff;
+        color: #64748b;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 13px 18px;
+        border-radius: var(--radius-full);
+        border: 1.5px solid #e2e8f0;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        flex-shrink: 0;
+    }
+
+    .calc-step-back-btn:hover {
+        background: #f8fafc;
+        color: #0f172a;
+        border-color: #cbd5e1;
+    }
+
+    /* ── Step 2 Add-ons List ── */
+    .calc-addons-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .calc-addons-note {
+        font-size: 12px;
+        color: #64748b;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 4px;
+        padding: 0 2px;
+    }
+
+    .calc-addons-note i {
+        color: #10b981;
+    }
+
+    /* ── Step 3 Form Controls ── */
+    .calc-form-group {
+        margin-bottom: 12px;
+    }
+
+    .calc-form-label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12.5px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 6px;
+    }
+
+    .calc-form-label i {
         color: #2563eb;
+        font-size: 13px;
+    }
+
+    .calc-input-wrap {
+        position: relative;
+    }
+
+    .calc-form-input {
+        width: 100%;
+        padding: 11px 14px;
+        border-radius: 14px;
+        border: 1.5px solid #e2eeff;
+        background: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+        color: #0f172a;
+        box-sizing: border-box;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        outline: none;
+    }
+
+    .calc-form-input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .calc-form-input.has-error {
+        border-color: #ef4444;
+        background: #fef2f2;
+    }
+
+    .calc-form-error {
+        font-size: 11px;
+        font-weight: 600;
+        color: #ef4444;
+        margin-top: 4px;
+        padding-left: 2px;
+    }
+
+    /* 2 Specific Time Slots: 8-9AM and 3-4PM */
+    .calc-time-slots {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .calc-time-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 8px;
+        border-radius: 14px;
+        border: 1.5px solid #e2eeff;
+        background: #ffffff;
+        cursor: pointer;
+        transition: all 0.18s ease;
+        user-select: none;
+    }
+
+    .calc-time-btn:hover {
+        border-color: #93c5fd;
         background: #f0f7ff;
     }
 
-    .calc-addon-card.is-selected .calc-addon-card-btn {
-        background: #2563eb;
+    .calc-time-btn.is-active {
         border-color: #2563eb;
-        color: #ffffff;
-        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+        background: #eff6ff;
+        box-shadow: 0 3px 12px rgba(37, 99, 235, 0.15);
+    }
+
+    .calc-time-main {
+        font-size: 13.5px;
+        font-weight: 800;
+        color: #0f172a;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .calc-time-btn.is-active .calc-time-main {
+        color: #1d4ed8;
+    }
+
+    .calc-time-sub {
+        font-size: 11px;
+        font-weight: 600;
+        color: #64748b;
+        margin-top: 2px;
+    }
+
+    .calc-time-btn.is-active .calc-time-sub {
+        color: #2563eb;
+    }
+
+    /* ── Step 4 Summary & Reveal ── */
+    .calc-summary-card {
+        background: #ffffff;
+        border-radius: 20px;
+        border: 1.5px solid #e2eeff;
+        padding: 12px 16px;
+        margin-bottom: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .calc-summary-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+    }
+
+    .calc-summary-label {
+        font-weight: 600;
+        color: #64748b;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .calc-summary-label i {
+        color: #2563eb;
+        width: 14px;
+        text-align: center;
+    }
+
+    .calc-summary-val {
+        font-weight: 700;
+        color: #0f172a;
+        text-align: right;
+    }
+
+    .calc-edit-link {
+        font-size: 12px;
+        color: #2563eb;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 4px;
+        align-self: flex-end;
+    }
+
+    .calc-edit-link:hover {
+        text-decoration: underline;
     }
 
     /* ── Price Result Banner ── */
@@ -1342,6 +1857,190 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         text-align: center;
     }
 
+    /* ── Confirmation & Fast Callback Card (Step 3) ── */
+    .calc-confirm-card {
+        background: #ffffff;
+        border-radius: 20px;
+        border: 1.5px solid #d1fae5;
+        box-shadow: 0 6px 20px rgba(5, 150, 105, 0.08);
+        padding: 18px 20px;
+        margin-top: 6px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        animation: calcFadeIn 0.3s ease;
+    }
+
+    .calc-confirm-top {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .calc-confirm-icon-pulse-wrap {
+        position: relative;
+        width: 46px;
+        height: 46px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .calc-confirm-pulse-ring {
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        background: rgba(16, 185, 129, 0.22);
+        animation: calcRingPulse 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+    }
+
+    @keyframes calcRingPulse {
+        0% {
+            transform: scale(0.9);
+            opacity: 0.85;
+        }
+        50% {
+            transform: scale(1.25);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(0.9);
+            opacity: 0.85;
+        }
+    }
+
+    .calc-confirm-icon-box {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 19px;
+        box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    }
+
+    .calc-confirm-headings {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .calc-confirm-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #059669;
+        background: #ecfdf5;
+        border: 1px solid #a7f3d0;
+        padding: 2px 8px;
+        border-radius: var(--radius-full);
+        width: fit-content;
+    }
+
+    .calc-confirm-title {
+        font-size: 18px;
+        font-weight: 800;
+        color: #0f172a;
+        margin: 0;
+        letter-spacing: -0.3px;
+    }
+
+    .calc-confirm-message {
+        font-size: 13.5px;
+        line-height: 1.45;
+        color: #334155;
+        margin: 0;
+    }
+
+    .calc-confirm-message strong {
+        color: #059669;
+        font-weight: 800;
+    }
+
+    .calc-confirm-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .calc-confirm-info-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: #1e293b;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 6px 10px;
+    }
+
+    .calc-confirm-info-pill i {
+        color: #2563eb;
+        font-size: 12px;
+    }
+
+    .calc-confirm-info-pill strong {
+        color: #0f172a;
+    }
+
+    .calc-confirm-guarantee-row {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding-top: 6px;
+        border-top: 1px dashed #e2e8f0;
+    }
+
+    .calc-confirm-guarantee-item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #475569;
+    }
+
+    .calc-confirm-guarantee-item i {
+        color: #10b981;
+        font-size: 13px;
+    }
+
+    .calc-confirm-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 2px;
+    }
+
+    .calc-confirm-restart-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: transparent;
+        border: none;
+        color: #64748b;
+        font-size: 12.5px;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 4px 8px;
+        border-radius: 8px;
+        transition: color 0.15s ease, background 0.15s ease;
+    }
+
+    .calc-confirm-restart-btn:hover {
+        color: #2563eb;
+        background: #f1f5f9;
+    }
+
     @media (max-width: 640px) {
         .calc-widget {
             padding: 28px 18px 20px;
@@ -1380,10 +2079,35 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             margin-top: 6px;
             justify-content: center;
         }
+
+        .calc-addons-marquee-wrapper {
+            width: calc(100% + 36px);
+            margin: 0 -18px;
+        }
+
+        .calc-addons-track {
+            padding: 4px 18px 8px 18px;
+            gap: 10px;
+        }
+
+        .calc-addon-pill,
+        .calc-addon-card {
+            flex: 0 0 110px;
+            width: 110px;
+            height: 110px;
+            border-radius: 18px;
+            padding: 10px 6px 8px;
+        }
+
+        .calc-addon-pill-name,
+        .calc-addon-card-name {
+            max-width: 96px;
+            font-size: 11.5px;
+        }
     }
 
     /* ════════════════════════════════════════ */
-    /* Curved SVG Marquee Styles                */
+    /* Trust Highlights Strip                   */
     /* ════════════════════════════════════════ */
     .curve-marquee-svg {
         position: relative;
@@ -1406,12 +2130,89 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
+    /* Dedicated Mobile/Tablet Strip Ticker (Zero SVG squishing or overlap) */
+    .mobile-trust-strip {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        .curve-marquee-svg {
+            display: none !important;
+        }
+
+        .mobile-trust-strip {
+            display: flex;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(180deg, #0b1329 0%, #0f1c3d 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 12px 0;
+            z-index: 10;
+            margin-top: 0;
+            user-select: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .mobile-trust-track {
+            display: flex;
+            width: max-content;
+            animation: mobileTickerScroll 32s linear infinite;
+            will-change: transform;
+        }
+
+        .mobile-trust-group {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .trust-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12px;
+            font-weight: 750;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: #f8fafc;
+            padding: 0 10px;
+        }
+
+        .trust-icon {
+            color: var(--color-accent, #ffc349);
+            font-size: 13px;
+        }
+
+        .trust-icon-star {
+            color: #fbbf24;
+            font-size: 12px;
+        }
+
+        .trust-bullet {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            padding: 0 4px;
+        }
+
+        @keyframes mobileTickerScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    }
+
     /* ════════════════════════════════════════
-       Watch Us Work (Spotlight Effect)
+       Watch Us Work — 4 Scope Cards (Before/After + Checklist)
     ════════════════════════════════════════ */
     .watch-us-work {
         background: transparent;
-        padding: 90px 0;
+        padding: 85px 0 75px;
         position: relative;
         z-index: 5;
         width: 100%;
@@ -1419,46 +2220,91 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
     .watch-us-work-container {
         width: 100%;
-        max-width: 100%;
-        padding: 0 clamp(16px, 3.5vw, 56px);
+        max-width: 1340px;
+        padding: 0 clamp(16px, 3.5vw, 48px);
         margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .watch-us-header-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: var(--space-8);
+    }
+
+    .watch-us-pill-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: #93c5fd;
+        background: rgba(37, 99, 235, 0.18);
+        border: 1px solid rgba(147, 197, 253, 0.3);
+        padding: 4px 14px;
+        border-radius: var(--radius-full);
+        margin-bottom: 12px;
     }
 
     .watch-us-work-heading {
-        font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+        font-size: clamp(2.2rem, 4.2vw, 3.6rem);
         line-height: 1.1;
         font-weight: 900;
-        margin-bottom: var(--space-8);
+        margin-bottom: 12px;
         color: var(--color-white);
         letter-spacing: -1px;
     }
 
-    .spotlight-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: clamp(14px, 1.8vw, 24px);
-        width: 100%;
+    .watch-us-subtext {
+        font-size: clamp(14px, 1.4vw, 16px);
+        color: rgba(255, 255, 255, 0.85);
+        max-width: 640px;
+        line-height: 1.55;
+        margin: 0;
     }
 
-    .spotlight-card {
+    /* 4-Card Grid */
+    .scope-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: clamp(16px, 1.8vw, 24px);
+        width: 100%;
+        margin-bottom: var(--space-8);
+    }
+
+    /* Individual Scope Card — White card matching user screenshot */
+    .scope-card {
+        background: #ffffff;
+        border-radius: 20px;
+        border: 1.5px solid #e2e8f0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .scope-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+        border-color: #93c5fd;
+    }
+
+    /* Card Top Media — Before/After Visual */
+    .scope-card-media {
         position: relative;
         width: 100%;
         aspect-ratio: 16 / 11;
-        border-radius: 20px;
         overflow: hidden;
-        cursor: crosshair;
-        background: var(--color-grey-800);
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+        background: #0f172a;
+        user-select: none;
     }
 
-    .spotlight-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
-    }
-
-    .spotlight-dirty,
-    .spotlight-clean {
+    .scope-media-layer {
         position: absolute;
         inset: 0;
         background-size: cover;
@@ -1466,107 +2312,212 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         pointer-events: none;
     }
 
-    .spotlight-dirty {
+    .scope-layer-before {
         z-index: 1;
-        filter: brightness(0.8) contrast(1.1);
+        filter: brightness(0.85) contrast(1.1);
     }
 
-    .spotlight-clean {
+    .scope-layer-after {
         z-index: 2;
-        clip-path: circle(0px at 50% 50%);
-        transition: clip-path 0.1s ease-out;
-        filter: brightness(1.1);
+        filter: brightness(1.08) contrast(1.02);
+        clip-path: inset(0 50% 0 0);
+        animation: scopeAutoSweep 6.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+        will-change: clip-path;
     }
 
-    .spotlight-cursor-text {
+    .scope-slider-divider {
         position: absolute;
-        width: 60px;
-        height: 60px;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2.5px;
+        background: #ffffff;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 16px rgba(37, 99, 235, 0.6);
+        z-index: 4;
+        pointer-events: none;
+        animation: scopeAutoDivider 6.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+        will-change: left;
+    }
+
+    .scope-slider-handle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
-        background: rgba(95, 173, 211, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
+        background: #ffffff;
+        color: #1e40af;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--color-white);
-        font-size: 10px;
-        font-weight: 900;
-        letter-spacing: 1px;
-        pointer-events: none;
-        z-index: 10;
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8);
-        transition: opacity 0.3s, transform 0.3s;
+        font-size: 11px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+        border: 2px solid #2563eb;
     }
 
-    .spotlight-card:hover .spotlight-cursor-text {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+    /* Staggered sweep delays */
+    .scope-delay-1 .scope-layer-after, .scope-delay-1 .scope-slider-divider { animation-delay: 0s; }
+    .scope-delay-2 .scope-layer-after, .scope-delay-2 .scope-slider-divider { animation-delay: -1.6s; }
+    .scope-delay-3 .scope-layer-after, .scope-delay-3 .scope-slider-divider { animation-delay: -3.2s; }
+    .scope-delay-4 .scope-layer-after, .scope-delay-4 .scope-slider-divider { animation-delay: -4.8s; }
+
+    @keyframes scopeAutoSweep {
+        0%, 12% {
+            clip-path: inset(0 82% 0 0);
+        }
+        46%, 58% {
+            clip-path: inset(0 18% 0 0);
+        }
+        92%, 100% {
+            clip-path: inset(0 82% 0 0);
+        }
     }
 
-    .spotlight-caption {
+    @keyframes scopeAutoDivider {
+        0%, 12% {
+            left: 18%;
+        }
+        46%, 58% {
+            left: 82%;
+        }
+        92%, 100% {
+            left: 18%;
+        }
+    }
+
+    .scope-card-media:hover .scope-layer-after,
+    .scope-card-media:hover .scope-slider-divider {
+        animation-play-state: paused;
+    }
+
+    /* Pill Badges on media */
+    .scope-media-badge {
         position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: var(--space-8) var(--space-4) var(--space-4);
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
-        color: var(--color-white);
-        font-size: 13.5px;
-        font-weight: 600;
+        top: 10px;
+        padding: 3px 8px;
+        border-radius: var(--radius-full);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        z-index: 5;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    .scope-badge-before {
+        left: 10px;
+        background: rgba(15, 23, 42, 0.78);
+        color: #fca5a5;
+        border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    .scope-badge-before i {
+        color: #ef4444;
+        font-size: 6px;
+    }
+
+    .scope-badge-after {
+        right: 10px;
+        background: rgba(15, 23, 42, 0.78);
+        color: #86efac;
+        border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .scope-badge-after i {
+        color: #10b981;
+        font-size: 9px;
+    }
+
+    /* Images */
+    .scope-img-kitchen-before { background-image: url('/static/images/before_clean.png'); }
+    .scope-img-kitchen-after  { background-image: url('/static/images/after_clean.png'); }
+    .scope-img-bath-before    { background-image: url('/static/images/before_clean.png'); filter: sepia(0.25) hue-rotate(-20deg) brightness(0.85); }
+    .scope-img-bath-after     { background-image: url('/static/images/after_clean.png'); filter: brightness(1.1) contrast(1.05); }
+    .scope-img-living-before  { background-image: url('/static/images/before_clean.png'); filter: contrast(1.2) brightness(0.8); }
+    .scope-img-living-after   { background-image: url('/static/images/after_clean.png'); filter: brightness(1.12); }
+    .scope-img-window-before  { background-image: url('/static/images/dirty-window.png'); }
+    .scope-img-window-after   { background-image: url('/static/images/clean-window.png'); }
+
+    /* Card Bottom Body — Checklist matching user screenshot */
+    .scope-card-body {
+        padding: 22px 20px 24px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        background: #ffffff;
+    }
+
+    .scope-card-title {
+        font-size: 20px;
+        font-weight: 800;
+        color: #0f172a;
+        margin: 0 0 16px;
+        letter-spacing: -0.3px;
+    }
+
+    .scope-checklist {
+        list-style: none;
+        padding: 0;
         margin: 0;
-        z-index: 3;
-        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
     }
 
-    @media (max-width: 1024px) {
-        .spotlight-grid {
+    .scope-check-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 13.5px;
+        line-height: 1.45;
+        color: #334155;
+        font-weight: 500;
+    }
+
+    .scope-check-icon {
+        color: #1e293b;
+        font-size: 12px;
+        font-weight: 900;
+        margin-top: 3px;
+        flex-shrink: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 1180px) {
+        .scope-cards-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        .spotlight-card {
-            aspect-ratio: 4 / 3;
+            gap: 20px;
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 640px) {
         .watch-us-work {
-            padding: 50px 0;
+            padding: 55px 0 45px;
         }
 
-        .watch-us-work-heading {
-            font-size: clamp(1.8rem, 6.5vw, 2.5rem);
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .spotlight-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .spotlight-card {
-            aspect-ratio: 1 / 1;
-            border-radius: 14px;
-        }
-
-        .spotlight-caption {
-            font-size: 11px;
-            padding: 16px 8px 8px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .spotlight-grid {
+        .scope-cards-grid {
             grid-template-columns: 1fr;
-            gap: 14px;
+            gap: 18px;
         }
 
-        .spotlight-card {
-            aspect-ratio: 16 / 11;
+        .scope-card-body {
+            padding: 18px 16px 20px;
+        }
+
+        .scope-card-title {
+            font-size: 18px;
+            margin-bottom: 14px;
+        }
+
+        .scope-check-item {
+            font-size: 13px;
+            gap: 8px;
         }
     }
 
@@ -3264,23 +4215,30 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 <!-- ════════ HERO with Before/After Slider ════════ -->
 <section class="hero-section" id="hero-slider" aria-label="Before and after cleaning comparison">
 
-    <!-- BEFORE image -->
-    <div class="hero-before" role="img" aria-label="Apartment before cleaning"></div>
+    <!-- The Visual Before/After Slider Stage (Top half on mobile, full background on desktop) -->
+    <div class="hero-slider-stage" id="hero-slider-stage">
+        <!-- BEFORE image -->
+        <div class="hero-before" role="img" aria-label="Apartment before cleaning"></div>
 
-    <!-- AFTER image (clipped by JS) -->
-    <div class="hero-after" id="hero-after" role="img" aria-label="Apartment after professional cleaning"></div>
+        <!-- AFTER image (clipped by JS) -->
+        <div class="hero-after" id="hero-after" role="img" aria-label="Apartment after professional cleaning"></div>
 
-    <!-- Hero section top gradient for navbar readability -->
-    <div class="hero-top-gradient" aria-hidden="true"></div>
+        <!-- Hero section top gradient for navbar readability -->
+        <div class="hero-top-gradient" aria-hidden="true"></div>
 
-    <!-- Drag handle -->
-    <div class="slider-handle" id="slider-handle">
-        <div class="drag-btn" id="drag-btn" aria-label="Drag to compare">
-            <svg width="22" height="14" viewBox="0 0 22 14" fill="none">
-                <path d="M7 1L1 7l6 6M15 1l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
+        <!-- Drag handle -->
+        <div class="slider-handle" id="slider-handle">
+            <div class="drag-btn" id="drag-btn" aria-label="Drag to compare">
+                <svg width="22" height="14" viewBox="0 0 22 14" fill="none">
+                    <path d="M7 1L1 7l6 6M15 1l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
         </div>
+
+        <!-- Before & After Badges -->
+        <span class="side-label label-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
+        <span class="side-label label-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
     </div>
 
     <!-- Hero copy (bottom-left) -->
@@ -3325,7 +4283,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 </section>
 
 <!-- ════════════════════════════════════════ -->
-<!-- Curved SVG Marquee (Trust Highlights)    -->
+<!-- Curved SVG Marquee (Desktop)             -->
 <!-- ════════════════════════════════════════ -->
 <svg class="curve-marquee-svg reveal-zoom" viewBox="0 0 1440 100" preserveAspectRatio="none"
     aria-label="Trust and service highlights">
@@ -3337,11 +4295,50 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             100% Bond Back Guarantee - Free Re-Clean Until Your Agent Signs Off &#160; • &#160; $10M Public Liability
             &#160; • &#160; Police-Checked Cleaners &#160; • &#160; Fully Insured &#160; • &#160; Real Estate Agency
             Checklists &#160; • &#160; 4.9 Google Rating &#160; • &#160; 7 Days A Week &#160; • &#160;
-
             {% endfor %}
         </textPath>
     </text>
 </svg>
+
+<!-- ════════════════════════════════════════ -->
+<!-- Mobile/Tablet High-Performance Ticker     -->
+<!-- ════════════════════════════════════════ -->
+<div class="mobile-trust-strip" aria-label="Trust highlights">
+    <div class="mobile-trust-track">
+        <div class="mobile-trust-group">
+            <span class="trust-item"><i class="fa-solid fa-shield-halved trust-icon"></i> 100% Bond Back Guarantee - Free Re-Clean Until Your Agent Signs Off</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-building-shield trust-icon"></i> $10M Public Liability</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-user-check trust-icon"></i> Police-Checked Cleaners</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-file-shield trust-icon"></i> Fully Insured</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-clipboard-check trust-icon"></i> Real Estate Agency Checklists</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-star trust-icon-star"></i> 4.9 Google Rating</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-calendar-check trust-icon"></i> 7 Days A Week</span>
+            <span class="trust-bullet">•</span>
+        </div>
+        <div class="mobile-trust-group" aria-hidden="true">
+            <span class="trust-item"><i class="fa-solid fa-shield-halved trust-icon"></i> 100% Bond Back Guarantee - Free Re-Clean Until Your Agent Signs Off</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-building-shield trust-icon"></i> $10M Public Liability</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-user-check trust-icon"></i> Police-Checked Cleaners</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-file-shield trust-icon"></i> Fully Insured</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-clipboard-check trust-icon"></i> Real Estate Agency Checklists</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-star trust-icon-star"></i> 4.9 Google Rating</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-calendar-check trust-icon"></i> 7 Days A Week</span>
+            <span class="trust-bullet">•</span>
+        </div>
+    </div>
+</div>
 
 
 <!-- ════════ PACKAGES (Stacking Scroll) ════════ -->
@@ -3425,191 +4422,331 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
             <!-- Instant Price Calculator (at top of right column) -->
             <div class="calc-widget-wrap">
-            <div class="calc-widget"
-                 x-data="instantCalc()"
-                 x-init="calcInit()">
+                <div class="calc-widget" x-data="instantCalc()" x-init="calcInit()">
 
-                <!-- 3D Cute House Illustration -->
-                <img src="/static/images/calc_3d_house.png" alt="Clean Home" class="calc-3d-house" />
+                    <!-- 3D Cute House Illustration -->
+                    <img src="/static/images/calc_3d_house.png" alt="Clean Home" class="calc-3d-house" />
 
-                <!-- Header -->
-                <span class="calc-widget-eyebrow">Get your</span>
-                <h3 class="calc-widget-title">Instant Price Estimate</h3>
-                <p class="calc-widget-subtitle">Adjust your details and see your fixed price in real time.</p>
-
-                <!-- Room Counters Inner Card -->
-                <div class="calc-rows-card">
-                    <div class="calc-row">
-                        <div class="calc-row-icon"><i class="fa-solid fa-bed"></i></div>
-                        <div class="calc-row-info">
-                            <span class="calc-row-label">Bedrooms</span>
-                            <span class="calc-row-hint">How many bedrooms?</span>
-                        </div>
-                        <div class="calc-stepper">
-                            <button class="calc-stepper-btn" type="button"
-                                    :disabled="bedrooms <= 1" @click="decr('bedrooms')"
-                                    aria-label="Decrease bedrooms">−</button>
-                            <span class="calc-stepper-val" x-text="bedrooms"></span>
-                            <button class="calc-stepper-btn" type="button"
-                                    :disabled="bedrooms >= 8" @click="incr('bedrooms')"
-                                    aria-label="Increase bedrooms">+</button>
+                    <!-- Wizard Progress Header -->
+                    <div class="calc-wizard-top">
+                        <span class="calc-step-badge">
+                            <i class="fa-solid fa-list-check"></i>
+                            <span x-text="'Step ' + step + ' of 3'"></span>
+                        </span>
+                        <div class="calc-step-dots">
+                            <span class="calc-step-dot" :class="{ 'active': step === 1, 'completed': step > 1 }"></span>
+                            <span class="calc-step-dot" :class="{ 'active': step === 2, 'completed': step > 2 }"></span>
+                            <span class="calc-step-dot" :class="{ 'active': step === 3, 'completed': step === 3 }"></span>
                         </div>
                     </div>
-
-                    <div class="calc-row">
-                        <div class="calc-row-icon"><i class="fa-solid fa-bath"></i></div>
-                        <div class="calc-row-info">
-                            <span class="calc-row-label">Bathrooms</span>
-                            <span class="calc-row-hint">How many bathrooms?</span>
-                        </div>
-                        <div class="calc-stepper">
-                            <button class="calc-stepper-btn" type="button"
-                                    :disabled="bathrooms <= 1" @click="decr('bathrooms')"
-                                    aria-label="Decrease bathrooms">−</button>
-                            <span class="calc-stepper-val" x-text="bathrooms"></span>
-                            <button class="calc-stepper-btn" type="button"
-                                    :disabled="bathrooms >= 6" @click="incr('bathrooms')"
-                                    aria-label="Increase bathrooms">+</button>
-                        </div>
+                    <div class="calc-progress-track">
+                        <div class="calc-progress-bar" :class="'step-' + step"></div>
                     </div>
 
-                    <div class="calc-row">
-                        <div class="calc-row-icon"><i class="fa-solid fa-couch"></i></div>
-                        <div class="calc-row-info">
-                            <span class="calc-row-label">Living Areas</span>
-                            <span class="calc-row-hint">e.g. lounge, dining, family</span>
-                        </div>
-                        <div class="calc-stepper">
-                            <button class="calc-stepper-btn" type="button"
-                                    :disabled="living_areas <= 1" @click="decr('living_areas')"
-                                    aria-label="Decrease living areas">−</button>
-                            <span class="calc-stepper-val" x-text="living_areas"></span>
-                            <button class="calc-stepper-btn" type="button"
-                                    :disabled="living_areas >= 4" @click="incr('living_areas')"
-                                    aria-label="Increase living areas">+</button>
-                        </div>
-                    </div>
+                    <!-- ════════════════════════════════════════ -->
+                    <!-- Step 1 — Property & Add-Ons              -->
+                    <!-- ════════════════════════════════════════ -->
+                    <div class="calc-step-panel" x-show="step === 1" x-cloak>
+                        <span class="calc-widget-eyebrow">Get your</span>
+                        <h3 class="calc-widget-title">Step 1 — Property &amp; Add-ons</h3>
+                        <p class="calc-widget-subtitle">Select your room count and add any extra services you need.</p>
 
-                    <div class="calc-row">
-                        <div class="calc-row-icon"><i class="fa-solid fa-table-cells-large"></i></div>
-                        <div class="calc-row-info">
-                            <span class="calc-row-label">Balconies</span>
-                            <span class="calc-row-hint">How many balconies?</span>
-                        </div>
-                        <div class="calc-stepper">
-                            <button class="calc-stepper-btn" type="button"
-                                    :disabled="balconies <= 0" @click="decr('balconies')"
-                                    aria-label="Decrease balconies">−</button>
-                            <span class="calc-stepper-val" x-text="balconies"></span>
-                            <button class="calc-stepper-btn" type="button"
-                                    :disabled="balconies >= 4" @click="incr('balconies')"
-                                    aria-label="Increase balconies">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Optional Add-ons (Marquee Cards) -->
-                {% if addons %}
-                <div class="calc-addons-wrap">
-                    <div class="calc-addons-header">
-                        <div class="calc-addons-title">
-                            <div class="calc-addons-title-icon">
-                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round">
-                                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                </svg>
-                            </div>
-                            Optional Add-ons
-                        </div>
-                        <span class="calc-addons-hint">Add extra services if needed</span>
-                    </div>
-
-                    <div class="calc-addons-marquee-wrapper">
-                        <div class="calc-addons-track" id="calc-addons-track">
-                            {% for pass in '123' %}
-                            {% for addon in addons %}
-                            <div class="calc-addon-card"
-                                 @click="handleCardClick($event, {{ addon.id }}, {{ addon.price }})"
-                                 :class="{ 'is-selected': isAddonSelected({{ addon.id }}) }"
-                                 role="button"
-                                 tabindex="0"
-                                 :aria-pressed="isAddonSelected({{ addon.id }})"
-                                 @keydown.space.prevent="toggleAddon({{ addon.id }}, {{ addon.price }})">
-                                <div class="calc-addon-card-icon">
-                                    {% if "balcon" in addon.slug or "balcon" in addon.name|lower %}
-                                        <i class="fa-solid fa-leaf"></i>
-                                    {% elif "garage" in addon.slug or "garage" in addon.name|lower %}
-                                        <i class="fa-solid fa-warehouse"></i>
-                                    {% elif "blind" in addon.slug or "blind" in addon.name|lower %}
-                                        <i class="fa-solid fa-bars"></i>
-                                    {% elif "carpet" in addon.slug or "carpet" in addon.name|lower %}
-                                        <i class="fa-solid fa-rug"></i>
-                                    {% elif "oven" in addon.slug or "oven" in addon.name|lower %}
-                                        <i class="fa-solid fa-kitchen-set"></i>
-                                    {% else %}
-                                        <i class="fa-solid fa-paintbrush"></i>
-                                    {% endif %}
+                        <!-- Room Counters Inner Card (Bedrooms & Bathrooms) -->
+                        <div class="calc-rows-card">
+                            <div class="calc-row">
+                                <div class="calc-row-icon"><i class="fa-solid fa-bed"></i></div>
+                                <div class="calc-row-info">
+                                    <span class="calc-row-label">Bedrooms</span>
+                                    <span class="calc-row-hint">How many bedrooms?</span>
                                 </div>
-                                <div class="calc-addon-card-name">{{ addon.name }}</div>
-                                <div class="calc-addon-card-price">+${{ addon.price|floatformat:2 }}</div>
-                                <button type="button" class="calc-addon-card-btn" tabindex="-1">
-                                    <span x-show="!isAddonSelected({{ addon.id }})">+ Add</span>
-                                    <span x-show="isAddonSelected({{ addon.id }})" x-cloak>✓ Added</span>
+                                <div class="calc-stepper">
+                                    <button class="calc-stepper-btn" type="button" :disabled="bedrooms <= 1"
+                                        @click="decr('bedrooms')" aria-label="Decrease bedrooms">−</button>
+                                    <span class="calc-stepper-val" x-text="bedrooms"></span>
+                                    <button class="calc-stepper-btn" type="button" :disabled="bedrooms >= 8"
+                                        @click="incr('bedrooms')" aria-label="Increase bedrooms">+</button>
+                                </div>
+                            </div>
+
+                            <div class="calc-row">
+                                <div class="calc-row-icon"><i class="fa-solid fa-bath"></i></div>
+                                <div class="calc-row-info">
+                                    <span class="calc-row-label">Bathrooms</span>
+                                    <span class="calc-row-hint">How many bathrooms?</span>
+                                </div>
+                                <div class="calc-stepper">
+                                    <button class="calc-stepper-btn" type="button" :disabled="bathrooms <= 1"
+                                        @click="decr('bathrooms')" aria-label="Decrease bathrooms">−</button>
+                                    <span class="calc-stepper-val" x-text="bathrooms"></span>
+                                    <button class="calc-stepper-btn" type="button" :disabled="bathrooms >= 6"
+                                        @click="incr('bathrooms')" aria-label="Increase bathrooms">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Optional Add-ons (Marquee) in Step 1 -->
+                        {% if addons %}
+                        <div class="calc-addons-wrap">
+                            <div class="calc-addons-header">
+                                <div class="calc-addons-title">
+                                    <div class="calc-addons-title-icon">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white"
+                                            stroke-width="3.5" stroke-linecap="round">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>
+                                    </div>
+                                    Optional Add-ons
+                                </div>
+                                <span class="calc-addons-hint">Add extra services if needed</span>
+                            </div>
+
+                            <div class="calc-addons-marquee-wrapper">
+                                <div class="calc-addons-track" id="calc-addons-track">
+                                    {% for pass in '123' %}
+                                    {% for addon in addons %}
+                                    <div class="calc-addon-pill"
+                                        @click="toggleAddon({{ addon.id }}, {{ addon.price }}, '{{ addon.name|escapejs }}')"
+                                        :class="{ 'is-selected': isAddonSelected({{ addon.id }}) }" role="button"
+                                        tabindex="0" :aria-pressed="isAddonSelected({{ addon.id }})"
+                                        @keydown.space.prevent="toggleAddon({{ addon.id }}, {{ addon.price }}, '{{ addon.name|escapejs }}')">
+                                        <div class="calc-addon-pill-icon">
+                                            {% if "balcon" in addon.slug or "balcon" in addon.name|lower %}
+                                            <i class="fa-solid fa-leaf"></i>
+                                            {% elif "garage" in addon.slug or "garage" in addon.name|lower %}
+                                            <i class="fa-solid fa-warehouse"></i>
+                                            {% elif "blind" in addon.slug or "blind" in addon.name|lower %}
+                                            <i class="fa-solid fa-bars"></i>
+                                            {% elif "carpet" in addon.slug or "carpet" in addon.name|lower %}
+                                            <i class="fa-solid fa-rug"></i>
+                                            {% elif "oven" in addon.slug or "oven" in addon.name|lower %}
+                                            <i class="fa-solid fa-kitchen-set"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-sparkles"></i>
+                                            {% endif %}
+                                        </div>
+                                        <span class="calc-addon-pill-name">{{ addon.name }}</span>
+                                        <span class="calc-addon-pill-price">+${{ addon.price|floatformat:0 }}</span>
+                                        <span class="calc-addon-pill-action">
+                                            <span x-show="!isAddonSelected({{ addon.id }})">+</span>
+                                            <span x-show="isAddonSelected({{ addon.id }})" x-cloak>✓</span>
+                                        </span>
+                                    </div>
+                                    {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <div class="calc-step-actions">
+                            <button type="button" class="calc-step-next-btn" @click="goToStep(2)">
+                                <span>Next: Date &amp; Contact</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ════════════════════════════════════════ -->
+                    <!-- Step 2 — Timing & Contact Details        -->
+                    <!-- ════════════════════════════════════════ -->
+                    <div class="calc-step-panel" x-show="step === 2" x-cloak>
+                        <span class="calc-widget-eyebrow">Almost there</span>
+                        <h3 class="calc-widget-title">Step 2 — Timing &amp; Contact</h3>
+                        <p class="calc-widget-subtitle">Enter your preferred date, time slot, and contact details to reveal your price.</p>
+
+                        <!-- Preferred Date -->
+                        <div class="calc-form-group">
+                            <label class="calc-form-label" for="calc-pref-date">
+                                <i class="fa-regular fa-calendar-check"></i>
+                                <span>Preferred Date</span>
+                            </label>
+                            <input type="date" id="calc-pref-date" class="calc-form-input"
+                                x-model="preferredDate" :min="minDate" @change="clearError('date')"
+                                :class="{ 'has-error': errors.date }">
+                            <span class="calc-form-error" x-show="errors.date" x-text="errors.date" x-cloak></span>
+                        </div>
+
+                        <!-- Preferred Time (Only show 2 times: 8-9AM & 3-4PM) -->
+                        <div class="calc-form-group">
+                            <label class="calc-form-label">
+                                <i class="fa-regular fa-clock"></i>
+                                <span>Preferred Time Slot</span>
+                            </label>
+                            <div class="calc-time-slots">
+                                <div class="calc-time-btn" :class="{ 'is-active': preferredTime === '8-9AM' }"
+                                    @click="preferredTime = '8-9AM'" role="button" tabindex="0">
+                                    <span class="calc-time-main">
+                                        <i class="fa-solid fa-sun"></i> 8:00 - 9:00 AM
+                                    </span>
+                                    <span class="calc-time-sub">Morning Arrival</span>
+                                </div>
+                                <div class="calc-time-btn" :class="{ 'is-active': preferredTime === '3-4PM' }"
+                                    @click="preferredTime = '3-4PM'" role="button" tabindex="0">
+                                    <span class="calc-time-main">
+                                        <i class="fa-solid fa-cloud-sun"></i> 3:00 - 4:00 PM
+                                    </span>
+                                    <span class="calc-time-sub">Afternoon Arrival</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Details -->
+                        <div class="calc-form-group">
+                            <label class="calc-form-label" for="calc-first-name">
+                                <i class="fa-regular fa-user"></i>
+                                <span>First Name</span>
+                            </label>
+                            <input type="text" id="calc-first-name" class="calc-form-input"
+                                placeholder="e.g. Sarah" x-model="firstName" @input="clearError('firstName')"
+                                :class="{ 'has-error': errors.firstName }">
+                            <span class="calc-form-error" x-show="errors.firstName" x-text="errors.firstName" x-cloak></span>
+                        </div>
+
+                        <div class="calc-form-group">
+                            <label class="calc-form-label" for="calc-phone">
+                                <i class="fa-solid fa-phone"></i>
+                                <span>Mobile Number</span>
+                            </label>
+                            <input type="tel" id="calc-phone" class="calc-form-input"
+                                placeholder="e.g. 0412 345 678" x-model="phone" @input="clearError('phone')"
+                                :class="{ 'has-error': errors.phone }">
+                            <span class="calc-form-error" x-show="errors.phone" x-text="errors.phone" x-cloak></span>
+                        </div>
+
+                        <div class="calc-form-group">
+                            <label class="calc-form-label" for="calc-email">
+                                <i class="fa-regular fa-envelope"></i>
+                                <span>Email Address</span>
+                            </label>
+                            <input type="email" id="calc-email" class="calc-form-input"
+                                placeholder="e.g. sarah@example.com" x-model="email" @input="clearError('email')"
+                                :class="{ 'has-error': errors.email }">
+                            <span class="calc-form-error" x-show="errors.email" x-text="errors.email" x-cloak></span>
+                        </div>
+
+                        <div class="calc-step-actions">
+                            <button type="button" class="calc-step-back-btn" @click="goToStep(1)">
+                                <i class="fa-solid fa-arrow-left"></i>
+                                <span>Back</span>
+                            </button>
+                            <button type="button" class="calc-step-next-btn" @click="validateAndShowPrice()">
+                                <span>Show Price</span>
+                                <i class="fa-solid fa-bolt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ════════════════════════════════════════ -->
+                    <!-- Step 3 — Price Reveal                    -->
+                    <!-- ════════════════════════════════════════ -->
+                    <div class="calc-step-panel" x-show="step === 3" x-cloak>
+                        <span class="calc-widget-eyebrow">Fixed &amp; Transparent</span>
+                        <h3 class="calc-widget-title">Step 3 — Price Reveal</h3>
+                        <p class="calc-widget-subtitle">Your fixed price is locked in with a 100% Bond Back Guarantee.</p>
+
+                        <!-- Summary Details Card -->
+                        <div class="calc-summary-card">
+                            <div class="calc-summary-row">
+                                <span class="calc-summary-label"><i class="fa-solid fa-house"></i> Property Size</span>
+                                <span class="calc-summary-val" x-text="propertySummary"></span>
+                            </div>
+                            <div class="calc-summary-row">
+                                <span class="calc-summary-label"><i class="fa-regular fa-calendar"></i> Date &amp; Time</span>
+                                <span class="calc-summary-val" x-text="dateTimeSummary"></span>
+                            </div>
+                            <div class="calc-summary-row" x-show="selectedAddonsCount > 0">
+                                <span class="calc-summary-label"><i class="fa-solid fa-plus-circle"></i> Add-Ons</span>
+                                <span class="calc-summary-val" x-text="addonsSummary"></span>
+                            </div>
+                            <div class="calc-summary-row">
+                                <span class="calc-summary-label"><i class="fa-regular fa-user"></i> Contact</span>
+                                <span class="calc-summary-val" x-text="contactSummary"></span>
+                            </div>
+                            <a href="javascript:void(0)" class="calc-edit-link" @click="goToStep(1)">
+                                <i class="fa-solid fa-pen-to-square"></i> Edit Details
+                            </a>
+                        </div>
+
+                        <!-- Price Result Banner -->
+                        <div class="calc-result">
+                            <div class="calc-result-left">
+                                <div class="calc-result-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb"
+                                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z">
+                                        </path>
+                                        <circle cx="7" cy="7" r="1.5" fill="#2563eb"></circle>
+                                    </svg>
+                                </div>
+                                <div class="calc-result-info">
+                                    <span class="calc-result-label">Total Fixed Price</span>
+                                    <span class="calc-result-incgst">Inc. GST - No hidden fees</span>
+                                </div>
+                            </div>
+                            <div class="calc-result-right">
+                                <svg class="calc-sparkle-star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
+                                </svg>
+                                <div class="calc-result-price" x-ref="priceDisplay" x-text="'$' + totalPrice">$244</div>
+                            </div>
+                        </div>
+
+                        <!-- Thank You & 5-Minute Callback Confirmation -->
+                        <div class="calc-confirm-card">
+                            <div class="calc-confirm-top">
+                                <div class="calc-confirm-icon-pulse-wrap">
+                                    <div class="calc-confirm-pulse-ring"></div>
+                                    <div class="calc-confirm-icon-box">
+                                        <i class="fa-solid fa-phone-volume"></i>
+                                    </div>
+                                </div>
+                                <div class="calc-confirm-headings">
+                                    <span class="calc-confirm-pill">
+                                        <i class="fa-solid fa-bolt"></i> Fast Callback
+                                    </span>
+                                    <h4 class="calc-confirm-title">
+                                        Thank You<span x-show="firstName">, <span x-text="firstName"></span></span>!
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <p class="calc-confirm-message">
+                                Our team will call you in <strong>5 minutes</strong> to confirm your booking and secure your scheduled arrival slot.
+                            </p>
+
+                            <div class="calc-confirm-pills">
+                                <div class="calc-confirm-info-pill" x-show="phone">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>Calling: <strong x-text="phone"></strong></span>
+                                </div>
+                                <div class="calc-confirm-info-pill">
+                                    <i class="fa-regular fa-calendar-check"></i>
+                                    <span>Slot: <strong x-text="dateTimeSummary"></strong></span>
+                                </div>
+                            </div>
+
+                            <div class="calc-confirm-guarantee-row">
+                                <div class="calc-confirm-guarantee-item">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>100% Bond Back Guarantee</span>
+                                </div>
+                                <div class="calc-confirm-guarantee-item">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>Zero upfront deposit required</span>
+                                </div>
+                            </div>
+
+                            <div class="calc-confirm-actions">
+                                <button type="button" class="calc-confirm-restart-btn" @click="goToStep(1)">
+                                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                                    <span>Need to adjust? Edit details</span>
                                 </button>
                             </div>
-                            {% endfor %}
-                            {% endfor %}
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                <!-- Price Result Banner -->
-                <div class="calc-result">
-                    <div class="calc-result-left">
-                        <div class="calc-result-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                                <circle cx="7" cy="7" r="1.5" fill="#2563eb"></circle>
-                            </svg>
-                        </div>
-                        <div class="calc-result-info">
-                            <span class="calc-result-label">Estimated Price</span>
-                            <span class="calc-result-incgst">Inc. GST - No hidden fees</span>
-                        </div>
-                    </div>
-                    <div class="calc-result-right">
-                        <svg class="calc-sparkle-star" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
-                        </svg>
-                        <div class="calc-result-price"
-                             x-ref="priceDisplay"
-                             x-text="'$' + totalPrice">$244</div>
-                    </div>
-                </div>
-
-                <!-- CTA Button and Hand-drawn Doodle Row -->
-                <div class="calc-cta-block">
-                    <div class="calc-btn-row">
-                        <a :href="bookUrl" class="calc-book-btn">
-                            <span>Book Now for $<span x-text="totalPrice">244</span> &rarr;</span>
-                        </a>
-                        <div class="calc-doodle-wrap">
-                            <svg class="calc-doodle-arrow" viewBox="0 0 46 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M44 17 C 30 19, 14 15, 5 4" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round"/>
-                                <path d="M5 4 L 14 4 M 5 4 L 7 12" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span class="calc-doodle-text">Your clean<br>home awaits!</span>
-                        </div>
-                    </div>
-                    <div class="calc-lock-note">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="#2563eb">
-                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
-                        </svg>
-                        <span>Your price is locked in. No surprise fees.</span>
-                    </div>
-                </div>
-            </div>
             </div><!-- /.calc-widget-wrap -->
 
             {% for package in packages %}
@@ -3724,7 +4861,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="shampoo-bubble b-15"></div>
                     <div class="shampoo-bubble b-16"></div>
                 </div>
-                <span class="impact-badge">THE MOVEOUT DIFFERENCE</span>
+                <span class="impact-badge">THE FINAL CLEAN DIFFERENCE</span>
                 <h3 class="impact-title">Moving out is chaos.<br>We exist for the final inspection.</h3>
                 <div class="impact-detail-list">
                     <div class="impact-detail-item">
@@ -3847,59 +4984,231 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     </section>
 
     <!-- ════════════════════════════════════════ -->
-    <!-- Watch Us Work Section (Spotlight Reveal) -->
+    <!-- Watch Us Work (4 Scope Cards with Before/After & Checklist) -->
     <!-- ════════════════════════════════════════ -->
     <section class="watch-us-work">
         <div class="watch-us-work-container">
-            <h2 class="watch-us-work-heading reveal-fade-up">
-                Move your cursor<br>
-                <span class="gradient-text">watch us work.</span>
-            </h2>
+            <div class="watch-us-header-wrap reveal-fade-up">
+                <span class="watch-us-pill-badge">
+                    <i class="fa-solid fa-list-check"></i> What's Included &amp; Verified
+                </span>
+                <h2 class="watch-us-work-heading">
+                    Real results,<br>
+                    <span class="gradient-text">watch us work.</span>
+                </h2>
+                <p class="watch-us-subtext">
+                    Every end-of-lease clean covers 100% of your real estate checklist with proven before &amp; after standards.
+                </p>
+            </div>
 
-
-            <div class="spotlight-grid reveal-stagger">
-                <!-- Card 1 -->
-                <div class="spotlight-card" onmousemove="handleSpotlight(event, this)"
-                    onmouseleave="resetSpotlight(this)" ontouchstart="handleSpotlight(event, this)"
-                    ontouchmove="handleSpotlight(event, this)" ontouchend="resetSpotlight(this)">
-                    <div class="spotlight-dirty">
+            <!-- 4 Scope Cards Grid -->
+            <div class="scope-cards-grid reveal-stagger">
+                <!-- Card 1: Kitchen -->
+                <div class="scope-card">
+                    <div class="scope-card-media scope-delay-1">
+                        <div class="scope-media-layer scope-layer-before scope-img-kitchen-before"></div>
+                        <div class="scope-media-layer scope-layer-after scope-img-kitchen-after"></div>
+                        <div class="scope-slider-divider">
+                            <div class="scope-slider-handle">
+                                <i class="fa-solid fa-arrows-left-right"></i>
+                            </div>
+                        </div>
+                        <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
+                        <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
                     </div>
-                    <div class="spotlight-clean"></div>
-                    <div class="spotlight-cursor-text">CLEAN</div>
-                    <p class="spotlight-caption">Kitchen: Grease and grime removed completely.</p>
+                    <div class="scope-card-body">
+                        <h3 class="scope-card-title">Kitchen</h3>
+                        <ul class="scope-checklist">
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Dust and clean the exhaust fan and the extractor</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean and polish all the countertops</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Wipe the stovetop and rangehood</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Deep clean the oven inside and out, including oven racks and trays</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean all cupboards and drawers inside &amp; out</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean and polish tapware</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean and polish splashback and wall tiles</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean and wipe the sink and drain</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="spotlight-card" onmousemove="handleSpotlight(event, this)"
-                    onmouseleave="resetSpotlight(this)" ontouchstart="handleSpotlight(event, this)"
-                    ontouchmove="handleSpotlight(event, this)" ontouchend="resetSpotlight(this)">
-                    <div class="spotlight-dirty">
+                <!-- Card 2: Bathroom -->
+                <div class="scope-card">
+                    <div class="scope-card-media scope-delay-2">
+                        <div class="scope-media-layer scope-layer-before scope-img-bath-before"></div>
+                        <div class="scope-media-layer scope-layer-after scope-img-bath-after"></div>
+                        <div class="scope-slider-divider">
+                            <div class="scope-slider-handle">
+                                <i class="fa-solid fa-arrows-left-right"></i>
+                            </div>
+                        </div>
+                        <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
+                        <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
                     </div>
-                    <div class="spotlight-clean"></div>
-                    <div class="spotlight-cursor-text">CLEAN</div>
-                    <p class="spotlight-caption">Bathroom: Soap scum and mold eliminated.</p>
+                    <div class="scope-card-body">
+                        <h3 class="scope-card-title">Bathroom</h3>
+                        <ul class="scope-checklist">
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean and sanitize shower screens, tiles &amp; grout</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean, descale and disinfect toilet bowl &amp; seat</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Wipe down vanity, mirrors and medicine cabinets</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Scrub bathtub and clean basin tapware</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clear hair and debris from floor and drain grates</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean and sanitize exhaust fan &amp; air vent</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Polish all chrome fixtures &amp; glass surfaces</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Mop and disinfect all bathroom floor tiles</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="spotlight-card" onmousemove="handleSpotlight(event, this)"
-                    onmouseleave="resetSpotlight(this)" ontouchstart="handleSpotlight(event, this)"
-                    ontouchmove="handleSpotlight(event, this)" ontouchend="resetSpotlight(this)">
-                    <div class="spotlight-dirty">
+                <!-- Card 3: Living Area -->
+                <div class="scope-card">
+                    <div class="scope-card-media scope-delay-3">
+                        <div class="scope-media-layer scope-layer-before scope-img-living-before"></div>
+                        <div class="scope-media-layer scope-layer-after scope-img-living-after"></div>
+                        <div class="scope-slider-divider">
+                            <div class="scope-slider-handle">
+                                <i class="fa-solid fa-arrows-left-right"></i>
+                            </div>
+                        </div>
+                        <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
+                        <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
                     </div>
-                    <div class="spotlight-clean"></div>
-                    <div class="spotlight-cursor-text">CLEAN</div>
-                    <p class="spotlight-caption">Living Area: Carpets deep cleaned &amp; sanitized.</p>
+                    <div class="scope-card-body">
+                        <h3 class="scope-card-title">Living &amp; Dining</h3>
+                        <ul class="scope-checklist">
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Deep steam clean and sanitize carpets</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Wipe skirting boards, doors, and architraves</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean switchboards, power points &amp; door handles</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Dust ceiling fans, light fittings &amp; remove cobwebs</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean sliding door glass &amp; vacuum track debris</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Wipe down internal window sills and frames</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Spot clean wall marks, scuffs &amp; high-touch areas</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Vacuum and mop all hard flooring thoroughly</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Card 4 -->
-                <div class="spotlight-card" onmousemove="handleSpotlight(event, this)"
-                    onmouseleave="resetSpotlight(this)" ontouchstart="handleSpotlight(event, this)"
-                    ontouchmove="handleSpotlight(event, this)" ontouchend="resetSpotlight(this)">
-                    <div class="spotlight-dirty">
+                <!-- Card 4: Bedrooms -->
+                <div class="scope-card">
+                    <div class="scope-card-media scope-delay-4">
+                        <div class="scope-media-layer scope-layer-before scope-img-window-before"></div>
+                        <div class="scope-media-layer scope-layer-after scope-img-window-after"></div>
+                        <div class="scope-slider-divider">
+                            <div class="scope-slider-handle">
+                                <i class="fa-solid fa-arrows-left-right"></i>
+                            </div>
+                        </div>
+                        <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
+                        <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
                     </div>
-                    <div class="spotlight-clean"></div>
-                    <div class="spotlight-cursor-text">CLEAN</div>
-                    <p class="spotlight-caption">Bedroom: Dust, marks &amp; stains gone.</p>
+                    <div class="scope-card-body">
+                        <h3 class="scope-card-title">Bedrooms</h3>
+                        <ul class="scope-checklist">
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean wardrobe mirrors, shelves &amp; drawers inside/out</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Wipe down wardrobe tracks and hanging rails</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Dust and wipe skirting boards and architraves</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean internal window panes, frames and sills</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Dust ceiling cornices, corners and remove cobwebs</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Wipe light switches, power points and door handles</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Vacuum carpet edges or mop timber floorboards</span>
+                            </li>
+                            <li class="scope-check-item">
+                                <i class="fa-solid fa-check scope-check-icon"></i>
+                                <span>Clean air conditioning vent covers &amp; filters</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -3949,7 +5258,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     Why Choose Us
                 </div>
                 <h2 class="comparison-heading">
-                    What Makes <span>MoveOut</span> Different?
+                    What Makes <span>Final Clean</span> Different?
                 </h2>
                 <p class="comparison-subheading">We go beyond standard cleaning to deliver a spotless experience every
                     time.</p>
@@ -4007,7 +5316,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     </div>
                 </div>
 
-                <!-- Center Column (MoveOut) -->
+                <!-- Center Column (Final Clean) -->
                 <div class="comp-col comp-col-center">
                     <div class="comp-cell-th">
                         <span class="comp-badge-sm">
@@ -4017,7 +5326,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             </svg>
                             Our Service
                         </span>
-                        <div class="comp-center-title">MoveOut</div>
+                        <div class="comp-center-title">Final Clean</div>
                         <div class="comp-center-sub">Premium Cleaning Service</div>
                     </div>
                     <div class="comp-cell">
@@ -4167,7 +5476,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             <div class="review-stars">★★★★★</div>
                             <span class="review-verified-badge">Verified Google Review</span>
                         </div>
-                        <p class="review-text">"I tried cleaning it myself before giving up. MoveOut came in on a Sunday
+                        <p class="review-text">"I tried cleaning it myself before giving up. Final Clean came in on a Sunday
                             and made the place look brand new. Worth every cent."</p>
                     </div>
                 </div>
@@ -4542,8 +5851,11 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
         (function () {
             const section = document.getElementById('hero-slider');
+            const stage = document.getElementById('hero-slider-stage') || section;
             const after = document.getElementById('hero-after');
             const handle = document.getElementById('slider-handle');
+
+            if (!stage || !after || !handle) return;
 
             // Current rendered position and target position (both 0–100)
             let current = 10;   // start left
@@ -4579,30 +5891,71 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 if (!rafId) rafId = requestAnimationFrame(tick);
             };
 
-            // ── Auto-animate on load: sweep 10% → 80% → 50% ──
+            const updateTargetFromCoord = (clientX) => {
+                const rect = stage.getBoundingClientRect();
+                let pct = ((clientX - rect.left) / rect.width) * 100;
+                target = Math.min(Math.max(pct, 5), 95);
+                startLoop();
+            };
+
+            // ── Auto-animate on load: sweep 12% → 85% → 25% → 50% ──
             applyPos(current);
-            setTimeout(() => { target = 80; startLoop(); }, 600);
-            setTimeout(() => { target = 50; startLoop(); }, 2400);
+            setTimeout(() => { target = 85; startLoop(); }, 500);
+            setTimeout(() => { target = 25; startLoop(); }, 2200);
+            setTimeout(() => { target = 50; startLoop(); }, 3800);
 
             // ── Mouse follow: update target on mousemove ──
             section.addEventListener('mousemove', (e) => {
                 mouseInside = true;
                 if (!userInteracted) {
                     userInteracted = true;
-                    LERP = 0.07; // switch to snappy mode on first interaction
+                    LERP = 0.07; // snappy mode on interaction
                 }
-                const rect = section.getBoundingClientRect();
-                let pct = ((e.clientX - rect.left) / rect.width) * 100;
-                target = Math.min(Math.max(pct, 5), 95);
-                startLoop();
+                updateTargetFromCoord(e.clientX);
             });
 
-            // ── Touch follow ──
-            section.addEventListener('touchmove', (e) => {
-                const rect = section.getBoundingClientRect();
-                let pct = ((e.touches[0].clientX - rect.left) / rect.width) * 100;
-                target = Math.min(Math.max(pct, 5), 95);
-                startLoop();
+            // ── Touch follow: drag horizontally on stage without breaking vertical scroll ──
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let isDraggingSlider = false;
+
+            stage.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
+                    isDraggingSlider = false;
+                }
+            }, { passive: true });
+
+            stage.addEventListener('touchmove', (e) => {
+                if (e.touches.length !== 1) return;
+                const touchX = e.touches[0].clientX;
+                const touchY = e.touches[0].clientY;
+                const dx = Math.abs(touchX - touchStartX);
+                const dy = Math.abs(touchY - touchStartY);
+
+                // Detect horizontal drag intent vs vertical scroll
+                if (!isDraggingSlider && dx > 8 && dx > dy * 1.1) {
+                    isDraggingSlider = true;
+                    userInteracted = true;
+                    LERP = 0.22; // fast direct response on mobile drag
+                }
+
+                if (isDraggingSlider) {
+                    updateTargetFromCoord(touchX);
+                }
+            }, { passive: true });
+
+            stage.addEventListener('touchend', () => {
+                isDraggingSlider = false;
+            }, { passive: true });
+
+            // Direct touch on slider handle or drag button
+            handle.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1) {
+                    LERP = 0.25;
+                    updateTargetFromCoord(e.touches[0].clientX);
+                }
             }, { passive: true });
 
             // ── When mouse leaves, slowly glide back to 50% ──
@@ -4629,67 +5982,44 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             });
         })();
         // ════════════════════════════════════════
-        // Spotlight Reveal for "Watch Us Work"
+        // Watch Us Work — Automatic Before/After Magic Line
+        // (Driven via hardware-accelerated CSS marquee & keyframe sweep)
         // ════════════════════════════════════════
-        window.handleSpotlight = function (e, card) {
-            const rect = card.getBoundingClientRect();
-            const clientX = (e.touches && e.touches.length) ? e.touches[0].clientX : e.clientX;
-            const clientY = (e.touches && e.touches.length) ? e.touches[0].clientY : e.clientY;
-            if (clientX === undefined || clientY === undefined) return;
-            const x = clientX - rect.left;
-            const y = clientY - rect.top;
-
-            const cleanLayer = card.querySelector('.spotlight-clean');
-            const cursor = card.querySelector('.spotlight-cursor-text');
-
-            if (cleanLayer) {
-                cleanLayer.style.clipPath = `circle(110px at ${x}px ${y}px)`;
-            }
-            if (cursor) {
-                cursor.style.left = `${x}px`;
-                cursor.style.top = `${y}px`;
-                cursor.style.opacity = '1';
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            }
-        };
-
-        window.resetSpotlight = function (card) {
-            const cleanLayer = card.querySelector('.spotlight-clean');
-            const cursor = card.querySelector('.spotlight-cursor-text');
-            if (cleanLayer) {
-                cleanLayer.style.clipPath = `circle(0px at 50% 50%)`;
-            }
-            if (cursor) {
-                cursor.style.opacity = '0';
-                cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
-            }
-        };
 
         // ════════════════════════════════════════
         // Instant Price Calculator (Alpine.js)
         // ════════════════════════════════════════
         function instantCalc() {
             // Pricing config injected by Django — no API call needed
-            const BASE_FEE        = {{ pricing_cfg.base_fee|default:"150" }};
-            const BEDROOM_PRICE   = {{ pricing_cfg.bedroom_price|default:"49" }};
-            const BATHROOM_PRICE  = {{ pricing_cfg.bathroom_price|default:"30" }};
-            const LIVING_PRICE    = {{ pricing_cfg.living_area_price|default:"15" }};
-            const BALCONY_PRICE   = {{ pricing_cfg.balcony_price|default:"10" }};
-            const BOOK_URL        = "{% url 'bookings:multi_step_booking' %}";
+            const BASE_FEE = {{ pricing_cfg.base_fee|default:"150" }};
+            const BEDROOM_PRICE = {{ pricing_cfg.bedroom_price|default:"49" }};
+            const BATHROOM_PRICE = {{ pricing_cfg.bathroom_price|default:"30" }};
+            const LIVING_PRICE = {{ pricing_cfg.living_area_price|default:"15" }};
+            const BALCONY_PRICE = {{ pricing_cfg.balcony_price|default:"10" }};
+            const BOOK_URL = "{% url 'bookings:multi_step_booking' %}";
 
             return {
-                bedrooms:      1,
-                bathrooms:     1,
-                living_areas:  1,
-                balconies:     0,
+                step: 1,
+                bedrooms: 1,
+                bathrooms: 1,
+                living_areas: 1,
+                balconies: 0,
                 selectedAddons: {},
+                selectedAddonNames: {},
+                preferredDate: '',
+                preferredTime: '8-9AM',
+                firstName: '',
+                phone: '',
+                email: '',
+                minDate: '',
+                errors: {},
 
                 get totalPrice() {
                     let base = BASE_FEE
-                        + (this.bedrooms     * BEDROOM_PRICE)
-                        + (this.bathrooms    * BATHROOM_PRICE)
+                        + (this.bedrooms * BEDROOM_PRICE)
+                        + (this.bathrooms * BATHROOM_PRICE)
                         + (this.living_areas * LIVING_PRICE)
-                        + (this.balconies    * BALCONY_PRICE);
+                        + (this.balconies * BALCONY_PRICE);
 
                     let addonsTotal = 0;
                     for (let id in this.selectedAddons) {
@@ -4698,8 +6028,80 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     return Math.round(base + addonsTotal);
                 },
 
+                get propertySummary() {
+                    return `${this.bedrooms} Bed • ${this.bathrooms} Bath`;
+                },
+
+                get dateTimeSummary() {
+                    let d = this.preferredDate || 'Tomorrow';
+                    let t = this.preferredTime === '8-9AM' ? '8:00 - 9:00 AM' : '3:00 - 4:00 PM';
+                    return `${d} (${t})`;
+                },
+
+                get selectedAddonsCount() {
+                    return Object.keys(this.selectedAddons).length;
+                },
+
+                get addonsSummary() {
+                    let names = Object.values(this.selectedAddonNames);
+                    if (names.length === 0) return 'None';
+                    if (names.length <= 2) return names.join(', ');
+                    return `${names.slice(0, 2).join(', ')} +${names.length - 2} more`;
+                },
+
+                get contactSummary() {
+                    let parts = [];
+                    if (this.firstName) parts.push(this.firstName);
+                    if (this.phone) parts.push(this.phone);
+                    return parts.join(' • ') || 'Contact provided';
+                },
+
                 get bookUrl() {
-                    return `${BOOK_URL}?bedrooms=${this.bedrooms}&bathrooms=${this.bathrooms}&living=${this.living_areas}&balconies=${this.balconies}`;
+                    let params = new URLSearchParams();
+                    params.set('bedrooms', this.bedrooms);
+                    params.set('bathrooms', this.bathrooms);
+                    params.set('living', this.living_areas);
+                    params.set('balconies', this.balconies);
+                    if (this.preferredDate) params.set('date', this.preferredDate);
+                    if (this.preferredTime) params.set('time', this.preferredTime);
+                    if (this.firstName) params.set('name', this.firstName);
+                    if (this.phone) params.set('phone', this.phone);
+                    if (this.email) params.set('email', this.email);
+                    let addonIds = Object.keys(this.selectedAddons).join(',');
+                    if (addonIds) params.set('addons', addonIds);
+                    return `${BOOK_URL}?${params.toString()}`;
+                },
+
+                goToStep(s) {
+                    if (s < 1 || s > 3) return;
+                    this.step = s;
+                },
+
+                clearError(field) {
+                    if (this.errors[field]) {
+                        delete this.errors[field];
+                    }
+                },
+
+                validateAndShowPrice() {
+                    this.errors = {};
+                    if (!this.preferredDate) {
+                        this.errors.date = 'Please choose your preferred date.';
+                    }
+                    if (!this.firstName || this.firstName.trim().length === 0) {
+                        this.errors.firstName = 'Please enter your first name.';
+                    }
+                    if (!this.phone || this.phone.trim().length < 8) {
+                        this.errors.phone = 'Please enter a valid mobile number.';
+                    }
+                    if (!this.email || !this.email.includes('@')) {
+                        this.errors.email = 'Please enter a valid email address.';
+                    }
+
+                    if (Object.keys(this.errors).length === 0) {
+                        this.step = 3;
+                        this._bump();
+                    }
                 },
 
                 incr(field) {
@@ -4715,27 +6117,23 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     }
                 },
 
-                toggleAddon(id, price) {
+                toggleAddon(id, price, name) {
                     const copy = Object.assign({}, this.selectedAddons);
+                    const nameCopy = Object.assign({}, this.selectedAddonNames);
                     if (copy[id] !== undefined) {
                         delete copy[id];
+                        delete nameCopy[id];
                     } else {
                         copy[id] = parseFloat(price);
+                        nameCopy[id] = name || 'Add-on';
                     }
                     this.selectedAddons = copy;
+                    this.selectedAddonNames = nameCopy;
                     this._bump();
                 },
 
                 isAddonSelected(id) {
                     return this.selectedAddons[id] !== undefined;
-                },
-
-                handleCardClick(e, id, price) {
-                    if (window._addonsHasDragged) {
-                        window._addonsHasDragged = false;
-                        return;
-                    }
-                    this.toggleAddon(id, price);
                 },
 
                 _bump() {
@@ -4747,7 +6145,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 },
 
                 calcInit() {
-                    // Pre-loaded and reactive
+                    const tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    const yyyy = tomorrow.getFullYear();
+                    const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+                    const dd = String(tomorrow.getDate()).padStart(2, '0');
+                    this.minDate = `${yyyy}-${mm}-${dd}`;
+                    this.preferredDate = this.minDate;
                 },
             };
         }

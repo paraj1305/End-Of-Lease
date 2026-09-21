@@ -1046,6 +1046,19 @@
                     else if (pkg.includes('10-bhk')) { this.bedrooms = 10; this.bathrooms = 5; }
                     else if (pkg.includes('villa')) { this.bedrooms = 4; this.bathrooms = 3; this.livingAreas = 2; this.balconies = 1; }
                 }
+
+                // Pre-fill customer details & date from URL query parameters
+                const pName = params.get('name') || params.get('customer_name');
+                if (pName) this.customerName = pName;
+
+                const pPhone = params.get('phone') || params.get('customer_phone');
+                if (pPhone) this.customerPhone = pPhone;
+
+                const pEmail = params.get('email') || params.get('customer_email');
+                if (pEmail) this.customerEmail = pEmail;
+
+                const pDate = params.get('date') || params.get('booking_date');
+                if (pDate) this.bookingDate = pDate;
             },
 
             toggleAddon(id) {

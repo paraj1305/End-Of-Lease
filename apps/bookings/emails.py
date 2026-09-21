@@ -17,7 +17,7 @@ def _get_from_email():
     default_mailer = mailers.get('default', {})
     return default_mailer.get(
         'DEFAULT_FROM_EMAIL',
-        getattr(settings, 'DEFAULT_FROM_EMAIL', 'MoveOut Cleaning <noreply@moveoutcleaning.com.au>')
+        getattr(settings, 'DEFAULT_FROM_EMAIL', 'Final Clean <noreply@finalclean.com.au>')
     )
 
 
@@ -45,7 +45,7 @@ def _format_address(booking):
 
 def _send_customer_confirmation(booking):
     """Email sent to the customer after their booking is confirmed."""
-    subject = f"✅ Booking Confirmed — {booking.reference} | MoveOut Cleaning"
+    subject = f"✅ Booking Confirmed — {booking.reference} | Final Clean"
 
     body = f"""Hi {booking.customer_name},
 
@@ -70,8 +70,8 @@ What happens next?
 
 If you have questions, reply to this email or call us on {constants.CONTACT_PHONE}.
 
-Thanks for choosing MoveOut Cleaning!
-— The MoveOut Team
+Thanks for choosing Final Clean!
+— The Final Clean Team
 """
 
     send_mail(
