@@ -172,7 +172,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         position: relative;
         z-index: 20;
         padding: 0 var(--space-6);
-        max-width: 640px;
+        max-width: 780px;
         margin: 0;
         margin-left: 6vw;
         text-align: left;
@@ -279,22 +279,38 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     .hero-stats {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: flex-start;
-        gap: var(--space-3);
-        flex-wrap: wrap;
+        gap: clamp(8px, 1vw, 14px);
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        width: fit-content;
+        max-width: 100%;
+    }
+
+    .hero-stat-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
     .stat-stars {
         color: #FFD700;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         letter-spacing: 1px;
+        line-height: 1;
+        display: inline-block;
+        flex-shrink: 0;
     }
 
     .stat-text {
         font-size: var(--text-sm);
         color: rgba(255, 255, 255, 0.95);
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
     .stat-divider {
@@ -302,6 +318,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         height: 4px;
         background: rgba(255, 255, 255, 0.5);
         border-radius: 50%;
+        flex-shrink: 0;
     }
 
     @media (max-width: 768px) {
@@ -480,20 +497,45 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
         .hero-stats {
             display: inline-flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            white-space: nowrap;
             align-items: center;
             justify-content: center;
-            gap: 6px 10px;
-            font-size: 12px;
-            background: rgba(15, 23, 42, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            gap: 6px 8px;
+            font-size: clamp(10.5px, 2.7vw, 12px);
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: var(--radius-full);
-            padding: 7px 14px;
+            padding: 6px 12px;
             margin: 0 auto;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            max-width: 95%;
+            max-width: 100%;
             box-sizing: border-box;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .hero-stats::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hero-stats .hero-stat-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .hero-stats .stat-stars {
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-stats .stat-text {
+            font-size: inherit;
+            white-space: nowrap;
         }
 
         .hero-trust-item {
@@ -937,7 +979,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     /* Outer Wrapper */
-    .calc-widget-wrap {
+    .calc-widget-wrap,
+    #calc-widget {
         position: relative;
         margin-top: 14px;
         margin-bottom: 24px;
@@ -946,6 +989,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         max-width: 550px;
         min-width: 0;
         box-sizing: border-box;
+        scroll-margin-top: 110px;
     }
 
     /* Main Liquid Glass White Card */
@@ -2014,6 +2058,11 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     @media (max-width: 640px) {
+        .calc-widget-wrap,
+        #calc-widget {
+            scroll-margin-top: 85px;
+        }
+
         .calc-widget {
             padding: 28px 18px 20px;
             border-radius: 32px;
@@ -3714,22 +3763,44 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         font-size: 12.5px;
     }
 
+    /* ════════════════════════════════════════ */
+    /* Reviews Section Styles — Single-Line Marquee */
+    /* ════════════════════════════════════════ */
+    .reviews-section {
+        padding: 85px 0 75px;
+        background: transparent;
+        overflow: hidden;
+        position: relative;
+        z-index: 5;
+    }
+
+    .reviews-header-container {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 36px;
+        padding: 0 var(--space-6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .reviews-heading {
-        font-size: clamp(2rem, 4vw, 2.85rem);
+        font-size: clamp(2rem, 3.8vw, 3rem);
         font-weight: 900;
-        color: var(--color-primary-dark);
+        color: var(--color-white);
         margin-bottom: 12px;
-        letter-spacing: -0.8px;
-        line-height: 1.15;
+        letter-spacing: -0.6px;
+        line-height: 1.18;
         text-align: center;
     }
 
     .reviews-subheading {
-        font-size: 16px;
-        color: var(--color-text-muted);
+        font-size: 15.5px;
+        color: rgba(255, 255, 255, 0.9);
         line-height: 1.6;
         margin: 0;
         text-align: center;
+        max-width: 640px;
     }
 
     .reviews-marquee-container {
@@ -3738,88 +3809,137 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         display: flex;
         align-items: center;
         white-space: nowrap;
+        position: relative;
+        mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+        padding: 14px 0 20px;
     }
 
     .reviews-marquee-track {
         display: flex;
-        gap: var(--space-6);
-        animation: marquee-scroll 40s linear infinite;
+        gap: 20px;
+        animation: reviewsMarqueeScroll 42s linear infinite;
         align-items: center;
         width: max-content;
-        padding-left: var(--space-6);
+        will-change: transform;
+    }
+
+    .reviews-marquee-track:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes reviewsMarqueeScroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
     }
 
     .review-card {
         background: var(--color-primary-lighter);
-        border: none;
+        border: 1px solid rgba(255, 255, 255, 0.4);
         border-radius: 80px;
-        padding: 12px 24px 12px 12px;
-        display: flex;
+        padding: 10px 24px 10px 10px;
+        display: inline-flex;
         align-items: center;
-        gap: 16px;
-        min-width: 420px;
-        max-width: 480px;
+        gap: 14px;
+        min-width: 440px;
+        max-width: 500px;
         white-space: normal;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        flex-shrink: 0;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .review-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.14);
     }
 
     .review-image {
-        width: 70px;
-        height: 70px;
+        width: 58px;
+        height: 58px;
         border-radius: 50%;
         object-fit: cover;
         background: var(--color-white);
         flex-shrink: 0;
-        border: 3px solid rgba(255, 255, 255, 0.4);
+        border: 2.5px solid #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     }
 
     .review-content {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        gap: 4px;
     }
 
     .review-name-row {
         display: flex;
         align-items: center;
         gap: 8px;
-        margin-bottom: 4px;
-    }
-
-    .review-stars {
-        color: #ffd700;
-        font-size: 14px;
-        letter-spacing: 1px;
+        margin-bottom: 2px;
+        flex-wrap: nowrap;
     }
 
     .review-author {
-        font-size: 15px;
+        font-size: 14.5px;
+        font-weight: 800;
+        color: #1e293b;
+        white-space: nowrap;
+    }
+
+    .review-stars {
+        color: #f59e0b;
+        font-size: 13px;
+        letter-spacing: 1.5px;
+        white-space: nowrap;
+    }
+
+    .review-verified-badge {
+        font-size: 10.5px;
         font-weight: 700;
-        color: var(--color-primary-dark);
+        color: #047857;
+        background: #d1fae5;
+        border: 1px solid #a7f3d0;
+        padding: 2px 8px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+        margin-left: auto;
+    }
+
+    .review-verified-badge i {
+        font-size: 10px;
     }
 
     .review-text {
-        font-size: 13.5px;
-        line-height: 1.45;
-        color: var(--color-text-muted);
+        font-size: 12.5px;
+        line-height: 1.42;
+        color: #1e293b;
         margin: 0;
+        font-weight: 500;
     }
 
     @media (max-width: 768px) {
         .reviews-section {
-            padding: 50px 0;
+            padding: 55px 0 45px;
         }
 
         .reviews-heading {
             font-size: clamp(1.6rem, 5.5vw, 2.2rem);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .review-card {
-            min-width: 280px;
-            max-width: 300px;
-            padding: 12px 16px;
-            border-radius: 20px;
+            min-width: 320px;
+            max-width: 340px;
+            padding: 10px 16px 10px 10px;
+            border-radius: 60px;
             gap: 12px;
         }
 
@@ -3829,15 +3949,21 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         }
 
         .review-author {
-            font-size: 13.5px;
+            font-size: 13px;
         }
 
         .review-stars {
-            font-size: 12px;
+            font-size: 11px;
+        }
+
+        .review-verified-badge {
+            font-size: 9.5px;
+            padding: 1px 6px;
         }
 
         .review-text {
-            font-size: 12.5px;
+            font-size: 11.5px;
+            line-height: 1.4;
         }
     }
 
@@ -4351,238 +4477,44 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     .agency-icon.bw  { background: #1A1A1A; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.3); }
     .agency-icon.rea { background: #E40000; color: #FFFFFF; }
 
-    /* ════════════════════════════════════════
-       Reviews Section — Aggregate Block & Cards
-    ════════════════════════════════════════ */
-    .reviews-aggregate-box {
-        max-width: 960px;
-        margin: 0 auto 40px;
-        background: rgba(15, 28, 61, 0.85);
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 20px;
-        padding: 30px 40px;
-        display: grid;
-        grid-template-columns: 240px 1fr 240px;
-        gap: 36px;
-        align-items: center;
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
-        backdrop-filter: blur(10px);
-    }
 
-    .reviews-aggregate-left {
-        text-align: center;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
-        padding-right: 28px;
-    }
-
-    .reviews-score-num {
-        font-size: 56px;
-        font-weight: 800;
-        line-height: 1;
-        color: var(--color-white);
-        margin-bottom: 6px;
-    }
-
-    .reviews-score-stars {
-        color: #fbbf24;
-        font-size: 20px;
-        letter-spacing: 2px;
-        margin-bottom: 8px;
-    }
-
-    .reviews-score-total {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.65);
-        font-weight: 500;
-    }
-
-    .reviews-breakdown-col {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .reviews-bar-row {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 12.5px;
-        color: rgba(255, 255, 255, 0.7);
-    }
-
-    .reviews-bar-label {
-        width: 48px;
-        text-align: right;
-        font-weight: 600;
-    }
-
-    .reviews-bar-track {
-        flex: 1;
-        height: 8px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: var(--radius-full);
-        overflow: hidden;
-    }
-
-    .reviews-bar-fill {
-        height: 100%;
-        background: linear-gradient(90deg, #f59e0b, #fbbf24);
-        border-radius: var(--radius-full);
-    }
-
-    .reviews-bar-fill.fill-96 { width: 96%; }
-    .reviews-bar-fill.fill-4  { width: 4%; }
-    .reviews-bar-fill.fill-0  { width: 0%; }
-
-    .reviews-bar-pct {
-        width: 36px;
-        font-weight: 600;
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.9);
-    }
-
-    .reviews-aggregate-right {
-        text-align: center;
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
-        padding-left: 28px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .reviews-shield-badge {
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        background: rgba(16, 185, 129, 0.16);
-        border: 1.5px solid rgba(16, 185, 129, 0.4);
-        color: #34d399;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-    }
-
-    .reviews-guarantee-stat {
-        font-size: 20px;
-        font-weight: 800;
-        color: var(--color-white);
-        line-height: 1.2;
-    }
-
-    .reviews-guarantee-sub {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.6);
-        line-height: 1.35;
-    }
-
-    .reviews-cards-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-        max-width: 1080px;
-        margin: 0 auto;
-    }
-
-    .review-card-static {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 16px;
-        padding: 24px 26px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 16px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-        transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .review-card-static:hover {
-        transform: translateY(-3px);
-        border-color: rgba(255, 255, 255, 0.28);
-    }
-
-    .review-card-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-    }
-
-    .review-author-meta {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .review-author-name {
-        font-weight: 700;
-        font-size: 15px;
-        color: var(--color-white);
-    }
-
-    .review-author-agency {
-        font-size: 12px;
-        color: #60a5fa;
-        font-weight: 600;
-    }
-
-    .review-quote-text {
-        font-size: 14px;
-        line-height: 1.6;
-        color: rgba(255, 255, 255, 0.85);
-        margin: 0;
-        font-style: italic;
-    }
-
-    .review-outcome-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 12px;
-        font-weight: 700;
-        color: #34d399;
-        background: rgba(16, 185, 129, 0.12);
-        border: 1px solid rgba(16, 185, 129, 0.25);
-        padding: 4px 10px;
-        border-radius: var(--radius-full);
-        width: fit-content;
-    }
 
     /* ════════════════════════════════════════
-       Before / After Outcome Captions
+       Before / After Outcome Captions (Dark High-Contrast Text)
     ════════════════════════════════════════ */
     .scope-outcome-caption {
-        background: rgba(16, 185, 129, 0.1);
-        border-left: 3px solid #10b981;
-        padding: 10px 14px;
-        border-radius: 0 8px 8px 0;
+        background: #f0fdf4;
+        border-left: 3.5px solid #16a34a;
+        padding: 11px 15px;
+        border-radius: 0 10px 10px 0;
         margin-bottom: 16px;
     }
 
     .scope-outcome-title {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 6px;
         font-size: 11.5px;
-        font-weight: 700;
+        font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: #34d399;
-        margin-bottom: 3px;
+        letter-spacing: 0.6px;
+        color: #15803d;
+        margin-bottom: 4px;
     }
 
     .scope-outcome-text {
-        font-size: 13px;
-        line-height: 1.45;
-        color: rgba(255, 255, 255, 0.9);
+        font-size: 13.5px;
+        line-height: 1.5;
+        color: #0f172a; /* Solid dark text with clear readability */
+        font-weight: 600;
         margin: 0;
     }
 
     /* ════════════════════════════════════════
-       Real Estate Approved Checklist Accordion
+       Real Estate Approved Checklist (Elevated Clean Color Palette)
     ════════════════════════════════════════ */
     .checklist-section {
-        padding: 70px 0;
+        padding: 85px 0;
         position: relative;
         z-index: 5;
     }
@@ -4595,24 +4527,51 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
     .checklist-header {
         text-align: center;
-        margin-bottom: 32px;
+        margin-bottom: 34px;
+    }
+
+    .checklist-pill-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(16, 185, 129, 0.16);
+        border: 1px solid rgba(52, 211, 153, 0.4);
+        color: #34d399;
+        padding: 6px 18px;
+        border-radius: var(--radius-full);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
     }
 
     .checklist-intro-banner {
-        background: rgba(255, 195, 73, 0.12);
-        border: 1.5px solid rgba(255, 195, 73, 0.45);
-        border-radius: 12px;
-        padding: 14px 22px;
-        max-width: 800px;
-        margin: 0 auto 30px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1.5px solid rgba(255, 255, 255, 0.35);
+        border-radius: var(--radius-full);
+        padding: 12px 28px;
+        max-width: 720px;
+        margin: 0 auto 36px;
         text-align: center;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 12px;
-        font-size: 15px;
+        gap: 10px;
+        font-size: 14.5px;
         font-weight: 700;
-        color: #ffc349;
+        color: #ffffff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    .checklist-intro-banner i {
+        color: #34d399;
+        font-size: 17px;
     }
 
     .checklist-accordion-wrap {
@@ -4622,16 +4581,22 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     .checklist-accordion-item {
-        background: rgba(15, 28, 61, 0.75);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 14px;
+        background: #ffffff;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 16px;
         overflow: hidden;
-        transition: border-color 0.2s ease, background 0.2s ease;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .checklist-accordion-item:hover {
+        border-color: #93c5fd;
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.1);
     }
 
     .checklist-accordion-item--open {
-        border-color: rgba(255, 195, 73, 0.45);
-        background: rgba(15, 28, 61, 0.95);
+        border-color: #2563eb;
+        box-shadow: 0 8px 30px rgba(37, 99, 235, 0.14);
     }
 
     .checklist-accordion-btn {
@@ -4642,76 +4607,102 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         padding: 18px 24px;
         background: transparent;
         border: none;
-        color: var(--color-white);
+        color: #0f172a;
         font-size: 16px;
-        font-weight: 700;
+        font-weight: 750;
         cursor: pointer;
         text-align: left;
-        transition: color 0.2s ease;
     }
 
     .checklist-btn-left {
         display: flex;
         align-items: center;
         gap: 14px;
+        flex-wrap: wrap;
     }
 
-    .checklist-btn-left i {
-        color: var(--color-accent);
-        font-size: 18px;
-        width: 22px;
-        text-align: center;
+    .checklist-btn-icon-wrap {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: #eff6ff;
+        color: #2563eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        flex-shrink: 0;
+        transition: background 0.2s, color 0.2s;
+    }
+
+    .checklist-accordion-item--open .checklist-btn-icon-wrap {
+        background: #2563eb;
+        color: #ffffff;
+    }
+
+    .checklist-btn-title {
+        font-size: 16px;
+        font-weight: 750;
+        color: #0f172a;
     }
 
     .checklist-inclusions-badge {
         font-size: 11.5px;
-        font-weight: 600;
-        color: #34d399;
-        background: rgba(16, 185, 129, 0.15);
-        padding: 3px 10px;
+        font-weight: 700;
+        color: #15803d;
+        background: #dcfce7;
+        border: 1px solid #bbf7d0;
+        padding: 3px 11px;
         border-radius: var(--radius-full);
     }
 
     .checklist-toggle-icon {
-        width: 28px;
-        height: 28px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.08);
+        background: #f1f5f9;
+        color: #475569;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: transform 0.25s ease;
+        font-size: 12px;
+        flex-shrink: 0;
+        transition: transform 0.25s ease, background 0.2s ease, color 0.2s ease;
     }
 
     .checklist-accordion-item--open .checklist-toggle-icon {
         transform: rotate(180deg);
-        background: var(--color-accent);
-        color: var(--color-primary-dark);
+        background: #2563eb;
+        color: #ffffff;
     }
 
     .checklist-accordion-content {
         padding: 0 24px 22px;
+        background: #fafcff;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
     }
 
     .checklist-items-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px 24px;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        padding-top: 16px;
+        gap: 12px 28px;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 18px;
     }
 
     .checklist-point {
         display: flex;
         align-items: flex-start;
-        gap: 9px;
+        gap: 10px;
         font-size: 13.5px;
-        line-height: 1.45;
-        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.48;
+        color: #1e293b;
+        font-weight: 550;
     }
 
     .checklist-point i {
-        color: #34d399;
+        color: #16a34a;
         font-size: 13px;
         margin-top: 3px;
         flex-shrink: 0;
@@ -4812,31 +4803,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     @media (max-width: 900px) {
-        .reviews-aggregate-box {
-            grid-template-columns: 1fr;
-            text-align: center;
-            gap: 24px;
-            padding: 24px;
-        }
-
-        .reviews-aggregate-left {
-            border-right: none;
-            padding-right: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 20px;
-        }
-
-        .reviews-aggregate-right {
-            border-left: none;
-            padding-left: 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-        }
-
-        .reviews-cards-grid {
-            grid-template-columns: 1fr;
-        }
-
         .checklist-items-grid {
             grid-template-columns: 1fr;
         }
@@ -4913,12 +4879,18 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             </a>
         </div>
         <div class="hero-stats">
-            <span class="stat-stars">★★★★★</span>
-            <span class="stat-text"><strong>4.9</strong> Google Rating</span>
+            <div class="hero-stat-item">
+                <span class="stat-stars">★★★★★</span>
+                <span class="stat-text"><strong>4.9</strong> Google Rating</span>
+            </div>
             <span class="stat-divider"></span>
-            <span class="stat-text">2,300+ bond cleans</span>
+            <div class="hero-stat-item">
+                <span class="stat-text">2,300+ bond cleans</span>
+            </div>
             <span class="stat-divider"></span>
-            <span class="stat-text">15-minute response · same &amp; next-day</span>
+            <div class="hero-stat-item">
+                <span class="stat-text">15-minute response · same &amp; next-day</span>
+            </div>
         </div>
     </div>
 
@@ -5021,7 +4993,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             </div>
 
             <div class="packages-cta-wrap">
-                <a href="{% url 'bookings:multi_step_booking' %}" class="btn-packages-calc">
+                <a href="#calc-widget" class="btn-packages-calc">
                     <span>Calculate my exact price &rarr;</span>
                 </a>
             </div>
@@ -5034,7 +5006,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         <div class="packages-right reveal-stagger">
 
             <!-- Instant Price Calculator (at top of right column) -->
-            <div class="calc-widget-wrap">
+            <div class="calc-widget-wrap" id="calc-widget">
                 <div class="calc-widget" x-data="instantCalc()" x-init="calcInit()">
 
                     <!-- 3D Cute House Illustration -->
@@ -5391,128 +5363,141 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 </section>
 
 <!-- ════════════════════════════════════════ -->
-<!-- Reviews Section (Aggregate Block First)  -->
+<!-- ════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════ -->
+<!-- Reviews Section — Single-Line Moving Strip -->
 <!-- ════════════════════════════════════════ -->
 <section class="reviews-section">
-    <div class="container">
-        <!-- Section Heading -->
-        <div class="reviews-header-container reveal-fade-up">
-            <h2 class="reviews-heading">Loved by tenants and real estate agents.</h2>
-            <p class="reviews-subheading">
-                Sydney renters trust us to secure 100% of their bond back. Read our latest verified customer reviews.
-            </p>
-        </div>
+    <!-- Section Heading -->
+    <div class="reviews-header-container reveal-fade-up">
+        <h2 class="reviews-heading">Loved by tenants and real estate agents.</h2>
+        <p class="reviews-subheading">
+            Sydney renters trust us to secure 100% of their bond back. Read our latest verified customer reviews.
+        </p>
+    </div>
 
-        <!-- Aggregate Trust Block -->
-        <div class="reviews-aggregate-box reveal-fade-up">
-            <div class="reviews-aggregate-left">
-                <div class="reviews-score-num">4.9</div>
-                <div class="reviews-score-stars">★★★★★</div>
-                <div class="reviews-score-total">350+ Google Reviews<br>2,300+ Tenancies Cleaned</div>
-            </div>
-            <div class="reviews-breakdown-col">
-                <div class="reviews-bar-row">
-                    <span class="reviews-bar-label">5 star</span>
-                    <div class="reviews-bar-track"><div class="reviews-bar-fill fill-96"></div></div>
-                    <span class="reviews-bar-pct">96%</span>
-                </div>
-                <div class="reviews-bar-row">
-                    <span class="reviews-bar-label">4 star</span>
-                    <div class="reviews-bar-track"><div class="reviews-bar-fill fill-4"></div></div>
-                    <span class="reviews-bar-pct">4%</span>
-                </div>
-                <div class="reviews-bar-row">
-                    <span class="reviews-bar-label">3 star</span>
-                    <div class="reviews-bar-track"><div class="reviews-bar-fill fill-0"></div></div>
-                    <span class="reviews-bar-pct">0%</span>
-                </div>
-                <div class="reviews-bar-row">
-                    <span class="reviews-bar-label">2 star</span>
-                    <div class="reviews-bar-track"><div class="reviews-bar-fill fill-0"></div></div>
-                    <span class="reviews-bar-pct">0%</span>
-                </div>
-                <div class="reviews-bar-row">
-                    <span class="reviews-bar-label">1 star</span>
-                    <div class="reviews-bar-track"><div class="reviews-bar-fill fill-0"></div></div>
-                    <span class="reviews-bar-pct">0%</span>
-                </div>
-            </div>
-            <div class="reviews-aggregate-right">
-                <div class="reviews-shield-badge">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <div class="reviews-guarantee-stat">100% Bond Return</div>
-                <div class="reviews-guarantee-sub">Verified real estate bond outcomes with zero deductions across Sydney.</div>
-            </div>
-        </div>
-
-        <!-- 4 Real End-of-Lease Reviews with Bond Outcomes -->
-        <div class="reviews-cards-grid reveal-stagger">
-            <!-- Review 1: Ray White Outcome -->
-            <div class="review-card-static">
-                <div class="review-card-top">
-                    <div class="review-author-meta">
-                        <span class="review-author-name">Liam &amp; Sophie T.</span>
-                        <span class="review-author-agency">Surry Hills · Ray White Bond Clean</span>
+    <!-- Continuous Single-Line Reviews Marquee -->
+    <div class="reviews-marquee-container">
+        <div class="reviews-marquee-track">
+            <!-- Set 1 -->
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="review-image" alt="Sarah J.">
+                <div class="review-content">
+                    <div class="review-name-row">
+                        <span class="review-author">Sarah J.</span>
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
                     </div>
-                    <div class="review-stars">★★★★★</div>
-                </div>
-                <p class="review-quote-text">
-                    "Got our full $3,200 bond back without a single question from Ray White. The real estate agent was notoriously strict about the oven and window tracks, but Final Clean left them looking brand new. Worth every cent."
-                </p>
-                <div class="review-outcome-pill">
-                    <i class="fa-solid fa-circle-check"></i> Full $3,200 Bond Released Next Day
+                    <p class="review-text">"Absolutely spotless. The real estate agent was impressed and we got our full bond back the next day. Highly recommended."</p>
                 </div>
             </div>
 
-            <!-- Review 2: Belle Property Outcome -->
-            <div class="review-card-static">
-                <div class="review-card-top">
-                    <div class="review-author-meta">
-                        <span class="review-author-name">Marcus K.</span>
-                        <span class="review-author-agency">Parramatta · Belle Property Bond Clean</span>
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="review-image" alt="David C.">
+                <div class="review-content">
+                    <div class="review-name-row">
+                        <span class="review-author">David C.</span>
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
                     </div>
-                    <div class="review-stars">★★★★★</div>
-                </div>
-                <p class="review-quote-text">
-                    "My property manager at Belle Property inspected the next morning and signed off on the full refund immediately. They even sent before &amp; after photos to the agent before I had to ask. Absolute lifesavers."
-                </p>
-                <div class="review-outcome-pill">
-                    <i class="fa-solid fa-circle-check"></i> 100% Deposit Refunded Immediately
+                    <p class="review-text">"I tried cleaning it myself before giving up. Final Clean came in on a Sunday and made the place look brand new. Worth every cent."</p>
                 </div>
             </div>
 
-            <!-- Review 3: McGrath Outcome -->
-            <div class="review-card-static">
-                <div class="review-card-top">
-                    <div class="review-author-meta">
-                        <span class="review-author-name">Jessica M.</span>
-                        <span class="review-author-agency">Bondi Junction · McGrath Bond Clean</span>
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" class="review-image" alt="Emma R.">
+                <div class="review-content">
+                    <div class="review-name-row">
+                        <span class="review-author">Emma R.</span>
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
                     </div>
-                    <div class="review-stars">★★★★★</div>
-                </div>
-                <p class="review-quote-text">
-                    "I was terrified about losing part of our bond over the kitchen and bathroom grout. Final Clean did a phenomenal job — agent signed the bond release form within 2 hours of inspection."
-                </p>
-                <div class="review-outcome-pill">
-                    <i class="fa-solid fa-circle-check"></i> Agent Signed Release Form in 2 Hours
+                    <p class="review-text">"So easy to book and the price was exactly what they quoted — no hidden fees. The team left the carpets looking flawless."</p>
                 </div>
             </div>
 
-            <!-- Review 4: LJ Hooker Outcome -->
-            <div class="review-card-static">
-                <div class="review-card-top">
-                    <div class="review-author-meta">
-                        <span class="review-author-name">David P.</span>
-                        <span class="review-author-agency">Chatswood · LJ Hooker Bond Clean</span>
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/46.jpg" class="review-image" alt="Marcus K.">
+                <div class="review-content">
+                    <div class="review-name-row">
+                        <span class="review-author">Marcus K.</span>
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
                     </div>
-                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"My property manager at Belle Property inspected the next morning and signed off on the full refund immediately. Absolute lifesavers."</p>
                 </div>
-                <p class="review-quote-text">
-                    "Full $2,800 bond returned. LJ Hooker agent said it was the cleanest handover inspection he'd seen all year. Couldn't recommend them more."
-                </p>
-                <div class="review-outcome-pill">
-                    <i class="fa-solid fa-circle-check"></i> $2,800 Bond Returned In Full
+            </div>
+
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" class="review-image" alt="Sophie T.">
+                <div class="review-content">
+                    <div class="review-name-row">
+                        <span class="review-author">Sophie T.</span>
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                    </div>
+                    <p class="review-text">"Got our full $3,200 bond back without a single question from Ray White. Window tracks and oven look brand new!"</p>
+                </div>
+            </div>
+
+            <!-- Set 2 (for seamless continuous infinite loop) -->
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="review-image" alt="Sarah J.">
+                <div class="review-content">
+                    <div class="review-name-row">
+                        <span class="review-author">Sarah J.</span>
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                    </div>
+                    <p class="review-text">"Absolutely spotless. The real estate agent was impressed and we got our full bond back the next day. Highly recommended."</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="review-image" alt="David C.">
+                <div class="review-content">
+                    <div class="review-name-row">
+                        <span class="review-author">David C.</span>
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                    </div>
+                    <p class="review-text">"I tried cleaning it myself before giving up. Final Clean came in on a Sunday and made the place look brand new. Worth every cent."</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" class="review-image" alt="Emma R.">
+                <div class="review-content">
+                    <div class="review-name-row">
+                        <span class="review-author">Emma R.</span>
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                    </div>
+                    <p class="review-text">"So easy to book and the price was exactly what they quoted — no hidden fees. The team left the carpets looking flawless."</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/46.jpg" class="review-image" alt="Marcus K.">
+                <div class="review-content">
+                    <div class="review-name-row">
+                        <span class="review-author">Marcus K.</span>
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                    </div>
+                    <p class="review-text">"My property manager at Belle Property inspected the next morning and signed off on the full refund immediately. Absolute lifesavers."</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" class="review-image" alt="Sophie T.">
+                <div class="review-content">
+                    <div class="review-name-row">
+                        <span class="review-author">Sophie T.</span>
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                    </div>
+                    <p class="review-text">"Got our full $3,200 bond back without a single question from Ray White. Window tracks and oven look brand new!"</p>
                 </div>
             </div>
         </div>
@@ -5657,6 +5642,9 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 <section class="checklist-section" x-data="{ activeRoom: null }">
     <div class="checklist-container">
         <div class="checklist-header reveal-fade-up">
+            <span class="checklist-pill-badge">
+                <i class="fa-solid fa-clipboard-check"></i> Real Estate Agent Standard
+            </span>
             <h2 class="watch-us-work-heading">
                 Real Estate Approved<br>
                 <span class="gradient-text">Exit Cleaning Checklist</span>
@@ -5673,8 +5661,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="checklist-accordion-item" :class="activeRoom === 1 ? 'checklist-accordion-item--open' : ''">
                 <button type="button" class="checklist-accordion-btn" @click="activeRoom === 1 ? activeRoom = null : activeRoom = 1">
                     <div class="checklist-btn-left">
-                        <i class="fa-solid fa-kitchen-set"></i>
-                        <span>Kitchen (Oven &amp; Rangehood Included)</span>
+                        <div class="checklist-btn-icon-wrap">
+                            <i class="fa-solid fa-kitchen-set"></i>
+                        </div>
+                        <span class="checklist-btn-title">Kitchen (Oven &amp; Rangehood Included)</span>
                         <span class="checklist-inclusions-badge">Included as Standard</span>
                     </div>
                     <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
@@ -5695,8 +5685,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="checklist-accordion-item" :class="activeRoom === 2 ? 'checklist-accordion-item--open' : ''">
                 <button type="button" class="checklist-accordion-btn" @click="activeRoom === 2 ? activeRoom = null : activeRoom = 2">
                     <div class="checklist-btn-left">
-                        <i class="fa-solid fa-bath"></i>
-                        <span>Bathrooms, Ensuites &amp; Toilets</span>
+                        <div class="checklist-btn-icon-wrap">
+                            <i class="fa-solid fa-bath"></i>
+                        </div>
+                        <span class="checklist-btn-title">Bathrooms, Ensuites &amp; Toilets</span>
                         <span class="checklist-inclusions-badge">Included as Standard</span>
                     </div>
                     <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
@@ -5717,8 +5709,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="checklist-accordion-item" :class="activeRoom === 3 ? 'checklist-accordion-item--open' : ''">
                 <button type="button" class="checklist-accordion-btn" @click="activeRoom === 3 ? activeRoom = null : activeRoom = 3">
                     <div class="checklist-btn-left">
-                        <i class="fa-solid fa-bed"></i>
-                        <span>Bedrooms</span>
+                        <div class="checklist-btn-icon-wrap">
+                            <i class="fa-solid fa-bed"></i>
+                        </div>
+                        <span class="checklist-btn-title">Bedrooms</span>
                         <span class="checklist-inclusions-badge">Included as Standard</span>
                     </div>
                     <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
@@ -5739,8 +5733,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="checklist-accordion-item" :class="activeRoom === 4 ? 'checklist-accordion-item--open' : ''">
                 <button type="button" class="checklist-accordion-btn" @click="activeRoom === 4 ? activeRoom = null : activeRoom = 4">
                     <div class="checklist-btn-left">
-                        <i class="fa-solid fa-couch"></i>
-                        <span>Living, Dining &amp; Family Areas</span>
+                        <div class="checklist-btn-icon-wrap">
+                            <i class="fa-solid fa-couch"></i>
+                        </div>
+                        <span class="checklist-btn-title">Living, Dining &amp; Family Areas</span>
                         <span class="checklist-inclusions-badge">Included as Standard</span>
                     </div>
                     <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
@@ -5761,8 +5757,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="checklist-accordion-item" :class="activeRoom === 5 ? 'checklist-accordion-item--open' : ''">
                 <button type="button" class="checklist-accordion-btn" @click="activeRoom === 5 ? activeRoom = null : activeRoom = 5">
                     <div class="checklist-btn-left">
-                        <i class="fa-solid fa-soap"></i>
-                        <span>Laundry Room</span>
+                        <div class="checklist-btn-icon-wrap">
+                            <i class="fa-solid fa-soap"></i>
+                        </div>
+                        <span class="checklist-btn-title">Laundry Room</span>
                         <span class="checklist-inclusions-badge">Included as Standard</span>
                     </div>
                     <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
@@ -5783,8 +5781,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="checklist-accordion-item" :class="activeRoom === 6 ? 'checklist-accordion-item--open' : ''">
                 <button type="button" class="checklist-accordion-btn" @click="activeRoom === 6 ? activeRoom = null : activeRoom = 6">
                     <div class="checklist-btn-left">
-                        <i class="fa-solid fa-door-open"></i>
-                        <span>Balcony, Entryways &amp; Hallways</span>
+                        <div class="checklist-btn-icon-wrap">
+                            <i class="fa-solid fa-door-open"></i>
+                        </div>
+                        <span class="checklist-btn-title">Balcony, Entryways &amp; Hallways</span>
                         <span class="checklist-inclusions-badge">Included as Standard</span>
                     </div>
                     <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
@@ -6871,5 +6871,30 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             }, { passive: true });
         })();
 
+        // Smooth scroll to calculator on clicking any 'Get Your Price' / '#calc-widget' link
+        document.addEventListener('click', function (e) {
+            const link = e.target.closest('a[href="#calc-widget"], a[href="/#calc-widget"]');
+            if (!link) return;
+            const target = document.getElementById('calc-widget');
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (window.history && window.history.pushState) {
+                    window.history.pushState(null, '', '#calc-widget');
+                }
+            }
+        });
+
+        // Smooth scroll if landing with #calc-widget in hash
+        if (window.location.hash === '#calc-widget') {
+            window.addEventListener('load', function () {
+                setTimeout(function () {
+                    const target = document.getElementById('calc-widget');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 150);
+            });
+        }
     </script>
     {% endblock %}

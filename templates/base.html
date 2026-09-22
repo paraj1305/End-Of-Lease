@@ -517,6 +517,37 @@
             border-top: 1px solid rgba(0, 0, 0, 0.06);
         }
 
+        .mobile-drawer-call-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--color-primary-dark);
+            text-decoration: none;
+            border: 1.5px solid rgba(82, 94, 167, 0.25);
+            padding: 14px;
+            border-radius: var(--radius-full);
+            font-weight: 800;
+            font-size: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        .mobile-drawer-cta-primary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-accent);
+            color: var(--color-primary-dark);
+            padding: 14px;
+            border-radius: var(--radius-full);
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 15px;
+            box-shadow: 0 4px 18px rgba(255, 195, 73, 0.45);
+            transition: all 0.2s ease;
+        }
+
         @media (max-width: 991px) {
             .navbar-wrapper {
                 padding: 10px 14px;
@@ -615,7 +646,7 @@
                     </svg>
                     02 7988 9050
                 </a>
-                <a href="{% url 'bookings:multi_step_booking' %}" class="nav-cta-btn">
+                <a href="/#calc-widget" class="nav-cta-btn">
                     Get fixed price &rarr;
                 </a>
             </div>
@@ -671,18 +702,16 @@
             </a>
 
             <div class="mobile-drawer-cta">
-                <a href="tel:0279889050"
-                    style="display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--color-primary-dark); text-decoration: none; border: 1.5px solid rgba(82, 94, 167, 0.25); padding: 14px; border-radius: var(--radius-full); font-weight: 800; font-size: 15px; background: rgba(255, 255, 255, 0.5);">
+                <a href="tel:0279889050" class="mobile-drawer-call-btn">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-accent);">
+                        stroke-linecap="round" stroke-linejoin="round" class="nav-call-icon">
                         <path
                             d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                         </path>
                     </svg>
                     Call 02 7988 9050
                 </a>
-                <a href="{% url 'bookings:multi_step_booking' %}"
-                    style="display: flex; align-items: center; justify-content: center; background: var(--color-accent); color: var(--color-primary-dark); padding: 14px; border-radius: var(--radius-full); font-weight: 800; text-decoration: none; font-size: 15px; box-shadow: 0 4px 18px rgba(255, 195, 73, 0.45);">
+                <a href="/#calc-widget" class="mobile-drawer-cta-primary" @click="mobileMenuOpen = false">
                     Get Fixed Price &rarr;
                 </a>
             </div>
