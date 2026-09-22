@@ -256,7 +256,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         color: var(--color-primary-dark);
     }
 
-    .btn-call-hero {
+    .btn-call-hero,
+    .hero-phone-cta {
         display: inline-flex;
         align-items: center;
         gap: 8px;
@@ -272,10 +273,16 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         transition: border-color 0.2s, background 0.2s;
     }
 
-    .btn-call-hero:hover {
+    .btn-call-hero:hover,
+    .hero-phone-cta:hover {
         border-color: var(--color-white);
         background: rgba(255, 255, 255, 0.25);
         color: var(--color-white);
+    }
+
+    .hero-floating-elements,
+    .hero-phone-icon-wrap {
+        display: none;
     }
 
     .hero-stats {
@@ -325,29 +332,33 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         .hero-section {
             -webkit-mask-image: none !important;
             mask-image: none !important;
-            min-height: auto;
-            padding-top: 70px;
+            min-height: 100vh;
+            min-height: 100svh;
+            padding-top: 84px;
             padding-bottom: 24px;
+            padding-left: 18px;
+            padding-right: 18px;
             margin-top: -80px;
             display: flex;
             flex-direction: column;
             align-items: stretch;
-            justify-content: flex-start;
-            overflow: visible;
-            background: #0b1329;
+            justify-content: flex-end;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Top Half: Dedicated ONLY to Before/After visual comparison with full image */
+        /* Full Background Before/After Slider */
         .hero-slider-stage {
-            position: relative;
-            width: 100%;
-            height: 46vh;
-            min-height: 280px;
-            max-height: 420px;
+            position: absolute !important;
+            inset: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            min-height: 100% !important;
+            max-height: none !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+            z-index: 1 !important;
             overflow: hidden;
-            border-bottom: 2px solid rgba(255, 195, 73, 0.4);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-            background: #0f172a;
             user-select: none;
             touch-action: pan-y;
         }
@@ -362,158 +373,312 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             background-position: center;
         }
 
+        .hero-before::after,
+        .hero-after::after {
+            display: none !important;
+        }
+
+        /* Smooth Vignette Gradient for Mobile Readability */
+        .hero-slider-stage::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(11, 19, 41, 0.45) 0%, rgba(11, 19, 41, 0.15) 20%, rgba(11, 19, 41, 0.55) 48%, rgba(11, 19, 41, 0.92) 75%, #0b1329 100%);
+            z-index: 4;
+            pointer-events: none;
+        }
+
         .slider-handle {
             display: block !important;
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 2.5px;
-            background: var(--color-accent);
-            z-index: 10;
-            box-shadow: 0 0 12px 2px rgba(255, 195, 73, 0.9);
+            width: 2px;
+            background: #3dd5c4;
+            z-index: 8;
+            box-shadow: 0 0 10px #3dd5c4, 0 0 20px rgba(61, 213, 196, 0.8);
             transform: translateX(-50%);
         }
 
         .slider-handle::before {
-            left: -20px;
-            width: 42px;
+            left: -24px;
+            width: 50px;
         }
 
         .drag-btn {
             display: flex !important;
+            align-items: center;
+            justify-content: center;
             position: absolute;
-            top: 50%;
+            top: 38%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 44px;
             height: 44px;
-            font-size: 8px;
-            background: var(--color-accent);
-            color: var(--color-primary-dark);
-            border: 2.5px solid #ffffff;
+            background: linear-gradient(135deg, #3dd5c4 0%, #4facfe 100%);
+            color: #0b1329;
+            border: 2px solid rgba(255, 255, 255, 0.95);
             border-radius: 50%;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.55), 0 0 14px rgba(255, 195, 73, 0.85);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), 0 0 16px rgba(61, 213, 196, 0.85);
             cursor: ew-resize;
             touch-action: none;
+            z-index: 10;
         }
 
         .drag-btn svg {
             width: 16px;
-            height: 10px;
+            height: 12px;
+            stroke: #0b1329;
         }
 
         .side-label {
+            display: none !important;
+        }
+
+        /* Floating Badges & Proof Card at Top */
+        .hero-floating-elements {
+            display: flex !important;
             position: absolute;
-            top: 14px;
-            z-index: 15;
-            padding: 5px 12px;
-            font-size: 9.5px;
-            letter-spacing: 1px;
-            border-radius: var(--radius-full);
+            top: 86px;
+            left: 16px;
+            right: 16px;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 12;
             pointer-events: none;
         }
 
-        .label-before {
-            left: 14px;
+        .hero-top-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
-        .label-after {
-            right: 14px;
+        .hero-top-right-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
         }
 
-        /* Bottom Half: Content sits below the visual slider with zero overlap on image */
+        .hero-pill-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 12px;
+            background: rgba(11, 19, 41, 0.72);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-full);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            color: #fca5a5;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero-pill-tag.accent {
+            color: #3dd5c4;
+            border-color: rgba(61, 213, 196, 0.35);
+        }
+
+        .hero-proof-card {
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 14px;
+            padding: 8px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+            text-align: left;
+        }
+
+        .hero-proof-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+        }
+
+        .hero-proof-amount {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--color-accent);
+            line-height: 1.1;
+            letter-spacing: -0.3px;
+        }
+
+        .hero-proof-meta {
+            font-size: 9.5px;
+            color: rgba(255, 255, 255, 0.65);
+            white-space: nowrap;
+        }
+
+        /* Hero Content: Direct Placement on Vignetted Background */
         .hero-copy {
             position: relative;
-            z-index: 5;
-            margin-left: 0;
-            padding: 24px 18px 20px;
+            z-index: 15;
+            margin: 0;
+            padding: 0;
             max-width: 100%;
             width: 100%;
-            text-align: center;
+            text-align: left;
             box-sizing: border-box;
-            background: transparent;
-            box-shadow: none;
-            border: none;
-            border-radius: 0;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
         }
 
         .hero-eyebrow {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 11px;
-            font-weight: 750;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
-            background: rgba(255, 195, 73, 0.14);
-            border: 1px solid rgba(255, 195, 73, 0.3);
-            padding: 5px 14px;
-            border-radius: var(--radius-full);
-            color: var(--color-accent);
+            justify-content: flex-start;
+            gap: 6px;
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            color: #3dd5c4 !important;
+            text-transform: uppercase;
+        }
+
+        .hero-eyebrow-dot {
+            width: 6px;
+            height: 6px;
+            background: #3dd5c4;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #3dd5c4;
+            display: inline-block;
+            flex-shrink: 0;
         }
 
         .hero-h1 {
-            font-size: clamp(1.95rem, 7.2vw, 2.6rem);
-            margin-bottom: 12px;
-            line-height: 1.16;
-            letter-spacing: -0.5px;
+            font-size: clamp(2rem, 8vw, 2.7rem);
+            margin-bottom: 10px;
+            line-height: 1.08;
+            letter-spacing: -0.6px;
+            text-align: left;
+            color: #ffffff;
+        }
+
+        .hero-h1 .gradient-text {
+            background: linear-gradient(135deg, #3dd5c4 0%, #4facfe 50%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero-desc {
-            font-size: 14px;
-            line-height: 1.52;
+            font-size: 13.5px;
+            line-height: 1.48;
             color: rgba(255, 255, 255, 0.92);
-            margin-inline: auto;
-            margin-bottom: 20px;
-            max-width: 440px;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 16px;
+            max-width: 100%;
+            text-align: left;
+        }
+
+        .hero-desc strong {
+            color: #ffffff;
+            font-weight: 750;
+        }
+
+        .hero-guarantee-pill,
+        .hero-avail-pill {
+            display: none !important;
         }
 
         .hero-ctas {
             display: flex;
             flex-direction: column;
             width: 100%;
-            max-width: 380px;
-            margin: 0 auto 18px auto;
+            max-width: 100%;
+            margin: 0 0 14px 0;
             gap: 10px;
         }
 
-        .btn-primary-hero,
-        .btn-call-hero {
+        .btn-primary-hero {
             width: 100%;
             justify-content: center;
             padding: 13px 20px;
-            font-size: 15px;
+            font-size: 15.5px;
+            font-weight: 850;
+            box-sizing: border-box;
+            background: linear-gradient(90deg, #3dd5c4 0%, #4facfe 100%);
+            color: #0b1329 !important;
+            border-radius: var(--radius-full);
+            box-shadow: 0 6px 20px rgba(61, 213, 196, 0.45);
+            border: none;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .btn-call-hero {
-            background: rgba(255, 255, 255, 0.12);
-            border: 1.5px solid rgba(255, 255, 255, 0.32);
+        .hero-phone-cta {
+            width: 100%;
+            justify-content: center;
+            padding: 9px 20px;
+            font-size: 15px;
+            font-weight: 800;
+            box-sizing: border-box;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1.5px solid rgba(61, 213, 196, 0.35);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--radius-full);
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-phone-icon-wrap {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3dd5c4 0%, #4facfe 100%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #0b1329;
+            font-size: 13px;
+            flex-shrink: 0;
         }
 
         .hero-stats {
-            display: inline-flex;
+            display: flex;
             flex-wrap: nowrap;
             white-space: nowrap;
             align-items: center;
-            justify-content: center;
-            gap: 6px 8px;
-            font-size: clamp(10.5px, 2.7vw, 12px);
-            background: rgba(15, 23, 42, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: var(--radius-full);
-            padding: 6px 12px;
-            margin: 0 auto;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            justify-content: flex-start;
+            gap: 6px;
+            font-size: clamp(10.5px, 2.7vw, 11.5px);
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            margin: 0;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
             max-width: 100%;
             box-sizing: border-box;
             overflow-x: auto;
             scrollbar-width: none;
+            color: rgba(255, 255, 255, 0.88);
         }
 
         .hero-stats::-webkit-scrollbar {
@@ -529,13 +694,20 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         }
 
         .hero-stats .stat-stars {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             letter-spacing: 0.5px;
+            color: #ffc349;
         }
 
         .hero-stats .stat-text {
             font-size: inherit;
             white-space: nowrap;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-stats .stat-divider {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
         }
 
         .hero-trust-item {
@@ -722,6 +894,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         letter-spacing: -1px;
     }
 
+    .packages-heading .text-accent-color {
+        color: var(--color-accent);
+    }
+
     .packages-lead {
         font-size: 15.5px;
         color: rgba(255, 255, 255, 0.88);
@@ -900,15 +1076,25 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
     @media (max-width: 900px) {
         .packages-section {
-            padding: 50px 0;
+            padding: 40px 0 50px;
         }
 
         .packages-layout {
-            grid-template-columns: 1fr;
-            gap: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .packages-right {
+            order: 1;
+            width: 100%;
+            max-width: 100%;
+            justify-self: center;
         }
 
         .packages-left {
+            order: 2;
+            width: 100%;
             position: static;
             text-align: center;
         }
@@ -937,11 +1123,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         .package-card-stack {
             padding: 18px 20px;
             border-radius: 16px;
-        }
-
-        .packages-right {
-            max-width: 100%;
-            justify-self: center;
         }
     }
 
@@ -2167,20 +2348,20 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             position: relative;
             width: 100%;
             overflow: hidden;
-            background: linear-gradient(180deg, #0b1329 0%, #0f1c3d 100%);
-            border-top: 1px solid rgba(255, 255, 255, 0.12);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 12px 0;
-            z-index: 10;
+            background: linear-gradient(90deg, #f59e0b 0%, #ffc349 20%, #ffd470 50%, #ffc349 80%, #f59e0b 100%);
+            border-top: 2px solid #ffe399;
+            border-bottom: 2px solid #d49b24;
+            padding: 13px 0;
+            z-index: 20;
             margin-top: 0;
             user-select: none;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 25px rgba(255, 195, 73, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
 
         .mobile-trust-track {
             display: flex;
             width: max-content;
-            animation: mobileTickerScroll 32s linear infinite;
+            animation: mobileTickerScroll 30s linear infinite;
             will-change: transform;
         }
 
@@ -2194,28 +2375,29 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         .trust-item {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
+            gap: 8px;
             font-size: 12px;
-            font-weight: 750;
+            font-weight: 850;
             letter-spacing: 0.6px;
             text-transform: uppercase;
-            color: #f8fafc;
-            padding: 0 10px;
+            color: #111827;
+            padding: 0 12px;
         }
 
         .trust-icon {
-            color: var(--color-accent, #ffc349);
+            color: #1e243a;
             font-size: 13px;
         }
 
         .trust-icon-star {
-            color: #fbbf24;
-            font-size: 12px;
+            color: #b45309;
+            font-size: 13px;
         }
 
         .trust-bullet {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 14px;
+            color: rgba(17, 24, 39, 0.45);
+            font-size: 15px;
+            font-weight: 900;
             padding: 0 4px;
         }
 
@@ -2466,21 +2648,22 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     .scope-img-window-before  { background-image: url('/static/images/dirty-window.png'); }
     .scope-img-window-after   { background-image: url('/static/images/clean-window.png'); }
 
-    /* Card Bottom Body — Checklist matching user screenshot */
+    /* Card Bottom Body — Clean Title Only */
     .scope-card-body {
-        padding: 22px 20px 24px;
+        padding: 16px 18px 18px;
         display: flex;
         flex-direction: column;
-        flex: 1;
+        justify-content: center;
         background: #ffffff;
     }
 
     .scope-card-title {
-        font-size: 20px;
+        font-size: 18.5px;
         font-weight: 800;
         color: #0f172a;
-        margin: 0 0 16px;
+        margin: 0;
         letter-spacing: -0.3px;
+        text-align: center;
     }
 
     .scope-checklist {
@@ -2529,17 +2712,12 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         }
 
         .scope-card-body {
-            padding: 18px 16px 20px;
+            padding: 13px 16px 15px;
         }
 
         .scope-card-title {
-            font-size: 18px;
-            margin-bottom: 14px;
-        }
-
-        .scope-check-item {
-            font-size: 13px;
-            gap: 8px;
+            font-size: 16.5px;
+            margin: 0;
         }
     }
 
@@ -4436,22 +4614,23 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        background: rgba(255, 255, 255, 0.07);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 12px;
+        background: #ffffff;
+        border: 1.5px solid rgba(82, 94, 167, 0.12);
+        border-radius: 14px;
         padding: 10px 18px;
-        font-weight: 700;
-        font-size: 13.5px;
-        color: var(--color-white);
+        font-weight: 800;
+        font-size: 14px;
+        color: var(--color-primary-dark);
         white-space: nowrap;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
     .agency-logo-pill:hover {
-        background: rgba(255, 255, 255, 0.14);
-        border-color: rgba(255, 255, 255, 0.3);
+        background: #ffffff;
+        border-color: rgba(82, 94, 167, 0.3);
         transform: translateY(-2px);
+        box-shadow: 0 8px 26px rgba(0, 0, 0, 0.18);
     }
 
     .agency-icon {
@@ -4817,6 +4996,213 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             grid-template-columns: 1fr;
         }
     }
+
+    /* ════════════════════════════════════════
+       PACKAGE LIST SECTION (User Mockup Match)
+       ════════════════════════════════════════ */
+    .package-list-section {
+        background: transparent;
+        padding: 72px 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .package-list-container {
+        max-width: 620px;
+        margin: 0 auto;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .package-list-header {
+        text-align: center;
+        margin-bottom: 34px;
+    }
+
+    .package-list-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: var(--radius-full);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 1px;
+        color: #ffffff;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+    }
+
+    .package-list-heading {
+        font-size: clamp(1.85rem, 5vw, 2.5rem);
+        font-weight: 900;
+        color: #ffffff;
+        line-height: 1.15;
+        letter-spacing: -0.5px;
+        margin-bottom: 10px;
+    }
+
+    .package-list-heading .highlight {
+        color: #ffc349;
+    }
+
+    .package-list-subheading {
+        font-size: 14.5px;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.5;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .package-list-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .package-list-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1.5px solid rgba(255, 255, 255, 0.42);
+        border-radius: 20px;
+        padding: 22px 28px;
+        text-decoration: none;
+        color: #ffffff;
+        position: relative;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        box-sizing: border-box;
+    }
+
+    .package-list-card:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        color: #ffffff;
+    }
+
+    .package-list-card.is-popular {
+        border: 2px solid #ffc349;
+        box-shadow: 0 10px 30px rgba(255, 195, 73, 0.25);
+    }
+
+    .package-card-popular-badge {
+        position: absolute;
+        top: -13px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #ffc349;
+        color: #0b1329;
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 0.8px;
+        padding: 4px 16px;
+        border-radius: var(--radius-full);
+        box-shadow: 0 4px 14px rgba(255, 195, 73, 0.45);
+        text-transform: uppercase;
+        white-space: nowrap;
+        z-index: 2;
+    }
+
+    .package-card-left {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        text-align: left;
+    }
+
+    .package-card-title {
+        font-size: 23px;
+        font-weight: 850;
+        color: #ffffff;
+        line-height: 1.18;
+        letter-spacing: -0.3px;
+        margin: 0;
+    }
+
+    .package-card-desc {
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.4;
+        margin: 0;
+        max-width: 320px;
+    }
+
+    .package-card-pricing {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        text-align: right;
+        flex-shrink: 0;
+    }
+
+    .package-card-from {
+        font-size: 13px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.88);
+        margin-bottom: 2px;
+        text-transform: lowercase;
+    }
+
+    .package-card-price {
+        font-size: clamp(26px, 4.5vw, 35px);
+        font-weight: 900;
+        color: #ffffff;
+        line-height: 1;
+        letter-spacing: -0.5px;
+        white-space: nowrap;
+    }
+
+    /* ════════════════════════════════════════
+       FAQ Outer Section (Right before footer)
+       ════════════════════════════════════════ */
+    .faq-outer-section {
+        background: transparent;
+        padding: 40px 0 60px;
+        position: relative;
+        z-index: 5;
+    }
+
+    @media (max-width: 640px) {
+        .package-list-section {
+            padding: 44px 16px;
+        }
+
+        .package-list-header {
+            margin-bottom: 28px;
+        }
+
+        .package-list-card {
+            padding: 18px 20px;
+            border-radius: 18px;
+            gap: 14px;
+        }
+
+        .package-card-title {
+            font-size: 19.5px;
+        }
+
+        .package-card-desc {
+            font-size: 12.5px;
+            max-width: 195px;
+        }
+
+        .package-card-price {
+            font-size: 27px;
+        }
+    }
 </style>
 {% endblock %}
 
@@ -4851,45 +5237,59 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         <span class="side-label label-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
     </div>
 
+    <!-- Top floating tags & proof card (visible on mobile reference match) -->
+    <div class="hero-floating-elements" aria-hidden="true">
+        <div class="hero-top-badges">
+            <span class="hero-pill-tag">END OF TENANCY</span>
+        </div>
+        <div class="hero-top-right-group">
+            <span class="hero-pill-tag accent">MOVEOUT CLEAN</span>
+            <div class="hero-proof-card">
+                <span class="hero-proof-label">BOND RETURNED</span>
+                <span class="hero-proof-amount">$3,850</span>
+                <span class="hero-proof-meta">Priya &middot; Parramatta &middot; 2 days ago</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero copy (bottom-left) -->
     <div class="hero-copy reveal-fade-up">
         <div class="hero-eyebrow">
-            <span></span>
-            Sydney's End of Lease Cleaning Specialists
+            <span class="hero-eyebrow-dot"></span>
+            SYDNEY'S END OF LEASE CLEANING SPECIALISTS &middot; 24/7
         </div>
         <h1 class="hero-h1">
-            End of Lease Cleaning.<br>
-            <span class="gradient-text">100% Bond Back Guarantee.</span>
+            End of lease cleaning.<br>
+            <span class="gradient-text">Bond back. Every dollar.</span>
         </h1>
+        <p class="hero-desc">
+            Fixed-price end of lease cleaning to the real estate agent's checklist &mdash; with a <strong>free 72-hour re-clean guarantee</strong> and before &amp; after photos included. From <strong>$329 inc. GST</strong>.
+        </p>
         <div class="hero-guarantee-pill">
             <i class="fa-solid fa-shield-halved"></i>
             <span><strong>100% Bond Back Guarantee:</strong> Free re-clean until your agent signs off.</span>
         </div>
         <div class="hero-avail-pill">
             <i class="fa-solid fa-calendar-check"></i>
-            <span>Available 7 days a week · Sydney-wide</span>
+            <span>Available 7 days a week &middot; Sydney-wide</span>
         </div>
         <div class="hero-ctas">
             <a href="#calc-widget" class="btn-primary-hero">
-                Get Your Price &darr;
+                <span>Get my fixed price &rarr;</span>
             </a>
             <a href="tel:0279889050" class="hero-phone-cta">
-                <i class="fa-solid fa-phone"></i>
-                <span>02 7988 9050</span>
+                <span class="hero-phone-icon-wrap"><i class="fa-solid fa-phone"></i></span>
+                <span>Call 02 7988 9050</span>
             </a>
         </div>
         <div class="hero-stats">
             <div class="hero-stat-item">
                 <span class="stat-stars">★★★★★</span>
-                <span class="stat-text"><strong>4.9</strong> Google Rating</span>
+                <span class="stat-text"><strong>4.9</strong> &middot; 2,300+ bond cleans</span>
             </div>
-            <span class="stat-divider"></span>
+            <span class="stat-divider">&middot;</span>
             <div class="hero-stat-item">
-                <span class="stat-text">2,300+ bond cleans</span>
-            </div>
-            <span class="stat-divider"></span>
-            <div class="hero-stat-item">
-                <span class="stat-text">15-minute response · same &amp; next-day</span>
+                <span class="stat-text">5-minute response &middot; same &amp; next-day</span>
             </div>
         </div>
     </div>
@@ -4960,8 +5360,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         <!-- Left sticky -->
         <div class="packages-left reveal-left">
             <h2 class="packages-heading">
-                Price-Match Guarantee.<br>
-                <span class="gradient-text">Bond Back Guarantee.</span>
+                <span class="text-accent-color">Price-Match</span> Guarantee.<br>
+                <span class="text-accent-color">Bond Back</span> Guarantee.
             </h2>
             <p class="packages-lead">
                 You can price match a fridge or a flight. Never a bond clean. FinalClean changed that.
@@ -4996,9 +5396,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 <a href="#calc-widget" class="btn-packages-calc">
                     <span>Calculate my exact price &rarr;</span>
                 </a>
-            </div>
-            <div class="packages-action-note">
-                <i class="fa-solid fa-clock-rotate-left"></i> Get Price under a minute. We'll call you in 15 minutes with your exact price.
             </div>
         </div>
 
@@ -5363,7 +5760,85 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 </section>
 
 <!-- ════════════════════════════════════════ -->
+<!-- Popular Packages List (Before Reviews)   -->
 <!-- ════════════════════════════════════════ -->
+<section class="package-list-section" id="packages">
+    <div class="package-list-container">
+        <div class="package-list-header reveal-fade-up">
+            <span class="package-list-pill">
+                <i class="fa-solid fa-sparkles"></i> POPULAR PACKAGES
+            </span>
+            <h2 class="package-list-heading">
+                End of Lease <span class="highlight">Cleaning Packages</span>
+            </h2>
+            <p class="package-list-subheading">
+                Fixed-price move-out packages tailored to your Sydney property size with 100% bond back guarantee.
+            </p>
+        </div>
+
+        <div class="package-list-stack reveal-stagger">
+            {% for package in packages %}
+            <a href="#calc-widget" class="package-list-card{% if forloop.counter == 2 %} is-popular{% endif %}" aria-label="Select {{ package.name }}">
+                {% if forloop.counter == 2 %}
+                <span class="package-card-popular-badge">MOST POPULAR</span>
+                {% endif %}
+                <div class="package-card-left">
+                    <h3 class="package-card-title">{{ package.name }}</h3>
+                    <p class="package-card-desc">{{ package.short_description }}</p>
+                </div>
+                <div class="package-card-pricing">
+                    <span class="package-card-from">from</span>
+                    <span class="package-card-price">${{ package.base_price|floatformat:0 }}</span>
+                </div>
+            </a>
+            {% empty %}
+            <!-- Fallbacks matching exact mock -->
+            <a href="#calc-widget" class="package-list-card" aria-label="Select 1 BHK Cleaning">
+                <div class="package-card-left">
+                    <h3 class="package-card-title">1 BHK Cleaning</h3>
+                    <p class="package-card-desc">Perfect for a 1 bedroom, 1 bathroom apartment.</p>
+                </div>
+                <div class="package-card-pricing">
+                    <span class="package-card-from">from</span>
+                    <span class="package-card-price">$94</span>
+                </div>
+            </a>
+            <a href="#calc-widget" class="package-list-card is-popular" aria-label="Select 2 BHK Cleaning">
+                <span class="package-card-popular-badge">MOST POPULAR</span>
+                <div class="package-card-left">
+                    <h3 class="package-card-title">2 BHK Cleaning</h3>
+                    <p class="package-card-desc">Ideal for a 2 bedroom apartment or small house.</p>
+                </div>
+                <div class="package-card-pricing">
+                    <span class="package-card-from">from</span>
+                    <span class="package-card-price">$143</span>
+                </div>
+            </a>
+            <a href="#calc-widget" class="package-list-card" aria-label="Select Villa">
+                <div class="package-card-left">
+                    <h3 class="package-card-title">Villa</h3>
+                    <p class="package-card-desc">For a 3 bedroom house with up to 2 bathrooms.</p>
+                </div>
+                <div class="package-card-pricing">
+                    <span class="package-card-from">from</span>
+                    <span class="package-card-price">$326</span>
+                </div>
+            </a>
+            <a href="#calc-widget" class="package-list-card" aria-label="Select 3 BHK Cleaning">
+                <div class="package-card-left">
+                    <h3 class="package-card-title">3 BHK Cleaning</h3>
+                    <p class="package-card-desc">For a 3 bedroom house with up to 2 bathrooms.</p>
+                </div>
+                <div class="package-card-pricing">
+                    <span class="package-card-from">from</span>
+                    <span class="package-card-price">$232</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 <!-- ════════════════════════════════════════ -->
 <!-- Reviews Section — Single-Line Moving Strip -->
 <!-- ════════════════════════════════════════ -->
@@ -5386,7 +5861,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="review-name-row">
                         <span class="review-author">Sarah J.</span>
                         <span class="review-stars">★★★★★</span>
-                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                        <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Review</span>
                     </div>
                     <p class="review-text">"Absolutely spotless. The real estate agent was impressed and we got our full bond back the next day. Highly recommended."</p>
                 </div>
@@ -5398,7 +5873,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="review-name-row">
                         <span class="review-author">David C.</span>
                         <span class="review-stars">★★★★★</span>
-                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                        <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Review</span>
                     </div>
                     <p class="review-text">"I tried cleaning it myself before giving up. Final Clean came in on a Sunday and made the place look brand new. Worth every cent."</p>
                 </div>
@@ -5410,7 +5885,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="review-name-row">
                         <span class="review-author">Emma R.</span>
                         <span class="review-stars">★★★★★</span>
-                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                        <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Review</span>
                     </div>
                     <p class="review-text">"So easy to book and the price was exactly what they quoted — no hidden fees. The team left the carpets looking flawless."</p>
                 </div>
@@ -5422,7 +5897,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="review-name-row">
                         <span class="review-author">Marcus K.</span>
                         <span class="review-stars">★★★★★</span>
-                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                        <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Review</span>
                     </div>
                     <p class="review-text">"My property manager at Belle Property inspected the next morning and signed off on the full refund immediately. Absolute lifesavers."</p>
                 </div>
@@ -5434,7 +5909,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="review-name-row">
                         <span class="review-author">Sophie T.</span>
                         <span class="review-stars">★★★★★</span>
-                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                        <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Review</span>
                     </div>
                     <p class="review-text">"Got our full $3,200 bond back without a single question from Ray White. Window tracks and oven look brand new!"</p>
                 </div>
@@ -5447,7 +5922,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="review-name-row">
                         <span class="review-author">Sarah J.</span>
                         <span class="review-stars">★★★★★</span>
-                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                        <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Review</span>
                     </div>
                     <p class="review-text">"Absolutely spotless. The real estate agent was impressed and we got our full bond back the next day. Highly recommended."</p>
                 </div>
@@ -5459,7 +5934,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="review-name-row">
                         <span class="review-author">David C.</span>
                         <span class="review-stars">★★★★★</span>
-                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                        <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Review</span>
                     </div>
                     <p class="review-text">"I tried cleaning it myself before giving up. Final Clean came in on a Sunday and made the place look brand new. Worth every cent."</p>
                 </div>
@@ -5471,7 +5946,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="review-name-row">
                         <span class="review-author">Emma R.</span>
                         <span class="review-stars">★★★★★</span>
-                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                        <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Review</span>
                     </div>
                     <p class="review-text">"So easy to book and the price was exactly what they quoted — no hidden fees. The team left the carpets looking flawless."</p>
                 </div>
@@ -5483,7 +5958,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="review-name-row">
                         <span class="review-author">Marcus K.</span>
                         <span class="review-stars">★★★★★</span>
-                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                        <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Review</span>
                     </div>
                     <p class="review-text">"My property manager at Belle Property inspected the next morning and signed off on the full refund immediately. Absolute lifesavers."</p>
                 </div>
@@ -5495,7 +5970,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="review-name-row">
                         <span class="review-author">Sophie T.</span>
                         <span class="review-stars">★★★★★</span>
-                        <span class="review-verified-badge"><i class="fa-brands fa-google"></i> Verified Google Review</span>
+                        <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Review</span>
                     </div>
                     <p class="review-text">"Got our full $3,200 bond back without a single question from Ray White. Window tracks and oven look brand new!"</p>
                 </div>
@@ -5537,15 +6012,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 </div>
                 <div class="scope-card-body">
                     <h3 class="scope-card-title">Oven &amp; Rangehood</h3>
-                    <div class="scope-outcome-caption">
-                        <span class="scope-outcome-title"><i class="fa-solid fa-check"></i> Inspection Outcome</span>
-                        <p class="scope-outcome-text">Deep-cleaned racks, door glass, and fan grease — passed property manager inspection without deduction.</p>
-                    </div>
-                    <ul class="scope-checklist">
-                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Baked carbon &amp; grease dissolved</span></li>
-                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Oven racks, trays &amp; glass polished</span></li>
-                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Rangehood filter degreased completely</span></li>
-                    </ul>
                 </div>
             </div>
 
@@ -5562,15 +6028,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 </div>
                 <div class="scope-card-body">
                     <h3 class="scope-card-title">Shower Grout &amp; Screens</h3>
-                    <div class="scope-outcome-caption">
-                        <span class="scope-outcome-title"><i class="fa-solid fa-check"></i> Inspection Outcome</span>
-                        <p class="scope-outcome-text">Mould and soap scum eliminated from tiles &amp; glass screens — zero bathroom disputes at handover.</p>
-                    </div>
-                    <ul class="scope-checklist">
-                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Limescale &amp; hard water marks removed</span></li>
-                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Grout lines treated for mould &amp; mildew</span></li>
-                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Tapware, drain grate &amp; vanity descaled</span></li>
-                    </ul>
                 </div>
             </div>
 
@@ -5587,15 +6044,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 </div>
                 <div class="scope-card-body">
                     <h3 class="scope-card-title">Steam Carpet Cleaning</h3>
-                    <div class="scope-outcome-caption">
-                        <span class="scope-outcome-title"><i class="fa-solid fa-check"></i> Inspection Outcome</span>
-                        <p class="scope-outcome-text">High-traffic steam extraction removing stains and pet odor — approved to commercial agent standard.</p>
-                    </div>
-                    <ul class="scope-checklist">
-                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Hot-water extraction deep sanitisation</span></li>
-                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Pet odor, hair &amp; surface stains lifted</span></li>
-                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Compliant steam receipt for real estate</span></li>
-                    </ul>
                 </div>
             </div>
 
@@ -5612,15 +6060,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 </div>
                 <div class="scope-card-body">
                     <h3 class="scope-card-title">Window Tracks &amp; Sills</h3>
-                    <div class="scope-outcome-caption">
-                        <span class="scope-outcome-title"><i class="fa-solid fa-check"></i> Inspection Outcome</span>
-                        <p class="scope-outcome-text">Sill and track grime flushed clean — no deductions on real estate exit checklist.</p>
-                    </div>
-                    <ul class="scope-checklist">
-                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Sliding tracks vacuumed &amp; flushed</span></li>
-                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Internal window glass polished streak-free</span></li>
-                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Window frames, latches &amp; sills wiped</span></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -6000,68 +6439,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 </div>
 
 <!-- ════════════════════════════════════════ -->
-<!-- 11. Premium FAQ Section                  -->
-<!-- ════════════════════════════════════════ -->
-<section class="premium-faq-wrapper" x-data="{ activeIndex: null }">
-    <div class="premium-faq-left reveal-left">
-        <div class="premium-faq-pill">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="faq-shield-icon">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-            Got Questions?
-        </div>
-        <h2 class="premium-faq-title">We've got<br>answers.</h2>
-        <p class="premium-faq-text">Everything you need to know about our end-of-lease cleaning service, pricing, and bond back guarantee.</p>
-        <a href="tel:0279889050" class="premium-faq-contact">
-            <div class="contact-icon">
-                <i class="fa-solid fa-phone"></i>
-            </div>
-            Call 02 7988 9050
-        </a>
-    </div>
-
-    <div class="premium-faq-right reveal-stagger">
-        {% for faq in faqs %}
-        <div class="premium-faq-item" :class="activeIndex === {{ faq.id }} ? 'premium-faq-item--open' : ''">
-            <button class="premium-faq-btn"
-                @click="activeIndex === {{ faq.id }} ? activeIndex = null : activeIndex = {{ faq.id }}">
-                <span class="premium-faq-btn-text">{{ faq.question }}</span>
-                <span class="premium-faq-btn-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                </span>
-            </button>
-            <div class="premium-faq-answer" x-show="activeIndex === {{ faq.id }}" x-collapse>
-                <div class="premium-faq-answer-inner">{{ faq.answer }}</div>
-            </div>
-        </div>
-        {% empty %}
-        <!-- Fallback FAQs (Exact sequence) -->
-        <div class="premium-faq-item" :class="activeIndex === 1 ? 'premium-faq-item--open' : ''">
-            <button class="premium-faq-btn" @click="activeIndex === 1 ? activeIndex = null : activeIndex = 1">
-                <span class="premium-faq-btn-text">How is my price calculated?</span>
-                <span class="premium-faq-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
-            </button>
-            <div class="premium-faq-answer" x-show="activeIndex === 1" x-collapse>
-                <div class="premium-faq-answer-inner">Your price is based on the number of bedrooms and bathrooms in your property. Every quote automatically includes our complete end-of-lease checklist — including oven deep clean, rangehood, internal windows, cupboards, and skirting boards. You only pay extra if you select optional add-ons like steam carpet cleaning.</div>
-            </div>
-        </div>
-        <div class="premium-faq-item" :class="activeIndex === 2 ? 'premium-faq-item--open' : ''">
-            <button class="premium-faq-btn" @click="activeIndex === 2 ? activeIndex = null : activeIndex = 2">
-                <span class="premium-faq-btn-text">What happens if the property needs heavy-duty cleaning?</span>
-                <span class="premium-faq-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
-            </button>
-            <div class="premium-faq-answer" x-show="activeIndex === 2" x-collapse>
-                <div class="premium-faq-answer-inner">Our standard fixed price covers normal wear and end-of-lease residue. If a property requires extreme grease removal, heavy pet soiling, excess rubbish disposal, or mould remediation beyond standard tenancy wear, our team will inspect the site upon arrival and discuss any necessary adjustments with you upfront before starting work. No surprise charges.</div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</section>
-
-<!-- ════════════════════════════════════════ -->
 <!-- 12. Visual Service Areas & Suburb Coverage -->
 <!-- ════════════════════════════════════════ -->
 <section class="seo-cities-section">
@@ -6395,6 +6772,71 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 </div>
             </div>
 
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- Frequently Asked Questions (FAQ) Section -->
+<!-- (Placed right before the footer)         -->
+<!-- ════════════════════════════════════════ -->
+<section class="faq-outer-section" id="faq">
+    <div class="premium-faq-wrapper" x-data="{ activeIndex: null }">
+        <div class="premium-faq-left reveal-left">
+            <div class="premium-faq-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="faq-shield-icon">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                Got Questions?
+            </div>
+            <h2 class="premium-faq-title">We've got<br>answers.</h2>
+            <p class="premium-faq-text">Everything you need to know about our end-of-lease cleaning service, pricing, and bond back guarantee.</p>
+            <a href="tel:0279889050" class="premium-faq-contact">
+                <div class="contact-icon">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+                Call 02 7988 9050
+            </a>
+        </div>
+
+        <div class="premium-faq-right reveal-stagger">
+            {% for faq in faqs %}
+            <div class="premium-faq-item" :class="activeIndex === {{ faq.id }} ? 'premium-faq-item--open' : ''">
+                <button class="premium-faq-btn"
+                    @click="activeIndex === {{ faq.id }} ? activeIndex = null : activeIndex = {{ faq.id }}">
+                    <span class="premium-faq-btn-text">{{ faq.question }}</span>
+                    <span class="premium-faq-btn-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </span>
+                </button>
+                <div class="premium-faq-answer" x-show="activeIndex === {{ faq.id }}" x-collapse>
+                    <div class="premium-faq-answer-inner">{{ faq.answer }}</div>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Fallback FAQs (Exact sequence) -->
+            <div class="premium-faq-item" :class="activeIndex === 1 ? 'premium-faq-item--open' : ''">
+                <button class="premium-faq-btn" @click="activeIndex === 1 ? activeIndex = null : activeIndex = 1">
+                    <span class="premium-faq-btn-text">How is my price calculated?</span>
+                    <span class="premium-faq-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                </button>
+                <div class="premium-faq-answer" x-show="activeIndex === 1" x-collapse>
+                    <div class="premium-faq-answer-inner">Your price is based on the number of bedrooms and bathrooms in your property. Every quote automatically includes our complete end-of-lease checklist — including oven deep clean, rangehood, internal windows, cupboards, and skirting boards. You only pay extra if you select optional add-ons like steam carpet cleaning.</div>
+                </div>
+            </div>
+            <div class="premium-faq-item" :class="activeIndex === 2 ? 'premium-faq-item--open' : ''">
+                <button class="premium-faq-btn" @click="activeIndex === 2 ? activeIndex = null : activeIndex = 2">
+                    <span class="premium-faq-btn-text">What happens if the property needs heavy-duty cleaning?</span>
+                    <span class="premium-faq-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                </button>
+                <div class="premium-faq-answer" x-show="activeIndex === 2" x-collapse>
+                    <div class="premium-faq-answer-inner">Our standard fixed price covers normal wear and end-of-lease residue. If a property requires extreme grease removal, heavy pet soiling, excess rubbish disposal, or mould remediation beyond standard tenancy wear, our team will inspect the site upon arrival and discuss any necessary adjustments with you upfront before starting work. No surprise charges.</div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
