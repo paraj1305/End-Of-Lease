@@ -49,3 +49,25 @@ Once the server is running, you can access the application in your web browser a
 - **Booking Flow:** Fully integrated, liquid-glass designed booking form with dynamic price calculation and add-on selection.
 - **Payments:** Stripe integration for collecting a 10% upfront deposit securely.
 - **Admin Management:** Manage packages, add-ons (with image support), bookings, and time slots via the Django Admin interface.
+
+
+server
+
+nano /etc/systemd/system/endoflease.service
+
+server {
+    listen 80;
+    server_name 134.199.166.225;
+
+    location /static/ {
+        alias /var/www/End-Of-Lease/staticfiles/;
+    }
+
+    location / {
+        proxy_pass http://unix:/var/www/End-Of-Lease/endoflease.sock;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}

@@ -5,7 +5,7 @@ Change any constant here and it automatically propagates across all templates, v
 
 # Callback SLA in minutes for new booking confirmations
 # Change this number (e.g. 5, 10) in one place to update all booking pages & confirmation screens.
-CALLBACK_ESTIMATE_MINUTES = 5
+CALLBACK_ESTIMATE_MINUTES = 15
 
 # Upfront Deposit Policy (False = 0% deposit required, pay full on day of clean)
 DEPOSIT_REQUIRED = False

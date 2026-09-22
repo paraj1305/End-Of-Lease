@@ -705,7 +705,7 @@
     </main>
 
     <!-- Premium Footer -->
-    <footer class="main-footer">
+    <footer class="main-footer" x-data="{ showCancellationModal: false, showPrivacyModal: false }">
         <div class="footer-wave">
             <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
                 <path
@@ -718,45 +718,117 @@
                 <a href="/" class="footer-brand-link" aria-label="Final Clean Home">
                     <img src="/static/images/final_clean_logo_white.svg" alt="Final Clean" class="footer-brand-img" width="186" height="36">
                 </a>
-                <p class="footer-tagline">Sydney's #1 premium end of lease cleaning service. Guaranteed to get your bond
-                    back.</p>
+                <p class="footer-tagline">Sydney's #1 premium end of lease cleaning service. Guaranteed to get your bond back.</p>
+                <div class="footer-insurance-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>$10,000,000 Public Liability Insured</span>
+                </div>
             </div>
 
             <div class="footer-col">
-                <h3 class="footer-title">Services</h3>
-                <ul class="footer-links">
-                    <li><a href="#">End of Lease Clean</a></li>
-                    <li><a href="#">Carpet Steam Cleaning</a></li>
-                    <li><a href="#">Pest Control</a></li>
-                    <li><a href="#">Upholstery Cleaning</a></li>
-                </ul>
+                <h3 class="footer-title">Business &amp; Verification</h3>
+                <div class="footer-compliance-list">
+                    <p class="footer-compliance-item"><strong>ABN:</strong> 84 629 193 842</p>
+                    <p class="footer-compliance-item"><strong>Insurance:</strong> $10M Public Liability (Policy active)</p>
+                    <p class="footer-compliance-item"><strong>GST Included:</strong> All prices include 10% GST. Formal tax invoices provided for real estate bond claims.</p>
+                </div>
             </div>
 
             <div class="footer-col">
-                <h3 class="footer-title">Company</h3>
-                <ul class="footer-links">
-                    <li><a href="{% url 'public:about' %}">Our Guarantee</a></li>
-                    <li><a href="{% url 'public:faq' %}">FAQ</a></li>
-                    <li><a href="{% url 'public:our_work' %}">Our Work</a></li>
-                    <li><a href="#">Terms & Privacy</a></li>
-                </ul>
+                <h3 class="footer-title">Contact &amp; Hours</h3>
+                <div class="footer-compliance-list">
+                    <p class="footer-compliance-item">
+                        <a href="tel:0279889050" class="footer-phone"><i class="fa-solid fa-phone"></i> 02 7988 9050</a>
+                    </p>
+                    <p class="footer-compliance-item"><i class="fa-solid fa-clock"></i> Available 7 Days, 7:00 AM – 8:00 PM</p>
+                    <p class="footer-compliance-item"><i class="fa-solid fa-envelope"></i> hello@finalclean.com.au</p>
+                    <p class="footer-compliance-item"><i class="fa-solid fa-location-dot"></i> Sydney &amp; Surrounding Suburbs</p>
+                </div>
             </div>
 
             <div class="footer-col">
-                <h3 class="footer-title">Contact</h3>
-                <ul class="footer-links">
-                    <li><a href="tel:0279889050" class="footer-phone">02 7988 9050</a></li>
-                    <li><a href="mailto:hello@finalclean.com.au">hello@finalclean.com.au</a></li>
-                    <li class="footer-hours">Available 24/7</li>
-                </ul>
+                <h3 class="footer-title">Customer Policies</h3>
+                <div class="footer-policy-actions">
+                    <button type="button" class="footer-policy-btn" @click="showCancellationModal = true">
+                        <i class="fa-solid fa-calendar-xmark"></i> Cancellation Policy
+                    </button>
+                    <button type="button" class="footer-policy-btn" @click="showPrivacyModal = true">
+                        <i class="fa-solid fa-user-shield"></i> Privacy Policy
+                    </button>
+                </div>
+                <p class="footer-policy-note">Fair Trading NSW compliant exit inspection guarantees provided with every booking.</p>
             </div>
         </div>
 
         <div class="container footer-bottom">
-            <p>&copy; {% now "Y" %} Final Clean. All rights reserved.</p>
-            <p>Sydney, Australia</p>
+            <p>&copy; {% now "Y" %} Final Clean Pty Ltd. All rights reserved. ABN 84 629 193 842.</p>
+            <p>Sydney, NSW, Australia · 100% Bond Back Guarantee</p>
+        </div>
+
+        <!-- Cancellation Policy Modal -->
+        <div class="legal-modal-backdrop" x-show="showCancellationModal" x-transition.opacity style="display: none;" @keydown.escape.window="showCancellationModal = false">
+            <div class="legal-modal-card" @click.outside="showCancellationModal = false">
+                <div class="legal-modal-header">
+                    <h3 class="legal-modal-title"><i class="fa-solid fa-calendar-xmark"></i> Cancellation &amp; Rescheduling Policy</h3>
+                    <button type="button" class="legal-modal-close" @click="showCancellationModal = false" aria-label="Close modal">&times;</button>
+                </div>
+                <div class="legal-modal-body">
+                    <p><strong>1. Free Cancellation &amp; Rescheduling (24+ Hours Notice)</strong><br>
+                    We understand moving dates change. You may cancel or reschedule your cleaning service free of charge up to 24 hours prior to the scheduled start time.</p>
+                    
+                    <p><strong>2. Late Notice (Within 24 Hours)</strong><br>
+                    Cancellations or date adjustments made within 24 hours of your appointment may incur a $50 scheduling fee to partially cover reserved team logistics.</p>
+
+                    <p><strong>3. Access &amp; Power Requirements</strong><br>
+                    If our cleaning crew arrives on-site and cannot access the property (e.g. keys unavailable, lockbox code incorrect, or electricity/water disconnected), our team will wait up to 30 minutes while attempting to reach you. If access cannot be arranged, a call-out fee applies.</p>
+
+                    <p><strong>4. Zero Upfront Deposit</strong><br>
+                    You do not pay upfront when getting your price. Payment is only finalised upon job completion.</p>
+                </div>
+                <div class="legal-modal-footer">
+                    <button type="button" class="legal-modal-btn" @click="showCancellationModal = false">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy Policy Modal -->
+        <div class="legal-modal-backdrop" x-show="showPrivacyModal" x-transition.opacity style="display: none;" @keydown.escape.window="showPrivacyModal = false">
+            <div class="legal-modal-card" @click.outside="showPrivacyModal = false">
+                <div class="legal-modal-header">
+                    <h3 class="legal-modal-title"><i class="fa-solid fa-user-shield"></i> Privacy Policy</h3>
+                    <button type="button" class="legal-modal-close" @click="showPrivacyModal = false" aria-label="Close modal">&times;</button>
+                </div>
+                <div class="legal-modal-body">
+                    <p><strong>1. Information We Collect</strong><br>
+                    Final Clean collects contact details (name, phone number, email address) and property specifications solely to provide fixed quotes, schedule cleaning teams, and issue formal GST invoices.</p>
+
+                    <p><strong>2. Use of Information</strong><br>
+                    Your details are used strictly for service delivery, sending timestamped before &amp; after inspection reports, and communicating with your real estate agent in the event of a re-clean request under our Bond Back Guarantee.</p>
+
+                    <p><strong>3. Third-Party Sharing</strong><br>
+                    We never sell, rent, or trade your personal data to third parties or marketing brokers. All data is stored in compliance with Australian Privacy Principles (APPs).</p>
+
+                    <p><strong>4. Security &amp; Contact</strong><br>
+                    Payments are handled through encrypted, PCI-compliant payment gateways. For questions regarding your data, contact privacy@finalclean.com.au.</p>
+                </div>
+                <div class="legal-modal-footer">
+                    <button type="button" class="legal-modal-btn" @click="showPrivacyModal = false">Close</button>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <!-- Sticky Mobile Bar -->
+    <div class="sticky-mobile-bar" aria-label="Quick contact and booking">
+        <a href="tel:0279889050" class="mobile-bar-btn mobile-bar-call">
+            <i class="fa-solid fa-phone"></i>
+            <span>Call</span>
+        </a>
+        <a href="/#calc-widget" class="mobile-bar-btn mobile-bar-quote">
+            <i class="fa-solid fa-calculator"></i>
+            <span>Get my price</span>
+        </a>
+    </div>
 
     <style>
         /* ════════════════════════════════════════ */
@@ -770,7 +842,6 @@
             position: relative;
             margin-top: 60px;
             z-index: 10;
-            /* Ensure footer and wave sit on top of bottom paddings */
         }
 
         .footer-wave {
@@ -794,11 +865,10 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
+            grid-template-columns: 1.3fr 1.1fr 1.1fr 1fr;
+            gap: 36px;
+            margin-bottom: 50px;
             padding-top: 40px;
-            /* Space inside the footer below the wave */
             position: relative;
             z-index: 2;
         }
@@ -821,56 +891,230 @@
         }
 
         .footer-col-brand .footer-tagline {
-            color: rgba(255, 255, 255, 0.6);
-            max-width: 250px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 280px;
+            margin-bottom: 14px;
+            font-size: 13.5px;
+        }
+
+        .footer-insurance-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            border-radius: var(--radius-full);
+            color: #34d399;
+            font-size: 12px;
+            font-weight: 600;
         }
 
         .footer-title {
             color: var(--color-white);
             font-weight: 700;
-            margin-bottom: 20px;
-            font-size: 16px;
+            margin-bottom: 18px;
+            font-size: 15px;
+            letter-spacing: 0.3px;
         }
 
-        .footer-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .footer-compliance-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            transition: color 0.2s ease, transform 0.2s ease;
-            display: inline-block;
+        .footer-compliance-item {
+            color: rgba(255, 255, 255, 0.65);
+            margin: 0;
+            font-size: 13.5px;
+            line-height: 1.5;
         }
 
-        .footer-links a:hover {
-            color: var(--color-accent);
-            transform: translateX(4px);
+        .footer-compliance-item strong {
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        .footer-links .footer-phone {
+        .footer-compliance-item a.footer-phone {
             color: var(--color-accent);
             font-weight: 800;
             font-size: 18px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s ease;
         }
 
-        .footer-links .footer-hours {
-            color: rgba(255, 255, 255, 0.4);
-            margin-top: 4px;
+        .footer-compliance-item a.footer-phone:hover {
+            transform: translateX(4px);
+        }
+
+        .footer-policy-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .footer-policy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: var(--color-white);
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+            text-align: left;
+            width: fit-content;
+        }
+
+        .footer-policy-btn:hover {
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.35);
+            transform: translateX(3px);
+        }
+
+        .footer-policy-note {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
         }
 
         .footer-bottom p {
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.4);
             margin: 0;
+            font-size: 12.5px;
+        }
+
+        /* ── Modals ── */
+        .legal-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 14, 29, 0.78);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .legal-modal-card {
+            background: #0f1c3d;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+            border-radius: 16px;
+            max-width: 580px;
+            width: 100%;
+            overflow: hidden;
+            animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .legal-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .legal-modal-title {
+            color: var(--color-white);
+            font-size: 17px;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legal-modal-close {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 26px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0 4px;
+            transition: color 0.2s ease;
+        }
+
+        .legal-modal-close:hover {
+            color: var(--color-white);
+        }
+
+        .legal-modal-body {
+            padding: 24px;
+            max-height: 60vh;
+            overflow-y: auto;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            line-height: 1.65;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .legal-modal-body strong {
+            color: var(--color-white);
+        }
+
+        .legal-modal-footer {
+            padding: 14px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .legal-modal-btn {
+            background: var(--color-accent);
+            color: var(--color-primary-dark);
+            border: none;
+            border-radius: 8px;
+            padding: 8px 20px;
             font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: filter 0.2s ease;
+        }
+
+        .legal-modal-btn:hover {
+            filter: brightness(1.08);
+        }
+
+        /* ── Sticky Mobile Bar ── */
+        .sticky-mobile-bar {
+            display: none;
         }
 
         @media (max-width: 768px) {
+            body {
+                padding-bottom: 70px;
+            }
+
             .main-footer {
                 padding: 0 var(--space-4) 30px;
                 margin-top: 40px;
@@ -878,25 +1122,69 @@
 
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
-                text-align: center;
-                margin-bottom: 40px;
+                gap: 28px;
+                text-align: left;
+                margin-bottom: 36px;
                 padding-top: 24px;
             }
 
             .footer-col-brand .footer-tagline {
                 max-width: 100%;
-                margin-inline: auto;
             }
 
             .footer-bottom {
                 flex-direction: column;
-                align-items: center;
-                text-align: center;
+                align-items: flex-start;
                 gap: 8px;
             }
+
+            .sticky-mobile-bar {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 64px;
+                background: rgba(11, 19, 41, 0.95);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
+                z-index: 99999;
+                padding: 8px 12px;
+                gap: 10px;
+                box-sizing: border-box;
+            }
+
+            .mobile-bar-btn {
+                flex: 1;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                text-decoration: none;
+                font-weight: 700;
+                font-size: 14px;
+                border-radius: 10px;
+                transition: transform 0.15s ease, filter 0.15s ease;
+            }
+
+            .mobile-bar-btn:active {
+                transform: scale(0.98);
+            }
+
+            .mobile-bar-call {
+                background: rgba(255, 255, 255, 0.12);
+                border: 1px solid rgba(255, 255, 255, 0.22);
+                color: var(--color-white);
+            }
+
+            .mobile-bar-quote {
+                background: var(--color-accent);
+                color: var(--color-primary-dark);
+                box-shadow: 0 4px 14px rgba(255, 195, 73, 0.4);
+            }
         }
-    </style>
 
     <style>
         /* Sparkle Trail Particles */

@@ -31,14 +31,22 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-_*-)&8^w5le6*(p-b76zk+vwww
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-_allowed_hosts = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,134.199.166.225')
+_allowed_hosts = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,134.199.166.225,finalclean.com.au,www.finalclean.com.au')
 ALLOWED_HOSTS = [h.strip() for h in _allowed_hosts.split(',') if h.strip()]
-if '134.199.166.225' not in ALLOWED_HOSTS:
-    ALLOWED_HOSTS.append('134.199.166.225')
+for _host in ('134.199.166.225', 'finalclean.com.au', 'www.finalclean.com.au'):
+    if _host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(_host)
 
-_csrf_origins = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://134.199.166.225,https://134.199.166.225')
+_csrf_origins = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://134.199.166.225,https://134.199.166.225,https://finalclean.com.au,http://finalclean.com.au,https://www.finalclean.com.au,http://www.finalclean.com.au')
 CSRF_TRUSTED_ORIGINS = [o.strip() for o in _csrf_origins.split(',') if o.strip()]
-for _origin in ('http://134.199.166.225', 'https://134.199.166.225'):
+for _origin in (
+    'http://134.199.166.225',
+    'https://134.199.166.225',
+    'http://finalclean.com.au',
+    'https://finalclean.com.au',
+    'http://www.finalclean.com.au',
+    'https://www.finalclean.com.au',
+):
     if _origin not in CSRF_TRUSTED_ORIGINS:
         CSRF_TRUSTED_ORIGINS.append(_origin)
 

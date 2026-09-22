@@ -3,14 +3,30 @@ from .base import *
 
 DEBUG = False
 
-_allowed_hosts = os.getenv('ALLOWED_HOSTS', '134.199.166.225,localhost,127.0.0.1')
-ALLOWED_HOSTS = [h.strip() for h in _allowed_hosts.split(',') if h.strip()]
-if '134.199.166.225' not in ALLOWED_HOSTS:
-    ALLOWED_HOSTS.append('134.199.166.225')
+ALLOWED_HOSTS = [
+    "finalclean.com.au",
+    "www.finalclean.com.au",
+    "134.199.166.225",
+]
 
-_csrf_origins = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://134.199.166.225,https://134.199.166.225')
+# Merge any additional hosts passed via environment variable
+_allowed_hosts = os.getenv('ALLOWED_HOSTS')
+if _allowed_hosts:
+    for h in _allowed_hosts.split(','):
+        h = h.strip()
+        if h and h not in ALLOWED_HOSTS:
+            ALLOWED_HOSTS.append(h)
+
+_csrf_origins = os.getenv('CSRF_TRUSTED_ORIGINS', '')
 CSRF_TRUSTED_ORIGINS = [o.strip() for o in _csrf_origins.split(',') if o.strip()]
-for _origin in ('http://134.199.166.225', 'https://134.199.166.225'):
+for _origin in (
+    'http://134.199.166.225',
+    'https://134.199.166.225',
+    'http://finalclean.com.au',
+    'https://finalclean.com.au',
+    'http://www.finalclean.com.au',
+    'https://www.finalclean.com.au',
+):
     if _origin not in CSRF_TRUSTED_ORIGINS:
         CSRF_TRUSTED_ORIGINS.append(_origin)
 

@@ -1176,51 +1176,30 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         font-weight: 500;
     }
 
-    /* Marquee Spanning Edge-to-Edge with Curved Fades on Both Sides of Main Card */
-    .calc-addons-marquee-wrapper {
-        position: relative;
-        overflow: hidden;
-        width: calc(100% + 56px);
-        margin: 0 -28px;
-        padding: 4px 0 6px;
-        box-sizing: border-box;
-        /* Curved edge masks on BOTH sides matching main card curves */
-        mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 12px, black 34px, black calc(100% - 34px), rgba(0, 0, 0, 0.25) calc(100% - 12px), transparent 100%);
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 12px, black 34px, black calc(100% - 34px), rgba(0, 0, 0, 0.25) calc(100% - 12px), transparent 100%);
-    }
-
-    .calc-addons-track {
-        display: flex;
-        align-items: center;
+    /* Stable 3-Col Grid for Add-ons (replaces marquee) */
+    .calc-addons-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 10px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-behavior: auto;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        -webkit-overflow-scrolling: touch;
-        cursor: grab;
-        user-select: none;
-        padding: 6px 28px 12px 28px;
         width: 100%;
         box-sizing: border-box;
+        padding: 4px 0 6px;
     }
 
-    .calc-addons-track::-webkit-scrollbar {
-        display: none;
-    }
-
-    .calc-addons-track.is-dragging {
-        cursor: grabbing;
+    @media (max-width: 480px) {
+        .calc-addons-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
     }
 
     /* Add-on Square Box — Modern Expanded Square Interactive Card */
     .calc-addon-pill,
     .calc-addon-card {
-        flex: 0 0 118px;
-        width: 118px;
-        height: 118px;
-        display: inline-flex;
+        flex: unset;
+        width: 100%;
+        min-height: 112px;
+        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
@@ -1498,13 +1477,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         border-color: #cbd5e1;
     }
 
-    /* ── Step 2 Add-ons List ── */
-    .calc-addons-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 12px;
-    }
 
     .calc-addons-note {
         font-size: 12px;
@@ -2092,11 +2064,12 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
         .calc-addon-pill,
         .calc-addon-card {
-            flex: 0 0 110px;
-            width: 110px;
-            height: 110px;
-            border-radius: 18px;
-            padding: 10px 6px 8px;
+            flex: unset;
+            width: 100%;
+            min-width: 0;
+            min-height: 106px;
+            border-radius: 16px;
+            padding: 9px 4px 8px;
         }
 
         .calc-addon-pill-name,
@@ -4207,6 +4180,677 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     .btn-phone-icon {
         font-size: 13px;
     }
+
+    /* ════════════════════════════════════════
+       CLIENT OVERHAUL REFINEMENTS & COMPONENTS
+    ════════════════════════════════════════ */
+    /* Hero Copy Enhancements */
+    .hero-guarantee-pill,
+    .hero-avail-pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 16px;
+        border-radius: var(--radius-full);
+        font-size: 13.5px;
+        line-height: 1.4;
+        margin-bottom: 12px;
+        width: fit-content;
+    }
+
+    .hero-guarantee-pill {
+        background: rgba(16, 185, 129, 0.16);
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        color: #34d399;
+    }
+
+    .hero-guarantee-pill i {
+        font-size: 15px;
+    }
+
+    .hero-guarantee-pill strong {
+        color: #ffffff;
+    }
+
+    .hero-avail-pill {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: rgba(255, 255, 255, 0.88);
+    }
+
+    .hero-avail-pill i {
+        color: var(--color-accent);
+    }
+
+    .hero-phone-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 22px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+        color: var(--color-white);
+        border-radius: var(--radius-full);
+        font-weight: 700;
+        font-size: 15px;
+        text-decoration: none;
+        transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .hero-phone-cta:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.45);
+        transform: translateY(-2px);
+    }
+
+
+    /* ════════════════════════════════════════
+       5. Agents Logo Running Strip
+    ════════════════════════════════════════ */
+    .agency-strip-section {
+        padding: 40px 0 20px;
+        background: transparent;
+        position: relative;
+        z-index: 5;
+        overflow: hidden;
+    }
+
+    .agency-strip-header {
+        text-align: center;
+        margin-bottom: 22px;
+    }
+
+    .agency-strip-title {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 6px 16px;
+        border-radius: var(--radius-full);
+    }
+
+    .agency-strip-title i {
+        color: #34d399;
+    }
+
+    .agency-strip-marquee {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        position: relative;
+        mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    .agency-strip-track {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        animation: agencyScroll 32s linear infinite;
+        width: max-content;
+        will-change: transform;
+    }
+
+    .agency-strip-marquee:hover .agency-strip-track {
+        animation-play-state: paused;
+    }
+
+    @keyframes agencyScroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+    }
+
+    .agency-logo-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 12px;
+        padding: 10px 18px;
+        font-weight: 700;
+        font-size: 13.5px;
+        color: var(--color-white);
+        white-space: nowrap;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .agency-logo-pill:hover {
+        background: rgba(255, 255, 255, 0.14);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .agency-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        font-weight: 800;
+        font-size: 11px;
+        color: #ffffff;
+    }
+
+    .agency-icon.rw  { background: #FFCE00; color: #111111; }
+    .agency-icon.mc  { background: #1B2B4C; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.3); }
+    .agency-icon.lj  { background: #E4002B; color: #FFFFFF; }
+    .agency-icon.bp  { background: #0A5E44; color: #FFFFFF; }
+    .agency-icon.rh  { background: #FFA800; color: #111111; }
+    .agency-icon.c21 { background: #BE9A59; color: #111111; }
+    .agency-icon.hc  { background: #004B87; color: #FFFFFF; }
+    .agency-icon.fn  { background: #D62329; color: #FFFFFF; }
+    .agency-icon.bw  { background: #1A1A1A; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.3); }
+    .agency-icon.rea { background: #E40000; color: #FFFFFF; }
+
+    /* ════════════════════════════════════════
+       Reviews Section — Aggregate Block & Cards
+    ════════════════════════════════════════ */
+    .reviews-aggregate-box {
+        max-width: 960px;
+        margin: 0 auto 40px;
+        background: rgba(15, 28, 61, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 20px;
+        padding: 30px 40px;
+        display: grid;
+        grid-template-columns: 240px 1fr 240px;
+        gap: 36px;
+        align-items: center;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(10px);
+    }
+
+    .reviews-aggregate-left {
+        text-align: center;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        padding-right: 28px;
+    }
+
+    .reviews-score-num {
+        font-size: 56px;
+        font-weight: 800;
+        line-height: 1;
+        color: var(--color-white);
+        margin-bottom: 6px;
+    }
+
+    .reviews-score-stars {
+        color: #fbbf24;
+        font-size: 20px;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+    }
+
+    .reviews-score-total {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        font-weight: 500;
+    }
+
+    .reviews-breakdown-col {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .reviews-bar-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 12.5px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .reviews-bar-label {
+        width: 48px;
+        text-align: right;
+        font-weight: 600;
+    }
+
+    .reviews-bar-track {
+        flex: 1;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-full);
+        overflow: hidden;
+    }
+
+    .reviews-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #f59e0b, #fbbf24);
+        border-radius: var(--radius-full);
+    }
+
+    .reviews-bar-fill.fill-96 { width: 96%; }
+    .reviews-bar-fill.fill-4  { width: 4%; }
+    .reviews-bar-fill.fill-0  { width: 0%; }
+
+    .reviews-bar-pct {
+        width: 36px;
+        font-weight: 600;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .reviews-aggregate-right {
+        text-align: center;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        padding-left: 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .reviews-shield-badge {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: rgba(16, 185, 129, 0.16);
+        border: 1.5px solid rgba(16, 185, 129, 0.4);
+        color: #34d399;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+    }
+
+    .reviews-guarantee-stat {
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--color-white);
+        line-height: 1.2;
+    }
+
+    .reviews-guarantee-sub {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.35;
+    }
+
+    .reviews-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        max-width: 1080px;
+        margin: 0 auto;
+    }
+
+    .review-card-static {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        padding: 24px 26px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .review-card-static:hover {
+        transform: translateY(-3px);
+        border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .review-card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .review-author-meta {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .review-author-name {
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--color-white);
+    }
+
+    .review-author-agency {
+        font-size: 12px;
+        color: #60a5fa;
+        font-weight: 600;
+    }
+
+    .review-quote-text {
+        font-size: 14px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0;
+        font-style: italic;
+    }
+
+    .review-outcome-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #34d399;
+        background: rgba(16, 185, 129, 0.12);
+        border: 1px solid rgba(16, 185, 129, 0.25);
+        padding: 4px 10px;
+        border-radius: var(--radius-full);
+        width: fit-content;
+    }
+
+    /* ════════════════════════════════════════
+       Before / After Outcome Captions
+    ════════════════════════════════════════ */
+    .scope-outcome-caption {
+        background: rgba(16, 185, 129, 0.1);
+        border-left: 3px solid #10b981;
+        padding: 10px 14px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 16px;
+    }
+
+    .scope-outcome-title {
+        display: block;
+        font-size: 11.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #34d399;
+        margin-bottom: 3px;
+    }
+
+    .scope-outcome-text {
+        font-size: 13px;
+        line-height: 1.45;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+    }
+
+    /* ════════════════════════════════════════
+       Real Estate Approved Checklist Accordion
+    ════════════════════════════════════════ */
+    .checklist-section {
+        padding: 70px 0;
+        position: relative;
+        z-index: 5;
+    }
+
+    .checklist-container {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .checklist-header {
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .checklist-intro-banner {
+        background: rgba(255, 195, 73, 0.12);
+        border: 1.5px solid rgba(255, 195, 73, 0.45);
+        border-radius: 12px;
+        padding: 14px 22px;
+        max-width: 800px;
+        margin: 0 auto 30px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #ffc349;
+    }
+
+    .checklist-accordion-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .checklist-accordion-item {
+        background: rgba(15, 28, 61, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 14px;
+        overflow: hidden;
+        transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .checklist-accordion-item--open {
+        border-color: rgba(255, 195, 73, 0.45);
+        background: rgba(15, 28, 61, 0.95);
+    }
+
+    .checklist-accordion-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px;
+        background: transparent;
+        border: none;
+        color: var(--color-white);
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        text-align: left;
+        transition: color 0.2s ease;
+    }
+
+    .checklist-btn-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .checklist-btn-left i {
+        color: var(--color-accent);
+        font-size: 18px;
+        width: 22px;
+        text-align: center;
+    }
+
+    .checklist-inclusions-badge {
+        font-size: 11.5px;
+        font-weight: 600;
+        color: #34d399;
+        background: rgba(16, 185, 129, 0.15);
+        padding: 3px 10px;
+        border-radius: var(--radius-full);
+    }
+
+    .checklist-toggle-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.25s ease;
+    }
+
+    .checklist-accordion-item--open .checklist-toggle-icon {
+        transform: rotate(180deg);
+        background: var(--color-accent);
+        color: var(--color-primary-dark);
+    }
+
+    .checklist-accordion-content {
+        padding: 0 24px 22px;
+    }
+
+    .checklist-items-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 16px;
+    }
+
+    .checklist-point {
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+        font-size: 13.5px;
+        line-height: 1.45;
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .checklist-point i {
+        color: #34d399;
+        font-size: 13px;
+        margin-top: 3px;
+        flex-shrink: 0;
+    }
+
+    /* ════════════════════════════════════════
+       Sydney Service Areas & Suburbs Directory
+    ════════════════════════════════════════ */
+    .service-suburbs-wrap {
+        border-top: 1px solid var(--color-grey-200);
+        padding: var(--space-6) var(--space-8);
+        background: #f8fbff;
+        position: relative;
+        z-index: 3;
+    }
+
+    .service-suburbs-header {
+        text-align: center;
+        margin-bottom: var(--space-5);
+    }
+
+    .service-suburbs-title {
+        font-size: 15px;
+        font-weight: 800;
+        color: var(--color-primary-dark);
+        letter-spacing: 0.5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .service-suburbs-title i {
+        color: var(--color-primary);
+    }
+
+    .service-suburbs-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-4);
+    }
+
+    .service-region-card {
+        background: var(--color-white);
+        border: 1px solid rgba(82, 94, 167, 0.12);
+        border-radius: 14px;
+        padding: 14px 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .service-region-title {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--color-primary-dark);
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        border-bottom: 1px solid var(--color-grey-100);
+        padding-bottom: 8px;
+    }
+
+    .service-region-title i {
+        color: var(--color-primary);
+        font-size: 12px;
+    }
+
+    .service-region-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .suburb-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        background: rgba(82, 94, 167, 0.06);
+        color: var(--color-primary-dark);
+        border-radius: var(--radius-full);
+        font-size: 11.5px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+
+    .suburb-chip:hover {
+        background: var(--color-primary);
+        color: var(--color-white);
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 992px) {
+        .service-suburbs-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 900px) {
+        .reviews-aggregate-box {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 24px;
+            padding: 24px;
+        }
+
+        .reviews-aggregate-left {
+            border-right: none;
+            padding-right: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .reviews-aggregate-right {
+            border-left: none;
+            padding-left: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        .reviews-cards-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .checklist-items-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .service-suburbs-wrap {
+            padding: var(--space-4);
+        }
+
+        .service-suburbs-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 {% endblock %}
 
@@ -4245,97 +4889,93 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     <div class="hero-copy reveal-fade-up">
         <div class="hero-eyebrow">
             <span></span>
-            Sydney's end of lease specialists · 24/7
+            Sydney's End of Lease Cleaning Specialists
         </div>
         <h1 class="hero-h1">
-            End of lease cleaning.<br>
-            <span class="gradient-text">Bond back. Every dollar.</span>
+            End of Lease Cleaning.<br>
+            <span class="gradient-text">100% Bond Back Guarantee.</span>
         </h1>
-        <p class="hero-desc">
-            Fixed-price end of lease cleaning to the real estate agent's checklist —
-            with a <strong>free 72-hour re-clean guarantee</strong> and before &amp; after photos
-            included. From <strong>$329 inc. GST.</strong>
-        </p>
+        <div class="hero-guarantee-pill">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span><strong>100% Bond Back Guarantee:</strong> Free re-clean until your agent signs off.</span>
+        </div>
+        <div class="hero-avail-pill">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Available 7 days a week · Sydney-wide</span>
+        </div>
         <div class="hero-ctas">
-            <a href="{% url 'bookings:multi_step_booking' %}" class="btn-primary-hero">
-                Get my fixed price &rarr;
+            <a href="#calc-widget" class="btn-primary-hero">
+                Get Your Price &darr;
             </a>
-            <a href="tel:0279889050" class="btn-call-hero">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path
-                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 15.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.8 4.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 11.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 18.92z">
-                    </path>
-                </svg>
-                Call 02 7988 9050
+            <a href="tel:0279889050" class="hero-phone-cta">
+                <i class="fa-solid fa-phone"></i>
+                <span>02 7988 9050</span>
             </a>
         </div>
         <div class="hero-stats">
             <span class="stat-stars">★★★★★</span>
-            <span class="stat-text"><strong>4.9</strong></span>
+            <span class="stat-text"><strong>4.9</strong> Google Rating</span>
             <span class="stat-divider"></span>
             <span class="stat-text">2,300+ bond cleans</span>
             <span class="stat-divider"></span>
-            <span class="stat-text">5-minute response · same &amp; next-day</span>
+            <span class="stat-text">15-minute response · same &amp; next-day</span>
         </div>
     </div>
 
 </section>
 
 <!-- ════════════════════════════════════════ -->
-<!-- Curved SVG Marquee (Desktop)             -->
+<!-- 2. Curved Moving Trust Stripe (Desktop)   -->
 <!-- ════════════════════════════════════════ -->
 <svg class="curve-marquee-svg reveal-zoom" viewBox="0 0 1440 100" preserveAspectRatio="none"
     aria-label="Trust and service highlights">
     <path id="wavyPath" d="M 0,50 C 360,-20 1080,120 1440,50" fill="none" />
     <text class="wavy-text" dy="24">
         <textPath href="#wavyPath" startOffset="0%">
-            <animate attributeName="startOffset" from="0%" to="-1000%" begin="0s" dur="400s" repeatCount="indefinite" />
+            <animate attributeName="startOffset" from="0%" to="-1000%" begin="0s" dur="380s" repeatCount="indefinite" />
             {% for i in '123456789012345678901234567890' %}
-            100% Bond Back Guarantee - Free Re-Clean Until Your Agent Signs Off &#160; • &#160; $10M Public Liability
-            &#160; • &#160; Police-Checked Cleaners &#160; • &#160; Fully Insured &#160; • &#160; Real Estate Agency
-            Checklists &#160; • &#160; 4.9 Google Rating &#160; • &#160; 7 Days A Week &#160; • &#160;
+            ★ 4.9 Google rating &#160; · &#160; 100% Bond Back Guarantee — free re-clean until your agent signs off &#160; · &#160; $10M public liability &#160; · &#160; Police-checked cleaners &#160; · &#160; Fully insured &#160; · &#160; Real estate agency checklists &#160; · &#160; 7 days a week &#160; · &#160;
             {% endfor %}
         </textPath>
     </text>
 </svg>
 
 <!-- ════════════════════════════════════════ -->
-<!-- Mobile/Tablet High-Performance Ticker     -->
+<!-- 2. Mobile/Tablet Strip Ticker (<= 768px)  -->
 <!-- ════════════════════════════════════════ -->
 <div class="mobile-trust-strip" aria-label="Trust highlights">
     <div class="mobile-trust-track">
         <div class="mobile-trust-group">
-            <span class="trust-item"><i class="fa-solid fa-shield-halved trust-icon"></i> 100% Bond Back Guarantee - Free Re-Clean Until Your Agent Signs Off</span>
-            <span class="trust-bullet">•</span>
-            <span class="trust-item"><i class="fa-solid fa-building-shield trust-icon"></i> $10M Public Liability</span>
-            <span class="trust-bullet">•</span>
-            <span class="trust-item"><i class="fa-solid fa-user-check trust-icon"></i> Police-Checked Cleaners</span>
-            <span class="trust-bullet">•</span>
-            <span class="trust-item"><i class="fa-solid fa-file-shield trust-icon"></i> Fully Insured</span>
-            <span class="trust-bullet">•</span>
-            <span class="trust-item"><i class="fa-solid fa-clipboard-check trust-icon"></i> Real Estate Agency Checklists</span>
-            <span class="trust-bullet">•</span>
-            <span class="trust-item"><i class="fa-solid fa-star trust-icon-star"></i> 4.9 Google Rating</span>
-            <span class="trust-bullet">•</span>
-            <span class="trust-item"><i class="fa-solid fa-calendar-check trust-icon"></i> 7 Days A Week</span>
-            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-star trust-icon-star"></i> 4.9 Google rating</span>
+            <span class="trust-bullet">·</span>
+            <span class="trust-item"><i class="fa-solid fa-shield-halved trust-icon"></i> 100% Bond Back Guarantee — free re-clean until your agent signs off</span>
+            <span class="trust-bullet">·</span>
+            <span class="trust-item"><i class="fa-solid fa-building-shield trust-icon"></i> $10M public liability</span>
+            <span class="trust-bullet">·</span>
+            <span class="trust-item"><i class="fa-solid fa-user-check trust-icon"></i> Police-checked cleaners</span>
+            <span class="trust-bullet">·</span>
+            <span class="trust-item"><i class="fa-solid fa-file-shield trust-icon"></i> Fully insured</span>
+            <span class="trust-bullet">·</span>
+            <span class="trust-item"><i class="fa-solid fa-clipboard-check trust-icon"></i> Real estate agency checklists</span>
+            <span class="trust-bullet">·</span>
+            <span class="trust-item"><i class="fa-solid fa-calendar-check trust-icon"></i> 7 days a week</span>
+            <span class="trust-bullet">·</span>
         </div>
         <div class="mobile-trust-group" aria-hidden="true">
-            <span class="trust-item"><i class="fa-solid fa-shield-halved trust-icon"></i> 100% Bond Back Guarantee - Free Re-Clean Until Your Agent Signs Off</span>
-            <span class="trust-bullet">•</span>
-            <span class="trust-item"><i class="fa-solid fa-building-shield trust-icon"></i> $10M Public Liability</span>
-            <span class="trust-bullet">•</span>
-            <span class="trust-item"><i class="fa-solid fa-user-check trust-icon"></i> Police-Checked Cleaners</span>
-            <span class="trust-bullet">•</span>
-            <span class="trust-item"><i class="fa-solid fa-file-shield trust-icon"></i> Fully Insured</span>
-            <span class="trust-bullet">•</span>
-            <span class="trust-item"><i class="fa-solid fa-clipboard-check trust-icon"></i> Real Estate Agency Checklists</span>
-            <span class="trust-bullet">•</span>
-            <span class="trust-item"><i class="fa-solid fa-star trust-icon-star"></i> 4.9 Google Rating</span>
-            <span class="trust-bullet">•</span>
-            <span class="trust-item"><i class="fa-solid fa-calendar-check trust-icon"></i> 7 Days A Week</span>
-            <span class="trust-bullet">•</span>
+            <span class="trust-item"><i class="fa-solid fa-star trust-icon-star"></i> 4.9 Google rating</span>
+            <span class="trust-bullet">·</span>
+            <span class="trust-item"><i class="fa-solid fa-shield-halved trust-icon"></i> 100% Bond Back Guarantee — free re-clean until your agent signs off</span>
+            <span class="trust-bullet">·</span>
+            <span class="trust-item"><i class="fa-solid fa-building-shield trust-icon"></i> $10M public liability</span>
+            <span class="trust-bullet">·</span>
+            <span class="trust-item"><i class="fa-solid fa-user-check trust-icon"></i> Police-checked cleaners</span>
+            <span class="trust-bullet">·</span>
+            <span class="trust-item"><i class="fa-solid fa-file-shield trust-icon"></i> Fully insured</span>
+            <span class="trust-bullet">·</span>
+            <span class="trust-item"><i class="fa-solid fa-clipboard-check trust-icon"></i> Real estate agency checklists</span>
+            <span class="trust-bullet">·</span>
+            <span class="trust-item"><i class="fa-solid fa-calendar-check trust-icon"></i> 7 days a week</span>
+            <span class="trust-bullet">·</span>
         </div>
     </div>
 </div>
@@ -4347,16 +4987,12 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 
         <!-- Left sticky -->
         <div class="packages-left reveal-left">
-            <div class="packages-eyebrow">
-                <i class="fa-solid fa-bolt"></i> Fixed Pricing · Inc. GST
-            </div>
             <h2 class="packages-heading">
-                A small price for<br>
-                <span class="gradient-text">a four-figure bond.</span>
+                Price-Match Guarantee.<br>
+                <span class="gradient-text">Bond Back Guarantee.</span>
             </h2>
             <p class="packages-lead">
-                The average Sydney bond is 4 weeks' rent ($2,400+). Your quote is locked when you book with zero
-                surprise fees on cleaning day.
+                You can price match a fridge or a flight. Never a bond clean. FinalClean changed that.
             </p>
 
             <!-- Connected Step Timeline Card -->
@@ -4366,11 +5002,9 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                         <div class="quote-step-badge">01</div>
                         <div class="quote-step-info">
                             <div class="quote-step-title">
-                                We call you in 5 minutes
-                                <span class="tag-highlight">Instant</span>
+                                01 &middot; Price Match Guarantee
                             </div>
-                            <p class="quote-step-desc">Two quick questions about your home layout, then your exact fixed
-                                price.</p>
+                            <p class="quote-step-desc">Found it cheaper? We'll beat it by 5%. Send us a written quote for the same scope and we'll beat it by 5%. Terms Apply.</p>
                         </div>
                     </div>
 
@@ -4378,33 +5012,12 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                         <div class="quote-step-badge">02</div>
                         <div class="quote-step-info">
                             <div class="quote-step-title">
-                                Confirmed in writing
-                                <span class="tag-highlight">Locked</span>
+                                02 100% Bond Back Guarantee
                             </div>
-                            <p class="quote-step-desc">You see the full price breakdown and everything included before
-                                you book.</p>
-                        </div>
-                    </div>
-
-                    <div class="quote-flow-step">
-                        <div class="quote-step-badge">03</div>
-                        <div class="quote-step-info">
-                            <div class="quote-step-title">
-                                Say no anytime
-                                <span class="tag-highlight">0 Risk</span>
-                            </div>
-                            <p class="quote-step-desc">It's a free transparent quote, not a locked booking. You can
-                                negotiate on the call.</p>
+                            <p class="quote-step-desc">If your agent isn't happy, we're not finished. Found anything within 72 hours of our clean and we come back and fix it free.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Inclusions Pill Strip -->
-            <div class="packages-inclusions-strip">
-                <span class="inc-tag"><i class="fa-solid fa-shield-halved"></i> 100% Bond Guarantee</span>
-                <span class="inc-tag"><i class="fa-solid fa-kitchen-set"></i> Oven &amp; Rangehood</span>
-                <span class="inc-tag"><i class="fa-regular fa-window-maximize"></i> Interior Windows</span>
             </div>
 
             <div class="packages-cta-wrap">
@@ -4413,7 +5026,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 </a>
             </div>
             <div class="packages-action-note">
-                <i class="fa-solid fa-clock-rotate-left"></i> Typical quote confirmed in under 5 minutes
+                <i class="fa-solid fa-clock-rotate-left"></i> Get Price under a minute. We'll call you in 15 minutes with your exact price.
             </div>
         </div>
 
@@ -4447,9 +5060,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <!-- Step 1 — Property & Add-Ons              -->
                     <!-- ════════════════════════════════════════ -->
                     <div class="calc-step-panel" x-show="step === 1" x-cloak>
-                        <span class="calc-widget-eyebrow">Get your</span>
+                        <span class="calc-widget-eyebrow">Get Your Price</span>
                         <h3 class="calc-widget-title">Step 1 — Property &amp; Add-ons</h3>
-                        <p class="calc-widget-subtitle">Select your room count and add any extra services you need.</p>
 
                         <!-- Room Counters Inner Card (Bedrooms & Bathrooms) -->
                         <div class="calc-rows-card">
@@ -4484,7 +5096,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             </div>
                         </div>
 
-                        <!-- Optional Add-ons (Marquee) in Step 1 -->
+                        <!-- Optional Add-ons (Stable Grid) in Step 1 -->
                         {% if addons %}
                         <div class="calc-addons-wrap">
                             <div class="calc-addons-header">
@@ -4498,43 +5110,40 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                                     </div>
                                     Optional Add-ons
                                 </div>
-                                <span class="calc-addons-hint">Add extra services if needed</span>
                             </div>
 
-                            <div class="calc-addons-marquee-wrapper">
-                                <div class="calc-addons-track" id="calc-addons-track">
-                                    {% for pass in '123' %}
-                                    {% for addon in addons %}
-                                    <div class="calc-addon-pill"
-                                        @click="toggleAddon({{ addon.id }}, {{ addon.price }}, '{{ addon.name|escapejs }}')"
-                                        :class="{ 'is-selected': isAddonSelected({{ addon.id }}) }" role="button"
-                                        tabindex="0" :aria-pressed="isAddonSelected({{ addon.id }})"
-                                        @keydown.space.prevent="toggleAddon({{ addon.id }}, {{ addon.price }}, '{{ addon.name|escapejs }}')">
-                                        <div class="calc-addon-pill-icon">
-                                            {% if "balcon" in addon.slug or "balcon" in addon.name|lower %}
-                                            <i class="fa-solid fa-leaf"></i>
-                                            {% elif "garage" in addon.slug or "garage" in addon.name|lower %}
-                                            <i class="fa-solid fa-warehouse"></i>
-                                            {% elif "blind" in addon.slug or "blind" in addon.name|lower %}
-                                            <i class="fa-solid fa-bars"></i>
-                                            {% elif "carpet" in addon.slug or "carpet" in addon.name|lower %}
-                                            <i class="fa-solid fa-rug"></i>
-                                            {% elif "oven" in addon.slug or "oven" in addon.name|lower %}
-                                            <i class="fa-solid fa-kitchen-set"></i>
-                                            {% else %}
-                                            <i class="fa-solid fa-sparkles"></i>
-                                            {% endif %}
-                                        </div>
-                                        <span class="calc-addon-pill-name">{{ addon.name }}</span>
-                                        <span class="calc-addon-pill-price">+${{ addon.price|floatformat:0 }}</span>
-                                        <span class="calc-addon-pill-action">
-                                            <span x-show="!isAddonSelected({{ addon.id }})">+</span>
-                                            <span x-show="isAddonSelected({{ addon.id }})" x-cloak>✓</span>
-                                        </span>
+                            <div class="calc-addons-grid">
+                                {% for addon in addons %}
+                                <div class="calc-addon-pill"
+                                    @click="toggleAddon({{ addon.id }}, {{ addon.price }}, '{{ addon.name|escapejs }}')"
+                                    :class="{ 'is-selected': isAddonSelected({{ addon.id }}) }" role="button"
+                                    tabindex="0" :aria-pressed="isAddonSelected({{ addon.id }})"
+                                    @keydown.space.prevent="toggleAddon({{ addon.id }}, {{ addon.price }}, '{{ addon.name|escapejs }}')">
+                                    <div class="calc-addon-pill-icon">
+                                        {% if "balcon" in addon.slug or "balcon" in addon.name|lower %}
+                                        <i class="fa-solid fa-leaf"></i>
+                                        {% elif "window" in addon.slug or "window" in addon.name|lower %}
+                                        <i class="fa-solid fa-window-maximize"></i>
+                                        {% elif "carpet" in addon.slug or "carpet" in addon.name|lower %}
+                                        <i class="fa-solid fa-rug"></i>
+                                        {% elif "garage" in addon.slug or "garage" in addon.name|lower %}
+                                        <i class="fa-solid fa-warehouse"></i>
+                                        {% elif "blind" in addon.slug or "blind" in addon.name|lower %}
+                                        <i class="fa-solid fa-bars"></i>
+                                        {% elif "oven" in addon.slug or "oven" in addon.name|lower %}
+                                        <i class="fa-solid fa-kitchen-set"></i>
+                                        {% else %}
+                                        <i class="fa-solid fa-sparkles"></i>
+                                        {% endif %}
                                     </div>
-                                    {% endfor %}
-                                    {% endfor %}
+                                    <span class="calc-addon-pill-name">{{ addon.name }}</span>
+                                    <span class="calc-addon-pill-price">+${{ addon.price|floatformat:0 }}</span>
+                                    <span class="calc-addon-pill-action">
+                                        <span x-show="!isAddonSelected({{ addon.id }})">+</span>
+                                        <span x-show="isAddonSelected({{ addon.id }})" x-cloak>✓</span>
+                                    </span>
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
                         {% endif %}
@@ -4643,7 +5252,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="calc-step-panel" x-show="step === 3" x-cloak>
                         <span class="calc-widget-eyebrow">Fixed &amp; Transparent</span>
                         <h3 class="calc-widget-title">Step 3 — Price Reveal</h3>
-                        <p class="calc-widget-subtitle">Your fixed price is locked in with a 100% Bond Back Guarantee.</p>
 
                         <!-- Summary Details Card -->
                         <div class="calc-summary-card">
@@ -4713,18 +5321,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             </div>
 
                             <p class="calc-confirm-message">
-                                Our team will call you in <strong>5 minutes</strong> to confirm your booking and secure your scheduled arrival slot.
+                                Our team will call you in <strong>15 minutes</strong> to confirm your booking and secure your scheduled arrival slot.
                             </p>
 
                             <div class="calc-confirm-pills">
-                                <div class="calc-confirm-info-pill" x-show="phone">
-                                    <i class="fa-solid fa-phone"></i>
-                                    <span>Calling: <strong x-text="phone"></strong></span>
-                                </div>
-                                <div class="calc-confirm-info-pill">
-                                    <i class="fa-regular fa-calendar-check"></i>
-                                    <span>Slot: <strong x-text="dateTimeSummary"></strong></span>
-                                </div>
                             </div>
 
                             <div class="calc-confirm-guarantee-row">
@@ -4734,7 +5334,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                                 </div>
                                 <div class="calc-confirm-guarantee-item">
                                     <i class="fa-solid fa-circle-check"></i>
-                                    <span>Zero upfront deposit required</span>
+                                    <span>Found it cheaper? We'll beat it by 5%</span>
                                 </div>
                             </div>
 
@@ -4748,1059 +5348,1056 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     </div>
                 </div>
             </div><!-- /.calc-widget-wrap -->
+        </div><!-- /.packages-right -->
+    </div><!-- /.packages-layout -->
+</section>
 
-            {% for package in packages %}
-            <a href="{% url 'bookings:quick_book' package.slug %}"
-                class="package-card-stack {% if forloop.counter == 2 %}popular{% endif %}"
-                aria-label="Book {{ package.name }} — opens price calculator">
-                {% if forloop.counter == 2 %}
-                <div class="popular-badge">Most Popular</div>
-                {% endif %}
-                <div class="pkg-card-body">
-                    <h3 class="pkg-card-title">{{ package.name }}</h3>
-                    <p class="pkg-card-desc">{{ package.short_description }}</p>
-                </div>
-                <div class="pkg-card-price-col">
-                    <span class="pkg-price-label">from</span>
-                    <span class="pkg-price-value">${{ package.calculated_price|floatformat:0 }}</span>
-                    <span class="pkg-price-cta">Get my price →</span>
-                </div>
-            </a>
-            {% empty %}
-            <!-- Fallback when no packages in DB -->
-            <a href="{% url 'bookings:quick_book' '1-bhk-cleaning' %}" class="package-card-stack">
-                <div class="pkg-card-body">
-                    <h3 class="pkg-card-title">1 Bedroom</h3>
-                    <p class="pkg-card-desc">1 bed · 1 bath · 1 living</p>
-                </div>
-                <div class="pkg-card-price-col">
-                    <span class="pkg-price-label">from</span>
-                    <span class="pkg-price-value pkg-price-value--accent">$279</span>
-                    <span class="pkg-price-cta">Get my price →</span>
-                </div>
-            </a>
-            <a href="{% url 'bookings:quick_book' '2-bhk-cleaning' %}" class="package-card-stack popular">
-                <div class="popular-badge">Most Popular</div>
-                <div class="pkg-card-body">
-                    <h3 class="pkg-card-title">2 Bedroom</h3>
-                    <p class="pkg-card-desc">2 bed · 1–2 bath · 1 living · 2 balconies</p>
-                </div>
-                <div class="pkg-card-price-col">
-                    <span class="pkg-price-label">from</span>
-                    <span class="pkg-price-value pkg-price-value--accent">$329</span>
-                    <span class="pkg-price-cta">Get my price →</span>
-                </div>
-            </a>
-            <a href="{% url 'bookings:quick_book' '3-bhk-cleaning' %}" class="package-card-stack">
-                <div class="pkg-card-body">
-                    <h3 class="pkg-card-title">3 Bedroom</h3>
-                    <p class="pkg-card-desc">3 bed · 2 bath · 1 living · 1 balcony</p>
-                </div>
-                <div class="pkg-card-price-col">
-                    <span class="pkg-price-label">from</span>
-                    <span class="pkg-price-value pkg-price-value--accent">$429</span>
-                    <span class="pkg-price-cta">Get my price →</span>
-                </div>
-            </a>
-            {% endfor %}
+<!-- ════════════════════════════════════════ -->
+<!-- 5. Agents Logo Running Strip              -->
+<!-- ════════════════════════════════════════ -->
+<section class="agency-strip-section">
+    <div class="agency-strip-header reveal-fade-up">
+        <span class="agency-strip-title">
+            <i class="fa-solid fa-building-circle-check"></i> Real Estate Agency Checklists Followed &amp; Accepted Across Sydney
+        </span>
+    </div>
+    <div class="agency-strip-marquee">
+        <div class="agency-strip-track">
+            <!-- Set 1 -->
+            <div class="agency-logo-pill"><span class="agency-icon rw">RW</span> Ray White</div>
+            <div class="agency-logo-pill"><span class="agency-icon mc">M</span> McGrath</div>
+            <div class="agency-logo-pill"><span class="agency-icon lj">LJ</span> LJ Hooker</div>
+            <div class="agency-logo-pill"><span class="agency-icon bp">B</span> Belle Property</div>
+            <div class="agency-logo-pill"><span class="agency-icon rh">R&amp;H</span> Raine &amp; Horne</div>
+            <div class="agency-logo-pill"><span class="agency-icon c21">C21</span> Century 21</div>
+            <div class="agency-logo-pill"><span class="agency-icon hc">H</span> Harcourts</div>
+            <div class="agency-logo-pill"><span class="agency-icon fn">FN</span> First National</div>
+            <div class="agency-logo-pill"><span class="agency-icon bw">BW</span> BresicWhitney</div>
+            <div class="agency-logo-pill"><span class="agency-icon rea">REA</span> REA Approved</div>
+
+            <!-- Set 2 for seamless loop -->
+            <div class="agency-logo-pill"><span class="agency-icon rw">RW</span> Ray White</div>
+            <div class="agency-logo-pill"><span class="agency-icon mc">M</span> McGrath</div>
+            <div class="agency-logo-pill"><span class="agency-icon lj">LJ</span> LJ Hooker</div>
+            <div class="agency-logo-pill"><span class="agency-icon bp">B</span> Belle Property</div>
+            <div class="agency-logo-pill"><span class="agency-icon rh">R&amp;H</span> Raine &amp; Horne</div>
+            <div class="agency-logo-pill"><span class="agency-icon c21">C21</span> Century 21</div>
+            <div class="agency-logo-pill"><span class="agency-icon hc">H</span> Harcourts</div>
+            <div class="agency-logo-pill"><span class="agency-icon fn">FN</span> First National</div>
+            <div class="agency-logo-pill"><span class="agency-icon bw">BW</span> BresicWhitney</div>
+            <div class="agency-logo-pill"><span class="agency-icon rea">REA</span> REA Approved</div>
         </div>
-
     </div>
 </section>
 
 <!-- ════════════════════════════════════════ -->
-<!-- Marquee Section                          -->
+<!-- Reviews Section (Aggregate Block First)  -->
 <!-- ════════════════════════════════════════ -->
-<div class="marquee-container reveal-zoom">
-    <div class="marquee-track">
-        <!-- We repeat the items multiple times so they fill the screen and loop smoothly -->
-        {% for i in '1234' %}
-        <div class="marquee-item">
-            <span class="text-outline">Inc. GST</span>
-            <svg class="sparkle-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
-            </svg>
-            <span class="gradient-text">24/7 • Sydney-wide</span>
-            <svg class="sparkle-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
-            </svg>
-            <span class="text-outline">100% bond back</span>
-            <svg class="sparkle-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
-            </svg>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-
-<!-- ════════════════════════════════════════ -->
-<!-- ════════════════════════════════════════ -->
-<!-- Impact Stats Section (Bento Box Grid)    -->
-<!-- ════════════════════════════════════════ -->
-<div class="sparkles-glow-wrapper">
-    <div class="sparkles-bg"></div>
-    <section class="impact-section impact-section-inner">
-        <div class="impact-bento reveal-stagger">
-            <!-- Hero Card (Spans 2x2) -->
-            <div class="bento-card bento-hero">
-                <div class="bento-bubbles-wrap" aria-hidden="true">
-                    <div class="shampoo-bubble b-1"></div>
-                    <div class="shampoo-bubble b-2"></div>
-                    <div class="shampoo-bubble b-3"></div>
-                    <div class="shampoo-bubble b-4"></div>
-                    <div class="shampoo-bubble b-5"></div>
-                    <div class="shampoo-bubble b-6"></div>
-                    <div class="shampoo-bubble b-7"></div>
-                    <div class="shampoo-bubble b-8"></div>
-                    <div class="shampoo-bubble b-9"></div>
-                    <div class="shampoo-bubble b-10"></div>
-                    <div class="shampoo-bubble b-11"></div>
-                    <div class="shampoo-bubble b-12"></div>
-                    <div class="shampoo-bubble b-13"></div>
-                    <div class="shampoo-bubble b-14"></div>
-                    <div class="shampoo-bubble b-15"></div>
-                    <div class="shampoo-bubble b-16"></div>
-                </div>
-                <span class="impact-badge">THE FINAL CLEAN DIFFERENCE</span>
-                <h3 class="impact-title">Moving out is chaos.<br>We exist for the final inspection.</h3>
-                <div class="impact-detail-list">
-                    <div class="impact-detail-item">
-                        <span class="impact-detail-dot">✦</span>
-                        <span>The range, <strong>inc. GST</strong> - no surprise add-ons on the day</span>
-                    </div>
-                    <div class="impact-detail-item">
-                        <span class="impact-detail-dot">✦</span>
-                        <span><strong>100% Bond Back Guarantee</strong> - free re-clean until your agent signs
-                            off</span>
-                    </div>
-                    <div class="impact-detail-item">
-                        <span class="impact-detail-dot">✦</span>
-                        <span>Oven, rangehood and interior windows <strong>included as standard</strong></span>
-                    </div>
-                </div>
-                <div class="impact-call-promise">
-                    <p class="impact-call-statement">"We're calling you in the next 5 minutes to confirm your exact
-                        price."</p>
-                    <p class="impact-call-note">No obligation - you can negotiate on the call.</p>
-                    <p class="impact-call-caveat">Your final price depends on property condition, add-ons and living
-                        areas.</p>
-                </div>
-            </div>
-
-            <!-- Wide Card (Spans 2x1) -->
-            <div class="bento-card bento-wide">
-                <div class="bento-bubbles-wrap" aria-hidden="true">
-                    <div class="shampoo-bubble b-2"></div>
-                    <div class="shampoo-bubble b-5"></div>
-                    <div class="shampoo-bubble b-8"></div>
-                    <div class="shampoo-bubble b-11"></div>
-                    <div class="shampoo-bubble b-14"></div>
-                    <div class="shampoo-bubble b-16"></div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number"><span class="counter-val" data-target="2347">0</span></div>
-                    <div class="stat-label">cleans done</div>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <div class="stat-number"><span class="counter-val" data-target="5">0</span>m</div>
-                    <div class="stat-label">response</div>
-                </div>
-            </div>
-
-            <!-- Agency Logo Marquee Card (Spans 2x1 Between Both Rows) -->
-            <div class="bento-card bento-agent-strip">
-                <div class="bento-bubbles-wrap" aria-hidden="true">
-                    <div class="shampoo-bubble b-3"></div>
-                    <div class="shampoo-bubble b-7"></div>
-                    <div class="shampoo-bubble b-11"></div>
-                    <div class="shampoo-bubble b-15"></div>
-                </div>
-                <div class="bento-agent-top">
-                    <span class="bento-agent-title">
-                        <i class="fa-solid fa-building-circle-check"></i> Real Estate Agent Checklists Followed
-                    </span>
-                    <span class="bento-agent-status">
-                        <i class="fa-solid fa-circle-check"></i> 100% Accepted
-                    </span>
-                </div>
-                <div class="bento-agent-marquee-box">
-                    <div class="bento-agent-track">
-                        <!-- Set 1 -->
-                        <div class="agency-logo-pill"><span class="agency-icon rw">RW</span> Ray White</div>
-                        <div class="agency-logo-pill"><span class="agency-icon mc">M</span> McGrath</div>
-                        <div class="agency-logo-pill"><span class="agency-icon lj">LJ</span> LJ Hooker</div>
-                        <div class="agency-logo-pill"><span class="agency-icon bp">B</span> Belle Property</div>
-                        <div class="agency-logo-pill"><span class="agency-icon rh">R&H</span> Raine &amp; Horne</div>
-                        <div class="agency-logo-pill"><span class="agency-icon c21">C21</span> Century 21</div>
-                        <div class="agency-logo-pill"><span class="agency-icon hc">H</span> Harcourts</div>
-                        <div class="agency-logo-pill"><span class="agency-icon fn">FN</span> First National</div>
-                        <div class="agency-logo-pill"><span class="agency-icon bw">BW</span> BresicWhitney</div>
-                        <div class="agency-logo-pill"><span class="agency-icon rea">REA</span> REA Approved</div>
-
-                        <!-- Set 2 for seamless loop -->
-                        <div class="agency-logo-pill"><span class="agency-icon rw">RW</span> Ray White</div>
-                        <div class="agency-logo-pill"><span class="agency-icon mc">M</span> McGrath</div>
-                        <div class="agency-logo-pill"><span class="agency-icon lj">LJ</span> LJ Hooker</div>
-                        <div class="agency-logo-pill"><span class="agency-icon bp">B</span> Belle Property</div>
-                        <div class="agency-logo-pill"><span class="agency-icon rh">R&H</span> Raine &amp; Horne</div>
-                        <div class="agency-logo-pill"><span class="agency-icon c21">C21</span> Century 21</div>
-                        <div class="agency-logo-pill"><span class="agency-icon hc">H</span> Harcourts</div>
-                        <div class="agency-logo-pill"><span class="agency-icon fn">FN</span> First National</div>
-                        <div class="agency-logo-pill"><span class="agency-icon bw">BW</span> BresicWhitney</div>
-                        <div class="agency-logo-pill"><span class="agency-icon rea">REA</span> REA Approved</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Square Card 1 -->
-            <div class="bento-card bento-square">
-                <div class="bento-bubbles-wrap" aria-hidden="true">
-                    <div class="shampoo-bubble b-1"></div>
-                    <div class="shampoo-bubble b-4"></div>
-                    <div class="shampoo-bubble b-7"></div>
-                    <div class="shampoo-bubble b-10"></div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number"><span class="counter-val" data-target="99.4">0.0</span>%</div>
-                    <div class="stat-label">pass rate</div>
-                </div>
-            </div>
-
-            <!-- Square Card 2 -->
-            <div class="bento-card bento-square">
-                <div class="bento-bubbles-wrap" aria-hidden="true">
-                    <div class="shampoo-bubble b-3"></div>
-                    <div class="shampoo-bubble b-6"></div>
-                    <div class="shampoo-bubble b-9"></div>
-                    <div class="shampoo-bubble b-12"></div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number"><span class="counter-val" data-target="4.9">0.0</span>★</div>
-                    <div class="stat-label">Google rating</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════════════════════════ -->
-    <!-- Watch Us Work (4 Scope Cards with Before/After & Checklist) -->
-    <!-- ════════════════════════════════════════ -->
-    <section class="watch-us-work">
-        <div class="watch-us-work-container">
-            <div class="watch-us-header-wrap reveal-fade-up">
-                <span class="watch-us-pill-badge">
-                    <i class="fa-solid fa-list-check"></i> What's Included &amp; Verified
-                </span>
-                <h2 class="watch-us-work-heading">
-                    Real results,<br>
-                    <span class="gradient-text">watch us work.</span>
-                </h2>
-                <p class="watch-us-subtext">
-                    Every end-of-lease clean covers 100% of your real estate checklist with proven before &amp; after standards.
-                </p>
-            </div>
-
-            <!-- 4 Scope Cards Grid -->
-            <div class="scope-cards-grid reveal-stagger">
-                <!-- Card 1: Kitchen -->
-                <div class="scope-card">
-                    <div class="scope-card-media scope-delay-1">
-                        <div class="scope-media-layer scope-layer-before scope-img-kitchen-before"></div>
-                        <div class="scope-media-layer scope-layer-after scope-img-kitchen-after"></div>
-                        <div class="scope-slider-divider">
-                            <div class="scope-slider-handle">
-                                <i class="fa-solid fa-arrows-left-right"></i>
-                            </div>
-                        </div>
-                        <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
-                        <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
-                    </div>
-                    <div class="scope-card-body">
-                        <h3 class="scope-card-title">Kitchen</h3>
-                        <ul class="scope-checklist">
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Dust and clean the exhaust fan and the extractor</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean and polish all the countertops</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Wipe the stovetop and rangehood</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Deep clean the oven inside and out, including oven racks and trays</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean all cupboards and drawers inside &amp; out</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean and polish tapware</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean and polish splashback and wall tiles</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean and wipe the sink and drain</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Card 2: Bathroom -->
-                <div class="scope-card">
-                    <div class="scope-card-media scope-delay-2">
-                        <div class="scope-media-layer scope-layer-before scope-img-bath-before"></div>
-                        <div class="scope-media-layer scope-layer-after scope-img-bath-after"></div>
-                        <div class="scope-slider-divider">
-                            <div class="scope-slider-handle">
-                                <i class="fa-solid fa-arrows-left-right"></i>
-                            </div>
-                        </div>
-                        <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
-                        <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
-                    </div>
-                    <div class="scope-card-body">
-                        <h3 class="scope-card-title">Bathroom</h3>
-                        <ul class="scope-checklist">
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean and sanitize shower screens, tiles &amp; grout</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean, descale and disinfect toilet bowl &amp; seat</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Wipe down vanity, mirrors and medicine cabinets</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Scrub bathtub and clean basin tapware</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clear hair and debris from floor and drain grates</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean and sanitize exhaust fan &amp; air vent</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Polish all chrome fixtures &amp; glass surfaces</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Mop and disinfect all bathroom floor tiles</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Card 3: Living Area -->
-                <div class="scope-card">
-                    <div class="scope-card-media scope-delay-3">
-                        <div class="scope-media-layer scope-layer-before scope-img-living-before"></div>
-                        <div class="scope-media-layer scope-layer-after scope-img-living-after"></div>
-                        <div class="scope-slider-divider">
-                            <div class="scope-slider-handle">
-                                <i class="fa-solid fa-arrows-left-right"></i>
-                            </div>
-                        </div>
-                        <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
-                        <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
-                    </div>
-                    <div class="scope-card-body">
-                        <h3 class="scope-card-title">Living &amp; Dining</h3>
-                        <ul class="scope-checklist">
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Deep steam clean and sanitize carpets</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Wipe skirting boards, doors, and architraves</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean switchboards, power points &amp; door handles</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Dust ceiling fans, light fittings &amp; remove cobwebs</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean sliding door glass &amp; vacuum track debris</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Wipe down internal window sills and frames</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Spot clean wall marks, scuffs &amp; high-touch areas</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Vacuum and mop all hard flooring thoroughly</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Card 4: Bedrooms -->
-                <div class="scope-card">
-                    <div class="scope-card-media scope-delay-4">
-                        <div class="scope-media-layer scope-layer-before scope-img-window-before"></div>
-                        <div class="scope-media-layer scope-layer-after scope-img-window-after"></div>
-                        <div class="scope-slider-divider">
-                            <div class="scope-slider-handle">
-                                <i class="fa-solid fa-arrows-left-right"></i>
-                            </div>
-                        </div>
-                        <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
-                        <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
-                    </div>
-                    <div class="scope-card-body">
-                        <h3 class="scope-card-title">Bedrooms</h3>
-                        <ul class="scope-checklist">
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean wardrobe mirrors, shelves &amp; drawers inside/out</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Wipe down wardrobe tracks and hanging rails</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Dust and wipe skirting boards and architraves</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean internal window panes, frames and sills</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Dust ceiling cornices, corners and remove cobwebs</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Wipe light switches, power points and door handles</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Vacuum carpet edges or mop timber floorboards</span>
-                            </li>
-                            <li class="scope-check-item">
-                                <i class="fa-solid fa-check scope-check-icon"></i>
-                                <span>Clean air conditioning vent covers &amp; filters</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="watch-us-cta-wrap reveal-fade-up">
-                <p class="watch-us-cta-text">
-                    Same property. Same afternoon. Before &amp; after photos like these are included with every clean.
-                </p>
-                <a href="{% url 'bookings:multi_step_booking' %}" class="watch-us-cta-btn">
-                    <span>Get yours &rarr;</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ════════════════════════════════════════ -->
-    <!-- Comparison Section                       -->
-    <!-- ════════════════════════════════════════ -->
-    <div class="custom-shape-divider-top">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path
-                d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                fill="#f8fbff"></path>
-        </svg>
-    </div>
-    <section class="comparison-section">
-        <svg class="comp-star comp-star-1" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
-        </svg>
-        <svg class="comp-star comp-star-2" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
-        </svg>
-        <svg class="comp-star comp-star-3" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
-        </svg>
-        <svg class="comp-star comp-star-4" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
-        </svg>
-
-        <div class="comparison-container">
-            <div class="comparison-heading-wrap reveal-fade-up">
-                <div class="comp-pill">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    Why Choose Us
-                </div>
-                <h2 class="comparison-heading">
-                    What Makes <span>Final Clean</span> Different?
-                </h2>
-                <p class="comparison-subheading">We go beyond standard cleaning to deliver a spotless experience every
-                    time.</p>
-            </div>
-
-            <div class="comp-card reveal-zoom">
-
-                <!-- Left Column -->
-                <div class="comp-col comp-col-left">
-                    <div class="comp-cell-th">Benefits</div>
-                    <div class="comp-cell">
-                        <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                                <path d="M9 12l2 2 4-4" />
-                            </svg></div>
-                        Trusted &amp; Vetted Cleaners
-                    </div>
-                    <div class="comp-cell">
-                        <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
-                                <line x1="7" y1="7" x2="7.01" y2="7" />
-                            </svg></div>
-                        Tailored Service, No Hidden Fees
-                    </div>
-                    <div class="comp-cell">
-                        <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="7" />
-                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
-                            </svg></div>
-                        100% Satisfaction Guarantee
-                    </div>
-                    <div class="comp-cell">
-                        <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                <line x1="16" y1="2" x2="16" y2="6" />
-                                <line x1="8" y1="2" x2="8" y2="6" />
-                                <line x1="3" y1="10" x2="21" y2="10" />
-                            </svg></div>
-                        Schedule Online, Cancel Anytime
-                    </div>
-                    <div class="comp-cell">
-                        <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                                <circle cx="9" cy="7" r="4" />
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                            </svg></div>
-                        Trusted by 5000+ Families
-                    </div>
-                </div>
-
-                <!-- Center Column (Final Clean) -->
-                <div class="comp-col comp-col-center">
-                    <div class="comp-cell-th">
-                        <span class="comp-badge-sm">
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                            </svg>
-                            Our Service
-                        </span>
-                        <div class="comp-center-title">Final Clean</div>
-                        <div class="comp-center-sub">Premium Cleaning Service</div>
-                    </div>
-                    <div class="comp-cell">
-                        <div class="ico-check-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg></div>
-                    </div>
-                    <div class="comp-cell">
-                        <div class="ico-check-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg></div>
-                    </div>
-                    <div class="comp-cell">
-                        <div class="ico-check-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg></div>
-                    </div>
-                    <div class="comp-cell">
-                        <div class="ico-check-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg></div>
-                    </div>
-                    <div class="comp-cell">
-                        <div class="ico-check-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg></div>
-                    </div>
-                </div>
-
-                <!-- Right Column (Standard) -->
-                <div class="comp-col comp-col-right">
-                    <div class="comp-cell-th">Standard<br>Cleaning Companies</div>
-                    <div class="comp-cell">
-                        <div class="ico-check-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg></div>
-                    </div>
-                    <div class="comp-cell">
-                        <div class="ico-cross-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg></div>
-                    </div>
-                    <div class="comp-cell">
-                        <div class="ico-cross-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg></div>
-                    </div>
-                    <div class="comp-cell">
-                        <div class="ico-cross-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg></div>
-                    </div>
-                    <div class="comp-cell">
-                        <div class="ico-cross-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="comparison-cta reveal-fade-up">
-                <a href="{% url 'bookings:multi_step_booking' %}">
-                    Get My Free Quote &rarr;
-                </a>
-                <p>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                    </svg>
-                    Takes less than 60 seconds
-                </p>
-            </div>
-        </div>
-    </section>
-    <div class="custom-shape-divider-bottom">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path
-                d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                fill="#f8fbff"></path>
-        </svg>
-    </div>
-
-    <!-- ════════════════════════════════════════ -->
-    <!-- Reviews Section (Google Trust)           -->
-    <!-- ════════════════════════════════════════ -->
-    <section class="reviews-section">
+<section class="reviews-section">
+    <div class="container">
+        <!-- Section Heading -->
         <div class="reviews-header-container reveal-fade-up">
-            <div class="google-trust-badge">
-                <div class="google-badge-logo">
-                    <svg width="22" height="22" viewBox="0 0 24 24">
-                        <path fill="#4285F4"
-                            d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z" />
-                        <path fill="#34A853"
-                            d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.35 24 12 24z" />
-                        <path fill="#FBBC05"
-                            d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z" />
-                        <path fill="#EA4335"
-                            d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z" />
-                    </svg>
-                </div>
-                <div class="google-badge-stars">★★★★★</div>
-                <div class="google-badge-text">
-                    4.9 / 5.0 Rating <span class="google-badge-count">&bull; 350+ Google Reviews</span>
-                </div>
-            </div>
             <h2 class="reviews-heading">Loved by tenants and real estate agents.</h2>
             <p class="reviews-subheading">
                 Sydney renters trust us to secure 100% of their bond back. Read our latest verified customer reviews.
             </p>
         </div>
 
-        <div class="reviews-marquee-container reveal-fade-up">
-            <div class="reviews-marquee-track">
-                {% for i in '123' %}
-                <div class="review-card">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" class="review-image"
-                        alt="Reviewer Sarah J.">
-                    <div class="review-content">
-                        <div class="review-name-row">
-                            <div class="review-author">Sarah J.</div>
-                            <div class="review-stars">★★★★★</div>
-                            <span class="review-verified-badge">Verified Google Review</span>
-                        </div>
-                        <p class="review-text">"Absolutely spotless. The real estate agent was impressed and we got our
-                            full bond back the next day. Highly recommended."</p>
-                    </div>
+        <!-- Aggregate Trust Block -->
+        <div class="reviews-aggregate-box reveal-fade-up">
+            <div class="reviews-aggregate-left">
+                <div class="reviews-score-num">4.9</div>
+                <div class="reviews-score-stars">★★★★★</div>
+                <div class="reviews-score-total">350+ Google Reviews<br>2,300+ Tenancies Cleaned</div>
+            </div>
+            <div class="reviews-breakdown-col">
+                <div class="reviews-bar-row">
+                    <span class="reviews-bar-label">5 star</span>
+                    <div class="reviews-bar-track"><div class="reviews-bar-fill fill-96"></div></div>
+                    <span class="reviews-bar-pct">96%</span>
                 </div>
-                <div class="review-card">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" class="review-image"
-                        alt="Reviewer David C.">
-                    <div class="review-content">
-                        <div class="review-name-row">
-                            <div class="review-author">David C.</div>
-                            <div class="review-stars">★★★★★</div>
-                            <span class="review-verified-badge">Verified Google Review</span>
-                        </div>
-                        <p class="review-text">"I tried cleaning it myself before giving up. Final Clean came in on a Sunday
-                            and made the place look brand new. Worth every cent."</p>
-                    </div>
+                <div class="reviews-bar-row">
+                    <span class="reviews-bar-label">4 star</span>
+                    <div class="reviews-bar-track"><div class="reviews-bar-fill fill-4"></div></div>
+                    <span class="reviews-bar-pct">4%</span>
                 </div>
-                <div class="review-card">
-                    <img src="https://randomuser.me/api/portraits/women/68.jpg" class="review-image"
-                        alt="Reviewer Emma R.">
-                    <div class="review-content">
-                        <div class="review-name-row">
-                            <div class="review-author">Emma R.</div>
-                            <div class="review-stars">★★★★★</div>
-                            <span class="review-verified-badge">Verified Google Review</span>
-                        </div>
-                        <p class="review-text">"So easy to book and the price was exactly what they quoted - no hidden
-                            fees. The team left the carpets looking flawless."</p>
-                    </div>
+                <div class="reviews-bar-row">
+                    <span class="reviews-bar-label">3 star</span>
+                    <div class="reviews-bar-track"><div class="reviews-bar-fill fill-0"></div></div>
+                    <span class="reviews-bar-pct">0%</span>
                 </div>
-                {% endfor %}
+                <div class="reviews-bar-row">
+                    <span class="reviews-bar-label">2 star</span>
+                    <div class="reviews-bar-track"><div class="reviews-bar-fill fill-0"></div></div>
+                    <span class="reviews-bar-pct">0%</span>
+                </div>
+                <div class="reviews-bar-row">
+                    <span class="reviews-bar-label">1 star</span>
+                    <div class="reviews-bar-track"><div class="reviews-bar-fill fill-0"></div></div>
+                    <span class="reviews-bar-pct">0%</span>
+                </div>
+            </div>
+            <div class="reviews-aggregate-right">
+                <div class="reviews-shield-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="reviews-guarantee-stat">100% Bond Return</div>
+                <div class="reviews-guarantee-sub">Verified real estate bond outcomes with zero deductions across Sydney.</div>
             </div>
         </div>
-    </section>
 
-    <!-- ════════════════════════════════════════ -->
-    <!-- Visual Service Areas & Cities Section     -->
-    <!-- ════════════════════════════════════════ -->
-    <section class="seo-cities-section">
-        <div class="seo-cities-container">
-
-            <!-- Section Header -->
-            <div class="seo-cities-header reveal-fade-up">
-                <div class="seo-cities-pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    OUR SERVICE AREAS
+        <!-- 4 Real End-of-Lease Reviews with Bond Outcomes -->
+        <div class="reviews-cards-grid reveal-stagger">
+            <!-- Review 1: Ray White Outcome -->
+            <div class="review-card-static">
+                <div class="review-card-top">
+                    <div class="review-author-meta">
+                        <span class="review-author-name">Liam &amp; Sophie T.</span>
+                        <span class="review-author-agency">Surry Hills · Ray White Bond Clean</span>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
                 </div>
-                <h2 class="seo-cities-title">
-                    Proudly Cleaning Homes Across
-                    <span class="highlight">Sydney &amp; Surrounding Areas</span>
-                </h2>
-                <p class="seo-cities-sub">
-                    From city apartments to suburban homes, we bring our 5-star cleaning service to your doorstep.
+                <p class="review-quote-text">
+                    "Got our full $3,200 bond back without a single question from Ray White. The real estate agent was notoriously strict about the oven and window tracks, but Final Clean left them looking brand new. Worth every cent."
                 </p>
+                <div class="review-outcome-pill">
+                    <i class="fa-solid fa-circle-check"></i> Full $3,200 Bond Released Next Day
+                </div>
             </div>
 
-            <!-- Main White Map Card -->
-            <div class="service-map-card reveal-zoom">
-
-                <!-- Sydney Harbour Waterway & Coastal Watermark Map SVG -->
-                <svg class="service-map-watermark" viewBox="0 0 1200 450" fill="none" preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0,0 L420,0 C390,90 330,130 290,190 C250,250 270,330 220,390 C190,430 130,445 0,450 Z"
-                        fill="#EBF3FA" opacity="0.6" />
-                    <path
-                        d="M0,230 C80,220 150,240 220,200 C270,170 310,160 380,190 C450,220 520,210 580,170 C640,130 700,160 760,200 C820,240 890,230 940,190 C990,150 1060,160 1120,220 C1160,260 1200,240 1200,240 L1200,450 L0,450 Z"
-                        fill="#E1F0FA" opacity="0.75" />
-                    <path
-                        d="M180,90 C220,110 260,100 290,70 C320,40 370,50 400,80 C440,120 420,170 480,200 C540,230 600,190 650,220"
-                        stroke="#CCE4F7" stroke-width="24" stroke-linecap="round" opacity="0.5" />
-                    <ellipse cx="160" cy="140" rx="90" ry="60" fill="#DCFCE7" opacity="0.5" />
-                    <ellipse cx="620" cy="90" rx="110" ry="50" fill="#DCFCE7" opacity="0.45" />
-                    <ellipse cx="980" cy="280" rx="140" ry="70" fill="#DCFCE7" opacity="0.4" />
-                </svg>
-
-                <!-- ── Interactive Route Canvas ── -->
-                <div class="service-route-scroll-container">
-                    <div class="service-route-track">
-
-                        <!-- SVG Winding Dashed Route Line -->
-                        <svg class="service-route-svg" viewBox="0 0 1220 360" fill="none" preserveAspectRatio="none">
-                            <path
-                                d="M 55 180 C 120 180, 150 110, 205 110 C 270 110, 300 215, 360 215 C 430 215, 460 105, 520 105 C 585 105, 610 220, 660 220 C 730 220, 760 100, 820 100 C 885 100, 910 225, 965 225 C 1030 225, 1060 120, 1100 120 C 1135 120, 1160 230, 1180 230"
-                                stroke="#20243A" stroke-width="3" stroke-dasharray="6 6" stroke-linecap="round" />
-                        </svg>
-
-                        <!-- Start Point: House with Pin Badge -->
-                        <div class="route-start-house pos-start">
-                            <div class="house-circle-badge">
-                                <div class="house-pin-floating">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
-                                <svg class="house-icon-svg" viewBox="0 0 80 65" fill="none">
-                                    <polygon points="40,4 8,30 72,30" fill="#20243A" />
-                                    <polygon points="40,8 14,29 66,29" fill="#525EA7" />
-                                    <rect x="14" y="29" width="52" height="32" rx="3" fill="#FFFFFF" stroke="#CBD5E1"
-                                        stroke-width="1.5" />
-                                    <rect x="33" y="38" width="14" height="23" rx="2" fill="#525EA7" />
-                                    <circle cx="43" cy="50" r="1.5" fill="#FFC349" />
-                                    <rect x="20" y="36" width="10" height="12" rx="1" fill="#5FADD3" />
-                                    <rect x="50" y="36" width="10" height="12" rx="1" fill="#5FADD3" />
-                                    <line x1="25" y1="36" x2="25" y2="48" stroke="#FFFFFF" stroke-width="1.5" />
-                                    <line x1="20" y1="42" x2="30" y2="42" stroke="#FFFFFF" stroke-width="1.5" />
-                                    <line x1="55" y1="36" x2="55" y2="48" stroke="#FFFFFF" stroke-width="1.5" />
-                                    <line x1="50" y1="42" x2="60" y2="42" stroke="#FFFFFF" stroke-width="1.5" />
-                                    <rect x="8" y="59" width="64" height="4" rx="2" fill="#059669" />
-                                </svg>
-                            </div>
-                        </div>
-
-                        <!-- Stop 1: Parramatta & Surrounds (Top) -->
-                        <div class="route-waypoint-dot pos-wp-1"></div>
-                        <a href="{% url 'bookings:multi_step_booking' %}?suburb=Parramatta"
-                            class="route-city-card pos-card-1">
-                            <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                            <div>
-                                <div class="route-city-name">Parramatta</div>
-                                <div class="route-city-sub">&amp; Surrounds</div>
-                            </div>
-                        </a>
-
-                        <!-- Stop 2: Ryde & Surrounds (Bottom) -->
-                        <div class="route-waypoint-dot pos-wp-2"></div>
-                        <a href="{% url 'bookings:multi_step_booking' %}?suburb=Ryde"
-                            class="route-city-card pos-card-2">
-                            <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                            <div>
-                                <div class="route-city-name">Ryde</div>
-                                <div class="route-city-sub">&amp; Surrounds</div>
-                            </div>
-                        </a>
-
-                        <!-- Stop 3: Chatswood & Surrounds (Top) -->
-                        <div class="route-waypoint-dot pos-wp-3"></div>
-                        <a href="{% url 'bookings:multi_step_booking' %}?suburb=Chatswood"
-                            class="route-city-card pos-card-3">
-                            <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                            <div>
-                                <div class="route-city-name">Chatswood</div>
-                                <div class="route-city-sub">&amp; Surrounds</div>
-                            </div>
-                        </a>
-
-                        <!-- Stop 4: Inner West & Surrounds (Bottom) -->
-                        <div class="route-waypoint-dot pos-wp-4"></div>
-                        <a href="{% url 'bookings:multi_step_booking' %}?suburb=Inner+West"
-                            class="route-city-card pos-card-4">
-                            <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                            <div>
-                                <div class="route-city-name">Inner West</div>
-                                <div class="route-city-sub">&amp; Surrounds</div>
-                            </div>
-                        </a>
-
-                        <!-- Stop 5: Northern Beaches & Surrounds (Top) -->
-                        <div class="route-waypoint-dot pos-wp-5"></div>
-                        <a href="{% url 'bookings:multi_step_booking' %}?suburb=Northern+Beaches"
-                            class="route-city-card pos-card-5">
-                            <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                            <div>
-                                <div class="route-city-name">Northern Beaches</div>
-                                <div class="route-city-sub">&amp; Surrounds</div>
-                            </div>
-                        </a>
-
-                        <!-- Stop 6: Sutherland Shire & Surrounds (Bottom) -->
-                        <div class="route-waypoint-dot pos-wp-6"></div>
-                        <a href="{% url 'bookings:multi_step_booking' %}?suburb=Sutherland+Shire"
-                            class="route-city-card pos-card-6">
-                            <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                            <div>
-                                <div class="route-city-name">Sutherland Shire</div>
-                                <div class="route-city-sub">&amp; Surrounds</div>
-                            </div>
-                        </a>
-
-                        <!-- Stop 7: Eastern Suburbs & Surrounds (Top) -->
-                        <div class="route-waypoint-dot pos-wp-7"></div>
-                        <a href="{% url 'bookings:multi_step_booking' %}?suburb=Eastern+Suburbs"
-                            class="route-city-card pos-card-7">
-                            <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                            <div>
-                                <div class="route-city-name">Eastern Suburbs</div>
-                                <div class="route-city-sub">&amp; Surrounds</div>
-                            </div>
-                        </a>
-
-                        <!-- End Destination Pin Marker -->
-                        <div class="route-end-marker pos-end">
-                            <div class="route-end-pin-badge">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                        </div>
-
+            <!-- Review 2: Belle Property Outcome -->
+            <div class="review-card-static">
+                <div class="review-card-top">
+                    <div class="review-author-meta">
+                        <span class="review-author-name">Marcus K.</span>
+                        <span class="review-author-agency">Parramatta · Belle Property Bond Clean</span>
                     </div>
+                    <div class="review-stars">★★★★★</div>
                 </div>
-
-                <!-- ── "Can't see your area listed?" Banner Bar ── -->
-                <div class="service-cta-banner reveal-fade-up">
-                    <div class="service-cta-left">
-                        <div class="service-cta-pin-circle">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                        <div class="service-cta-text-wrap">
-                            <div class="service-cta-heading">Can't see your area listed?</div>
-                            <div class="service-cta-subtext">
-                                <a href="{% url 'public:contact' %}">Contact us</a> — we may still be able to help!
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="service-cta-right">
-                        <a href="tel:0279889050" class="service-phone-link">
-                            <i class="fa-solid fa-phone"></i>
-                            02 7988 9050
-                        </a>
-                        <a href="{% url 'bookings:multi_step_booking' %}" class="service-book-btn">
-                            Book My Clean &rarr;
-                        </a>
-                    </div>
+                <p class="review-quote-text">
+                    "My property manager at Belle Property inspected the next morning and signed off on the full refund immediately. They even sent before &amp; after photos to the agent before I had to ask. Absolute lifesavers."
+                </p>
+                <div class="review-outcome-pill">
+                    <i class="fa-solid fa-circle-check"></i> 100% Deposit Refunded Immediately
                 </div>
+            </div>
 
-                <!-- ── Bottom 4 Trust Features Bar ── -->
-                <div class="service-trust-features reveal-stagger">
-                    <!-- Feature 1 -->
-                    <div class="service-feature-item">
-                        <div class="service-feature-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
-                        </div>
-                        <div class="service-feature-content">
-                            <div class="service-feature-title">Wide Coverage</div>
-                            <p class="service-feature-desc">Serving 50+ suburbs across Sydney.</p>
-                        </div>
+            <!-- Review 3: McGrath Outcome -->
+            <div class="review-card-static">
+                <div class="review-card-top">
+                    <div class="review-author-meta">
+                        <span class="review-author-name">Jessica M.</span>
+                        <span class="review-author-agency">Bondi Junction · McGrath Bond Clean</span>
                     </div>
-
-                    <!-- Feature 2 -->
-                    <div class="service-feature-item">
-                        <div class="service-feature-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <div class="service-feature-content">
-                            <div class="service-feature-title">Trusted Local Team</div>
-                            <p class="service-feature-desc">Local cleaners who know your area best.</p>
-                        </div>
-                    </div>
-
-                    <!-- Feature 3 -->
-                    <div class="service-feature-item">
-                        <div class="service-feature-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                        </div>
-                        <div class="service-feature-content">
-                            <div class="service-feature-title">Always Nearby</div>
-                            <p class="service-feature-desc">We're never far when you need us.</p>
-                        </div>
-                    </div>
-
-                    <!-- Feature 4 -->
-                    <div class="service-feature-item">
-                        <div class="service-feature-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="7"></circle>
-                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                            </svg>
-                        </div>
-                        <div class="service-feature-content">
-                            <div class="service-feature-title">100% Bond Back Guarantee</div>
-                            <p class="service-feature-desc">If your agent isn't happy, we'll come back free.</p>
-                        </div>
-                    </div>
+                    <div class="review-stars">★★★★★</div>
                 </div>
+                <p class="review-quote-text">
+                    "I was terrified about losing part of our bond over the kitchen and bathroom grout. Final Clean did a phenomenal job — agent signed the bond release form within 2 hours of inspection."
+                </p>
+                <div class="review-outcome-pill">
+                    <i class="fa-solid fa-circle-check"></i> Agent Signed Release Form in 2 Hours
+                </div>
+            </div>
 
+            <!-- Review 4: LJ Hooker Outcome -->
+            <div class="review-card-static">
+                <div class="review-card-top">
+                    <div class="review-author-meta">
+                        <span class="review-author-name">David P.</span>
+                        <span class="review-author-agency">Chatswood · LJ Hooker Bond Clean</span>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                <p class="review-quote-text">
+                    "Full $2,800 bond returned. LJ Hooker agent said it was the cleanest handover inspection he'd seen all year. Couldn't recommend them more."
+                </p>
+                <div class="review-outcome-pill">
+                    <i class="fa-solid fa-circle-check"></i> $2,800 Bond Returned In Full
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ════════════════════════════════════════ -->
-    <!-- Premium FAQ Section (Last Section)       -->
-    <!-- ════════════════════════════════════════ -->
-    <section class="premium-faq-wrapper" x-data="{ activeIndex: null }">
-        <div class="premium-faq-left reveal-left">
-            <div class="premium-faq-pill">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="faq-shield-icon">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-                Got Questions?
-            </div>
-            <h2 class="premium-faq-title">We've got<br>answers.</h2>
-            <p class="premium-faq-text">Everything you need to know about our end-of-lease cleaning service. Can't find
-                the answer you're looking for?</p>
-            <a href="{% url 'public:contact' %}" class="premium-faq-contact">
-                <div class="contact-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path
-                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                    </svg>
+<!-- ════════════════════════════════════════ -->
+<!-- 6. Before / After (The 4 Bond Risks)    -->
+<!-- ════════════════════════════════════════ -->
+<section class="watch-us-work">
+    <div class="watch-us-work-container">
+        <div class="watch-us-header-wrap reveal-fade-up">
+            <span class="watch-us-pill-badge">
+                <i class="fa-solid fa-camera"></i> Before &amp; After Photo Proof
+            </span>
+            <h2 class="watch-us-work-heading">
+                The 4 Things Agents<br>
+                <span class="gradient-text">Withhold Bonds Over.</span>
+            </h2>
+            <p class="watch-us-subtext">
+                Real estate exit inspections focus on high-scrutiny areas. We deep clean each to the agent's sign-off standard with timestamped before &amp; after proof.
+            </p>
+        </div>
+
+        <!-- 4 Scope Cards Grid -->
+        <div class="scope-cards-grid reveal-stagger">
+            <!-- Card 1: Oven -->
+            <div class="scope-card">
+                <div class="scope-card-media scope-delay-1">
+                    <div class="scope-media-layer scope-layer-before scope-img-kitchen-before"></div>
+                    <div class="scope-media-layer scope-layer-after scope-img-kitchen-after"></div>
+                    <div class="scope-slider-divider">
+                        <div class="scope-slider-handle"><i class="fa-solid fa-arrows-left-right"></i></div>
+                    </div>
+                    <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
+                    <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
                 </div>
-                Contact our friendly team
+                <div class="scope-card-body">
+                    <h3 class="scope-card-title">Oven &amp; Rangehood</h3>
+                    <div class="scope-outcome-caption">
+                        <span class="scope-outcome-title"><i class="fa-solid fa-check"></i> Inspection Outcome</span>
+                        <p class="scope-outcome-text">Deep-cleaned racks, door glass, and fan grease — passed property manager inspection without deduction.</p>
+                    </div>
+                    <ul class="scope-checklist">
+                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Baked carbon &amp; grease dissolved</span></li>
+                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Oven racks, trays &amp; glass polished</span></li>
+                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Rangehood filter degreased completely</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 2: Shower Grout -->
+            <div class="scope-card">
+                <div class="scope-card-media scope-delay-2">
+                    <div class="scope-media-layer scope-layer-before scope-img-bath-before"></div>
+                    <div class="scope-media-layer scope-layer-after scope-img-bath-after"></div>
+                    <div class="scope-slider-divider">
+                        <div class="scope-slider-handle"><i class="fa-solid fa-arrows-left-right"></i></div>
+                    </div>
+                    <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
+                    <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
+                </div>
+                <div class="scope-card-body">
+                    <h3 class="scope-card-title">Shower Grout &amp; Screens</h3>
+                    <div class="scope-outcome-caption">
+                        <span class="scope-outcome-title"><i class="fa-solid fa-check"></i> Inspection Outcome</span>
+                        <p class="scope-outcome-text">Mould and soap scum eliminated from tiles &amp; glass screens — zero bathroom disputes at handover.</p>
+                    </div>
+                    <ul class="scope-checklist">
+                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Limescale &amp; hard water marks removed</span></li>
+                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Grout lines treated for mould &amp; mildew</span></li>
+                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Tapware, drain grate &amp; vanity descaled</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 3: Carpet -->
+            <div class="scope-card">
+                <div class="scope-card-media scope-delay-3">
+                    <div class="scope-media-layer scope-layer-before scope-img-living-before"></div>
+                    <div class="scope-media-layer scope-layer-after scope-img-living-after"></div>
+                    <div class="scope-slider-divider">
+                        <div class="scope-slider-handle"><i class="fa-solid fa-arrows-left-right"></i></div>
+                    </div>
+                    <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
+                    <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
+                </div>
+                <div class="scope-card-body">
+                    <h3 class="scope-card-title">Steam Carpet Cleaning</h3>
+                    <div class="scope-outcome-caption">
+                        <span class="scope-outcome-title"><i class="fa-solid fa-check"></i> Inspection Outcome</span>
+                        <p class="scope-outcome-text">High-traffic steam extraction removing stains and pet odor — approved to commercial agent standard.</p>
+                    </div>
+                    <ul class="scope-checklist">
+                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Hot-water extraction deep sanitisation</span></li>
+                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Pet odor, hair &amp; surface stains lifted</span></li>
+                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Compliant steam receipt for real estate</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 4: Window Tracks -->
+            <div class="scope-card">
+                <div class="scope-card-media scope-delay-4">
+                    <div class="scope-media-layer scope-layer-before scope-img-window-before"></div>
+                    <div class="scope-media-layer scope-layer-after scope-img-window-after"></div>
+                    <div class="scope-slider-divider">
+                        <div class="scope-slider-handle"><i class="fa-solid fa-arrows-left-right"></i></div>
+                    </div>
+                    <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
+                    <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
+                </div>
+                <div class="scope-card-body">
+                    <h3 class="scope-card-title">Window Tracks &amp; Sills</h3>
+                    <div class="scope-outcome-caption">
+                        <span class="scope-outcome-title"><i class="fa-solid fa-check"></i> Inspection Outcome</span>
+                        <p class="scope-outcome-text">Sill and track grime flushed clean — no deductions on real estate exit checklist.</p>
+                    </div>
+                    <ul class="scope-checklist">
+                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Sliding tracks vacuumed &amp; flushed</span></li>
+                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Internal window glass polished streak-free</span></li>
+                        <li class="scope-check-item"><i class="fa-solid fa-check scope-check-icon"></i><span>Window frames, latches &amp; sills wiped</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="watch-us-cta-wrap reveal-fade-up">
+            <p class="watch-us-cta-text">
+                Every clean includes timestamped before &amp; after photos so your agent has zero grounds for disputes.
+            </p>
+            <a href="#calc-widget" class="watch-us-cta-btn">
+                <span>Get Your Price &rarr;</span>
             </a>
         </div>
+    </div>
+</section>
 
-        <div class="premium-faq-right reveal-stagger">
-            {% for faq in faqs %}
-            <div class="premium-faq-item" :class="activeIndex === {{ faq.id }} ? 'premium-faq-item--open' : ''">
-                <button class="premium-faq-btn"
-                    @click="activeIndex === {{ faq.id }} ? activeIndex = null : activeIndex = {{ faq.id }}">
-                    <span class="premium-faq-btn-text">{{ faq.question }}</span>
-                    <span class="premium-faq-btn-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </span>
+<!-- ════════════════════════════════════════ -->
+<!-- 7. Real Estate Approved Checklist        -->
+<!-- ════════════════════════════════════════ -->
+<section class="checklist-section" x-data="{ activeRoom: null }">
+    <div class="checklist-container">
+        <div class="checklist-header reveal-fade-up">
+            <h2 class="watch-us-work-heading">
+                Real Estate Approved<br>
+                <span class="gradient-text">Exit Cleaning Checklist</span>
+            </h2>
+            <div class="checklist-intro-banner">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Oven and rangehood included as standard, never an extra.</span>
+            </div>
+        </div>
+
+        <!-- 6-Room Collapsed Accordion -->
+        <div class="checklist-accordion-wrap reveal-fade-up">
+            <!-- Room 1: Kitchen -->
+            <div class="checklist-accordion-item" :class="activeRoom === 1 ? 'checklist-accordion-item--open' : ''">
+                <button type="button" class="checklist-accordion-btn" @click="activeRoom === 1 ? activeRoom = null : activeRoom = 1">
+                    <div class="checklist-btn-left">
+                        <i class="fa-solid fa-kitchen-set"></i>
+                        <span>Kitchen (Oven &amp; Rangehood Included)</span>
+                        <span class="checklist-inclusions-badge">Included as Standard</span>
+                    </div>
+                    <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
                 </button>
-                <div class="premium-faq-answer" x-show="activeIndex === {{ faq.id }}" x-collapse>
-                    <div class="premium-faq-answer-inner">{{ faq.answer }}</div>
+                <div class="checklist-accordion-content" x-show="activeRoom === 1" x-collapse>
+                    <div class="checklist-items-grid">
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Deep clean oven inside and out, including racks, trays and door glass</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean rangehood, degrease mesh filters, and wipe exhaust canopy</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Scrub and sanitize stovetop burners, knobs, and drip pans</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe all cupboards, pantry shelves, and drawers inside &amp; out</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Scrub and polish kitchen sink, tapware, and drain stopper</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean and degrease splashback tiles, grout, and countertops</span></div>
+                    </div>
                 </div>
             </div>
-            {% endfor %}
+
+            <!-- Room 2: Bathrooms & Toilets -->
+            <div class="checklist-accordion-item" :class="activeRoom === 2 ? 'checklist-accordion-item--open' : ''">
+                <button type="button" class="checklist-accordion-btn" @click="activeRoom === 2 ? activeRoom = null : activeRoom = 2">
+                    <div class="checklist-btn-left">
+                        <i class="fa-solid fa-bath"></i>
+                        <span>Bathrooms, Ensuites &amp; Toilets</span>
+                        <span class="checklist-inclusions-badge">Included as Standard</span>
+                    </div>
+                    <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div class="checklist-accordion-content" x-show="activeRoom === 2" x-collapse>
+                    <div class="checklist-items-grid">
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Descale, clean, and polish shower screens and sliding door tracks</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Scrub and treat shower tiles and grout for mould, mildew, and soap scum</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Deep sanitize and disinfect toilet bowl, cistern, seat, and base</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe vanity countertops, mirrors, basin tapware, and medicine cabinet</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean bathtub, shower base, and clear hair from waste traps</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Vacuum and sanitize exhaust fan grill and air vents</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room 3: Bedrooms -->
+            <div class="checklist-accordion-item" :class="activeRoom === 3 ? 'checklist-accordion-item--open' : ''">
+                <button type="button" class="checklist-accordion-btn" @click="activeRoom === 3 ? activeRoom = null : activeRoom = 3">
+                    <div class="checklist-btn-left">
+                        <i class="fa-solid fa-bed"></i>
+                        <span>Bedrooms</span>
+                        <span class="checklist-inclusions-badge">Included as Standard</span>
+                    </div>
+                    <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div class="checklist-accordion-content" x-show="activeRoom === 3" x-collapse>
+                    <div class="checklist-items-grid">
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe built-in wardrobes, shelves, hanging rails, and drawer interiors</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean internal window panes, glass, sills, and window frames</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Dust and wipe skirting boards, architraves, and door frames</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Remove cobwebs from corners, cornices, and ceiling surfaces</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean light switches, power point plates, and door handles</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Vacuum carpets thoroughly with edge crevice tool / mop hard floors</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room 4: Living & Dining Areas -->
+            <div class="checklist-accordion-item" :class="activeRoom === 4 ? 'checklist-accordion-item--open' : ''">
+                <button type="button" class="checklist-accordion-btn" @click="activeRoom === 4 ? activeRoom = null : activeRoom = 4">
+                    <div class="checklist-btn-left">
+                        <i class="fa-solid fa-couch"></i>
+                        <span>Living, Dining &amp; Family Areas</span>
+                        <span class="checklist-inclusions-badge">Included as Standard</span>
+                    </div>
+                    <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div class="checklist-accordion-content" x-show="activeRoom === 4" x-collapse>
+                    <div class="checklist-items-grid">
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean sliding glass doors, internal glass panes, and sliding tracks</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe all skirting boards, door frames, and light switch plates</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Spot clean reachable wall scuffs and remove spiderwebs</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Dust ceiling fans, light fittings, and air conditioner exterior vents</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Vacuum edge-to-edge and thoroughly mop and polish hard flooring</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe storage cupboards, entertainment nooks, and display shelving</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room 5: Laundry -->
+            <div class="checklist-accordion-item" :class="activeRoom === 5 ? 'checklist-accordion-item--open' : ''">
+                <button type="button" class="checklist-accordion-btn" @click="activeRoom === 5 ? activeRoom = null : activeRoom = 5">
+                    <div class="checklist-btn-left">
+                        <i class="fa-solid fa-soap"></i>
+                        <span>Laundry Room</span>
+                        <span class="checklist-inclusions-badge">Included as Standard</span>
+                    </div>
+                    <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div class="checklist-accordion-content" x-show="activeRoom === 5" x-collapse>
+                    <div class="checklist-items-grid">
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean and sanitize laundry tub, tapware, and plug waste</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe laundry cupboards inside &amp; out and clean under basin area</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean splashback tiles, lint filter recesses, and power points</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe dryer exterior, washing machine alcove, and wall surfaces</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Mop laundry floor tiles and clear floor drain grates</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe internal doors, laundry door frames, and sills</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room 6: Balcony, Entryways & Hallways -->
+            <div class="checklist-accordion-item" :class="activeRoom === 6 ? 'checklist-accordion-item--open' : ''">
+                <button type="button" class="checklist-accordion-btn" @click="activeRoom === 6 ? activeRoom = null : activeRoom = 6">
+                    <div class="checklist-btn-left">
+                        <i class="fa-solid fa-door-open"></i>
+                        <span>Balcony, Entryways &amp; Hallways</span>
+                        <span class="checklist-inclusions-badge">Included as Standard</span>
+                    </div>
+                    <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div class="checklist-accordion-content" x-show="activeRoom === 6" x-collapse>
+                    <div class="checklist-items-grid">
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Sweep and mop balcony floor / clear drainage holes</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe entrance front door, deadbolts, and door handles</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Vacuum hallway corridors and wipe linen press shelving</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean all hallway skirting boards, light switches, and smoke alarm covers</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe intercom unit, doorbell plate, and internal entrance threshold</span></div>
+                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Final walkthrough photo audit to verify 100% agent compliance</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- Comparison Section                       -->
+<!-- ════════════════════════════════════════ -->
+<div class="custom-shape-divider-top">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path
+            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+            fill="#f8fbff"></path>
+    </svg>
+</div>
+<section class="comparison-section">
+    <svg class="comp-star comp-star-1" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
+    </svg>
+    <svg class="comp-star comp-star-2" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
+    </svg>
+    <svg class="comp-star comp-star-3" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
+    </svg>
+    <svg class="comp-star comp-star-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
+    </svg>
+
+    <div class="comparison-container">
+        <div class="comparison-heading-wrap reveal-fade-up">
+            <div class="comp-pill">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+                Why Choose Us
+            </div>
+            <h2 class="comparison-heading">
+                What Makes <span>Final Clean</span> Different?
+            </h2>
+            <p class="comparison-subheading">We go beyond standard cleaning to deliver a spotless experience every
+                time.</p>
+        </div>
+
+        <div class="comp-card reveal-zoom">
+            <!-- Left Column (Features) -->
+            <div class="comp-col comp-col-left">
+                <div class="comp-cell-th">Features</div>
+                <div class="comp-cell">
+                    <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg></div>
+                    Quick 60-Second Booking
+                </div>
+                <div class="comp-cell">
+                    <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                        </svg></div>
+                    Transparent Fixed Pricing
+                </div>
+                <div class="comp-cell">
+                    <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="7" />
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                        </svg></div>
+                    100% Satisfaction Guarantee
+                </div>
+                <div class="comp-cell">
+                    <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg></div>
+                    Schedule Online, Cancel Anytime
+                </div>
+                <div class="comp-cell">
+                    <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg></div>
+                    Trusted by 5000+ Families
+                </div>
+            </div>
+
+            <!-- Center Column (Final Clean) -->
+            <div class="comp-col comp-col-center">
+                <div class="comp-cell-th">
+                    <span class="comp-badge-sm">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        Our Service
+                    </span>
+                    <div class="comp-center-title">Final Clean</div>
+                    <div class="comp-center-sub">Premium Cleaning Service</div>
+                </div>
+                <div class="comp-cell">
+                    <div class="ico-check-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg></div>
+                </div>
+                <div class="comp-cell">
+                    <div class="ico-check-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg></div>
+                </div>
+                <div class="comp-cell">
+                    <div class="ico-check-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg></div>
+                </div>
+                <div class="comp-cell">
+                    <div class="ico-check-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg></div>
+                </div>
+                <div class="comp-cell">
+                    <div class="ico-check-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg></div>
+                </div>
+            </div>
+
+            <!-- Right Column (Standard) -->
+            <div class="comp-col comp-col-right">
+                <div class="comp-cell-th">Standard<br>Cleaning Companies</div>
+                <div class="comp-cell">
+                    <div class="ico-check-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg></div>
+                </div>
+                <div class="comp-cell">
+                    <div class="ico-cross-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg></div>
+                </div>
+                <div class="comp-cell">
+                    <div class="ico-cross-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg></div>
+                </div>
+                <div class="comp-cell">
+                    <div class="ico-cross-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg></div>
+                </div>
+                <div class="comp-cell">
+                    <div class="ico-cross-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-cta reveal-fade-up">
+            <a href="#calc-widget">
+                Get My Free Quote &rarr;
+            </a>
+            <p>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg>
+                Takes less than 60 seconds
+            </p>
+        </div>
+    </div>
+</section>
+<div class="custom-shape-divider-bottom">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path
+            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+            fill="#f8fbff"></path>
+    </svg>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 11. Premium FAQ Section                  -->
+<!-- ════════════════════════════════════════ -->
+<section class="premium-faq-wrapper" x-data="{ activeIndex: null }">
+    <div class="premium-faq-left reveal-left">
+        <div class="premium-faq-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="faq-shield-icon">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            Got Questions?
+        </div>
+        <h2 class="premium-faq-title">We've got<br>answers.</h2>
+        <p class="premium-faq-text">Everything you need to know about our end-of-lease cleaning service, pricing, and bond back guarantee.</p>
+        <a href="tel:0279889050" class="premium-faq-contact">
+            <div class="contact-icon">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+            Call 02 7988 9050
+        </a>
+    </div>
+
+    <div class="premium-faq-right reveal-stagger">
+        {% for faq in faqs %}
+        <div class="premium-faq-item" :class="activeIndex === {{ faq.id }} ? 'premium-faq-item--open' : ''">
+            <button class="premium-faq-btn"
+                @click="activeIndex === {{ faq.id }} ? activeIndex = null : activeIndex = {{ faq.id }}">
+                <span class="premium-faq-btn-text">{{ faq.question }}</span>
+                <span class="premium-faq-btn-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </span>
+            </button>
+            <div class="premium-faq-answer" x-show="activeIndex === {{ faq.id }}" x-collapse>
+                <div class="premium-faq-answer-inner">{{ faq.answer }}</div>
+            </div>
+        </div>
+        {% empty %}
+        <!-- Fallback FAQs (Exact sequence) -->
+        <div class="premium-faq-item" :class="activeIndex === 1 ? 'premium-faq-item--open' : ''">
+            <button class="premium-faq-btn" @click="activeIndex === 1 ? activeIndex = null : activeIndex = 1">
+                <span class="premium-faq-btn-text">How is my price calculated?</span>
+                <span class="premium-faq-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </button>
+            <div class="premium-faq-answer" x-show="activeIndex === 1" x-collapse>
+                <div class="premium-faq-answer-inner">Your price is based on the number of bedrooms and bathrooms in your property. Every quote automatically includes our complete end-of-lease checklist — including oven deep clean, rangehood, internal windows, cupboards, and skirting boards. You only pay extra if you select optional add-ons like steam carpet cleaning.</div>
+            </div>
+        </div>
+        <div class="premium-faq-item" :class="activeIndex === 2 ? 'premium-faq-item--open' : ''">
+            <button class="premium-faq-btn" @click="activeIndex === 2 ? activeIndex = null : activeIndex = 2">
+                <span class="premium-faq-btn-text">What happens if the property needs heavy-duty cleaning?</span>
+                <span class="premium-faq-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </button>
+            <div class="premium-faq-answer" x-show="activeIndex === 2" x-collapse>
+                <div class="premium-faq-answer-inner">Our standard fixed price covers normal wear and end-of-lease residue. If a property requires extreme grease removal, heavy pet soiling, excess rubbish disposal, or mould remediation beyond standard tenancy wear, our team will inspect the site upon arrival and discuss any necessary adjustments with you upfront before starting work. No surprise charges.</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 12. Visual Service Areas & Suburb Coverage -->
+<!-- ════════════════════════════════════════ -->
+<section class="seo-cities-section">
+    <div class="seo-cities-container">
+
+        <!-- Section Header -->
+        <div class="seo-cities-header reveal-fade-up">
+            <div class="seo-cities-pill">
+                <i class="fa-solid fa-location-dot"></i> OUR SERVICE AREAS
+            </div>
+            <h2 class="seo-cities-title">
+                Sydney Service Areas &amp; <span class="highlight">Suburb Coverage</span>
+            </h2>
+            <p class="seo-cities-sub">
+                Final Clean provides end-of-lease cleaning across all Sydney regions with local police-checked cleaners.
+            </p>
+        </div>
+
+        <!-- Main White Map Card -->
+        <div class="service-map-card reveal-zoom">
+
+            <!-- Sydney Harbour Waterway & Coastal Watermark Map SVG -->
+            <svg class="service-map-watermark" viewBox="0 0 1200 450" fill="none" preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,0 L420,0 C390,90 330,130 290,190 C250,250 270,330 220,390 C190,430 130,445 0,450 Z"
+                    fill="#EBF3FA" opacity="0.6" />
+                <path
+                    d="M0,230 C80,220 150,240 220,200 C270,170 310,160 380,190 C450,220 520,210 580,170 C640,130 700,160 760,200 C820,240 890,230 940,190 C990,150 1060,160 1120,220 C1160,260 1200,240 1200,240 L1200,450 L0,450 Z"
+                    fill="#E1F0FA" opacity="0.75" />
+                <path
+                    d="M180,90 C220,110 260,100 290,70 C320,40 370,50 400,80 C440,120 420,170 480,200 C540,230 600,190 650,220"
+                    stroke="#CCE4F7" stroke-width="24" stroke-linecap="round" opacity="0.5" />
+                <ellipse cx="160" cy="140" rx="90" ry="60" fill="#DCFCE7" opacity="0.5" />
+                <ellipse cx="880" cy="200" rx="140" ry="80" fill="#DCFCE7" opacity="0.4" />
+                <ellipse cx="440" cy="320" rx="110" ry="50" fill="#DCFCE7" opacity="0.35" />
+            </svg>
+
+            <!-- Interactive Route Track Canvas -->
+            <div class="service-route-scroll-container">
+                <div class="service-route-track">
+
+                    <!-- Winding SVG Dashed Road Path -->
+                    <svg class="service-route-svg" viewBox="0 0 1220 360" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M 55,180 C 110,180 130,110 205,110 C 280,110 290,215 360,215 C 430,215 450,105 520,105 C 590,105 600,220 660,220 C 720,220 750,100 820,100 C 890,100 900,225 965,225 C 1030,225 1040,120 1100,120 C 1140,120 1155,230 1180,230"
+                            stroke="#FFC349" stroke-width="3.5" stroke-linecap="round" />
+                        <path
+                            d="M 55,180 C 110,180 130,110 205,110 C 280,110 290,215 360,215 C 430,215 450,105 520,105 C 590,105 600,220 660,220 C 720,220 750,100 820,100 C 890,100 900,225 965,225 C 1030,225 1040,120 1100,120 C 1140,120 1155,230 1180,230"
+                            stroke="#20243A" stroke-width="3" stroke-dasharray="6 6" stroke-linecap="round" />
+                    </svg>
+
+                    <!-- Start Point: House with Pin Badge -->
+                    <div class="route-start-house pos-start">
+                        <div class="house-circle-badge">
+                            <div class="house-pin-floating">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <svg class="house-icon-svg" viewBox="0 0 80 65" fill="none">
+                                <polygon points="40,4 8,30 72,30" fill="#20243A" />
+                                <polygon points="40,8 14,29 66,29" fill="#525EA7" />
+                                <rect x="14" y="29" width="52" height="32" rx="3" fill="#FFFFFF" stroke="#CBD5E1"
+                                    stroke-width="1.5" />
+                                <rect x="33" y="38" width="14" height="23" rx="2" fill="#525EA7" />
+                                <circle cx="43" cy="50" r="1.5" fill="#FFC349" />
+                                <rect x="20" y="36" width="10" height="12" rx="1" fill="#5FADD3" />
+                                <rect x="50" y="36" width="10" height="12" rx="1" fill="#5FADD3" />
+                                <line x1="25" y1="36" x2="25" y2="48" stroke="#FFFFFF" stroke-width="1.5" />
+                                <line x1="20" y1="42" x2="30" y2="42" stroke="#FFFFFF" stroke-width="1.5" />
+                                <line x1="55" y1="36" x2="55" y2="48" stroke="#FFFFFF" stroke-width="1.5" />
+                                <line x1="50" y1="42" x2="60" y2="42" stroke="#FFFFFF" stroke-width="1.5" />
+                                <rect x="8" y="59" width="64" height="4" rx="2" fill="#059669" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Stop 1: Parramatta & Surrounds (Top) -->
+                    <div class="route-waypoint-dot pos-wp-1"></div>
+                    <a href="#calc-widget" class="route-city-card pos-card-1">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Parramatta</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- Stop 2: Ryde & Surrounds (Bottom) -->
+                    <div class="route-waypoint-dot pos-wp-2"></div>
+                    <a href="#calc-widget" class="route-city-card pos-card-2">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Ryde</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- Stop 3: Chatswood & Surrounds (Top) -->
+                    <div class="route-waypoint-dot pos-wp-3"></div>
+                    <a href="#calc-widget" class="route-city-card pos-card-3">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Chatswood</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- Stop 4: Inner West & Surrounds (Bottom) -->
+                    <div class="route-waypoint-dot pos-wp-4"></div>
+                    <a href="#calc-widget" class="route-city-card pos-card-4">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Inner West</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- Stop 5: Northern Beaches & Surrounds (Top) -->
+                    <div class="route-waypoint-dot pos-wp-5"></div>
+                    <a href="#calc-widget" class="route-city-card pos-card-5">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Northern Beaches</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- Stop 6: Sutherland Shire & Surrounds (Bottom) -->
+                    <div class="route-waypoint-dot pos-wp-6"></div>
+                    <a href="#calc-widget" class="route-city-card pos-card-6">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Sutherland Shire</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- Stop 7: Eastern Suburbs & Surrounds (Top) -->
+                    <div class="route-waypoint-dot pos-wp-7"></div>
+                    <a href="#calc-widget" class="route-city-card pos-card-7">
+                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="route-city-name">Eastern Suburbs</div>
+                            <div class="route-city-sub">&amp; Surrounds</div>
+                        </div>
+                    </a>
+
+                    <!-- End Destination Pin Marker -->
+                    <div class="route-end-marker pos-end">
+                        <div class="route-end-pin-badge">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- "Can't see your area listed?" Banner Bar -->
+            <div class="service-cta-banner reveal-fade-up">
+                <div class="service-cta-left">
+                    <div class="service-cta-pin-circle">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="service-cta-text-wrap">
+                        <div class="service-cta-heading">Can't see your area listed?</div>
+                        <div class="service-cta-subtext">
+                            Contact our friendly Sydney team — we cover all Greater Sydney regions!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-cta-right">
+                    <a href="tel:0279889050" class="service-phone-link">
+                        <i class="fa-solid fa-phone"></i>
+                        02 7988 9050
+                    </a>
+                    <a href="#calc-widget" class="service-book-btn">
+                        Get Your Price &darr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom 4 Trust Features Bar -->
+            <div class="service-trust-features reveal-stagger">
+                <!-- Feature 1 -->
+                <div class="service-feature-item">
+                    <div class="service-feature-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <div class="service-feature-content">
+                        <div class="service-feature-title">Wide Coverage</div>
+                        <p class="service-feature-desc">Serving 50+ suburbs across Greater Sydney.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="service-feature-item">
+                    <div class="service-feature-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <div class="service-feature-content">
+                        <div class="service-feature-title">Trusted Local Team</div>
+                        <p class="service-feature-desc">Police-checked cleaners meeting REA standards.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="service-feature-item">
+                    <div class="service-feature-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <div class="service-feature-content">
+                        <div class="service-feature-title">Always Nearby</div>
+                        <p class="service-feature-desc">Same-day &amp; next-day availability 7 days a week.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="service-feature-item">
+                    <div class="service-feature-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                    </div>
+                    <div class="service-feature-content">
+                        <div class="service-feature-title">100% Bond Back Guarantee</div>
+                        <p class="service-feature-desc">Free re-clean until your agent signs off.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complete Styled Sydney Suburb Directory -->
+            <div class="service-suburbs-wrap">
+                <div class="service-suburbs-header">
+                    <span class="service-suburbs-title">
+                        <i class="fa-solid fa-map-location-dot"></i> Complete Sydney Suburb Directory
+                    </span>
+                </div>
+                <div class="service-suburbs-grid">
+                    <div class="service-region-card">
+                        <div class="service-region-title">
+                            <i class="fa-solid fa-compass"></i> Eastern Suburbs
+                        </div>
+                        <div class="service-region-chips">
+                            <a href="#calc-widget" class="suburb-chip">Bondi</a>
+                            <a href="#calc-widget" class="suburb-chip">Bondi Junction</a>
+                            <a href="#calc-widget" class="suburb-chip">Coogee</a>
+                            <a href="#calc-widget" class="suburb-chip">Randwick</a>
+                            <a href="#calc-widget" class="suburb-chip">Paddington</a>
+                            <a href="#calc-widget" class="suburb-chip">Double Bay</a>
+                            <a href="#calc-widget" class="suburb-chip">Rose Bay</a>
+                            <a href="#calc-widget" class="suburb-chip">Maroubra</a>
+                            <a href="#calc-widget" class="suburb-chip">Surry Hills</a>
+                            <a href="#calc-widget" class="suburb-chip">Woollahra</a>
+                            <a href="#calc-widget" class="suburb-chip">Kensington</a>
+                            <a href="#calc-widget" class="suburb-chip">Vaucluse</a>
+                        </div>
+                    </div>
+
+                    <div class="service-region-card">
+                        <div class="service-region-title">
+                            <i class="fa-solid fa-city"></i> Inner West &amp; City
+                        </div>
+                        <div class="service-region-chips">
+                            <a href="#calc-widget" class="suburb-chip">Sydney CBD</a>
+                            <a href="#calc-widget" class="suburb-chip">Newtown</a>
+                            <a href="#calc-widget" class="suburb-chip">Balmain</a>
+                            <a href="#calc-widget" class="suburb-chip">Leichhardt</a>
+                            <a href="#calc-widget" class="suburb-chip">Marrickville</a>
+                            <a href="#calc-widget" class="suburb-chip">Glebe</a>
+                            <a href="#calc-widget" class="suburb-chip">Ashfield</a>
+                            <a href="#calc-widget" class="suburb-chip">Strathfield</a>
+                            <a href="#calc-widget" class="suburb-chip">Burwood</a>
+                            <a href="#calc-widget" class="suburb-chip">Petersham</a>
+                            <a href="#calc-widget" class="suburb-chip">Camperdown</a>
+                            <a href="#calc-widget" class="suburb-chip">Dulwich Hill</a>
+                        </div>
+                    </div>
+
+                    <div class="service-region-card">
+                        <div class="service-region-title">
+                            <i class="fa-solid fa-umbrella-beach"></i> North Shore &amp; Beaches
+                        </div>
+                        <div class="service-region-chips">
+                            <a href="#calc-widget" class="suburb-chip">Chatswood</a>
+                            <a href="#calc-widget" class="suburb-chip">North Sydney</a>
+                            <a href="#calc-widget" class="suburb-chip">Mosman</a>
+                            <a href="#calc-widget" class="suburb-chip">Manly</a>
+                            <a href="#calc-widget" class="suburb-chip">Neutral Bay</a>
+                            <a href="#calc-widget" class="suburb-chip">Lane Cove</a>
+                            <a href="#calc-widget" class="suburb-chip">St Leonards</a>
+                            <a href="#calc-widget" class="suburb-chip">Crows Nest</a>
+                            <a href="#calc-widget" class="suburb-chip">Dee Why</a>
+                            <a href="#calc-widget" class="suburb-chip">Brookvale</a>
+                            <a href="#calc-widget" class="suburb-chip">Mona Vale</a>
+                            <a href="#calc-widget" class="suburb-chip">Ryde</a>
+                        </div>
+                    </div>
+
+                    <div class="service-region-card">
+                        <div class="service-region-title">
+                            <i class="fa-solid fa-tree"></i> Western Sydney &amp; Shire
+                        </div>
+                        <div class="service-region-chips">
+                            <a href="#calc-widget" class="suburb-chip">Parramatta</a>
+                            <a href="#calc-widget" class="suburb-chip">Blacktown</a>
+                            <a href="#calc-widget" class="suburb-chip">Penrith</a>
+                            <a href="#calc-widget" class="suburb-chip">Liverpool</a>
+                            <a href="#calc-widget" class="suburb-chip">Castle Hill</a>
+                            <a href="#calc-widget" class="suburb-chip">Baulkham Hills</a>
+                            <a href="#calc-widget" class="suburb-chip">Hurstville</a>
+                            <a href="#calc-widget" class="suburb-chip">Kogarah</a>
+                            <a href="#calc-widget" class="suburb-chip">Cronulla</a>
+                            <a href="#calc-widget" class="suburb-chip">Sutherland</a>
+                            <a href="#calc-widget" class="suburb-chip">Miranda</a>
+                            <a href="#calc-widget" class="suburb-chip">Bankstown</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     {% endblock %}
 
