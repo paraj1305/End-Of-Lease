@@ -1,0 +1,368 @@
+/* ==========================================================================
+   OFFICIAL REAL ESTATE APPROVED CHECKLIST (PDF & PRINT VIEW)
+   ========================================================================== */
+
+:root {
+    --pdf-primary: #1e266d;
+    --pdf-primary-dark: #121846;
+    --pdf-accent: #f59e0b;
+    --pdf-accent-bg: #fffbeb;
+    --pdf-accent-border: #fef08a;
+    --pdf-accent-text: #92400e;
+    --pdf-gold-bar: #d97706;
+    --pdf-banner-bg: #1e266d;
+    --pdf-banner-text: #ffffff;
+    --pdf-note-bg: #e0f2fe;
+    --pdf-note-border: #7dd3fc;
+    --pdf-note-text: #0369a1;
+    --pdf-text: #1e293b;
+    --pdf-text-muted: #475569;
+    --pdf-border: #cbd5e1;
+    --pdf-page-bg: #525659;
+    --pdf-sheet-bg: #ffffff;
+}
+
+body.pdf-view-body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--pdf-page-bg);
+    color: var(--pdf-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+
+/* ── Top Floating Action Bar (Screen Only) ── */
+.pdf-actions-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #0f172a;
+    color: #ffffff;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.pdf-actions-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pdf-badge {
+    background: #10b981;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.pdf-title-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+.pdf-actions-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.pdf-btn-print {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.pdf-btn-print:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.pdf-btn-back {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.pdf-btn-back:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+/* ── Document Container ── */
+.pdf-document-wrap {
+    padding: 30px 16px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+}
+
+/* ── Standard A4 Page Sheet ── */
+.pdf-page-sheet {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--pdf-sheet-bg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.pdf-page-content {
+    padding: 0;
+    flex: 1;
+}
+
+/* ── Header ── */
+.pdf-header-band {
+    background: var(--pdf-primary);
+    color: #ffffff;
+    padding: 16px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.pdf-header-brand-title {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin: 0 0 3px;
+}
+
+.pdf-header-brand-sub {
+    font-size: 11.5px;
+    opacity: 0.85;
+    margin: 0;
+    font-weight: 500;
+}
+
+.pdf-header-guarantee {
+    text-align: right;
+}
+
+.pdf-header-guarantee-title {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #fde047;
+    margin: 0 0 3px;
+}
+
+.pdf-header-guarantee-sub {
+    font-size: 10.5px;
+    opacity: 0.85;
+    margin: 0;
+}
+
+.pdf-header-gold-line {
+    height: 4px;
+    background: linear-gradient(90deg, #d97706, #fbbf24, #d97706);
+}
+
+/* ── Page Intro ── */
+.pdf-page-intro {
+    padding: 18px 28px 12px;
+}
+
+.pdf-page-heading {
+    font-size: 18px;
+    font-weight: 850;
+    color: #0f172a;
+    margin: 0 0 8px;
+}
+
+.pdf-page-description {
+    font-size: 11px;
+    color: var(--pdf-text-muted);
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* ── Section Blocks ── */
+.pdf-section {
+    padding: 0 28px;
+    margin-bottom: 14px;
+}
+
+.pdf-section-title-bar {
+    background: var(--pdf-banner-bg);
+    color: var(--pdf-banner-text);
+    padding: 6px 12px;
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    margin-bottom: 8px;
+    border-radius: 2px;
+}
+
+.pdf-check-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4.5px;
+}
+
+.pdf-check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 10.5px;
+    line-height: 1.38;
+    color: #1e293b;
+}
+
+.pdf-checkbox {
+    width: 11px;
+    height: 11px;
+    border: 1.5px solid #2563eb;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 1.5px;
+    background: #ffffff;
+}
+
+.pdf-check-text {
+    flex: 1;
+}
+
+/* ── Heavy Duty Notice Box ── */
+.pdf-heavy-duty-box {
+    background: var(--pdf-note-bg);
+    border: 1px solid var(--pdf-note-border);
+    padding: 7px 12px;
+    border-radius: 4px;
+    margin-top: 8px;
+    font-size: 10px;
+    line-height: 1.4;
+    color: var(--pdf-note-text);
+}
+
+.pdf-heavy-duty-box strong {
+    color: #0369a1;
+}
+
+/* ── Add-ons Table/List ── */
+.pdf-addons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pdf-addon-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    padding: 4px 0;
+    border-bottom: 1px dotted #e2e8f0;
+}
+
+.pdf-addon-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pdf-addon-price {
+    font-weight: 800;
+    color: #0f172a;
+    font-size: 11px;
+}
+
+.pdf-addons-note-box {
+    background: var(--pdf-note-bg);
+    border: 1px solid var(--pdf-note-border);
+    padding: 7px 12px;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-size: 10px;
+    line-height: 1.4;
+    color: var(--pdf-note-text);
+}
+
+/* ── Footer ── */
+.pdf-footer-band {
+    padding: 10px 28px 14px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9.5px;
+    color: #64748b;
+}
+
+.pdf-footer-left {
+    font-weight: 500;
+}
+
+.pdf-footer-center {
+    font-weight: 600;
+}
+
+.pdf-footer-right {
+    font-weight: 700;
+}
+
+/* ── Page Break for 2-Page Print ── */
+.pdf-page-break {
+    page-break-after: always;
+    break-after: page;
+}
+
+/* ── Print Specific Styles ── */
+@media print {
+    body.pdf-view-body {
+        background: #ffffff !important;
+    }
+
+    .pdf-actions-bar {
+        display: none !important;
+    }
+
+    .pdf-document-wrap {
+        padding: 0 !important;
+        gap: 0 !important;
+    }
+
+    .pdf-page-sheet {
+        box-shadow: none !important;
+        margin: 0 !important;
+        width: 100% !important;
+        min-height: 297mm !important;
+        page-break-after: always !important;
+        break-after: page !important;
+    }
+
+    .pdf-page-sheet:last-child {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+    }
+
+    @page {
+        size: A4 portrait;
+        margin: 0;
+    }
+}

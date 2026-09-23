@@ -1,13 +1,12 @@
 /* ═══════════════════════════════════════════════════════════════
-   service-areas.css — Sydney & Surrounding Areas Service Map Section
-   Seamlessly integrates with the site's sky-blue / brand gradient theme.
+   service-areas.css — Sydney & Surrounding Areas Suburb Directory
    Strictly adheres to project Design Tokens (Zero inline CSS).
    ═══════════════════════════════════════════════════════════════ */
 
 .seo-cities-section {
     position: relative;
     background: transparent;
-    padding: 70px var(--space-4) 90px;
+    padding: 60px var(--space-4) 80px;
     overflow: hidden;
     color: var(--color-white);
 }
@@ -53,19 +52,18 @@
 }
 
 .seo-cities-title {
-    font-size: clamp(2.1rem, 4.2vw, 3rem);
+    font-size: clamp(2rem, 3.8vw, 2.75rem);
     font-weight: 900;
     color: #FFFFFF;
     margin: 0 0 12px;
     letter-spacing: -0.8px;
-    line-height: 1.15;
+    line-height: 1.2;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 .seo-cities-title .highlight {
     color: var(--color-accent);
     text-shadow: 0 2px 16px rgba(255, 195, 73, 0.45);
-    display: block;
 }
 
 .seo-cities-sub {
@@ -76,450 +74,130 @@
 }
 
 /* ════════════════════════════════════════
-   Main Map Card Container
+   Directory Card Wrapper
    ════════════════════════════════════════ */
-.service-map-card {
+.service-suburbs-wrap {
     background: var(--color-white);
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14), 0 0 35px rgba(255, 255, 255, 0.25);
-    position: relative;
-    overflow: hidden;
-    max-width: 1240px;
-    margin: 0 auto;
-}
-
-/* Map Watermark Canvas Layer */
-.service-map-watermark {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.6;
-}
-
-/* ════════════════════════════════════════
-   Interactive Service Route Track Canvas
-   ════════════════════════════════════════ */
-.service-route-scroll-container {
-    width: 100%;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 24px 0 18px;
-    position: relative;
-    z-index: 2;
-}
-
-.service-route-scroll-container::-webkit-scrollbar {
-    display: none;
-}
-
-.service-route-track {
-    width: 1220px;
-    min-width: 1220px;
-    height: 360px;
-    position: relative;
-    margin: 0 auto;
-}
-
-/* SVG Winding Dashed Route Path */
-.service-route-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 2;
-}
-
-/* House Start Point Badge */
-.route-start-house {
-    position: absolute;
-    left: 55px;
-    top: 180px;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.house-circle-badge {
-    width: 86px;
-    height: 86px;
-    background: var(--color-white);
-    border-radius: var(--radius-full);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 25px rgba(32, 36, 58, 0.14);
-    border: 3px solid var(--color-white);
-    position: relative;
-}
-
-.house-pin-floating {
-    position: absolute;
-    top: -18px;
-    background: var(--color-accent);
-    color: var(--color-primary-dark);
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius-full);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    box-shadow: 0 4px 12px rgba(255, 195, 73, 0.6);
-    border: 2px solid var(--color-white);
-    animation: pinFloat 2.2s ease-in-out infinite alternate;
-}
-
-@keyframes pinFloat {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-5px); }
-}
-
-.house-icon-svg {
-    width: 50px;
-    height: 50px;
-}
-
-/* Waypoint Golden Dots on Curve */
-.route-waypoint-dot {
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    border-radius: var(--radius-full);
-    background: var(--color-accent);
-    border: 3px solid var(--color-white);
-    z-index: 4;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 12px rgba(255, 195, 73, 0.95);
-}
-
-/* Floating Suburb / City Cards */
-.route-city-card {
-    position: absolute;
-    background: var(--color-white);
-    border-radius: 16px;
-    padding: 10px 18px 10px 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 8px 24px rgba(32, 36, 58, 0.1);
-    border: 1px solid rgba(82, 94, 167, 0.1);
-    text-decoration: none;
-    z-index: 8;
-    transform: translate(-50%, -50%);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-    white-space: nowrap;
-}
-
-.route-city-card:hover {
-    transform: translate(-50%, -55%) scale(1.04);
-    box-shadow: 0 14px 32px rgba(32, 36, 58, 0.18);
-    border-color: var(--color-primary-light);
-}
-
-.route-city-pin {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-full);
-    background: var(--color-primary-alpha-10);
-    color: var(--color-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    flex-shrink: 0;
-    transition: background var(--transition-fast), color var(--transition-fast);
-}
-
-.route-city-card:hover .route-city-pin {
-    background: var(--color-primary);
-    color: var(--color-white);
-}
-
-.route-city-name {
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--color-primary-dark);
-    line-height: 1.2;
-}
-
-.route-city-sub {
-    font-size: 11px;
-    color: var(--color-text-muted);
-    font-weight: 600;
-    margin-top: 1px;
-}
-
-/* End Destination Marker */
-.route-end-marker {
-    position: absolute;
-    z-index: 10;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.route-end-pin-badge {
-    width: 36px;
-    height: 36px;
-    background: var(--color-accent);
-    color: var(--color-primary-dark);
-    border-radius: var(--radius-full);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    box-shadow: 0 4px 14px rgba(255, 195, 73, 0.6);
-    border: 2.5px solid var(--color-white);
-    animation: pinFloat 2.2s ease-in-out infinite alternate 0.5s;
-}
-
-/* Precise Positions across the 1220px canvas */
-.pos-start { left: 55px; top: 180px; }
-
-.pos-wp-1 { left: 205px; top: 110px; }
-.pos-card-1 { left: 205px; top: 40px; }
-
-.pos-wp-2 { left: 360px; top: 215px; }
-.pos-card-2 { left: 360px; top: 285px; }
-
-.pos-wp-3 { left: 520px; top: 105px; }
-.pos-card-3 { left: 520px; top: 35px; }
-
-.pos-wp-4 { left: 660px; top: 220px; }
-.pos-card-4 { left: 660px; top: 290px; }
-
-.pos-wp-5 { left: 820px; top: 100px; }
-.pos-card-5 { left: 820px; top: 30px; }
-
-.pos-wp-6 { left: 965px; top: 225px; }
-.pos-card-6 { left: 965px; top: 295px; }
-
-.pos-wp-7 { left: 1100px; top: 120px; }
-.pos-card-7 { left: 1100px; top: 50px; }
-
-.pos-end { left: 1180px; top: 230px; }
-
-
-/* ════════════════════════════════════════
-   "Can't see your area listed?" Banner Bar
-   ════════════════════════════════════════ */
-.service-cta-banner {
-    margin: 0 var(--space-6) var(--space-6);
-    background: linear-gradient(135deg, #F0F4FA 0%, #E8EFF9 100%);
-    border: 1px solid rgba(82, 94, 167, 0.12);
-    border-radius: 18px;
-    padding: var(--space-4) var(--space-6);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12), 0 0 35px rgba(255, 255, 255, 0.2);
+    padding: var(--space-8);
     position: relative;
     z-index: 3;
 }
 
-.service-cta-left {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
+.service-suburbs-header {
+    text-align: center;
+    margin-bottom: var(--space-6);
 }
 
-.service-cta-pin-circle {
-    width: 44px;
-    height: 44px;
-    background: var(--color-primary);
-    border-radius: var(--radius-full);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-white);
-    font-size: 18px;
-    flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(82, 94, 167, 0.25);
-}
-
-.service-cta-text-wrap {
-    display: flex;
-    flex-direction: column;
-}
-
-.service-cta-heading {
-    font-size: 15px;
+.service-suburbs-title {
+    font-size: 16px;
     font-weight: 800;
     color: var(--color-primary-dark);
-    margin-bottom: 2px;
-}
-
-.service-cta-subtext {
-    font-size: 13px;
-    color: var(--color-text-muted);
-}
-
-.service-cta-subtext a {
-    color: var(--color-primary);
-    font-weight: 700;
-    text-decoration: underline;
-}
-
-.service-cta-subtext a:hover {
-    color: var(--color-primary-dark);
-}
-
-.service-cta-right {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-}
-
-.service-phone-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--color-primary-dark);
-    text-decoration: none;
-    padding: 10px 16px;
-    border-radius: var(--radius-full);
-    transition: background var(--transition-fast);
-}
-
-.service-phone-link:hover {
-    background: rgba(82, 94, 167, 0.08);
-}
-
-.service-phone-link svg,
-.service-phone-link i {
-    color: var(--color-primary);
-}
-
-.service-book-btn {
+    letter-spacing: 0.5px;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, #FFC349 0%, #FFB41F 100%);
-    color: var(--color-primary-dark);
-    font-size: 15px;
-    font-weight: 900;
-    padding: 12px 26px;
+    gap: 10px;
+    background: rgba(82, 94, 167, 0.08);
+    padding: 8px 22px;
     border-radius: var(--radius-full);
-    text-decoration: none;
-    box-shadow: 0 4px 16px rgba(255, 195, 73, 0.4);
+}
+
+.service-suburbs-title i {
+    color: var(--color-primary);
+    font-size: 15px;
+}
+
+.service-suburbs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-5);
+}
+
+.service-region-card {
+    background: #F8FBFF;
+    border: 1px solid rgba(82, 94, 167, 0.12);
+    border-radius: 16px;
+    padding: 18px 18px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.service-book-btn:hover {
+.service-region-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(255, 195, 73, 0.55);
-    color: var(--color-primary-dark);
+    box-shadow: 0 6px 18px rgba(82, 94, 167, 0.1);
 }
 
-/* ════════════════════════════════════════
-   Bottom 4 Trust Features Bar
-   ════════════════════════════════════════ */
-.service-trust-features {
-    border-top: 1px solid var(--color-grey-200);
-    padding: var(--space-6) var(--space-8);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-6);
-    background: var(--color-white);
-    position: relative;
-    z-index: 3;
-}
-
-.service-feature-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-}
-
-.service-feature-icon {
-    width: 48px;
-    height: 48px;
-    background: rgba(82, 94, 167, 0.08);
-    border-radius: var(--radius-full);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-primary);
-    flex-shrink: 0;
-}
-
-.service-feature-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.service-feature-title {
+.service-region-title {
     font-size: 14px;
     font-weight: 800;
     color: var(--color-primary-dark);
-    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(82, 94, 167, 0.1);
+    padding-bottom: 10px;
 }
 
-.service-feature-desc {
+.service-region-title i {
+    color: var(--color-primary);
+    font-size: 13px;
+}
+
+.service-region-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.suburb-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 11px;
+    background: var(--color-white);
+    border: 1px solid rgba(82, 94, 167, 0.12);
+    color: var(--color-primary-dark);
+    border-radius: var(--radius-full);
     font-size: 12px;
-    color: var(--color-text-muted);
-    line-height: 1.35;
-    margin: 0;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.15s ease;
+}
+
+.suburb-chip:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(82, 94, 167, 0.25);
 }
 
 /* ════════════════════════════════════════
-   Responsive Styles
+   Responsive
    ════════════════════════════════════════ */
 @media (max-width: 992px) {
-    .service-trust-features {
+    .service-suburbs-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-5);
-    }
-
-    .service-cta-banner {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-    }
-
-    .service-cta-left {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .service-cta-right {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .service-book-btn {
-        width: 100%;
-        justify-content: center;
+        gap: var(--space-4);
     }
 }
 
 @media (max-width: 640px) {
     .seo-cities-section {
-        padding: 50px var(--space-3) 60px;
+        padding: 40px var(--space-3) 50px;
     }
 
-    .service-trust-features {
-        grid-template-columns: 1fr;
-        padding: var(--space-5) var(--space-4);
-    }
-
-    .service-map-card {
-        border-radius: 20px;
-    }
-
-    .service-cta-banner {
-        margin: 0 var(--space-3) var(--space-4);
+    .service-suburbs-wrap {
         padding: var(--space-4);
+        border-radius: 18px;
+    }
+
+    .service-suburbs-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
     }
 }

@@ -4690,23 +4690,23 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     /* ════════════════════════════════════════
-       Real Estate Approved Checklist (Elevated Clean Color Palette)
+       Real Estate Approved Checklist Slider
     ════════════════════════════════════════ */
     .checklist-section {
-        padding: 85px 0;
+        padding: 85px 0 95px;
         position: relative;
         z-index: 5;
     }
 
     .checklist-container {
-        max-width: 1040px;
+        max-width: 1320px;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 0 24px;
     }
 
     .checklist-header {
         text-align: center;
-        margin-bottom: 34px;
+        margin-bottom: 36px;
     }
 
     .checklist-pill-badge {
@@ -4728,272 +4728,416 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         -webkit-backdrop-filter: blur(8px);
     }
 
-    .checklist-intro-banner {
-        background: rgba(255, 255, 255, 0.15);
-        border: 1.5px solid rgba(255, 255, 255, 0.35);
-        border-radius: var(--radius-full);
-        padding: 12px 28px;
-        max-width: 720px;
-        margin: 0 auto 36px;
-        text-align: center;
-        display: inline-flex;
+    .checklist-subtext {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.88);
+        max-width: 680px;
+        margin: 0 auto 20px;
+        line-height: 1.55;
+    }
+
+    .checklist-header-actions {
+        display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        font-size: 14.5px;
-        font-weight: 700;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+    }
+
+    .checklist-pdf-download-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
         color: #ffffff;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        padding: 10px 22px;
+        border-radius: var(--radius-full);
+        font-size: 13.5px;
+        font-weight: 750;
+        text-decoration: none;
+        box-shadow: 0 4px 18px rgba(37, 99, 235, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
     }
 
-    .checklist-intro-banner i {
+    .checklist-pdf-download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.5);
+        filter: brightness(1.1);
+        color: #ffffff;
+    }
+
+    .checklist-guarantee-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #ffffff;
+        padding: 9px 18px;
+        border-radius: var(--radius-full);
+        font-size: 13px;
+        font-weight: 600;
+        backdrop-filter: blur(8px);
+    }
+
+    .checklist-guarantee-tag i {
         color: #34d399;
-        font-size: 17px;
     }
 
-    .checklist-accordion-wrap {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
+    /* ── Slider Layout ── */
+    .checklist-slider-wrap {
+        position: relative;
+        margin-top: 28px;
     }
 
-    .checklist-accordion-item {
-        background: #ffffff;
-        border: 1.5px solid #e2e8f0;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
-        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .checklist-accordion-item:hover {
-        border-color: #93c5fd;
-        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.1);
-    }
-
-    .checklist-accordion-item--open {
-        border-color: #2563eb;
-        box-shadow: 0 8px 30px rgba(37, 99, 235, 0.14);
-    }
-
-    .checklist-accordion-btn {
-        width: 100%;
+    .checklist-slider-controls {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 18px 24px;
-        background: transparent;
-        border: none;
-        color: #0f172a;
-        font-size: 16px;
-        font-weight: 750;
-        cursor: pointer;
-        text-align: left;
+        margin-bottom: 16px;
     }
 
-    .checklist-btn-left {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        flex-wrap: wrap;
-    }
-
-    .checklist-btn-icon-wrap {
-        width: 40px;
-        height: 40px;
-        border-radius: 12px;
-        background: #eff6ff;
-        color: #2563eb;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 17px;
-        flex-shrink: 0;
-        transition: background 0.2s, color 0.2s;
-    }
-
-    .checklist-accordion-item--open .checklist-btn-icon-wrap {
-        background: #2563eb;
-        color: #ffffff;
-    }
-
-    .checklist-btn-title {
-        font-size: 16px;
-        font-weight: 750;
-        color: #0f172a;
-    }
-
-    .checklist-inclusions-badge {
-        font-size: 11.5px;
-        font-weight: 700;
-        color: #15803d;
-        background: #dcfce7;
-        border: 1px solid #bbf7d0;
-        padding: 3px 11px;
-        border-radius: var(--radius-full);
-    }
-
-    .checklist-toggle-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: #f1f5f9;
-        color: #475569;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        flex-shrink: 0;
-        transition: transform 0.25s ease, background 0.2s ease, color 0.2s ease;
-    }
-
-    .checklist-accordion-item--open .checklist-toggle-icon {
-        transform: rotate(180deg);
-        background: #2563eb;
-        color: #ffffff;
-    }
-
-    .checklist-accordion-content {
-        padding: 0 24px 22px;
-        background: #fafcff;
-        border-bottom-left-radius: 16px;
-        border-bottom-right-radius: 16px;
-    }
-
-    .checklist-items-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px 28px;
-        border-top: 1px solid #e2e8f0;
-        padding-top: 18px;
-    }
-
-    .checklist-point {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        font-size: 13.5px;
-        line-height: 1.48;
-        color: #1e293b;
-        font-weight: 550;
-    }
-
-    .checklist-point i {
-        color: #16a34a;
+    .checklist-slider-hint {
         font-size: 13px;
-        margin-top: 3px;
-        flex-shrink: 0;
-    }
-
-    /* ════════════════════════════════════════
-       Sydney Service Areas & Suburbs Directory
-    ════════════════════════════════════════ */
-    .service-suburbs-wrap {
-        border-top: 1px solid var(--color-grey-200);
-        padding: var(--space-6) var(--space-8);
-        background: #f8fbff;
-        position: relative;
-        z-index: 3;
-    }
-
-    .service-suburbs-header {
-        text-align: center;
-        margin-bottom: var(--space-5);
-    }
-
-    .service-suburbs-title {
-        font-size: 15px;
-        font-weight: 800;
-        color: var(--color-primary-dark);
-        letter-spacing: 0.5px;
-        display: inline-flex;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.65);
+        display: flex;
         align-items: center;
         gap: 8px;
     }
 
-    .service-suburbs-title i {
-        color: var(--color-primary);
+    .checklist-slider-hint i {
+        color: #34d399;
     }
 
-    .service-suburbs-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: var(--space-4);
-    }
-
-    .service-region-card {
-        background: var(--color-white);
-        border: 1px solid rgba(82, 94, 167, 0.12);
-        border-radius: 14px;
-        padding: 14px 16px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    .checklist-slider-arrows {
         display: flex;
-        flex-direction: column;
+        align-items: center;
         gap: 10px;
     }
 
-    .service-region-title {
-        font-size: 13px;
-        font-weight: 800;
-        color: var(--color-primary-dark);
+    .checklist-arrow-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1.5px solid rgba(255, 255, 255, 0.28);
+        color: #ffffff;
         display: flex;
         align-items: center;
-        gap: 7px;
-        border-bottom: 1px solid var(--color-grey-100);
-        padding-bottom: 8px;
+        justify-content: center;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(8px);
     }
 
-    .service-region-title i {
-        color: var(--color-primary);
-        font-size: 12px;
+    .checklist-arrow-btn:hover:not(:disabled) {
+        background: #2563eb;
+        border-color: #2563eb;
+        transform: scale(1.08);
     }
 
-    .service-region-chips {
+    .checklist-arrow-btn:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
+
+    /* ── Slider Track & Snap ── */
+    .checklist-slider-track {
         display: flex;
-        flex-wrap: wrap;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        padding: 8px 4px 22px;
+        margin: 0 -4px;
+        scrollbar-width: none;
+    }
+
+    .checklist-slider-track::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* ── Checklist Card ── */
+    .checklist-card {
+        flex: 0 0 calc((100% - 3 * 20px) / 4);
+        width: calc((100% - 3 * 20px) / 4);
+        scroll-snap-align: start;
+        background: #ffffff;
+        border-radius: 18px;
+        border: 1.5px solid #e2e8f0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+
+    .checklist-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+        border-color: #93c5fd;
+    }
+
+    .checklist-card-media {
+        position: relative;
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        background: #0f172a;
+    }
+
+    .checklist-card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+    }
+
+    .checklist-card:hover .checklist-card-img {
+        transform: scale(1.06);
+    }
+
+    .checklist-card-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: rgba(15, 23, 42, 0.82);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        color: #34d399;
+        border: 1px solid rgba(52, 211, 153, 0.4);
+        padding: 4px 10px;
+        border-radius: var(--radius-full);
+        font-size: 11px;
+        font-weight: 750;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        letter-spacing: 0.3px;
+    }
+
+    .checklist-card-badge--addon {
+        color: #93c5fd;
+        border-color: rgba(147, 197, 253, 0.4);
+    }
+
+    .checklist-card-item-count {
+        position: absolute;
+        bottom: 10px;
+        right: 12px;
+        background: rgba(0, 0, 0, 0.65);
+        color: #ffffff;
+        padding: 3px 8px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 600;
+        backdrop-filter: blur(4px);
+    }
+
+    .checklist-card-body {
+        padding: 20px 20px 24px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        justify-content: space-between;
+    }
+
+    .checklist-card-title {
+        font-size: 17.5px;
+        font-weight: 850;
+        color: #0f172a;
+        margin: 0 0 4px;
+        letter-spacing: -0.3px;
+    }
+
+    .checklist-card-subtitle {
+        font-size: 12px;
+        font-weight: 600;
+        color: #64748b;
+        margin: 0 0 16px;
+    }
+
+    .checklist-card-points {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        margin: 0 0 16px;
+        padding: 0;
+        list-style: none;
+        flex: 1;
+    }
+
+    .checklist-card-point {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 12.5px;
+        line-height: 1.44;
+        color: #334155;
+        font-weight: 550;
+    }
+
+    .checklist-card-point i {
+        color: #16a34a;
+        font-size: 13px;
+        margin-top: 2px;
+        flex-shrink: 0;
+    }
+
+    /* ── Heavy Duty Condition Notice ── */
+    .checklist-condition-box {
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        border-left: 3.5px solid #16a34a;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 11.5px;
+        color: #166534;
+        line-height: 1.45;
+        font-weight: 500;
+        margin-top: auto;
+    }
+
+    .checklist-condition-box strong {
+        color: #14532d;
+        font-weight: 750;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .checklist-condition-box i {
+        color: #16a34a;
+    }
+
+    /* ── Addons List ── */
+    .checklist-addons-list {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        margin: 0 0 16px;
+        padding: 0;
+        list-style: none;
+        flex: 1;
+    }
+
+    .checklist-addon-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 4px 0;
+        border-bottom: 1px dashed #e2e8f0;
+        font-size: 12px;
+        color: #334155;
+        font-weight: 600;
+    }
+
+    .checklist-addon-left {
+        display: flex;
+        align-items: center;
         gap: 6px;
     }
 
-    .suburb-chip {
-        display: inline-flex;
-        align-items: center;
-        padding: 4px 10px;
-        background: rgba(82, 94, 167, 0.06);
-        color: var(--color-primary-dark);
-        border-radius: var(--radius-full);
+    .checklist-addon-left i {
+        color: #2563eb;
+        font-size: 12px;
+    }
+
+    .checklist-addon-price {
+        background: #eff6ff;
+        color: #1d4ed8;
+        border: 1px solid #bfdbfe;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 2px 7px;
+        border-radius: 6px;
+        white-space: nowrap;
+    }
+
+    .checklist-addons-note-box {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-left: 3.5px solid #2563eb;
+        border-radius: 8px;
+        padding: 10px 12px;
         font-size: 11.5px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+        color: #1e40af;
+        line-height: 1.45;
+        margin-top: auto;
     }
 
-    .suburb-chip:hover {
-        background: var(--color-primary);
-        color: var(--color-white);
-        transform: translateY(-1px);
+    /* ── Dots Indicators ── */
+    .checklist-dots-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 22px;
     }
 
-    @media (max-width: 992px) {
-        .service-suburbs-grid {
-            grid-template-columns: repeat(2, 1fr);
+    .checklist-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: var(--radius-full);
+        background: rgba(255, 255, 255, 0.28);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: all 0.25s ease;
+    }
+
+    .checklist-dot.active {
+        width: 28px;
+        background: #34d399;
+        box-shadow: 0 0 12px rgba(52, 211, 153, 0.5);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1199px) {
+        .checklist-card {
+            flex: 0 0 calc((100% - 2 * 20px) / 3);
+            width: calc((100% - 2 * 20px) / 3);
         }
     }
 
     @media (max-width: 900px) {
-        .checklist-items-grid {
-            grid-template-columns: 1fr;
+        .checklist-card {
+            flex: 0 0 calc((100% - 20px) / 2);
+            width: calc((100% - 20px) / 2);
         }
     }
 
     @media (max-width: 640px) {
-        .service-suburbs-wrap {
-            padding: var(--space-4);
+        .checklist-section {
+            padding: 55px 0 65px;
         }
 
-        .service-suburbs-grid {
-            grid-template-columns: 1fr;
+        .checklist-container {
+            padding: 0 16px;
+        }
+
+        .checklist-slider-track {
+            padding-right: 24px;
+        }
+
+        .checklist-card {
+            flex: 0 0 88%;
+            width: 88%;
+        }
+
+        .checklist-card-media {
+            height: 165px;
+        }
+
+        .checklist-card-body {
+            padding: 16px 16px 20px;
         }
     }
 
@@ -6076,10 +6220,56 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 </section>
 
 <!-- ════════════════════════════════════════ -->
-<!-- 7. Real Estate Approved Checklist        -->
+<!-- 7. Real Estate Approved Checklist Slider -->
 <!-- ════════════════════════════════════════ -->
-<section class="checklist-section" x-data="{ activeRoom: null }">
-    <div class="checklist-container">
+<section class="checklist-section" id="checklist-section">
+    <div class="checklist-container" x-data="{
+        currentIndex: 0,
+        maxIndex: 2,
+        init() {
+            this.updateMax();
+            window.addEventListener('resize', () => this.updateMax());
+        },
+        updateMax() {
+            const w = window.innerWidth;
+            if (w < 640) {
+                this.maxIndex = 5;
+            } else if (w < 1100) {
+                this.maxIndex = 4;
+            } else {
+                this.maxIndex = 2;
+            }
+        },
+        next() {
+            if (this.currentIndex < this.maxIndex) {
+                this.goTo(this.currentIndex + 1);
+            }
+        },
+        prev() {
+            if (this.currentIndex > 0) {
+                this.goTo(this.currentIndex - 1);
+            }
+        },
+        goTo(idx) {
+            this.currentIndex = Math.max(0, Math.min(idx, this.maxIndex));
+            const track = this.$refs.sliderTrack;
+            if (!track) return;
+            const cards = track.querySelectorAll('.checklist-card');
+            if (cards[this.currentIndex]) {
+                track.scrollTo({ left: cards[this.currentIndex].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+            }
+        },
+        onScroll() {
+            const track = this.$refs.sliderTrack;
+            if (!track) return;
+            const scrollLeft = track.scrollLeft;
+            const card = track.querySelector('.checklist-card');
+            if (!card) return;
+            const cardWidth = card.offsetWidth + 20;
+            const idx = Math.round(scrollLeft / cardWidth);
+            this.currentIndex = Math.max(0, Math.min(idx, this.maxIndex));
+        }
+    }">
         <div class="checklist-header reveal-fade-up">
             <span class="checklist-pill-badge">
                 <i class="fa-solid fa-clipboard-check"></i> Real Estate Agent Standard
@@ -6088,156 +6278,218 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 Real Estate Approved<br>
                 <span class="gradient-text">Exit Cleaning Checklist</span>
             </h2>
-            <div class="checklist-intro-banner">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Oven and rangehood included as standard, never an extra.</span>
+            <p class="checklist-subtext">
+                Every FinalClean end of lease service follows this checklist as standard, backed by our 72-hour Bond-Back Guarantee. Items marked with a heavy-duty note may attract an extra charge — always shown and agreed with you before we start.
+            </p>
+            <div class="checklist-header-actions">
+                <a href="{% url 'public:checklist_pdf' %}" target="_blank" class="checklist-pdf-download-btn">
+                    <i class="fa-solid fa-file-pdf"></i> Download Printable PDF Checklist
+                </a>
+                <span class="checklist-guarantee-tag">
+                    <i class="fa-solid fa-shield-halved"></i> 100% Bond-Back Guarantee
+                </span>
             </div>
         </div>
 
-        <!-- 6-Room Collapsed Accordion -->
-        <div class="checklist-accordion-wrap reveal-fade-up">
-            <!-- Room 1: Kitchen -->
-            <div class="checklist-accordion-item" :class="activeRoom === 1 ? 'checklist-accordion-item--open' : ''">
-                <button type="button" class="checklist-accordion-btn" @click="activeRoom === 1 ? activeRoom = null : activeRoom = 1">
-                    <div class="checklist-btn-left">
-                        <div class="checklist-btn-icon-wrap">
-                            <i class="fa-solid fa-kitchen-set"></i>
-                        </div>
-                        <span class="checklist-btn-title">Kitchen (Oven &amp; Rangehood Included)</span>
-                        <span class="checklist-inclusions-badge">Included as Standard</span>
-                    </div>
-                    <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
-                </button>
-                <div class="checklist-accordion-content" x-show="activeRoom === 1" x-collapse>
-                    <div class="checklist-items-grid">
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Deep clean oven inside and out, including racks, trays and door glass</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean rangehood, degrease mesh filters, and wipe exhaust canopy</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Scrub and sanitize stovetop burners, knobs, and drip pans</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe all cupboards, pantry shelves, and drawers inside &amp; out</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Scrub and polish kitchen sink, tapware, and drain stopper</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean and degrease splashback tiles, grout, and countertops</span></div>
-                    </div>
+        <!-- Slider Controls Bar -->
+        <div class="checklist-slider-wrap reveal-fade-up">
+            <div class="checklist-slider-controls">
+                <span class="checklist-slider-hint">
+                    <i class="fa-solid fa-arrows-left-right"></i> Swipe or slide to explore all 6 cleaning zones
+                </span>
+                <div class="checklist-slider-arrows">
+                    <button type="button" class="checklist-arrow-btn" @click="prev()" :disabled="currentIndex === 0" aria-label="Previous checklist zone">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button type="button" class="checklist-arrow-btn" @click="next()" :disabled="currentIndex >= maxIndex" aria-label="Next checklist zone">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
 
-            <!-- Room 2: Bathrooms & Toilets -->
-            <div class="checklist-accordion-item" :class="activeRoom === 2 ? 'checklist-accordion-item--open' : ''">
-                <button type="button" class="checklist-accordion-btn" @click="activeRoom === 2 ? activeRoom = null : activeRoom = 2">
-                    <div class="checklist-btn-left">
-                        <div class="checklist-btn-icon-wrap">
-                            <i class="fa-solid fa-bath"></i>
+            <!-- Slider Track with 6 Cards -->
+            <div class="checklist-slider-track" x-ref="sliderTrack" @scroll.passive="onScroll()">
+                <!-- Card 1: Kitchen -->
+                <article class="checklist-card">
+                    <div class="checklist-card-media">
+                        <img src="/static/images/checklist_kitchen.jpg" alt="Kitchen end of lease clean" class="checklist-card-img" width="320" height="180" loading="lazy">
+                        <span class="checklist-card-badge"><i class="fa-solid fa-kitchen-set"></i> Kitchen</span>
+                        <span class="checklist-card-item-count">9 items</span>
+                    </div>
+                    <div class="checklist-card-body">
+                        <div>
+                            <h3 class="checklist-card-title">Kitchen</h3>
+                            <p class="checklist-card-subtitle">Oven &amp; Rangehood Included as Standard</p>
+                            <ul class="checklist-card-points">
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Oven cleaned and degreased inside and out, including trays and racks</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Stovetop / cooktop and grill cleaned</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Rangehood and filter cleaned</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Splashback and benchtops cleaned and sanitised</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Sink and taps cleaned and polished</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Cabinets and drawers cleaned inside and out</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Dishwasher cleaned inside and out</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Exterior of all appliances wiped</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Space behind and around accessible appliances wiped</span></li>
+                            </ul>
                         </div>
-                        <span class="checklist-btn-title">Bathrooms, Ensuites &amp; Toilets</span>
-                        <span class="checklist-inclusions-badge">Included as Standard</span>
+                        <div class="checklist-condition-box">
+                            <strong><i class="fa-solid fa-circle-exclamation"></i> Heavy-duty condition:</strong> If the kitchen has heavy grease, staining or built-up grime, extra attention is required. We'll show you the cost before we start — never a surprise on the day.
+                        </div>
                     </div>
-                    <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
-                </button>
-                <div class="checklist-accordion-content" x-show="activeRoom === 2" x-collapse>
-                    <div class="checklist-items-grid">
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Descale, clean, and polish shower screens and sliding door tracks</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Scrub and treat shower tiles and grout for mould, mildew, and soap scum</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Deep sanitize and disinfect toilet bowl, cistern, seat, and base</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe vanity countertops, mirrors, basin tapware, and medicine cabinet</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean bathtub, shower base, and clear hair from waste traps</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Vacuum and sanitize exhaust fan grill and air vents</span></div>
+                </article>
+
+                <!-- Card 2: Bathroom(s) & Toilet -->
+                <article class="checklist-card">
+                    <div class="checklist-card-media">
+                        <img src="/static/images/checklist_bathroom.jpg" alt="Bathroom and toilet end of lease clean" class="checklist-card-img" width="320" height="180" loading="lazy">
+                        <span class="checklist-card-badge"><i class="fa-solid fa-bath"></i> Bathroom</span>
+                        <span class="checklist-card-item-count">8 items</span>
                     </div>
-                </div>
+                    <div class="checklist-card-body">
+                        <div>
+                            <h3 class="checklist-card-title">Bathroom(s) &amp; Toilet</h3>
+                            <p class="checklist-card-subtitle">Descaling &amp; Disinfection Included</p>
+                            <ul class="checklist-card-points">
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Toilet cleaned and disinfected inside, outside and behind</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Shower and/or bathtub scrubbed, descaled and disinfected</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Shower screen cleaned</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Vanity, basin and taps cleaned and polished</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Mirrors cleaned</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Cabinets and drawers cleaned inside and out</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Exhaust fan dusted (accessible areas)</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Mineral deposits and soap scum scrubbed where accessible</span></li>
+                            </ul>
+                        </div>
+                        <div class="checklist-condition-box">
+                            <strong><i class="fa-solid fa-circle-exclamation"></i> Heavy-duty condition:</strong> If the bathroom has mould or excessive soap residue, extra attention is required. We'll show you the cost before we start — never a surprise on the day.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3: Bedrooms, Living & Common Areas -->
+                <article class="checklist-card">
+                    <div class="checklist-card-media">
+                        <img src="/static/images/checklist_bedroom.jpg" alt="Bedrooms and living room clean" class="checklist-card-img" width="320" height="180" loading="lazy">
+                        <span class="checklist-card-badge"><i class="fa-solid fa-bed"></i> Bedrooms &amp; Living</span>
+                        <span class="checklist-card-item-count">10 items</span>
+                    </div>
+                    <div class="checklist-card-body">
+                        <div>
+                            <h3 class="checklist-card-title">Bedrooms, Living &amp; Common Areas</h3>
+                            <p class="checklist-card-subtitle">Full Interior Surfaces &amp; Wardrobes</p>
+                            <ul class="checklist-card-points">
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Dust and wipe all surfaces, ledges, fixtures and fittings</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Dust and wipe ceiling fans</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Vacuum carpets; vacuum and mop all hard floors</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Wipe skirting boards, doors, door frames and handles</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Wipe switches and power points</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Clean internal windows, sills and tracks</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Clean mirrors and glass surfaces</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Clean wardrobes and built-in robes inside and out, including tracks</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Wipe cupboard, cabinet and drawer exteriors and interiors</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Remove cobwebs from accessible internal areas</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 4: Laundry -->
+                <article class="checklist-card">
+                    <div class="checklist-card-media">
+                        <img src="/static/images/checklist_laundry.jpg" alt="Laundry room clean" class="checklist-card-img" width="320" height="180" loading="lazy">
+                        <span class="checklist-card-badge"><i class="fa-solid fa-soap"></i> Laundry</span>
+                        <span class="checklist-card-item-count">5 items</span>
+                    </div>
+                    <div class="checklist-card-body">
+                        <div>
+                            <h3 class="checklist-card-title">Laundry</h3>
+                            <p class="checklist-card-subtitle">Sinks, Cabinets &amp; Dryer Filters</p>
+                            <ul class="checklist-card-points">
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Sink, taps and benchtop cleaned</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Cabinets and drawers cleaned inside and out</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Washer / dryer wiped down inside and out</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Dust and lint removed; dryer filter cleaned (if accessible)</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Floors vacuumed and mopped</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 5: Entry & Hallway -->
+                <article class="checklist-card">
+                    <div class="checklist-card-media">
+                        <img src="/static/images/checklist_entry.jpg" alt="Entry and hallway clean" class="checklist-card-img" width="320" height="180" loading="lazy">
+                        <span class="checklist-card-badge"><i class="fa-solid fa-door-open"></i> Entry &amp; Hallway</span>
+                        <span class="checklist-card-item-count">4 items</span>
+                    </div>
+                    <div class="checklist-card-body">
+                        <div>
+                            <h3 class="checklist-card-title">Entry &amp; Hallway</h3>
+                            <p class="checklist-card-subtitle">Handrails, Doors &amp; Corridors</p>
+                            <ul class="checklist-card-points">
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Floors vacuumed and mopped</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Skirting boards and handrails wiped</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Doors and door frames wiped</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Cobwebs removed</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 6: Optional Add-Ons -->
+                <article class="checklist-card">
+                    <div class="checklist-card-media">
+                        <img src="/static/images/checklist_addons.jpg" alt="Optional add-on services" class="checklist-card-img" width="320" height="180" loading="lazy">
+                        <span class="checklist-card-badge checklist-card-badge--addon"><i class="fa-solid fa-circle-plus"></i> Optional Add-Ons</span>
+                        <span class="checklist-card-item-count">7 extras</span>
+                    </div>
+                    <div class="checklist-card-body">
+                        <div>
+                            <h3 class="checklist-card-title">Optional Add-Ons</h3>
+                            <p class="checklist-card-subtitle">Tailor Your End of Lease Package</p>
+                            <ul class="checklist-addons-list">
+                                <li class="checklist-addon-item">
+                                    <div class="checklist-addon-left"><i class="fa-solid fa-spray-can-sparkles"></i><span>Carpet steam cleaning</span></div>
+                                    <span class="checklist-addon-price">From $XX</span>
+                                </li>
+                                <li class="checklist-addon-item">
+                                    <div class="checklist-addon-left"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Wall spot cleaning &amp; wall wash</span></div>
+                                    <span class="checklist-addon-price">From $XX</span>
+                                </li>
+                                <li class="checklist-addon-item">
+                                    <div class="checklist-addon-left"><i class="fa-solid fa-snowflake"></i><span>White goods (fridge / freezer)</span></div>
+                                    <span class="checklist-addon-price">From $XX</span>
+                                </li>
+                                <li class="checklist-addon-item">
+                                    <div class="checklist-addon-left"><i class="fa-solid fa-bars"></i><span>Blinds cleaning</span></div>
+                                    <span class="checklist-addon-price">From $XX</span>
+                                </li>
+                                <li class="checklist-addon-item">
+                                    <div class="checklist-addon-left"><i class="fa-solid fa-window-maximize"></i><span>External window cleaning</span></div>
+                                    <span class="checklist-addon-price">From $XX</span>
+                                </li>
+                                <li class="checklist-addon-item">
+                                    <div class="checklist-addon-left"><i class="fa-solid fa-umbrella-beach"></i><span>Balcony / patio / deck</span></div>
+                                    <span class="checklist-addon-price">From $XX</span>
+                                </li>
+                                <li class="checklist-addon-item">
+                                    <div class="checklist-addon-left"><i class="fa-solid fa-warehouse"></i><span>Garage sweep &amp; tidy</span></div>
+                                    <span class="checklist-addon-price">From $XX</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="checklist-addons-note-box">
+                            Add-ons are priced and agreed with you at booking — nothing is added on cleaning day without your approval. Ask us about our Price Match Guarantee if you've received a comparable written quote.
+                        </div>
+                    </div>
+                </article>
             </div>
 
-            <!-- Room 3: Bedrooms -->
-            <div class="checklist-accordion-item" :class="activeRoom === 3 ? 'checklist-accordion-item--open' : ''">
-                <button type="button" class="checklist-accordion-btn" @click="activeRoom === 3 ? activeRoom = null : activeRoom = 3">
-                    <div class="checklist-btn-left">
-                        <div class="checklist-btn-icon-wrap">
-                            <i class="fa-solid fa-bed"></i>
-                        </div>
-                        <span class="checklist-btn-title">Bedrooms</span>
-                        <span class="checklist-inclusions-badge">Included as Standard</span>
-                    </div>
-                    <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
-                </button>
-                <div class="checklist-accordion-content" x-show="activeRoom === 3" x-collapse>
-                    <div class="checklist-items-grid">
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe built-in wardrobes, shelves, hanging rails, and drawer interiors</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean internal window panes, glass, sills, and window frames</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Dust and wipe skirting boards, architraves, and door frames</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Remove cobwebs from corners, cornices, and ceiling surfaces</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean light switches, power point plates, and door handles</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Vacuum carpets thoroughly with edge crevice tool / mop hard floors</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Room 4: Living & Dining Areas -->
-            <div class="checklist-accordion-item" :class="activeRoom === 4 ? 'checklist-accordion-item--open' : ''">
-                <button type="button" class="checklist-accordion-btn" @click="activeRoom === 4 ? activeRoom = null : activeRoom = 4">
-                    <div class="checklist-btn-left">
-                        <div class="checklist-btn-icon-wrap">
-                            <i class="fa-solid fa-couch"></i>
-                        </div>
-                        <span class="checklist-btn-title">Living, Dining &amp; Family Areas</span>
-                        <span class="checklist-inclusions-badge">Included as Standard</span>
-                    </div>
-                    <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
-                </button>
-                <div class="checklist-accordion-content" x-show="activeRoom === 4" x-collapse>
-                    <div class="checklist-items-grid">
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean sliding glass doors, internal glass panes, and sliding tracks</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe all skirting boards, door frames, and light switch plates</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Spot clean reachable wall scuffs and remove spiderwebs</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Dust ceiling fans, light fittings, and air conditioner exterior vents</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Vacuum edge-to-edge and thoroughly mop and polish hard flooring</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe storage cupboards, entertainment nooks, and display shelving</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Room 5: Laundry -->
-            <div class="checklist-accordion-item" :class="activeRoom === 5 ? 'checklist-accordion-item--open' : ''">
-                <button type="button" class="checklist-accordion-btn" @click="activeRoom === 5 ? activeRoom = null : activeRoom = 5">
-                    <div class="checklist-btn-left">
-                        <div class="checklist-btn-icon-wrap">
-                            <i class="fa-solid fa-soap"></i>
-                        </div>
-                        <span class="checklist-btn-title">Laundry Room</span>
-                        <span class="checklist-inclusions-badge">Included as Standard</span>
-                    </div>
-                    <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
-                </button>
-                <div class="checklist-accordion-content" x-show="activeRoom === 5" x-collapse>
-                    <div class="checklist-items-grid">
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean and sanitize laundry tub, tapware, and plug waste</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe laundry cupboards inside &amp; out and clean under basin area</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean splashback tiles, lint filter recesses, and power points</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe dryer exterior, washing machine alcove, and wall surfaces</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Mop laundry floor tiles and clear floor drain grates</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe internal doors, laundry door frames, and sills</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Room 6: Balcony, Entryways & Hallways -->
-            <div class="checklist-accordion-item" :class="activeRoom === 6 ? 'checklist-accordion-item--open' : ''">
-                <button type="button" class="checklist-accordion-btn" @click="activeRoom === 6 ? activeRoom = null : activeRoom = 6">
-                    <div class="checklist-btn-left">
-                        <div class="checklist-btn-icon-wrap">
-                            <i class="fa-solid fa-door-open"></i>
-                        </div>
-                        <span class="checklist-btn-title">Balcony, Entryways &amp; Hallways</span>
-                        <span class="checklist-inclusions-badge">Included as Standard</span>
-                    </div>
-                    <span class="checklist-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
-                </button>
-                <div class="checklist-accordion-content" x-show="activeRoom === 6" x-collapse>
-                    <div class="checklist-items-grid">
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Sweep and mop balcony floor / clear drainage holes</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe entrance front door, deadbolts, and door handles</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Vacuum hallway corridors and wipe linen press shelving</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Clean all hallway skirting boards, light switches, and smoke alarm covers</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Wipe intercom unit, doorbell plate, and internal entrance threshold</span></div>
-                        <div class="checklist-point"><i class="fa-solid fa-check"></i><span>Final walkthrough photo audit to verify 100% agent compliance</span></div>
-                    </div>
-                </div>
+            <!-- Dots Indicators -->
+            <div class="checklist-dots-wrap">
+                <template x-for="i in (maxIndex + 1)" :key="i">
+                    <button type="button" class="checklist-dot" :class="{ 'active': currentIndex === (i - 1) }" @click="goTo(i - 1)" :aria-label="'Go to slide ' + i"></button>
+                </template>
             </div>
         </div>
     </div>
@@ -6439,7 +6691,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 </div>
 
 <!-- ════════════════════════════════════════ -->
-<!-- 12. Visual Service Areas & Suburb Coverage -->
+<!-- Sydney Service Areas & Suburb Coverage   -->
 <!-- ════════════════════════════════════════ -->
 <section class="seo-cities-section">
     <div class="seo-cities-container">
@@ -6450,329 +6702,103 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 <i class="fa-solid fa-location-dot"></i> OUR SERVICE AREAS
             </div>
             <h2 class="seo-cities-title">
-                Sydney Service Areas &amp; <span class="highlight">Suburb Coverage</span>
+                The Sydney Service Areas &amp; <span class="highlight">Suburb Coverage</span>
             </h2>
             <p class="seo-cities-sub">
                 Final Clean provides end-of-lease cleaning across all Sydney regions with local police-checked cleaners.
             </p>
         </div>
 
-        <!-- Main White Map Card -->
-        <div class="service-map-card reveal-zoom">
-
-            <!-- Sydney Harbour Waterway & Coastal Watermark Map SVG -->
-            <svg class="service-map-watermark" viewBox="0 0 1200 450" fill="none" preserveAspectRatio="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,0 L420,0 C390,90 330,130 290,190 C250,250 270,330 220,390 C190,430 130,445 0,450 Z"
-                    fill="#EBF3FA" opacity="0.6" />
-                <path
-                    d="M0,230 C80,220 150,240 220,200 C270,170 310,160 380,190 C450,220 520,210 580,170 C640,130 700,160 760,200 C820,240 890,230 940,190 C990,150 1060,160 1120,220 C1160,260 1200,240 1200,240 L1200,450 L0,450 Z"
-                    fill="#E1F0FA" opacity="0.75" />
-                <path
-                    d="M180,90 C220,110 260,100 290,70 C320,40 370,50 400,80 C440,120 420,170 480,200 C540,230 600,190 650,220"
-                    stroke="#CCE4F7" stroke-width="24" stroke-linecap="round" opacity="0.5" />
-                <ellipse cx="160" cy="140" rx="90" ry="60" fill="#DCFCE7" opacity="0.5" />
-                <ellipse cx="880" cy="200" rx="140" ry="80" fill="#DCFCE7" opacity="0.4" />
-                <ellipse cx="440" cy="320" rx="110" ry="50" fill="#DCFCE7" opacity="0.35" />
-            </svg>
-
-            <!-- Interactive Route Track Canvas -->
-            <div class="service-route-scroll-container">
-                <div class="service-route-track">
-
-                    <!-- Winding SVG Dashed Road Path -->
-                    <svg class="service-route-svg" viewBox="0 0 1220 360" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M 55,180 C 110,180 130,110 205,110 C 280,110 290,215 360,215 C 430,215 450,105 520,105 C 590,105 600,220 660,220 C 720,220 750,100 820,100 C 890,100 900,225 965,225 C 1030,225 1040,120 1100,120 C 1140,120 1155,230 1180,230"
-                            stroke="#FFC349" stroke-width="3.5" stroke-linecap="round" />
-                        <path
-                            d="M 55,180 C 110,180 130,110 205,110 C 280,110 290,215 360,215 C 430,215 450,105 520,105 C 590,105 600,220 660,220 C 720,220 750,100 820,100 C 890,100 900,225 965,225 C 1030,225 1040,120 1100,120 C 1140,120 1155,230 1180,230"
-                            stroke="#20243A" stroke-width="3" stroke-dasharray="6 6" stroke-linecap="round" />
-                    </svg>
-
-                    <!-- Start Point: House with Pin Badge -->
-                    <div class="route-start-house pos-start">
-                        <div class="house-circle-badge">
-                            <div class="house-pin-floating">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <svg class="house-icon-svg" viewBox="0 0 80 65" fill="none">
-                                <polygon points="40,4 8,30 72,30" fill="#20243A" />
-                                <polygon points="40,8 14,29 66,29" fill="#525EA7" />
-                                <rect x="14" y="29" width="52" height="32" rx="3" fill="#FFFFFF" stroke="#CBD5E1"
-                                    stroke-width="1.5" />
-                                <rect x="33" y="38" width="14" height="23" rx="2" fill="#525EA7" />
-                                <circle cx="43" cy="50" r="1.5" fill="#FFC349" />
-                                <rect x="20" y="36" width="10" height="12" rx="1" fill="#5FADD3" />
-                                <rect x="50" y="36" width="10" height="12" rx="1" fill="#5FADD3" />
-                                <line x1="25" y1="36" x2="25" y2="48" stroke="#FFFFFF" stroke-width="1.5" />
-                                <line x1="20" y1="42" x2="30" y2="42" stroke="#FFFFFF" stroke-width="1.5" />
-                                <line x1="55" y1="36" x2="55" y2="48" stroke="#FFFFFF" stroke-width="1.5" />
-                                <line x1="50" y1="42" x2="60" y2="42" stroke="#FFFFFF" stroke-width="1.5" />
-                                <rect x="8" y="59" width="64" height="4" rx="2" fill="#059669" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <!-- Stop 1: Parramatta & Surrounds (Top) -->
-                    <div class="route-waypoint-dot pos-wp-1"></div>
-                    <a href="#calc-widget" class="route-city-card pos-card-1">
-                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                        <div>
-                            <div class="route-city-name">Parramatta</div>
-                            <div class="route-city-sub">&amp; Surrounds</div>
-                        </div>
-                    </a>
-
-                    <!-- Stop 2: Ryde & Surrounds (Bottom) -->
-                    <div class="route-waypoint-dot pos-wp-2"></div>
-                    <a href="#calc-widget" class="route-city-card pos-card-2">
-                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                        <div>
-                            <div class="route-city-name">Ryde</div>
-                            <div class="route-city-sub">&amp; Surrounds</div>
-                        </div>
-                    </a>
-
-                    <!-- Stop 3: Chatswood & Surrounds (Top) -->
-                    <div class="route-waypoint-dot pos-wp-3"></div>
-                    <a href="#calc-widget" class="route-city-card pos-card-3">
-                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                        <div>
-                            <div class="route-city-name">Chatswood</div>
-                            <div class="route-city-sub">&amp; Surrounds</div>
-                        </div>
-                    </a>
-
-                    <!-- Stop 4: Inner West & Surrounds (Bottom) -->
-                    <div class="route-waypoint-dot pos-wp-4"></div>
-                    <a href="#calc-widget" class="route-city-card pos-card-4">
-                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                        <div>
-                            <div class="route-city-name">Inner West</div>
-                            <div class="route-city-sub">&amp; Surrounds</div>
-                        </div>
-                    </a>
-
-                    <!-- Stop 5: Northern Beaches & Surrounds (Top) -->
-                    <div class="route-waypoint-dot pos-wp-5"></div>
-                    <a href="#calc-widget" class="route-city-card pos-card-5">
-                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                        <div>
-                            <div class="route-city-name">Northern Beaches</div>
-                            <div class="route-city-sub">&amp; Surrounds</div>
-                        </div>
-                    </a>
-
-                    <!-- Stop 6: Sutherland Shire & Surrounds (Bottom) -->
-                    <div class="route-waypoint-dot pos-wp-6"></div>
-                    <a href="#calc-widget" class="route-city-card pos-card-6">
-                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                        <div>
-                            <div class="route-city-name">Sutherland Shire</div>
-                            <div class="route-city-sub">&amp; Surrounds</div>
-                        </div>
-                    </a>
-
-                    <!-- Stop 7: Eastern Suburbs & Surrounds (Top) -->
-                    <div class="route-waypoint-dot pos-wp-7"></div>
-                    <a href="#calc-widget" class="route-city-card pos-card-7">
-                        <div class="route-city-pin"><i class="fa-solid fa-location-dot"></i></div>
-                        <div>
-                            <div class="route-city-name">Eastern Suburbs</div>
-                            <div class="route-city-sub">&amp; Surrounds</div>
-                        </div>
-                    </a>
-
-                    <!-- End Destination Pin Marker -->
-                    <div class="route-end-marker pos-end">
-                        <div class="route-end-pin-badge">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                    </div>
-
-                </div>
+        <!-- Complete Styled Sydney Suburb Directory -->
+        <div class="service-suburbs-wrap reveal-zoom">
+            <div class="service-suburbs-header">
+                <span class="service-suburbs-title">
+                    <i class="fa-solid fa-map-location-dot"></i> Complete Sydney Suburb Directory
+                </span>
             </div>
-
-            <!-- "Can't see your area listed?" Banner Bar -->
-            <div class="service-cta-banner reveal-fade-up">
-                <div class="service-cta-left">
-                    <div class="service-cta-pin-circle">
-                        <i class="fa-solid fa-location-dot"></i>
+            <div class="service-suburbs-grid">
+                <div class="service-region-card">
+                    <div class="service-region-title">
+                        <i class="fa-solid fa-compass"></i> Eastern Suburbs
                     </div>
-                    <div class="service-cta-text-wrap">
-                        <div class="service-cta-heading">Can't see your area listed?</div>
-                        <div class="service-cta-subtext">
-                            Contact our friendly Sydney team — we cover all Greater Sydney regions!
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-cta-right">
-                    <a href="tel:0279889050" class="service-phone-link">
-                        <i class="fa-solid fa-phone"></i>
-                        02 7988 9050
-                    </a>
-                    <a href="#calc-widget" class="service-book-btn">
-                        Get Your Price &darr;
-                    </a>
-                </div>
-            </div>
-
-            <!-- Bottom 4 Trust Features Bar -->
-            <div class="service-trust-features reveal-stagger">
-                <!-- Feature 1 -->
-                <div class="service-feature-item">
-                    <div class="service-feature-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                        </svg>
-                    </div>
-                    <div class="service-feature-content">
-                        <div class="service-feature-title">Wide Coverage</div>
-                        <p class="service-feature-desc">Serving 50+ suburbs across Greater Sydney.</p>
+                    <div class="service-region-chips">
+                        <a href="#calc-widget" class="suburb-chip">Bondi</a>
+                        <a href="#calc-widget" class="suburb-chip">Bondi Junction</a>
+                        <a href="#calc-widget" class="suburb-chip">Coogee</a>
+                        <a href="#calc-widget" class="suburb-chip">Randwick</a>
+                        <a href="#calc-widget" class="suburb-chip">Paddington</a>
+                        <a href="#calc-widget" class="suburb-chip">Double Bay</a>
+                        <a href="#calc-widget" class="suburb-chip">Rose Bay</a>
+                        <a href="#calc-widget" class="suburb-chip">Maroubra</a>
+                        <a href="#calc-widget" class="suburb-chip">Surry Hills</a>
+                        <a href="#calc-widget" class="suburb-chip">Woollahra</a>
+                        <a href="#calc-widget" class="suburb-chip">Kensington</a>
+                        <a href="#calc-widget" class="suburb-chip">Vaucluse</a>
                     </div>
                 </div>
 
-                <!-- Feature 2 -->
-                <div class="service-feature-item">
-                    <div class="service-feature-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
+                <div class="service-region-card">
+                    <div class="service-region-title">
+                        <i class="fa-solid fa-city"></i> Inner West &amp; City
                     </div>
-                    <div class="service-feature-content">
-                        <div class="service-feature-title">Trusted Local Team</div>
-                        <p class="service-feature-desc">Police-checked cleaners meeting REA standards.</p>
-                    </div>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="service-feature-item">
-                    <div class="service-feature-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                    </div>
-                    <div class="service-feature-content">
-                        <div class="service-feature-title">Always Nearby</div>
-                        <p class="service-feature-desc">Same-day &amp; next-day availability 7 days a week.</p>
+                    <div class="service-region-chips">
+                        <a href="#calc-widget" class="suburb-chip">Sydney CBD</a>
+                        <a href="#calc-widget" class="suburb-chip">Newtown</a>
+                        <a href="#calc-widget" class="suburb-chip">Balmain</a>
+                        <a href="#calc-widget" class="suburb-chip">Leichhardt</a>
+                        <a href="#calc-widget" class="suburb-chip">Marrickville</a>
+                        <a href="#calc-widget" class="suburb-chip">Glebe</a>
+                        <a href="#calc-widget" class="suburb-chip">Ashfield</a>
+                        <a href="#calc-widget" class="suburb-chip">Strathfield</a>
+                        <a href="#calc-widget" class="suburb-chip">Burwood</a>
+                        <a href="#calc-widget" class="suburb-chip">Petersham</a>
+                        <a href="#calc-widget" class="suburb-chip">Camperdown</a>
+                        <a href="#calc-widget" class="suburb-chip">Dulwich Hill</a>
                     </div>
                 </div>
 
-                <!-- Feature 4 -->
-                <div class="service-feature-item">
-                    <div class="service-feature-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="8" r="7"></circle>
-                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                        </svg>
+                <div class="service-region-card">
+                    <div class="service-region-title">
+                        <i class="fa-solid fa-umbrella-beach"></i> North Shore &amp; Beaches
                     </div>
-                    <div class="service-feature-content">
-                        <div class="service-feature-title">100% Bond Back Guarantee</div>
-                        <p class="service-feature-desc">Free re-clean until your agent signs off.</p>
+                    <div class="service-region-chips">
+                        <a href="#calc-widget" class="suburb-chip">Chatswood</a>
+                        <a href="#calc-widget" class="suburb-chip">North Sydney</a>
+                        <a href="#calc-widget" class="suburb-chip">Mosman</a>
+                        <a href="#calc-widget" class="suburb-chip">Manly</a>
+                        <a href="#calc-widget" class="suburb-chip">Neutral Bay</a>
+                        <a href="#calc-widget" class="suburb-chip">Lane Cove</a>
+                        <a href="#calc-widget" class="suburb-chip">St Leonards</a>
+                        <a href="#calc-widget" class="suburb-chip">Crows Nest</a>
+                        <a href="#calc-widget" class="suburb-chip">Dee Why</a>
+                        <a href="#calc-widget" class="suburb-chip">Brookvale</a>
+                        <a href="#calc-widget" class="suburb-chip">Mona Vale</a>
+                        <a href="#calc-widget" class="suburb-chip">Ryde</a>
+                    </div>
+                </div>
+
+                <div class="service-region-card">
+                    <div class="service-region-title">
+                        <i class="fa-solid fa-tree"></i> Western Sydney &amp; Shire
+                    </div>
+                    <div class="service-region-chips">
+                        <a href="#calc-widget" class="suburb-chip">Parramatta</a>
+                        <a href="#calc-widget" class="suburb-chip">Blacktown</a>
+                        <a href="#calc-widget" class="suburb-chip">Penrith</a>
+                        <a href="#calc-widget" class="suburb-chip">Liverpool</a>
+                        <a href="#calc-widget" class="suburb-chip">Castle Hill</a>
+                        <a href="#calc-widget" class="suburb-chip">Baulkham Hills</a>
+                        <a href="#calc-widget" class="suburb-chip">Hurstville</a>
+                        <a href="#calc-widget" class="suburb-chip">Kogarah</a>
+                        <a href="#calc-widget" class="suburb-chip">Cronulla</a>
+                        <a href="#calc-widget" class="suburb-chip">Sutherland</a>
+                        <a href="#calc-widget" class="suburb-chip">Miranda</a>
+                        <a href="#calc-widget" class="suburb-chip">Bankstown</a>
                     </div>
                 </div>
             </div>
-
-            <!-- Complete Styled Sydney Suburb Directory -->
-            <div class="service-suburbs-wrap">
-                <div class="service-suburbs-header">
-                    <span class="service-suburbs-title">
-                        <i class="fa-solid fa-map-location-dot"></i> Complete Sydney Suburb Directory
-                    </span>
-                </div>
-                <div class="service-suburbs-grid">
-                    <div class="service-region-card">
-                        <div class="service-region-title">
-                            <i class="fa-solid fa-compass"></i> Eastern Suburbs
-                        </div>
-                        <div class="service-region-chips">
-                            <a href="#calc-widget" class="suburb-chip">Bondi</a>
-                            <a href="#calc-widget" class="suburb-chip">Bondi Junction</a>
-                            <a href="#calc-widget" class="suburb-chip">Coogee</a>
-                            <a href="#calc-widget" class="suburb-chip">Randwick</a>
-                            <a href="#calc-widget" class="suburb-chip">Paddington</a>
-                            <a href="#calc-widget" class="suburb-chip">Double Bay</a>
-                            <a href="#calc-widget" class="suburb-chip">Rose Bay</a>
-                            <a href="#calc-widget" class="suburb-chip">Maroubra</a>
-                            <a href="#calc-widget" class="suburb-chip">Surry Hills</a>
-                            <a href="#calc-widget" class="suburb-chip">Woollahra</a>
-                            <a href="#calc-widget" class="suburb-chip">Kensington</a>
-                            <a href="#calc-widget" class="suburb-chip">Vaucluse</a>
-                        </div>
-                    </div>
-
-                    <div class="service-region-card">
-                        <div class="service-region-title">
-                            <i class="fa-solid fa-city"></i> Inner West &amp; City
-                        </div>
-                        <div class="service-region-chips">
-                            <a href="#calc-widget" class="suburb-chip">Sydney CBD</a>
-                            <a href="#calc-widget" class="suburb-chip">Newtown</a>
-                            <a href="#calc-widget" class="suburb-chip">Balmain</a>
-                            <a href="#calc-widget" class="suburb-chip">Leichhardt</a>
-                            <a href="#calc-widget" class="suburb-chip">Marrickville</a>
-                            <a href="#calc-widget" class="suburb-chip">Glebe</a>
-                            <a href="#calc-widget" class="suburb-chip">Ashfield</a>
-                            <a href="#calc-widget" class="suburb-chip">Strathfield</a>
-                            <a href="#calc-widget" class="suburb-chip">Burwood</a>
-                            <a href="#calc-widget" class="suburb-chip">Petersham</a>
-                            <a href="#calc-widget" class="suburb-chip">Camperdown</a>
-                            <a href="#calc-widget" class="suburb-chip">Dulwich Hill</a>
-                        </div>
-                    </div>
-
-                    <div class="service-region-card">
-                        <div class="service-region-title">
-                            <i class="fa-solid fa-umbrella-beach"></i> North Shore &amp; Beaches
-                        </div>
-                        <div class="service-region-chips">
-                            <a href="#calc-widget" class="suburb-chip">Chatswood</a>
-                            <a href="#calc-widget" class="suburb-chip">North Sydney</a>
-                            <a href="#calc-widget" class="suburb-chip">Mosman</a>
-                            <a href="#calc-widget" class="suburb-chip">Manly</a>
-                            <a href="#calc-widget" class="suburb-chip">Neutral Bay</a>
-                            <a href="#calc-widget" class="suburb-chip">Lane Cove</a>
-                            <a href="#calc-widget" class="suburb-chip">St Leonards</a>
-                            <a href="#calc-widget" class="suburb-chip">Crows Nest</a>
-                            <a href="#calc-widget" class="suburb-chip">Dee Why</a>
-                            <a href="#calc-widget" class="suburb-chip">Brookvale</a>
-                            <a href="#calc-widget" class="suburb-chip">Mona Vale</a>
-                            <a href="#calc-widget" class="suburb-chip">Ryde</a>
-                        </div>
-                    </div>
-
-                    <div class="service-region-card">
-                        <div class="service-region-title">
-                            <i class="fa-solid fa-tree"></i> Western Sydney &amp; Shire
-                        </div>
-                        <div class="service-region-chips">
-                            <a href="#calc-widget" class="suburb-chip">Parramatta</a>
-                            <a href="#calc-widget" class="suburb-chip">Blacktown</a>
-                            <a href="#calc-widget" class="suburb-chip">Penrith</a>
-                            <a href="#calc-widget" class="suburb-chip">Liverpool</a>
-                            <a href="#calc-widget" class="suburb-chip">Castle Hill</a>
-                            <a href="#calc-widget" class="suburb-chip">Baulkham Hills</a>
-                            <a href="#calc-widget" class="suburb-chip">Hurstville</a>
-                            <a href="#calc-widget" class="suburb-chip">Kogarah</a>
-                            <a href="#calc-widget" class="suburb-chip">Cronulla</a>
-                            <a href="#calc-widget" class="suburb-chip">Sutherland</a>
-                            <a href="#calc-widget" class="suburb-chip">Miranda</a>
-                            <a href="#calc-widget" class="suburb-chip">Bankstown</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
+
     </div>
 </section>
 

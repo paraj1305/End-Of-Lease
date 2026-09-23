@@ -36,3 +36,6 @@ def terms_view(request):
 
 def guarantee_rules_view(request):
     return render(request, 'public/guarantee_rules.html')
+
+def checklist_pdf_view(request):
+    return render(request, 'public/checklist_pdf.html')
