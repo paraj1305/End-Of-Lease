@@ -16,6 +16,8 @@ A Django web application for booking end-of-lease cleaning services.
 2. **Activate the virtual environment:**
    ```cmd
    .venv\Scripts\activate
+   source venv/bin/activate
+
    ```
 
 3. **Install dependencies** (if not already installed):
