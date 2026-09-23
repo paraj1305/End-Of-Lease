@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+
+{% block title %}Bond-Back &amp; Price Match Guarantee — Terms &amp; Rules | Final Clean{% endblock %}
+{% block meta_description %}Read Final Clean's 72-Hour Bond-Back Guarantee and Price Match Guarantee terms, verification conditions, and claim procedures.{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/static/css/pages/terms.css">
+{% endblock %}
+
+{% block content %}
+<main class="terms-page-main">
+
+    <section class="terms-hero">
+        <div class="terms-hero-inner">
+            <div class="terms-pill">Customer Guarantees</div>
+            <h1 class="terms-hero-title">Guarantee <span class="accent">Rules</span></h1>
+            <p class="terms-hero-sub">
+                Bond-Back &amp; Price Match Guarantee — Terms &amp; Rules
+            </p>
+        </div>
+    </section>
+
+    <div class="terms-content-wrap">
+
+        <!-- Sidebar Navigation -->
+        <aside class="terms-sidebar">
+            <h3 class="terms-sidebar-title"><i class="fa-solid fa-list-check"></i> On This Page</h3>
+            <ul class="terms-nav">
+                <li><a href="#overview" class="terms-nav-link"><i class="fa-solid fa-circle-info"></i> Overview</a></li>
+                <li><a href="#bond-back" class="terms-nav-link"><i class="fa-solid fa-shield-halved"></i> 72-Hour Bond-Back</a></li>
+                <li><a href="#price-match" class="terms-nav-link"><i class="fa-solid fa-tags"></i> Price Match Guarantee</a></li>
+                <li><a href="#anti-fraud" class="terms-nav-link"><i class="fa-solid fa-user-shield"></i> Anti-Fraud &amp; Verification</a></li>
+                <li><a href="#how-to-claim" class="terms-nav-link"><i class="fa-solid fa-clipboard-check"></i> How to Make a Claim</a></li>
+                <li><a href="#general-terms" class="terms-nav-link"><i class="fa-solid fa-scale-balanced"></i> General Terms</a></li>
+                <li><a href="{% url 'public:terms' %}" class="terms-nav-link"><i class="fa-solid fa-file-contract"></i> Terms and Policy &rarr;</a></li>
+            </ul>
+            <div class="terms-sidebar-cta">
+                <a href="/#calc-widget">Get Fixed Price &rarr;</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <article class="terms-card">
+            <div class="terms-updated">
+                <span><i class="fa-regular fa-clock"></i> Current Guarantee Terms</span>
+                <span>FinalClean · Sydney, NSW</span>
+            </div>
+
+            <!-- Overview -->
+            <section class="terms-section" id="overview">
+                <h2><i class="fa-solid fa-circle-info"></i> Overview</h2>
+                <p>We back every booking with two separate guarantees:</p>
+                <ol>
+                    <li><strong>Price Match Guarantee</strong> — protects you <em>before</em> you book, so you never overpay compared to a genuine, comparable quote.</li>
+                    <li><strong>72-Hour Bond-Back Guarantee</strong> — protects you <em>after</em> the clean, so if your agent or landlord raises a genuine cleaning issue, we come back and fix it at no charge.</li>
+                </ol>
+                <p>Both guarantees are offered in good faith to honest customers. To keep that possible for everyone, both are subject to the verification and anti-fraud rules set out further down this page. By paying your booking deposit, you agree to these terms.</p>
+            </section>
+
+            <!-- 72-Hour Bond-Back Guarantee -->
+            <section class="terms-section" id="bond-back">
+                <h2><i class="fa-solid fa-shield-halved"></i> 72-Hour Bond-Back Guarantee</h2>
+                <p>If your property manager or landlord is not satisfied with the standard of cleaning, we will return and re-clean the flagged areas at no extra cost — provided the conditions below are met.</p>
+
+                <h3>What's covered</h3>
+                <ul>
+                    <li>Any item that was included in your original booking (based on the checklist/package you paid for) and was not cleaned to a reasonable standard.</li>
+                    <li>The re-clean covers the specific areas raised by your agent or landlord, not a full re-clean of the entire property unless every area was affected.</li>
+                </ul>
+
+                <h3>What's excluded</h3>
+                <ul>
+                    <li>General wear and tear, pre-existing damages like mould, staining, or marks that were present before we cleaned (and which we couldn't reasonably be expected to remove).</li>
+                    <li>Anything outside the scope of your paid package (e.g. an item you didn't book, such as exterior windows or a garage you chose not to add).</li>
+                    <li>Issues caused by anyone entering or using the property after our clean was completed (other trades, movers, new tenants, pets, or the customer themselves).</li>
+                    <li>Damage to the property itself (walls, fixtures, appliances) — this is not a cleaning guarantee for property condition, only for the standard of clean supplied.</li>
+                    <li>Claims where the property manager's own end-of-lease checklist requires something never agreed to in your booking scope.</li>
+                    <li>Any claim raised outside the 72-hour window described below.</li>
+                </ul>
+
+                <h3>Claim conditions</h3>
+                <ol>
+                    <li><strong>Time limit:</strong> you must notify us in writing within <strong>72 hours</strong> of your clean being completed.</li>
+                    <li><strong>Written evidence:</strong> you must provide your agent's or landlord's specific written feedback (an email, inspection report, or condition report) naming the exact areas of concern. We can't act on a verbal or secondhand description alone.</li>
+                    <li><strong>Access:</strong> you must arrange safe, reasonable access for our team to return and rectify the issue, normally within 2 to 3 business days of your claim.</li>
+                    <li><strong>One condition report per claim:</strong> the guarantee covers one return visit per booking to address the issues raised in that report. Extended requirements or successive reports of new issues from the same booking may fall outside the guarantee — we'll assess in good faith.</li>
+                    <li><strong>Remedy:</strong> our remedy under this guarantee is a free re-clean of the affected areas. We do not offer cash refunds under this guarantee except where required by the Australian Consumer Law.</li>
+                </ol>
+                <div class="terms-highlight-box">
+                    <p>This structure — a defined notice window, a requirement for the agent's written report, and re-cleaning as the remedy — reflects standard practice used across the Australian bond-cleaning industry.</p>
+                </div>
+            </section>
+
+            <!-- Price Match Guarantee -->
+            <section class="terms-section" id="price-match">
+                <h2><i class="fa-solid fa-tags"></i> Price Match Guarantee</h2>
+                <p>If you find a genuinely comparable written quote from another registered cleaning business at a lower price, we'll match it before you book.</p>
+
+                <h3>What counts as a valid comparable quote</h3>
+                <p>The competing quote must:</p>
+                <ul>
+                    <li>Be in <strong>writing</strong>, from a <strong>registered business</strong> (trading name and current <strong>ACN</strong> shown).</li>
+                    <li>Show the <strong>final total price including/excluding GST</strong> for the property — not an estimate, "from" price, or a verbal figure.</li>
+                    <li>Be <strong>no older than 4 days</strong>.</li>
+                    <li>Cover <strong>the same scope of work</strong> as the package you're comparing it to: the same core checklist, and the same optional extras (e.g. oven, interior windows, carpet steam) that are included in our price.</li>
+                    <li>Include an equivalent <strong>guarantee</strong> (a written re-clean or bond-back guarantee of comparable length and coverage). A price with no guarantee attached is not comparable to a price that includes one.</li>
+                </ul>
+
+                <h3>What isn't matched</h3>
+                <ul>
+                    <li>Verbal quotes, estimates, or "from" prices with no confirmed total for your specific property.</li>
+                    <li>Quotes that exclude items included in our package (we'll tell you the price difference once those items are added back in).</li>
+                    <li>Quotes from unregistered individuals, quotes with no ACN, or quotes we cannot verify (see Anti-Fraud &amp; Verification Rules below).</li>
+                    <li>Quotes submitted after you've already paid your deposit — please send us the competing quote <strong>before</strong> you book.</li>
+                    <li>Coupled or bundled deals (e.g. "3 services for the price of 1") that aren't a direct price for the same single service.</li>
+                    <li>Promotional, seasonal, or introductory pricing — first-clean discounts, limited-time offers, coupon codes, referral credits, or any quote already reduced from that cleaner's standard price. We match standard pricing against standard pricing.</li>
+                    <li>Same-day and short-notice bookings. A matched quote reflects standard scheduling. If you present a quote dated earlier and ask us to clean the same day or at short notice, priority scheduling fees apply on top of the matched price — we'll tell you the amount before you book, and nothing is charged without your approval.</li>
+                </ul>
+
+                <h3>How matching works</h3>
+                <ol>
+                    <li>Send us the written quote (PDF, or forwarded email) before booking.</li>
+                    <li>We check it covers the same scope and meets the conditions above.</li>
+                    <li>If it qualifies, we confirm your matched price in writing before you pay your deposit.</li>
+                    <li>If it doesn't qualify (e.g. it covers less work), we'll explain the difference and offer you a fair, adjusted price.</li>
+                </ol>
+            </section>
+
+            <!-- Anti-Fraud & Verification Rules -->
+            <section class="terms-section" id="anti-fraud">
+                <h2><i class="fa-solid fa-user-shield"></i> Anti-Fraud &amp; Verification Rules</h2>
+                <p>These guarantees exist to protect honest customers. To keep them sustainable, both are subject to the following verification rules. We take misuse seriously — most customers will never encounter this section, but it protects the price and service we can keep offering everyone.</p>
+
+                <h3>Our right to verify</h3>
+                <p>We may, at our discretion and before honouring any claim:</p>
+                <ul>
+                    <li>Look up any ACN provided against the official portal of government to confirm it is current and matches the business/trading name on the quote or invoice.</li>
+                    <li>Contact the quoting business directly to confirm a quote is genuine and reflects what they actually offered.</li>
+                    <li>Request the original file (not a screenshot) so we can check metadata such as creation date and edit history.</li>
+                    <li>Ask the customer for additional supporting evidence (e.g. the full email thread, not just a cropped image).</li>
+                    <li>Cross-check any agent/landlord complaint against our own job records — every booking is documented with our cleaner's time-stamped before-and-after photos and completed checklist.</li>
+                </ul>
+
+                <h3>Signs we treat as red flags</h3>
+                <p>A claim or quote may be declined pending further review if it shows signs such as:</p>
+                <ul>
+                    <li>No ACN, or an ACN that does not match the business name, is inactive, or is not registered for GST when GST is charged.</li>
+                    <li>A quote or invoice with inconsistent fonts, formatting, or edited-looking totals, or metadata suggesting it was altered.</li>
+                    <li>A quote for a scope of work that doesn't match the property (e.g. a 1-bedroom quote used for a 3-bedroom claim).</li>
+                    <li>A property manager/landlord complaint with no formal report, checklist, or account details matching the tenancy on file.</li>
+                    <li>A pattern of repeated price-match requests or bond-back claims from the same customer or property across multiple bookings.</li>
+                    <li>Photos submitted as "proof" of poor cleaning that don't match our own before/after records, or that show signs of being staged or taken before our clean began.</li>
+                </ul>
+
+                <h3>If we can't verify a claim</h3>
+                <ul>
+                    <li>We'll tell you what we couldn't verify and give you a reasonable chance to provide better evidence.</li>
+                    <li>If a quote or claim still can't be verified, we may decline to honour it, or offer a partial/adjusted resolution instead.</li>
+                    <li>Nothing here overrides your rights under the Australian Consumer Law — genuine claims are always honoured once verified.</li>
+                </ul>
+
+                <h3>Deliberate misuse</h3>
+                <p>Knowingly submitting a fake, altered, or invented quote or invoice, or knowingly making a false claim about the standard of our clean (for example, staging damage or dirt after our team has left), is treated as attempted fraud, not a guarantee claim. In that case we may:</p>
+                <ul>
+                    <li>Refuse the claim or price match and require payment of the full original price.</li>
+                    <li>Decline to provide future services to that customer.</li>
+                    <li>Recover any costs or shortfall caused by the false claim.</li>
+                    <li>Refer serious or repeated cases to the relevant authorities (e.g. NSW Fair Trading/ACCC, or police for fraud).</li>
+                </ul>
+
+                <h3>Records we keep</h3>
+                <p>For every job, we keep time-stamped before-and-after photos and a completed job checklist, generally for at least 2 months. This protects both sides: it lets us verify genuine bond-back claims quickly, and it protects you if a claim is ever disputed.</p>
+            </section>
+
+            <!-- How to Make a Claim -->
+            <section class="terms-section" id="how-to-claim">
+                <h2><i class="fa-solid fa-clipboard-check"></i> How to Make a Claim</h2>
+
+                <h3>Price Match Guarantee</h3>
+                <ol>
+                    <li>Before booking, send us your comparable written quote (screenshot, PDF, or forwarded email) via <a href="mailto:admin@finalclean.com.au" class="terms-contact-link">admin@finalclean.com.au</a>.</li>
+                    <li>We check it against the conditions above, verifying the ABN/ACN and scope of work.</li>
+                    <li>If it qualifies, we confirm your matched price in writing.</li>
+                    <li>You pay your deposit at the matched price to lock in your booking.</li>
+                </ol>
+
+                <h3>72-Hour Bond-Back Guarantee</h3>
+                <ol>
+                    <li>Within 72 hours of your clean, get your agent's or landlord's written feedback naming the specific areas of concern.</li>
+                    <li>Send us that written feedback, your booking reference, and any photos, via <a href="mailto:admin@finalclean.com.au" class="terms-contact-link">admin@finalclean.com.au</a>.</li>
+                    <li>We review it against our own job records and confirm which items are covered.</li>
+                    <li>We arrange a return visit at a time that works for you and gives us safe access.</li>
+                    <li>Once re-cleaned, we ask your agent to confirm the areas are now satisfactory.</li>
+                </ol>
+            </section>
+
+            <!-- General Terms -->
+            <section class="terms-section" id="general-terms">
+                <h2><i class="fa-solid fa-scale-balanced"></i> General Terms</h2>
+                <ul>
+                    <li><strong>Decision authority:</strong> FinalClean makes the final decision on whether a claim or price match meets these conditions, acting reasonably and in good faith.</li>
+                    <li><strong>Limitation:</strong> Our liability under these guarantees is limited to providing a free re-clean of the affected areas (Bond-Back Guarantee) or matching a verified price (Price Match Guarantee). We are not liable for indirect losses such as delayed bond refunds, relocation costs, or loss of rent, except where the Australian Consumer Law requires otherwise. Nothing in these terms limits any guarantee or right you have under the Australian Consumer Law that cannot lawfully be excluded.</li>
+                    <li><strong>One guarantee use per booking:</strong> each booking may only use one Price Match adjustment and one Bond-Back re-clean visit, unless we agree otherwise in writing.</li>
+                    <li><strong>Changes to these terms:</strong> we may update these guarantees and rules from time to time; the version in place at the time of your booking applies to that booking.</li>
+                    <li><strong>Contact:</strong> to make a claim or ask a question about either guarantee, contact us at <a href="mailto:admin@finalclean.com.au" class="terms-contact-link">admin@finalclean.com.au</a>.</li>
+                </ul>
+            </section>
+        </article>
+    </div>
+
+</main>
+{% endblock %}

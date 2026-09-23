@@ -33,3 +33,6 @@ def our_work_view(request):
 
 def terms_view(request):
     return render(request, 'public/terms.html')
+
+def guarantee_rules_view(request):
+    return render(request, 'public/guarantee_rules.html')

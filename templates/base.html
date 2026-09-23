@@ -734,7 +734,7 @@
     </main>
 
     <!-- Premium Footer -->
-    <footer class="main-footer" x-data="{ showCancellationModal: false, showPrivacyModal: false }">
+    <footer class="main-footer" x-data="{ showGuaranteeModal: false, showTermsModal: false }">
         <div class="footer-wave">
             <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
                 <path
@@ -757,7 +757,7 @@
             <div class="footer-col">
                 <h3 class="footer-title">Business &amp; Verification</h3>
                 <div class="footer-compliance-list">
-                    <p class="footer-compliance-item"><strong>ABN:</strong> 84 629 193 842</p>
+                    <p class="footer-compliance-item"><strong>ABN:</strong> 74 767 637 886</p>
                     <p class="footer-compliance-item"><strong>Insurance:</strong> $10M Public Liability (Policy active)</p>
                     <p class="footer-compliance-item"><strong>GST Included:</strong> All prices include 10% GST. Formal tax invoices provided for real estate bond claims.</p>
                 </div>
@@ -778,11 +778,11 @@
             <div class="footer-col">
                 <h3 class="footer-title">Customer Policies</h3>
                 <div class="footer-policy-actions">
-                    <button type="button" class="footer-policy-btn" @click="showCancellationModal = true">
-                        <i class="fa-solid fa-calendar-xmark"></i> Cancellation Policy
+                    <button type="button" class="footer-policy-btn" @click="showGuaranteeModal = true">
+                        <i class="fa-solid fa-shield-halved"></i> Guarantee Rules
                     </button>
-                    <button type="button" class="footer-policy-btn" @click="showPrivacyModal = true">
-                        <i class="fa-solid fa-user-shield"></i> Privacy Policy
+                    <button type="button" class="footer-policy-btn" @click="showTermsModal = true">
+                        <i class="fa-solid fa-file-contract"></i> Terms and Policy
                     </button>
                 </div>
                 <p class="footer-policy-note">Fair Trading NSW compliant exit inspection guarantees provided with every booking.</p>
@@ -790,58 +790,401 @@
         </div>
 
         <div class="container footer-bottom">
-            <p>&copy; {% now "Y" %} Final Clean Pty Ltd. All rights reserved. ABN 84 629 193 842.</p>
+            <p>&copy; {% now "Y" %} Final Clean Pty Ltd. All rights reserved. ABN 74 767 637 886.</p>
             <p>Sydney, NSW, Australia · 100% Bond Back Guarantee</p>
         </div>
 
-        <!-- Cancellation Policy Modal -->
-        <div class="legal-modal-backdrop" x-show="showCancellationModal" x-transition.opacity style="display: none;" @keydown.escape.window="showCancellationModal = false">
-            <div class="legal-modal-card" @click.outside="showCancellationModal = false">
+        <!-- 1. Guarantee Rules Modal -->
+        <div class="legal-modal-backdrop" x-show="showGuaranteeModal" x-transition.opacity style="display: none;" @keydown.escape.window="showGuaranteeModal = false">
+            <div class="legal-modal-card" @click.outside="showGuaranteeModal = false">
                 <div class="legal-modal-header">
-                    <h3 class="legal-modal-title"><i class="fa-solid fa-calendar-xmark"></i> Cancellation &amp; Rescheduling Policy</h3>
-                    <button type="button" class="legal-modal-close" @click="showCancellationModal = false" aria-label="Close modal">&times;</button>
+                    <h3 class="legal-modal-title"><i class="fa-solid fa-shield-halved"></i> Bond-Back &amp; Price Match Guarantee — Terms &amp; Rules</h3>
+                    <button type="button" class="legal-modal-close" @click="showGuaranteeModal = false" aria-label="Close modal">&times;</button>
                 </div>
                 <div class="legal-modal-body">
-                    <p><strong>1. Free Cancellation &amp; Rescheduling (24+ Hours Notice)</strong><br>
-                    We understand moving dates change. You may cancel or reschedule your cleaning service free of charge up to 24 hours prior to the scheduled start time.</p>
-                    
-                    <p><strong>2. Late Notice (Within 24 Hours)</strong><br>
-                    Cancellations or date adjustments made within 24 hours of your appointment may incur a $50 scheduling fee to partially cover reserved team logistics.</p>
+                    <div class="legal-section-block">
+                        <h4 class="legal-heading-accent">Overview</h4>
+                        <p>We back every booking with two separate guarantees:</p>
+                        <ol class="legal-list">
+                            <li><strong>Price Match Guarantee</strong> — protects you <em>before</em> you book, so you never overpay compared to a genuine, comparable quote.</li>
+                            <li><strong>72-Hour Bond-Back Guarantee</strong> — protects you <em>after</em> the clean, so if your agent or landlord raises a genuine cleaning issue, we come back and fix it at no charge.</li>
+                        </ol>
+                        <p>Both guarantees are offered in good faith to honest customers. To keep that possible for everyone, both are subject to the verification and anti-fraud rules set out further down this page. By paying your booking deposit, you agree to these terms.</p>
+                    </div>
 
-                    <p><strong>3. Access &amp; Power Requirements</strong><br>
-                    If our cleaning crew arrives on-site and cannot access the property (e.g. keys unavailable, lockbox code incorrect, or electricity/water disconnected), our team will wait up to 30 minutes while attempting to reach you. If access cannot be arranged, a call-out fee applies.</p>
+                    <div class="legal-section-block">
+                        <h4 class="legal-heading-accent">72-Hour Bond-Back Guarantee</h4>
+                        <p>If your property manager or landlord is not satisfied with the standard of cleaning, we will return and re-clean the flagged areas at no extra cost — provided the conditions below are met.</p>
 
-                    <p><strong>4. Zero Upfront Deposit</strong><br>
-                    You do not pay upfront when getting your price. Payment is only finalised upon job completion.</p>
+                        <h5>What's covered</h5>
+                        <ul class="legal-list">
+                            <li>Any item that was included in your original booking (based on the checklist/package you paid for) and was not cleaned to a reasonable standard.</li>
+                            <li>The re-clean covers the specific areas raised by your agent or landlord, not a full re-clean of the entire property unless every area was affected.</li>
+                        </ul>
+
+                        <h5>What's excluded</h5>
+                        <ul class="legal-list">
+                            <li>General wear and tear, pre-existing damages like mould, staining, or marks that were present before we cleaned (and which we couldn't reasonably be expected to remove).</li>
+                            <li>Anything outside the scope of your paid package (e.g. an item you didn't book, such as exterior windows or a garage you chose not to add).</li>
+                            <li>Issues caused by anyone entering or using the property after our clean was completed (other trades, movers, new tenants, pets, or the customer themselves).</li>
+                            <li>Damage to the property itself (walls, fixtures, appliances) — this is not a cleaning guarantee for property condition, only for the standard of clean supplied.</li>
+                            <li>Claims where the property manager's own end-of-lease checklist requires something never agreed to in your booking scope.</li>
+                            <li>Any claim raised outside the 72-hour window described below.</li>
+                        </ul>
+
+                        <h5>Claim conditions</h5>
+                        <ol class="legal-list">
+                            <li><strong>Time limit:</strong> you must notify us in writing within <strong>72 hours</strong> of your clean being completed.</li>
+                            <li><strong>Written evidence:</strong> you must provide your agent's or landlord's specific written feedback (an email, inspection report, or condition report) naming the exact areas of concern. We can't act on a verbal or secondhand description alone.</li>
+                            <li><strong>Access:</strong> you must arrange safe, reasonable access for our team to return and rectify the issue, normally within 2 to 3 business days of your claim.</li>
+                            <li><strong>One condition report per claim:</strong> the guarantee covers one return visit per booking to address the issues raised in that report. Extended requirements or successive reports of new issues from the same booking may fall outside the guarantee — we'll assess in good faith.</li>
+                            <li><strong>Remedy:</strong> our remedy under this guarantee is a free re-clean of the affected areas. We do not offer cash refunds under this guarantee except where required by the Australian Consumer Law.</li>
+                        </ol>
+                        <p class="legal-note-box">This structure — a defined notice window, a requirement for the agent's written report, and re-cleaning as the remedy — reflects standard practice used across the Australian bond-cleaning industry.</p>
+                    </div>
+
+                    <div class="legal-section-block">
+                        <h4 class="legal-heading-accent">Price Match Guarantee</h4>
+                        <p>If you find a genuinely comparable written quote from another registered cleaning business at a lower price, we'll match it before you book.</p>
+
+                        <h5>What counts as a valid comparable quote</h5>
+                        <p>The competing quote must:</p>
+                        <ul class="legal-list">
+                            <li>Be in <strong>writing</strong>, from a <strong>registered business</strong> (trading name and current <strong>ACN</strong> shown).</li>
+                            <li>Show the <strong>final total price including/excluding GST</strong> for the property — not an estimate, "from" price, or a verbal figure.</li>
+                            <li>Be <strong>no older than 4 days</strong>.</li>
+                            <li>Cover <strong>the same scope of work</strong> as the package you're comparing it to: the same core checklist, and the same optional extras (e.g. oven, interior windows, carpet steam) that are included in our price.</li>
+                            <li>Include an equivalent <strong>guarantee</strong> (a written re-clean or bond-back guarantee of comparable length and coverage). A price with no guarantee attached is not comparable to a price that includes one.</li>
+                        </ul>
+
+                        <h5>What isn't matched</h5>
+                        <ul class="legal-list">
+                            <li>Verbal quotes, estimates, or "from" prices with no confirmed total for your specific property.</li>
+                            <li>Quotes that exclude items included in our package (we'll tell you the price difference once those items are added back in).</li>
+                            <li>Quotes from unregistered individuals, quotes with no ACN, or quotes we cannot verify (see Anti-Fraud &amp; Verification Rules below).</li>
+                            <li>Quotes submitted after you've already paid your deposit — please send us the competing quote <strong>before</strong> you book.</li>
+                            <li>Coupled or bundled deals (e.g. "3 services for the price of 1") that aren't a direct price for the same single service.</li>
+                            <li>Promotional, seasonal, or introductory pricing — first-clean discounts, limited-time offers, coupon codes, referral credits, or any quote already reduced from that cleaner's standard price. We match standard pricing against standard pricing.</li>
+                            <li>Same-day and short-notice bookings. A matched quote reflects standard scheduling. If you present a quote dated earlier and ask us to clean the same day or at short notice, priority scheduling fees apply on top of the matched price — we'll tell you the amount before you book, and nothing is charged without your approval.</li>
+                        </ul>
+
+                        <h5>How matching works</h5>
+                        <ol class="legal-list">
+                            <li>Send us the written quote (PDF, or forwarded email) before booking.</li>
+                            <li>We check it covers the same scope and meets the conditions above.</li>
+                            <li>If it qualifies, we confirm your matched price in writing before you pay your deposit.</li>
+                            <li>If it doesn't qualify (e.g. it covers less work), we'll explain the difference and offer you a fair, adjusted price.</li>
+                        </ol>
+                    </div>
+
+                    <div class="legal-section-block">
+                        <h4 class="legal-heading-accent">Anti-Fraud &amp; Verification Rules</h4>
+                        <p>These guarantees exist to protect honest customers. To keep them sustainable, both are subject to the following verification rules. We take misuse seriously — most customers will never encounter this section, but it protects the price and service we can keep offering everyone.</p>
+
+                        <h5>Our right to verify</h5>
+                        <p>We may, at our discretion and before honouring any claim:</p>
+                        <ul class="legal-list">
+                            <li>Look up any ACN provided against the official portal of government to confirm it is current and matches the business/trading name on the quote or invoice.</li>
+                            <li>Contact the quoting business directly to confirm a quote is genuine and reflects what they actually offered.</li>
+                            <li>Request the original file (not a screenshot) so we can check metadata such as creation date and edit history.</li>
+                            <li>Ask the customer for additional supporting evidence (e.g. the full email thread, not just a cropped image).</li>
+                            <li>Cross-check any agent/landlord complaint against our own job records — every booking is documented with our cleaner's time-stamped before-and-after photos and completed checklist.</li>
+                        </ul>
+
+                        <h5>Signs we treat as red flags</h5>
+                        <p>A claim or quote may be declined pending further review if it shows signs such as:</p>
+                        <ul class="legal-list">
+                            <li>No ACN, or an ACN that does not match the business name, is inactive, or is not registered for GST when GST is charged.</li>
+                            <li>A quote or invoice with inconsistent fonts, formatting, or edited-looking totals, or metadata suggesting it was altered.</li>
+                            <li>A quote for a scope of work that doesn't match the property (e.g. a 1-bedroom quote used for a 3-bedroom claim).</li>
+                            <li>A property manager/landlord complaint with no formal report, checklist, or account details matching the tenancy on file.</li>
+                            <li>A pattern of repeated price-match requests or bond-back claims from the same customer or property across multiple bookings.</li>
+                            <li>Photos submitted as "proof" of poor cleaning that don't match our own before/after records, or that show signs of being staged or taken before our clean began.</li>
+                        </ul>
+
+                        <h5>If we can't verify a claim</h5>
+                        <ul class="legal-list">
+                            <li>We'll tell you what we couldn't verify and give you a reasonable chance to provide better evidence.</li>
+                            <li>If a quote or claim still can't be verified, we may decline to honour it, or offer a partial/adjusted resolution instead.</li>
+                            <li>Nothing here overrides your rights under the Australian Consumer Law — genuine claims are always honoured once verified.</li>
+                        </ul>
+
+                        <h5>Deliberate misuse</h5>
+                        <p>Knowingly submitting a fake, altered, or invented quote or invoice, or knowingly making a false claim about the standard of our clean (for example, staging damage or dirt after our team has left), is treated as attempted fraud, not a guarantee claim. In that case we may:</p>
+                        <ul class="legal-list">
+                            <li>Refuse the claim or price match and require payment of the full original price.</li>
+                            <li>Decline to provide future services to that customer.</li>
+                            <li>Recover any costs or shortfall caused by the false claim.</li>
+                            <li>Refer serious or repeated cases to the relevant authorities (e.g. NSW Fair Trading/ACCC, or police for fraud).</li>
+                        </ul>
+
+                        <h5>Records we keep</h5>
+                        <p>For every job, we keep time-stamped before-and-after photos and a completed job checklist, generally for at least 2 months. This protects both sides: it lets us verify genuine bond-back claims quickly, and it protects you if a claim is ever disputed.</p>
+                    </div>
+
+                    <div class="legal-section-block">
+                        <h4 class="legal-heading-accent">How to Make a Claim</h4>
+                        <h5>Price Match Guarantee</h5>
+                        <ol class="legal-list">
+                            <li>Before booking, send us your comparable written quote (screenshot, PDF, or forwarded email) via admin@finalclean.com.au.</li>
+                            <li>We check it against the conditions above, verifying the ABN/ACN and scope of work.</li>
+                            <li>If it qualifies, we confirm your matched price in writing.</li>
+                            <li>You pay your deposit at the matched price to lock in your booking.</li>
+                        </ol>
+
+                        <h5>72-Hour Bond-Back Guarantee</h5>
+                        <ol class="legal-list">
+                            <li>Within 72 hours of your clean, get your agent's or landlord's written feedback naming the specific areas of concern.</li>
+                            <li>Send us that written feedback, your booking reference, and any photos, via admin@finalclean.com.au.</li>
+                            <li>We review it against our own job records and confirm which items are covered.</li>
+                            <li>We arrange a return visit at a time that works for you and gives us safe access.</li>
+                            <li>Once re-cleaned, we ask your agent to confirm the areas are now satisfactory.</li>
+                        </ol>
+                    </div>
+
+                    <div class="legal-section-block">
+                        <h4 class="legal-heading-accent">General Terms</h4>
+                        <ul class="legal-list">
+                            <li><strong>Decision authority:</strong> FinalClean makes the final decision on whether a claim or price match meets these conditions, acting reasonably and in good faith.</li>
+                            <li><strong>Limitation:</strong> Our liability under these guarantees is limited to providing a free re-clean of the affected areas (Bond-Back Guarantee) or matching a verified price (Price Match Guarantee). We are not liable for indirect losses such as delayed bond refunds, relocation costs, or loss of rent, except where the Australian Consumer Law requires otherwise. Nothing in these terms limits any guarantee or right you have under the Australian Consumer Law that cannot lawfully be excluded.</li>
+                            <li><strong>One guarantee use per booking:</strong> each booking may only use one Price Match adjustment and one Bond-Back re-clean visit, unless we agree otherwise in writing.</li>
+                            <li><strong>Changes to these terms:</strong> we may update these guarantees and rules from time to time; the version in place at the time of your booking applies to that booking.</li>
+                            <li><strong>Contact:</strong> to make a claim or ask a question about either guarantee, contact us at admin@finalclean.com.au.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="legal-modal-footer">
-                    <button type="button" class="legal-modal-btn" @click="showCancellationModal = false">Close</button>
+                    <a href="{% url 'public:guarantee_rules' %}" class="legal-modal-page-link"><span>Open Guarantee Rules Page &rarr;</span></a>
+                    <button type="button" class="legal-modal-btn" @click="showGuaranteeModal = false">Close</button>
                 </div>
             </div>
         </div>
 
-        <!-- Privacy Policy Modal -->
-        <div class="legal-modal-backdrop" x-show="showPrivacyModal" x-transition.opacity style="display: none;" @keydown.escape.window="showPrivacyModal = false">
-            <div class="legal-modal-card" @click.outside="showPrivacyModal = false">
+        <!-- 2. Terms and Policy Modal -->
+        <div class="legal-modal-backdrop" x-show="showTermsModal" x-transition.opacity style="display: none;" @keydown.escape.window="showTermsModal = false">
+            <div class="legal-modal-card" @click.outside="showTermsModal = false">
                 <div class="legal-modal-header">
-                    <h3 class="legal-modal-title"><i class="fa-solid fa-user-shield"></i> Privacy Policy</h3>
-                    <button type="button" class="legal-modal-close" @click="showPrivacyModal = false" aria-label="Close modal">&times;</button>
+                    <h3 class="legal-modal-title"><i class="fa-solid fa-file-contract"></i> Terms of Service, Cancellation &amp; Refund Policy, and Privacy Policy</h3>
+                    <button type="button" class="legal-modal-close" @click="showTermsModal = false" aria-label="Close modal">&times;</button>
                 </div>
                 <div class="legal-modal-body">
-                    <p><strong>1. Information We Collect</strong><br>
-                    Final Clean collects contact details (name, phone number, email address) and property specifications solely to provide fixed quotes, schedule cleaning teams, and issue formal GST invoices.</p>
+                    <!-- PART A -->
+                    <div class="legal-section-block">
+                        <div class="legal-heading-part">PART A — TERMS OF SERVICE</div>
 
-                    <p><strong>2. Use of Information</strong><br>
-                    Your details are used strictly for service delivery, sending timestamped before &amp; after inspection reports, and communicating with your real estate agent in the event of a re-clean request under our Bond Back Guarantee.</p>
+                        <h4 class="legal-heading-accent">1. About these terms</h4>
+                        <p>1.1 These Terms of Service ("Terms") apply to end-of-lease cleaning services (also called bond cleaning or vacate cleaning) supplied by FinalClean, a business name of Sneh Gondaliya, ABN 74 767 637 886 ("we", "us", "our") to you, the customer ("you"), for residential properties in Sydney, NSW.</p>
+                        <p>1.2 By paying the $49 booking deposit, or by allowing our cleaner to begin work, you agree to these Terms.</p>
+                        <p>1.3 Nothing in these Terms excludes, restricts or modifies any right or remedy you have under the Australian Consumer Law that cannot lawfully be excluded. Where there is any inconsistency between these Terms and the Australian Consumer Law, the Australian Consumer Law prevails.</p>
 
-                    <p><strong>3. Third-Party Sharing</strong><br>
-                    We never sell, rent, or trade your personal data to third parties or marketing brokers. All data is stored in compliance with Australian Privacy Principles (APPs).</p>
+                        <h4 class="legal-heading-accent">2. Definitions</h4>
+                        <ul class="legal-list">
+                            <li><strong>Standard condition</strong> — a property in a reasonably maintained state consistent with normal wear and tear, requiring routine cleaning only, and not requiring restoration or the removal of built-up grime, grease, staining or marks.</li>
+                            <li><strong>Heavy-duty cleaning</strong> — cleaning required beyond standard condition. Examples include heavy grease build-up on a stove, oven or rangehood; soap scum, mould or hard-water staining in a bathroom; and marked or scuffed walls.</li>
+                            <li><strong>Estimated price range</strong> — the indicative price range shown by our online calculator, based on the details you enter.</li>
+                            <li><strong>Final quote</strong> — the fixed price we confirm with you after inspecting your property condition.</li>
+                            <li><strong>Deposit</strong> — the $49 booking deposit.</li>
+                        </ul>
 
-                    <p><strong>4. Security &amp; Contact</strong><br>
-                    Payments are handled through encrypted, PCI-compliant payment gateways. For questions regarding your data, contact privacy@finalclean.com.au.</p>
+                        <h4 class="legal-heading-accent">3. The quote and pricing model</h4>
+                        <p>3.1 <strong>Estimated range first.</strong> Our online calculator gives you an estimated price range based on the information you provide. This is an estimate only. It is not a fixed offer and it is not your final price.</p>
+                        <p>3.2 <strong>Callback and quote.</strong> After you submit your name and mobile number, we will call you back — we aim to do so within 15 minutes during our operating hours — to confirm the scope of work and give you a quote. The quote is the price that applies to your booking.</p>
+                        <p>3.3 <strong>GST.</strong> All prices we quote, including the estimated range, the final quote, any add-ons and any surcharge, are exclusive of GST and are stated as a single total price.</p>
+                        <p>3.4 <strong>Standard condition assumption.</strong> Your final quote covers a property in standard condition. It assumes the property is empty of belongings and requires routine end-of-lease cleaning only.</p>
+                        <p>3.5 <strong>Heavy-duty surcharge.</strong> If, when our cleaner arrives and inspects the property, the property requires heavy-duty cleaning, an additional charge may apply. Before we carry out any additional work or charge anything extra, we will:</p>
+                        <ul class="legal-list">
+                            <li>(a) identify the specific areas requiring heavy-duty cleaning;</li>
+                            <li>(b) take and show you photographs of those areas;</li>
+                            <li>(c) tell you the additional cost as a single GST-exclusive figure; and</li>
+                            <li>(d) only proceed once you have approved the additional charge.</li>
+                        </ul>
+                        <p>Nothing will appear on your invoice that you have not approved in advance. If you do not approve the additional charge, clause 12 applies.</p>
+                        <p>3.6 <strong>Add-ons.</strong> Optional add-ons — such as carpet steam cleaning, inside fridge, garage and balcony — are quoted separately and are only included if you request them.</p>
+
+                        <h4 class="legal-heading-accent">4. The $49 deposit</h4>
+                        <p>4.1 A $49 deposit is payable online at the time of booking to secure your booking and your scheduled time slot.</p>
+                        <p>4.2 The deposit is <strong>refundable</strong> if you cancel at any time <strong>before our cleaner arrives at the property</strong> for inspection.</p>
+                        <p>4.3 Once our cleaner has <strong>arrived at the property</strong>, the deposit becomes <strong>non-refundable</strong>, because by that point we have incurred genuine costs including scheduling and administration, allocating and paying the cleaner for the reserved time slot, and travel to the property. Full details are in Part B.</p>
+                        <p>4.4 The deposit is deducted from your final quoted amount. You are not charged twice.</p>
+
+                        <h4 class="legal-heading-accent">5. Payment</h4>
+                        <p>5.1 The balance of the final quoted price — that is, the final quote less the $49 deposit — is payable upfront, before the clean starts.</p>
+                        <p>5.2 Any approved heavy-duty surcharge or add-on is payable as agreed before that additional work is carried out.</p>
+                        <p>5.3 Payment is accepted by the methods shown at checkout and is processed by our third-party payment provider. We do not store full card numbers.</p>
+
+                        <h4 class="legal-heading-accent">6. Booking and access</h4>
+                        <p>6.1 You must give us accurate property details when booking, including property type, number of bedrooms and bathrooms, condition, and any add-ons. If the property differs materially from what you described, the final quote or a surcharge may change, subject to clause 3.5.</p>
+                        <p>6.2 You must ensure we have access to the property at the booked time. You do not need to be present. You may leave a key, provide a lockbox code, or arrange access through your agent or a nominated person.</p>
+                        <p>6.3 You must ensure the property is empty of your belongings and furniture before we start, unless we have agreed otherwise, and that electricity and water are connected so we can clean effectively.</p>
+                        <p>6.4 Please arrange free, lawful parking at or near the property. If paid parking is unavoidable, the parking cost may be added to your price. We will tell you before this is charged.</p>
+
+                        <h4 class="legal-heading-accent">7. What a standard clean includes</h4>
+                        <p>7.1 A standard end-of-lease clean is carried out against a standard vacate cleaning checklist and typically includes:</p>
+                        <ul class="legal-list">
+                            <li><strong>Kitchen</strong> — benchtops, cupboards inside and out, stovetop, oven, rangehood and sink</li>
+                            <li><strong>Bathrooms and toilet</strong> — tiles, shower, bath, vanity, mirrors and fittings</li>
+                            <li><strong>Bedrooms and living areas</strong> — skirting boards, window sills, light switches, fittings, and internal windows where safely reachable</li>
+                            <li><strong>Floors</strong> — vacuumed and mopped throughout</li>
+                        </ul>
+                        <p>7.2 A full room-by-room checklist is available on request. The specific inclusions for your booking will be confirmed in your final quote.</p>
+
+                        <h4 class="legal-heading-accent">8. What is excluded</h4>
+                        <p>8.1 Unless separately quoted and agreed, a standard clean does not include: carpet steam cleaning; inside the fridge or freezer; garage; balcony; exterior windows or any window that cannot be reached safely; pest control; rubbish or furniture removal; cleaning of walls or ceilings.</p>
+                        <p>8.2 We do not clean or handle biohazards, including blood, faeces, needles or heavy mould infestations. If we encounter these, we may decline that part of the work or quote for it separately.</p>
+
+                        <h4 class="legal-heading-accent">9. Your obligations</h4>
+                        <p>You agree to provide accurate information about the property; provide access at the booked time; empty the property of your belongings; keep electricity and water connected; secure or remove pets; and tell us in advance of anything that affects safety or the scope of work.</p>
+
+                        <h4 class="legal-heading-accent">10. The 100% Bond Back Guarantee</h4>
+                        <p>10.1 <strong>What it is.</strong> We back our standard end-of-lease clean with a 100% Bond Back Guarantee. This is a <strong>free re-clean guarantee</strong>. If your real estate agent or property manager flags a cleaning item that was covered by your booked clean, we will return and re-clean that item free of charge.</p>
+                        <p>10.2 <strong>How to claim.</strong> To use the guarantee you must:</p>
+                        <ul class="legal-list">
+                            <li>(a) report the issue to us within <strong>72 hours</strong> of the completion of your clean;</li>
+                            <li>(b) provide the written list or feedback from your agent or property manager identifying the specific cleaning items; and</li>
+                            <li>(c) give us reasonable access to return and rectify those items.</li>
+                        </ul>
+                        <p>10.3 <strong>What is covered.</strong> Only cleaning items that formed part of your booked and paid scope of work — the standard clean plus any add-ons you paid for.</p>
+                        <p>10.4 <strong>What is not covered.</strong> The guarantee does not cover items outside your booked scope; areas we could not access or clean at the time, for example because the property was not empty or utilities were disconnected; add-ons you chose not to book; damage or wear that is not a cleaning issue; issues reported more than 72 hours after completion; or any situation where another cleaner has attended the property after us.</p>
+                        <p>10.5 <strong>This is not a guarantee that your bond will be returned.</strong> Whether your bond is refunded is decided by your agent, property manager or landlord, and depends on factors outside our control — including property damage, repairs, unpaid rent, garden and outdoor condition, and the terms of your lease and condition report. Under the <em>Residential Tenancies Act 2010</em> (NSW), a tenant must leave the premises in a reasonably clean condition having regard to its condition at the start of the tenancy, fair wear and tear excepted. Our guarantee is limited to re-cleaning the cleaning items we were responsible for. It does not guarantee the return of your bond and does not cover deductions made for non-cleaning reasons.</p>
+                        <p>10.6 The guarantee entitles you to a free re-clean. It does not entitle you to a cash refund in place of a re-clean. See clause 15.</p>
+
+                        <h4 class="legal-heading-accent">11. The Price Match Guarantee</h4>
+                        <p>11.1 <strong>What it is.</strong> We will beat any comparable written quote from a Sydney cleaner by 5%, subject to the conditions below.</p>
+                        <p>11.2 <strong>Conditions.</strong> To qualify, the competitor quote must:</p>
+                        <ul class="legal-list">
+                            <li>(a) be a written quote — not verbal, not an advertisement, and not a screenshot of a headline rate;</li>
+                            <li>(b) be dated within the last 7 days;</li>
+                            <li>(c) be for the same property and the same scope of work, including the same inclusions and add-ons;</li>
+                            <li>(d) show the competitor's ABN and business name;</li>
+                            <li>(e) be a genuine, all-inclusive, GST-exclusive total price; and</li>
+                            <li>(f) be presented to us before you book.</li>
+                        </ul>
+                        <p>11.3 <strong>What is not matched.</strong> Verbal quotes; quotes excluding package items; quotes from unregistered individuals or quotes with no ABN; quotes submitted after paying deposit; coupled or bundled deals; promotional, seasonal or introductory pricing; same-day or short-notice bookings without standard scheduling.</p>
+                        <p>11.4 <strong>Verification.</strong> We may contact the competitor to verify the quote. We may decline a price match if we reasonably believe the quote is not genuine, not comparable, or has been altered. We store competitor quotes you submit for verification and record-keeping. See Part C.</p>
+                        <p>11.5 <strong>One claim per booking.</strong> The Price Match Guarantee cannot be combined with any other offer or discount.</p>
+                        <p>11.6 We may withdraw or change the Price Match Guarantee at any time, but any change will not affect a price match we have already confirmed with you.</p>
+
+                        <h4 class="legal-heading-accent">12. Declining the final quote or additional charges</h4>
+                        <p>12.1 You may decline the final quote before you pay, at no cost beyond the deposit rules in clause 4 and Part B.</p>
+                        <p>12.2 If, after our cleaner has arrived and inspected the property, you decline a heavy-duty surcharge, we may either:</p>
+                        <ul class="legal-list">
+                            <li>(a) carry out only the standard clean for the original final quote — noting that heavily soiled areas may not reach inspection standard, and the 100% Bond Back Guarantee will not cover those areas; or</li>
+                            <li>(b) where the property cannot reasonably be cleaned to standard without the additional work, decline to proceed.</li>
+                        </ul>
+                        <p>In either case the $49 deposit is non-refundable because the cleaner has arrived, but you will not be charged the balance if no cleaning is carried out.</p>
+
+                        <h4 class="legal-heading-accent">13. Insurance</h4>
+                        <p>13.1 We hold public liability insurance with NRMA, covering up to $10 million. A certificate of currency is available on request by emailing admin@finalclean.com.au.</p>
+                        <p>13.2 Where we employ staff, we hold workers compensation insurance as required by NSW law.</p>
+
+                        <h4 class="legal-heading-accent">14. Liability</h4>
+                        <p>14.1 We will perform our services with due care and skill.</p>
+                        <p>14.2 To the maximum extent permitted by law, and subject to clauses 14.3 and 15, our liability for any claim connected with our services is limited to, at our option, re-supplying the services or paying the cost of having the services re-supplied.</p>
+                        <p>14.3 Nothing in these Terms limits our liability where doing so would breach the Australian Consumer Law, including our liability for failing to meet a consumer guarantee. We do not attempt to exclude, restrict or modify any consumer guarantee.</p>
+                        <p>14.4 We are not liable for loss or damage caused by matters outside our control, including pre-existing damage, wear and tear, defects in the property, or your failure to meet your obligations under clause 9.</p>
+
+                        <h4 class="legal-heading-accent">15. Your rights under the Australian Consumer Law</h4>
+                        <p>15.1 Our services come with guarantees that cannot be excluded under the Australian Consumer Law. Among other things, we guarantee that our services will be provided with <strong>due care and skill</strong>, will be <strong>reasonably fit for any purpose</strong> you told us about, and will be <strong>supplied within a reasonable time</strong>. Any term that tries to exclude these guarantees is void.</p>
+                        <p>15.2 If we fail to meet a consumer guarantee, you are entitled to a remedy. For a <strong>major failure</strong> you may cancel and obtain a refund for the unused portion, or seek compensation for the drop in value. For a <strong>minor failure</strong> we may choose to remedy the problem by re-performing the service within a reasonable time — this is where our free re-clean applies.</p>
+                        <p>15.3 You are also entitled to be compensated for any other reasonably foreseeable loss or damage caused by our failure to meet a consumer guarantee.</p>
+
+                        <h4 class="legal-heading-accent">16. Dispute resolution</h4>
+                        <p>16.1 If you have a concern, please contact us first at admin@finalclean.com.au or 0417 389 502 so we can try to resolve it quickly.</p>
+                        <p>16.2 If we cannot resolve it, you may contact NSW Fair Trading, or apply to the NSW Civil and Administrative Tribunal (NCAT) for eligible claims. Nothing in this clause limits your legal rights.</p>
+
+                        <h4 class="legal-heading-accent">17. Governing law</h4>
+                        <p>These Terms are governed by the laws of New South Wales, Australia. You and we submit to the courts and tribunals of New South Wales.</p>
+                    </div>
+
+                    <!-- PART B -->
+                    <div class="legal-section-block">
+                        <div class="legal-heading-part">PART B — CANCELLATION &amp; REFUND POLICY</div>
+
+                        <h4 class="legal-heading-accent">18. How to cancel or reschedule</h4>
+                        <p>18.1 To cancel or reschedule, contact us as early as possible at admin@finalclean.com.au or 0417 389 502. We will confirm your cancellation or reschedule in writing.</p>
+                        <p>18.2 You can reschedule to another available time slot at no charge before the cleaner arrives, subject to availability.</p>
+
+                        <h4 class="legal-heading-accent">19. Deposit refunds</h4>
+                        <p>19.1 The $49 deposit is <strong>fully refundable</strong> if you cancel at any time <strong>before our cleaner arrives at the property</strong> for inspection.</p>
+                        <p>19.2 Once our cleaner has <strong>arrived at the property</strong>, the $49 deposit is <strong>non-refundable</strong>.</p>
+                        <p>19.3 <strong>Why the deposit is non-refundable at that point.</strong> The $49 is not a penalty. It is a genuine pre-estimate of the costs we have already incurred by the time the cleaner arrives — scheduling and administration, allocating and paying the cleaner for the reserved time slot, and travel to your property. We keep the amount deliberately modest so that it reflects those genuine costs rather than penalising you for cancelling.</p>
+                        <p>19.4 Refunds are processed to the original payment method within 5 business days.</p>
+
+                        <h4 class="legal-heading-accent">20. If you decline the final quote or a surcharge after arrival</h4>
+                        <p>20.1 If you decline the final quote or a heavy-duty surcharge after the cleaner has arrived, the $49 deposit is non-refundable under clause 19.2, but you will not be charged the balance if no cleaning is carried out. See clause 12.</p>
+
+                        <h4 class="legal-heading-accent">21. No access or lockout</h4>
+                        <p>21.1 If our cleaner arrives at the booked time and cannot access the property — for example there is no key, the code is incorrect, or nobody is available to provide entry — this is treated as the cleaner having arrived. The $49 deposit is non-refundable, and we may charge a reasonable call-out or re-attendance fee reflecting our genuine costs. We will tell you the amount before re-attending.</p>
+
+                        <h4 class="legal-heading-accent">22. If we cancel</h4>
+                        <p>22.1 We may cancel or reschedule if the property is materially different from what you described, if the property is unsafe, if utilities are not connected, or due to events beyond our control.</p>
+                        <p>22.2 If we cancel and you have not caused the cancellation, we will refund your $49 deposit in full and offer to rebook at the earliest available time.</p>
+
+                        <h4 class="legal-heading-accent">23. Refunds where the service falls short</h4>
+                        <p>23.1 If our service is not provided with due care and skill, or otherwise fails a consumer guarantee, you are entitled to a remedy under the Australian Consumer Law. See clause 15. For minor issues our first remedy is normally a free re-clean. For a major failure you may be entitled to a refund of the unused portion.</p>
+                        <p>23.2 We will not charge you for re-cleans carried out under the 100% Bond Back Guarantee or to remedy a consumer guarantee failure.</p>
+
+                        <h4 class="legal-heading-accent">24. Your rights are preserved</h4>
+                        <p>24.1 Nothing in this Cancellation &amp; Refund Policy limits or removes any right you have under the Australian Consumer Law. Where this policy and the Australian Consumer Law conflict, the Australian Consumer Law prevails.</p>
+                    </div>
+
+                    <!-- PART C -->
+                    <div class="legal-section-block">
+                        <div class="legal-heading-part">PART C — PRIVACY POLICY</div>
+
+                        <h4 class="legal-heading-accent">25. About this policy</h4>
+                        <p>25.1 This Privacy Policy explains how FinalClean (Sneh Gondaliya, ABN 74 767 637 886) collects, uses, discloses and protects your personal information, in line with the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy Principles.</p>
+                        <p>25.2 As a small business we may currently fall within the Privacy Act's small business exemption. We have chosen to follow the Australian Privacy Principles voluntarily as best practice.</p>
+
+                        <h4 class="legal-heading-accent">26. What personal information we collect</h4>
+                        <p>The kinds of personal information we collect and hold are: your name; mobile number; email address; property address and property details; your booking and service history; payment details, which are processed by our payment provider; competitor quotes you submit for a price match; records of calls, SMS messages and emails with you; and website and analytics data as described in clause 33. We do not seek to collect sensitive information and ask that you do not send it to us.</p>
+
+                        <h4 class="legal-heading-accent">27. How we collect and hold it</h4>
+                        <p>27.1 We usually collect personal information <strong>directly from you</strong> — through our online calculator and booking form, over the phone, by SMS or email, and when you submit a competitor quote.</p>
+                        <p>27.2 We also collect some information automatically when you use our website, through cookies and tracking technologies described in clause 33.</p>
+                        <p>27.3 We hold personal information in our booking and customer management system and with the service providers listed in clause 30, protected by the security measures in clause 34.</p>
+
+                        <h4 class="legal-heading-accent">28. Why we collect, hold, use and disclose it</h4>
+                        <p>We collect and use your information to: provide an estimated range and a final quote; call you back to confirm your booking; schedule and perform your clean; take payment; administer the 100% Bond Back Guarantee and the Price Match Guarantee; communicate with you about your booking, including by SMS and phone; handle complaints and re-cleans; keep records; meet our legal obligations; and, where permitted, send you marketing as described in clause 31. If we do not collect the information we need, we may be unable to quote or provide the service.</p>
+
+                        <h4 class="legal-heading-accent">29. Phone, SMS and email follow-up</h4>
+                        <p>29.1 When you submit your name and mobile number, you are asking us to call you back to confirm your quote. We rely on that request as your consent to contact you about your enquiry.</p>
+                        <p>29.2 We use SMS and email to follow up on your enquiry, send your quote, and confirm your booking. Messages about your specific booking are service messages.</p>
+                        <p>29.3 Marketing messages are covered by clause 31.</p>
+
+                        <h4 class="legal-heading-accent">30. Who we disclose it to</h4>
+                        <p>We may disclose your personal information to: our cleaners and contractors, so they can perform your clean; our payment provider; our booking and customer management system provider; our SMS and email providers; our call-tracking provider; our analytics and advertising providers, being Google and Meta, as described in clause 33; our professional advisers; and government bodies or regulators where required or authorised by law. We require our service providers to handle your information consistently with this policy.</p>
+
+                        <h4 class="legal-heading-accent">31. Direct marketing</h4>
+                        <p>31.1 We may send you marketing about our cleaning services where the law allows — generally where you gave us your details directly and would reasonably expect it, or where you have consented.</p>
+                        <p>31.2 Every marketing message includes a simple, free way to opt out. If you opt out, we will stop sending marketing within 5 business days.</p>
+                        <p>31.3 To opt out at any time, reply STOP to an SMS, use the unsubscribe link in an email, or contact us at admin@finalclean.com.au.</p>
+
+                        <h4 class="legal-heading-accent">32. Overseas disclosure</h4>
+                        <p>32.1 Some of our providers store or process data outside Australia. Google and Meta advertising and analytics services, and some cloud hosting, customer management and messaging providers, may process information in the United States and other countries.</p>
+                        <p>32.2 Where we disclose personal information to an overseas recipient, we take reasonable steps to ensure it is handled consistently with the Australian Privacy Principles.</p>
+
+                        <h4 class="legal-heading-accent">33. Cookies, analytics and advertising pixels</h4>
+                        <p>33.1 Our website uses cookies and tracking technologies including Google Analytics, Google Ads conversion tracking, the Meta (Facebook) Pixel, and call tracking. These help us understand how our site is used, measure our advertising, and follow up on enquiries.</p>
+                        <p>33.2 These tools may collect information such as your device and browser, IP address, pages viewed, and actions taken on our site, and may share signals with Google and Meta, who can combine them with other data they hold.</p>
+                        <p>33.3 We do not use tracking pixels to collect sensitive information.</p>
+                        <p>33.4 You can control cookies through your browser settings, and you can opt out of some advertising tracking through Google's and Meta's ad settings.</p>
+
+                        <h4 class="legal-heading-accent">34. Data security</h4>
+                        <p>34.1 We take reasonable steps to protect your personal information from misuse, interference, loss and unauthorised access, using measures including access controls, reputable service providers, and a secure payment provider for card payments.</p>
+
+                        <h4 class="legal-heading-accent">35. How long we keep it</h4>
+                        <p>35.1 We keep personal information only for as long as we need it for the purposes described above or to meet legal obligations, after which we take reasonable steps to destroy or de-identify it. Competitor quotes submitted for price matching are kept for a reasonable period for verification and record-keeping, and are then destroyed.</p>
+
+                        <h4 class="legal-heading-accent">36. Contact for privacy queries</h4>
+                        <p><strong>Email:</strong> admin@finalclean.com.au<br>
+                        <strong>Phone:</strong> 0417 389 502<br>
+                        <strong>Address:</strong> 237–239 Targo Road, Toongabbie NSW 2146</p>
+                    </div>
                 </div>
                 <div class="legal-modal-footer">
-                    <button type="button" class="legal-modal-btn" @click="showPrivacyModal = false">Close</button>
+                    <a href="{% url 'public:terms' %}" class="legal-modal-page-link"><span>Open Terms &amp; Policy Page &rarr;</span></a>
+                    <button type="button" class="legal-modal-btn" @click="showTermsModal = false">Close</button>
                 </div>
             </div>
         </div>
@@ -1045,12 +1388,15 @@
         }
 
         .legal-modal-card {
-            background: #0f1c3d;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
-            border-radius: 16px;
-            max-width: 580px;
+            background: #0b1329;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
+            border-radius: 18px;
+            max-width: 800px;
             width: 100%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
             animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -1065,14 +1411,15 @@
             align-items: center;
             justify-content: space-between;
             padding: 18px 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            flex-shrink: 0;
         }
 
         .legal-modal-title {
             color: var(--color-white);
             font-size: 17px;
-            font-weight: 700;
+            font-weight: 800;
             margin: 0;
             display: flex;
             align-items: center;
@@ -1095,27 +1442,104 @@
         }
 
         .legal-modal-body {
-            padding: 24px;
-            max-height: 60vh;
+            padding: 24px 28px;
+            max-height: 70vh;
             overflow-y: auto;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 14px;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 13.5px;
             line-height: 1.65;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 18px;
         }
 
         .legal-modal-body strong {
             color: var(--color-white);
         }
 
+        .legal-section-block {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 18px;
+        }
+
+        .legal-section-block:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .legal-heading-part {
+            font-size: 17px;
+            font-weight: 850;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin: 12px 0 4px;
+            border-bottom: 2px solid rgba(255, 195, 73, 0.3);
+            padding-bottom: 6px;
+        }
+
+        .legal-heading-accent {
+            font-size: 16px;
+            font-weight: 800;
+            color: #3dd5c4;
+            margin: 4px 0 2px;
+        }
+
+        .legal-modal-body h5 {
+            font-size: 14px;
+            font-weight: 750;
+            color: #ffffff;
+            margin: 8px 0 2px;
+        }
+
+        .legal-list {
+            padding-left: 20px;
+            margin: 4px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .legal-list li {
+            color: rgba(255, 255, 255, 0.84);
+        }
+
+        .legal-note-box {
+            background: rgba(61, 213, 196, 0.08);
+            border-left: 3px solid #3dd5c4;
+            padding: 10px 14px;
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 6px 0;
+        }
+
         .legal-modal-footer {
             padding: 14px 24px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
-            justify-content: flex-end;
+            align-items: center;
+            justify-content: space-between;
             background: rgba(255, 255, 255, 0.02);
+            flex-shrink: 0;
+        }
+
+        .legal-modal-page-link {
+            font-size: 13px;
+            color: #3dd5c4;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legal-modal-page-link:hover {
+            text-decoration: underline;
+            color: #ffffff;
         }
 
         .legal-modal-btn {
