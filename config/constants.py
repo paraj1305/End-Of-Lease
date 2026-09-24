@@ -12,5 +12,5 @@ DEPOSIT_REQUIRED = False
 DEPOSIT_PERCENTAGE = 0
 
 # Support & Contact
-CONTACT_PHONE = "02 7988 9050"
-CONTACT_EMAIL = "hello@finalclean.com.au"
+CONTACT_PHONE = "0466033914"
+CONTACT_EMAIL = "Admin@finalclean.com.au"

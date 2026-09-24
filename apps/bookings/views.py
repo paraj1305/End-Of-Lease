@@ -102,13 +102,13 @@ def multi_step_booking(request):
                 messages.error(request, e)
         else:
             from decimal import Decimal
-            base_clean_price = (
-                pricing_config.base_fee +
-                (Decimal(bedrooms) * pricing_config.bedroom_price) +
-                (Decimal(bathrooms) * pricing_config.bathroom_price) +
-                (Decimal(living_areas) * pricing_config.living_area_price) +
-                (Decimal(balconies) * pricing_config.balcony_price)
-            )
+            beds = max(1, int(bedrooms))
+            baths = max(1, int(bathrooms))
+            raw_price = 259 + 82 * (beds - 1) + 34 * (baths - 1)
+            if beds == 1 and baths == 1:
+                base_clean_price = Decimal("259.00")
+            else:
+                base_clean_price = Decimal(str(round(raw_price / 5) * 5))
 
             pricing = calculate_booking_price(base_clean_price, [a.price for a in selected_addons])
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from apps.bookings.models import CleaningPackage, AddOnService, PricingConfig
 from .models import FAQ
 
@@ -39,3 +39,7 @@ def guarantee_rules_view(request):
 
 def checklist_pdf_view(request):
     return render(request, 'public/checklist_pdf.html')
+
+def privacy_policy_view(request):
+    return redirect('/terms/#part-c')
+

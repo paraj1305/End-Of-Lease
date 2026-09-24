@@ -1,0 +1,203 @@
+/* ═══════════════════════════════════════════════════════════════
+   service-areas.css — Sydney & Surrounding Areas Suburb Directory
+   Strictly adheres to project Design Tokens (Zero inline CSS).
+   ═══════════════════════════════════════════════════════════════ */
+
+.seo-cities-section {
+    position: relative;
+    background: transparent;
+    padding: 60px var(--space-4) 80px;
+    overflow: hidden;
+    color: var(--color-white);
+}
+
+.seo-cities-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* ════════════════════════════════════════
+   Header
+   ════════════════════════════════════════ */
+.seo-cities-header {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 36px;
+}
+
+.seo-cities-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 22px;
+    background: rgba(32, 36, 58, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--color-white);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-xs);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.seo-cities-pill svg,
+.seo-cities-pill i {
+    color: var(--color-accent);
+}
+
+.seo-cities-title {
+    font-size: clamp(2rem, 3.8vw, 2.75rem);
+    font-weight: 900;
+    color: #FFFFFF;
+    margin: 0 0 12px;
+    letter-spacing: -0.8px;
+    line-height: 1.2;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.seo-cities-title .highlight {
+    color: var(--color-accent);
+    text-shadow: 0 2px 16px rgba(255, 195, 73, 0.45);
+}
+
+.seo-cities-sub {
+    font-size: var(--text-base);
+    color: rgba(255, 255, 255, 0.92);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+}
+
+/* ════════════════════════════════════════
+   Directory Card Wrapper
+   ════════════════════════════════════════ */
+.service-suburbs-wrap {
+    background: var(--color-white);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12), 0 0 35px rgba(255, 255, 255, 0.2);
+    padding: var(--space-8);
+    position: relative;
+    z-index: 3;
+}
+
+.service-suburbs-header {
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+.service-suburbs-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--color-primary-dark);
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(82, 94, 167, 0.08);
+    padding: 8px 22px;
+    border-radius: var(--radius-full);
+}
+
+.service-suburbs-title i {
+    color: var(--color-primary);
+    font-size: 15px;
+}
+
+.service-suburbs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-5);
+}
+
+.service-region-card {
+    background: #F8FBFF;
+    border: 1px solid rgba(82, 94, 167, 0.12);
+    border-radius: 16px;
+    padding: 18px 18px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.service-region-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(82, 94, 167, 0.1);
+}
+
+.service-region-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--color-primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(82, 94, 167, 0.1);
+    padding-bottom: 10px;
+}
+
+.service-region-title i {
+    color: var(--color-primary);
+    font-size: 13px;
+}
+
+.service-region-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.suburb-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 11px;
+    background: var(--color-white);
+    border: 1px solid rgba(82, 94, 167, 0.12);
+    color: var(--color-primary-dark);
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.15s ease;
+}
+
+.suburb-chip:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(82, 94, 167, 0.25);
+}
+
+/* ════════════════════════════════════════
+   Responsive
+   ════════════════════════════════════════ */
+@media (max-width: 992px) {
+    .service-suburbs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-4);
+    }
+}
+
+@media (max-width: 640px) {
+    .seo-cities-section {
+        padding: 40px var(--space-3) 50px;
+    }
+
+    .service-suburbs-wrap {
+        padding: var(--space-4);
+        border-radius: 18px;
+    }
+
+    .service-suburbs-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+}

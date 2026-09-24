@@ -1075,11 +1075,14 @@
             },
 
             get baseCleanPrice() {
-                return this.baseFee
-                    + (this.bedrooms * this.bedPrice)
-                    + (this.bathrooms * this.bathPrice)
-                    + (this.livingAreas * this.livingPrice)
-                    + (this.balconies * this.balconyPrice);
+                const base = 259;
+                const perBedroom = 82;
+                const perBathroom = 34;
+                const beds = Math.max(1, parseInt(this.bedrooms) || 1);
+                const baths = Math.max(1, parseInt(this.bathrooms) || 1);
+                const raw = base + perBedroom * (beds - 1) + perBathroom * (baths - 1);
+                if (beds === 1 && baths === 1) return 259;
+                return Math.round(raw / 5) * 5;
             },
             get addonsTotal() { return this.selectedAddons.reduce((s, id) => s + (__ADDON_PRICES[String(id)] || 0), 0); },
             get subtotalPrice() { return this.baseCleanPrice + this.addonsTotal; },

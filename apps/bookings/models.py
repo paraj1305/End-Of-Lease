@@ -29,15 +29,14 @@ class CleaningPackage(models.Model):
 
     @property
     def calculated_price(self):
-        """Calculate package price dynamically based on PricingConfig formula."""
-        cfg = PricingConfig.get_solo()
-        return (
-            cfg.base_fee +
-            (self.bedrooms * cfg.bedroom_price) +
-            (self.bathrooms * cfg.bathroom_price) +
-            (self.living_areas * cfg.living_area_price) +
-            (self.balconies * cfg.balcony_price)
-        )
+        """Calculate package price dynamically based on formula: 259 + 82(Bed-1) + 34(Bath-1)."""
+        from decimal import Decimal
+        beds = max(1, self.bedrooms)
+        baths = max(1, self.bathrooms)
+        raw = 259 + 82 * (beds - 1) + 34 * (baths - 1)
+        if beds == 1 and baths == 1:
+            return Decimal("259.00")
+        return Decimal(str(round(raw / 5) * 5))
 
     def save(self, *args, **kwargs):
         # Auto-update base_price if not manually locked

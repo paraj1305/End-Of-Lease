@@ -1,0 +1,511 @@
+/* ════════════════════════════════════════
+   contact.css — Final Clean Contact Page Styles
+   ════════════════════════════════════════ */
+
+.contact-page-main {
+    background: var(--color-body);
+    min-height: 100vh;
+    padding-bottom: 90px;
+    overflow-x: hidden;
+}
+
+/* ════════════════════════════════════════
+   1. HERO HEADER SECTION
+   ════════════════════════════════════════ */
+.contact-hero {
+    position: relative;
+    padding: 60px 0 50px;
+    background: linear-gradient(180deg, rgba(82, 94, 167, 0.06) 0%, rgba(255, 255, 255, 0) 100%);
+    text-align: center;
+}
+
+.contact-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 8px 18px;
+    background: rgba(82, 94, 167, 0.08);
+    border: 1px solid rgba(82, 94, 167, 0.15);
+    border-radius: var(--radius-full);
+    margin-bottom: 18px;
+}
+
+.contact-eyebrow-sparkle {
+    color: var(--color-accent);
+    font-size: 15px;
+}
+
+.contact-hero-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-weight: 900;
+    color: var(--color-primary-dark);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.contact-hero-title span {
+    color: var(--color-primary);
+}
+
+.contact-hero-subtitle {
+    font-size: clamp(15px, 2vw, 17px);
+    color: var(--color-text-muted);
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ════════════════════════════════════════
+   2. QUICK CHANNELS CARDS
+   ════════════════════════════════════════ */
+.contact-channels-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 40px auto 50px;
+    max-width: 1180px;
+}
+
+.contact-channel-card {
+    background: var(--color-white);
+    border: 1px solid rgba(82, 94, 167, 0.12);
+    border-radius: 20px;
+    padding: 24px 20px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s, border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-channel-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(82, 94, 167, 0.12);
+    border-color: rgba(82, 94, 167, 0.35);
+}
+
+.channel-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: rgba(82, 94, 167, 0.08);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.contact-channel-card:hover .channel-icon-wrap {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: scale(1.05);
+}
+
+.channel-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+    margin-bottom: 4px;
+}
+
+.channel-val {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--color-primary-dark);
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+.channel-hint {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+}
+
+.channel-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    background: rgba(73, 176, 228, 0.12);
+    color: var(--color-primary);
+}
+
+/* ════════════════════════════════════════
+   3. MAIN INTERACTION SECTION (2-COL)
+   ════════════════════════════════════════ */
+.contact-main-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 36px;
+    max-width: 1180px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+/* Form Container Card */
+.contact-form-card {
+    background: var(--color-white);
+    border: 1px solid rgba(82, 94, 167, 0.12);
+    border-radius: 28px;
+    padding: clamp(24px, 4vw, 44px);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+}
+
+.form-header-title {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--color-primary-dark);
+    margin-bottom: 8px;
+}
+
+.form-header-desc {
+    font-size: 14.5px;
+    color: var(--color-text-muted);
+    margin-bottom: 28px;
+    line-height: 1.5;
+}
+
+.contact-form-group-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.contact-field-label {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+}
+
+.contact-input,
+.contact-select,
+.contact-textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(82, 94, 167, 0.2);
+    font-size: 14.5px;
+    color: var(--color-primary-dark);
+    background: var(--color-white);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+}
+
+.contact-input:focus,
+.contact-select:focus,
+.contact-textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(82, 94, 167, 0.15);
+}
+
+.contact-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.contact-submit-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 24px;
+    background: var(--color-accent);
+    color: var(--color-primary-dark);
+    font-weight: 800;
+    font-size: 15px;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 195, 73, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    margin-top: 8px;
+}
+
+.contact-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(255, 195, 73, 0.6);
+    filter: brightness(1.04);
+}
+
+.contact-loading-text {
+    display: none;
+}
+
+.contact-success-state {
+    padding: 30px 20px;
+    text-align: center;
+    background: rgba(82, 94, 167, 0.05);
+    border-radius: 20px;
+    border: 1px dashed var(--color-primary);
+}
+
+.contact-success-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--color-primary-dark);
+    margin-bottom: 8px;
+}
+
+.contact-success-desc {
+    font-size: 14.5px;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    max-width: 480px;
+    margin: 0 auto 20px;
+}
+
+.contact-reset-btn {
+    background: var(--color-primary);
+    color: var(--color-white);
+    max-width: 200px;
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.contact-reset-btn:hover {
+    transform: translateY(-2px);
+    background: var(--color-primary-dark);
+}
+
+.coverage-pin-icon {
+    color: var(--color-primary);
+}
+
+.contact-success-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-primary-dark);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 14px;
+}
+
+/* Sidebar Info Card */
+.contact-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-guarantee-card {
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, #151827 100%);
+    border-radius: 24px;
+    padding: 28px 24px;
+    color: var(--color-white);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-guarantee-card::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 195, 73, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.guarantee-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 195, 73, 0.2);
+    border: 1px solid rgba(255, 195, 73, 0.4);
+    color: var(--color-accent);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+}
+
+.guarantee-card-title {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--color-white);
+    margin-bottom: 10px;
+    line-height: 1.25;
+}
+
+.guarantee-card-text {
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.guarantee-perks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.guarantee-perks-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.guarantee-check-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sidebar-quote-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--color-white);
+    font-weight: 800;
+    font-size: 13.5px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.sidebar-quote-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateY(-1px);
+    color: var(--color-white);
+}
+
+/* Coverage Card */
+.sidebar-coverage-card {
+    background: var(--color-white);
+    border: 1px solid rgba(82, 94, 167, 0.12);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04);
+}
+
+.coverage-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--color-primary-dark);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.coverage-desc {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.45;
+    margin-bottom: 14px;
+}
+
+.coverage-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.coverage-tag {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    background: rgba(82, 94, 167, 0.06);
+    border: 1px solid rgba(82, 94, 167, 0.12);
+    border-radius: 8px;
+    color: var(--color-primary-dark);
+}
+
+/* ════════════════════════════════════════
+   4. RESPONSIVE BREAKPOINTS
+   ════════════════════════════════════════ */
+@media (max-width: 1024px) {
+    .contact-channels-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .contact-main-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 640px) {
+    .contact-hero {
+        padding: 40px 0 30px;
+    }
+    .contact-channels-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin: 24px auto 36px;
+    }
+    .contact-form-group-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    .contact-form-card {
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+    .sidebar-guarantee-card,
+    .sidebar-coverage-card {
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+}

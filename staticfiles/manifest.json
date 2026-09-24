@@ -1,0 +1,26 @@
+{
+  "name": "End of Lease Cleaning",
+  "short_name": "EOL Cleaning",
+  "description": "Professional end of lease cleaning service. Book online in minutes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#1F2937",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/static/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/static/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["lifestyle", "services"],
+  "lang": "en-AU"
+}

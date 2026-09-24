@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Professional End of Lease Cleaning Sydney | Fixed Price From $329 | Bond Back Guarantee{% endblock %}
-{% block meta_description %}Fixed-price end of lease cleaning in Sydney. Bond back guaranteed or we re-clean free.
-Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{% endblock %}
+{% block title %}Professional End of Lease Cleaning Sydney | Instant Quotes From $259 | Bond Back Guarantee{% endblock %}
+{% block meta_description %}Professional end of lease cleaning in Sydney. Bond back guaranteed or we re-clean free.
+Before & after photos included. Book online in 60 seconds. From $259 inc. GST.{% endblock %}
 
 {% block extra_head %}
 <style>
@@ -395,9 +395,9 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             top: 0;
             bottom: 0;
             width: 2px;
-            background: #3dd5c4;
+            background: var(--color-accent);
             z-index: 8;
-            box-shadow: 0 0 10px #3dd5c4, 0 0 20px rgba(61, 213, 196, 0.8);
+            box-shadow: 0 0 10px var(--color-accent), 0 0 20px rgba(255, 195, 73, 0.7);
             transform: translateX(-50%);
         }
 
@@ -414,110 +414,26 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             top: 38%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, #3dd5c4 0%, #4facfe 100%);
-            color: #0b1329;
+            width: 48px;
+            height: 48px;
+            background: var(--color-accent);
+            color: var(--color-primary-dark);
             border: 2px solid rgba(255, 255, 255, 0.95);
             border-radius: 50%;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), 0 0 16px rgba(61, 213, 196, 0.85);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4), 0 0 16px rgba(255, 195, 73, 0.6);
             cursor: ew-resize;
             touch-action: none;
             z-index: 10;
         }
 
         .drag-btn svg {
-            width: 16px;
+            width: 18px;
             height: 12px;
-            stroke: #0b1329;
+            stroke: var(--color-primary-dark);
         }
 
         .side-label {
             display: none !important;
-        }
-
-        /* Floating Badges & Proof Card at Top */
-        .hero-floating-elements {
-            display: flex !important;
-            position: absolute;
-            top: 86px;
-            left: 16px;
-            right: 16px;
-            justify-content: space-between;
-            align-items: flex-start;
-            z-index: 12;
-            pointer-events: none;
-        }
-
-        .hero-top-badges {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .hero-top-right-group {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 8px;
-        }
-
-        .hero-pill-tag {
-            display: inline-flex;
-            align-items: center;
-            padding: 5px 12px;
-            background: rgba(11, 19, 41, 0.72);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: var(--radius-full);
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.8px;
-            color: #fca5a5;
-            text-transform: uppercase;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-        }
-
-        .hero-pill-tag.accent {
-            color: #3dd5c4;
-            border-color: rgba(61, 213, 196, 0.35);
-        }
-
-        .hero-proof-card {
-            background: rgba(15, 23, 42, 0.82);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            border-radius: 14px;
-            padding: 8px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
-            text-align: left;
-        }
-
-        .hero-proof-label {
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 0.8px;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: uppercase;
-        }
-
-        .hero-proof-amount {
-            font-size: 18px;
-            font-weight: 900;
-            color: var(--color-accent);
-            line-height: 1.1;
-            letter-spacing: -0.3px;
-        }
-
-        .hero-proof-meta {
-            font-size: 9.5px;
-            color: rgba(255, 255, 255, 0.65);
-            white-space: nowrap;
         }
 
         /* Hero Content: Direct Placement on Vignetted Background */
@@ -543,23 +459,23 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             align-items: center;
             justify-content: flex-start;
             gap: 6px;
-            font-size: 10.5px;
+            font-size: 11px;
             font-weight: 800;
-            letter-spacing: 0.8px;
+            letter-spacing: 1px;
             margin-bottom: 8px;
             background: transparent !important;
             border: none !important;
             padding: 0 !important;
-            color: #3dd5c4 !important;
+            color: var(--color-accent) !important;
             text-transform: uppercase;
         }
 
         .hero-eyebrow-dot {
-            width: 6px;
-            height: 6px;
-            background: #3dd5c4;
+            width: 7px;
+            height: 7px;
+            background: var(--color-accent);
             border-radius: 50%;
-            box-shadow: 0 0 8px #3dd5c4;
+            box-shadow: 0 0 8px var(--color-accent);
             display: inline-block;
             flex-shrink: 0;
         }
@@ -574,7 +490,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         }
 
         .hero-h1 .gradient-text {
-            background: linear-gradient(135deg, #3dd5c4 0%, #4facfe 50%, #93c5fd 100%);
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-accent) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -612,30 +528,31 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         .btn-primary-hero {
             width: 100%;
             justify-content: center;
-            padding: 13px 20px;
+            padding: 14px 20px;
             font-size: 15.5px;
             font-weight: 850;
             box-sizing: border-box;
-            background: linear-gradient(90deg, #3dd5c4 0%, #4facfe 100%);
-            color: #0b1329 !important;
+            background: var(--color-accent);
+            color: var(--color-primary-dark) !important;
             border-radius: var(--radius-full);
-            box-shadow: 0 6px 20px rgba(61, 213, 196, 0.45);
+            box-shadow: 0 6px 20px rgba(255, 195, 73, 0.45);
             border: none;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .hero-phone-cta {
             width: 100%;
             justify-content: center;
-            padding: 9px 20px;
+            padding: 11px 20px;
             font-size: 15px;
             font-weight: 800;
             box-sizing: border-box;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1.5px solid rgba(61, 213, 196, 0.35);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: var(--radius-full);
@@ -651,11 +568,11 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #3dd5c4 0%, #4facfe 100%);
+            background: var(--color-accent);
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            color: #0b1329;
+            color: var(--color-primary-dark);
             font-size: 13px;
             flex-shrink: 0;
         }
@@ -1432,7 +1349,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         padding: 11px 8px 10px;
         background: #ffffff;
         border: 1.5px solid #dbeafe;
-        border-radius: 20px; /* Perfectly proportioned modern square box */
+        border-radius: 20px;
+        /* Perfectly proportioned modern square box */
         box-shadow: 0 4px 14px rgba(37, 99, 235, 0.08);
         cursor: pointer;
         user-select: none;
@@ -1638,6 +1556,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             opacity: 0;
             transform: translateY(4px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
@@ -2098,10 +2017,12 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             transform: scale(0.9);
             opacity: 0.85;
         }
+
         50% {
             transform: scale(1.25);
             opacity: 0;
         }
+
         100% {
             transform: scale(0.9);
             opacity: 0.85;
@@ -2240,6 +2161,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     @media (max-width: 640px) {
+
         .calc-widget-wrap,
         #calc-widget {
             scroll-margin-top: 85px;
@@ -2406,6 +2328,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             0% {
                 transform: translateX(0);
             }
+
             100% {
                 transform: translateX(-50%);
             }
@@ -2676,14 +2599,41 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     /* Images */
-    .scope-img-kitchen-before { background-image: url('/static/images/before_clean.png'); }
-    .scope-img-kitchen-after  { background-image: url('/static/images/after_clean.png'); }
-    .scope-img-bath-before    { background-image: url('/static/images/before_clean.png'); filter: sepia(0.25) hue-rotate(-20deg) brightness(0.85); }
-    .scope-img-bath-after     { background-image: url('/static/images/after_clean.png'); filter: brightness(1.1) contrast(1.05); }
-    .scope-img-living-before  { background-image: url('/static/images/before_clean.png'); filter: contrast(1.2) brightness(0.8); }
-    .scope-img-living-after   { background-image: url('/static/images/after_clean.png'); filter: brightness(1.12); }
-    .scope-img-window-before  { background-image: url('/static/images/dirty-window.png'); }
-    .scope-img-window-after   { background-image: url('/static/images/clean-window.png'); }
+    .scope-img-kitchen-before {
+        background-image: url('/static/images/oven_before.png');
+    }
+
+    .scope-img-kitchen-after {
+        background-image: url('/static/images/oven_after.png');
+    }
+
+    .scope-img-bath-before {
+        background-image: url('/static/images/b-f/bathroom_before.jpeg');
+        filter: sepia(0.25) hue-rotate(-20deg) brightness(0.85);
+    }
+
+    .scope-img-bath-after {
+        background-image: url('/static/images/b-f/bathroom_after.jpeg');
+        filter: brightness(1.1) contrast(1.05);
+    }
+
+    .scope-img-living-before {
+        background-image: url('/static/images/b-f/carpet_before.webp');
+        filter: contrast(1.2) brightness(0.8);
+    }
+
+    .scope-img-living-after {
+        background-image: url('/static/images/b-f/carpet_after.webp');
+        filter: brightness(1.12);
+    }
+
+    .scope-img-window-before {
+        background-image: url('/static/images/b-f/cabinets_before.webp');
+    }
+
+    .scope-img-window-after {
+        background-image: url('/static/images/b-f/cabinets_after.webp');
+    }
 
     /* Card Bottom Body — Clean Title Only */
     .scope-card-body {
@@ -3521,6 +3471,40 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         height: 70px;
     }
 
+    /* ════════════════════════════════════════
+       Why Choose Us — Comparison Table
+    ════════════════════════════════════════ */
+    .custom-shape-divider-top {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        margin-bottom: -1px;
+    }
+
+    .custom-shape-divider-top svg {
+        position: relative;
+        display: block;
+        width: calc(100% + 1.3px);
+        height: 70px;
+    }
+
+    .custom-shape-divider-bottom {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        margin-top: -1px;
+        transform: rotate(180deg);
+    }
+
+    .custom-shape-divider-bottom svg {
+        position: relative;
+        display: block;
+        width: calc(100% + 1.3px);
+        height: 70px;
+    }
+
     .comparison-section {
         padding: 100px var(--space-4);
         position: relative;
@@ -3711,11 +3695,12 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     /* Data rows */
     .comp-cell {
         padding: 16px 20px;
-        height: 72px;
+        min-height: 72px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        box-sizing: border-box;
     }
 
     .comp-cell:last-child {
@@ -3728,6 +3713,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         font-weight: 700;
         color: var(--color-primary-dark);
         gap: 14px;
+        line-height: 1.35;
     }
 
     .comp-col-center .comp-cell {
@@ -3768,6 +3754,23 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .comp-text-tag {
+        font-size: 13.5px;
+        font-weight: 700;
+        color: #64748b;
+    }
+
+    .comp-addon-badge-blue {
+        background: rgba(255, 255, 255, 0.2);
+        color: var(--color-white);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        font-size: 12.5px;
+        font-weight: 800;
+        padding: 4px 14px;
+        border-radius: 100px;
+        letter-spacing: 0.3px;
     }
 
     /* CTA */
@@ -3881,7 +3884,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         }
 
         .comp-cell {
-            height: 58px;
+            min-height: 64px;
             padding: 6px 4px;
         }
 
@@ -3920,6 +3923,15 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             height: 19px;
         }
 
+        .comp-text-tag {
+            font-size: 10.5px;
+        }
+
+        .comp-addon-badge-blue {
+            font-size: 9.5px;
+            padding: 2px 8px;
+        }
+
         .comparison-cta {
             margin-top: 30px;
         }
@@ -3931,6 +3943,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             font-size: 15px;
         }
     }
+
     /* ════════════════════════════════════════ */
     /* Premium FAQ Section                      */
     /* ════════════════════════════════════════ */
@@ -4249,6 +4262,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         position: relative;
         z-index: 2;
     }
+
     /* FAQ shield icon */
     .faq-shield-icon {
         color: #ffc349;
@@ -4380,8 +4394,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     }
 
     @keyframes agencyScroll {
-        from { transform: translateX(0); }
-        to { transform: translateX(-50%); }
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
     }
 
     .agency-logo-pill {
@@ -4419,16 +4438,57 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         color: #ffffff;
     }
 
-    .agency-icon.rw  { background: #FFCE00; color: #111111; }
-    .agency-icon.mc  { background: #1B2B4C; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.3); }
-    .agency-icon.lj  { background: #E4002B; color: #FFFFFF; }
-    .agency-icon.bp  { background: #0A5E44; color: #FFFFFF; }
-    .agency-icon.rh  { background: #FFA800; color: #111111; }
-    .agency-icon.c21 { background: #BE9A59; color: #111111; }
-    .agency-icon.hc  { background: #004B87; color: #FFFFFF; }
-    .agency-icon.fn  { background: #D62329; color: #FFFFFF; }
-    .agency-icon.bw  { background: #1A1A1A; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.3); }
-    .agency-icon.rea { background: #E40000; color: #FFFFFF; }
+    .agency-icon.rw {
+        background: #FFCE00;
+        color: #111111;
+    }
+
+    .agency-icon.mc {
+        background: #1B2B4C;
+        color: #FFFFFF;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .agency-icon.lj {
+        background: #E4002B;
+        color: #FFFFFF;
+    }
+
+    .agency-icon.bp {
+        background: #0A5E44;
+        color: #FFFFFF;
+    }
+
+    .agency-icon.rh {
+        background: #FFA800;
+        color: #111111;
+    }
+
+    .agency-icon.c21 {
+        background: #BE9A59;
+        color: #111111;
+    }
+
+    .agency-icon.hc {
+        background: #004B87;
+        color: #FFFFFF;
+    }
+
+    .agency-icon.fn {
+        background: #D62329;
+        color: #FFFFFF;
+    }
+
+    .agency-icon.bw {
+        background: #1A1A1A;
+        color: #FFFFFF;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .agency-icon.rea {
+        background: #E40000;
+        color: #FFFFFF;
+    }
 
 
 
@@ -4458,7 +4518,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     .scope-outcome-text {
         font-size: 13.5px;
         line-height: 1.5;
-        color: #0f172a; /* Solid dark text with clear readability */
+        color: #0f172a;
+        /* Solid dark text with clear readability */
         font-weight: 600;
         margin: 0;
     }
@@ -5109,15 +5170,15 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 {% block content %}
 
 <!-- ════════ HERO with Before/After Slider ════════ -->
-<section class="hero-section" id="hero-slider" aria-label="Before and after cleaning comparison">
+<section class="hero-section" id="hero-slider" aria-label="Cleaning comparison slider">
 
-    <!-- The Visual Before/After Slider Stage (Top half on mobile, full background on desktop) -->
+    <!-- The Visual Slider Stage (Top half on mobile, full background on desktop) -->
     <div class="hero-slider-stage" id="hero-slider-stage">
-        <!-- BEFORE image -->
-        <div class="hero-before" role="img" aria-label="Apartment before cleaning"></div>
+        <!-- Comparison images -->
+        <div class="hero-before" role="img" aria-label="Apartment interior"></div>
 
-        <!-- AFTER image (clipped by JS) -->
-        <div class="hero-after" id="hero-after" role="img" aria-label="Apartment after professional cleaning"></div>
+        <!-- Cleaned image (clipped by JS) -->
+        <div class="hero-after" id="hero-after" role="img" aria-label="Apartment professional cleaning"></div>
 
         <!-- Hero section top gradient for navbar readability -->
         <div class="hero-top-gradient" aria-hidden="true"></div>
@@ -5129,25 +5190,6 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <path d="M7 1L1 7l6 6M15 1l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
-            </div>
-        </div>
-
-        <!-- Before & After Badges -->
-        <span class="side-label label-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
-        <span class="side-label label-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
-    </div>
-
-    <!-- Top floating tags & proof card (visible on mobile reference match) -->
-    <div class="hero-floating-elements" aria-hidden="true">
-        <div class="hero-top-badges">
-            <span class="hero-pill-tag">END OF TENANCY</span>
-        </div>
-        <div class="hero-top-right-group">
-            <span class="hero-pill-tag accent">MOVEOUT CLEAN</span>
-            <div class="hero-proof-card">
-                <span class="hero-proof-label">BOND RETURNED</span>
-                <span class="hero-proof-amount">$3,850</span>
-                <span class="hero-proof-meta">Priya &middot; Parramatta &middot; 2 days ago</span>
             </div>
         </div>
     </div>
@@ -5163,7 +5205,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <span class="gradient-text">Bond back. Every dollar.</span>
         </h1>
         <p class="hero-desc">
-            Fixed-price end of lease cleaning to the real estate agent's checklist &mdash; with a <strong>free 72-hour re-clean guarantee</strong> and before &amp; after photos included. From <strong>$329 inc. GST</strong>.
+            Professional end of lease cleaning to the real estate agent's checklist &mdash; with a <strong>free 72-hour
+                re-clean guarantee</strong> and inspection photos included. From <strong>$259 inc. GST</strong>.
         </p>
         <div class="hero-guarantee-pill">
             <i class="fa-solid fa-shield-halved"></i>
@@ -5175,11 +5218,11 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         </div>
         <div class="hero-ctas">
             <a href="#calc-widget" class="btn-primary-hero">
-                <span>Get my fixed price &rarr;</span>
+                <span>Get instant quote &rarr;</span>
             </a>
             <a href="tel:0279889050" class="hero-phone-cta">
                 <span class="hero-phone-icon-wrap"><i class="fa-solid fa-phone"></i></span>
-                <span>Call 02 7988 9050</span>
+                <span>Call 0466033914</span>
             </a>
         </div>
         <div class="hero-stats">
@@ -5206,7 +5249,9 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         <textPath href="#wavyPath" startOffset="0%">
             <animate attributeName="startOffset" from="0%" to="-1000%" begin="0s" dur="380s" repeatCount="indefinite" />
             {% for i in '123456789012345678901234567890' %}
-            ★ 4.9 Verified rating &#160; · &#160; 100% Bond Back Guarantee — free re-clean until your agent signs off &#160; · &#160; $10M public liability &#160; · &#160; Police-checked cleaners &#160; · &#160; Fully insured &#160; · &#160; Real estate agency checklists &#160; · &#160; 7 days a week &#160; · &#160;
+            ★ 4.9 Verified rating &#160; · &#160; 100% Bond Back Guarantee — free re-clean until your agent signs off
+            &#160; · &#160; $10M public liability &#160; · &#160; Police-checked cleaners &#160; · &#160; Fully insured
+            &#160; · &#160; Real estate agency checklists &#160; · &#160; 7 days a week &#160; · &#160;
             {% endfor %}
         </textPath>
     </text>
@@ -5220,7 +5265,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         <div class="mobile-trust-group">
             <span class="trust-item"><i class="fa-solid fa-star trust-icon-star"></i> 4.9 Verified rating</span>
             <span class="trust-bullet">·</span>
-            <span class="trust-item"><i class="fa-solid fa-shield-halved trust-icon"></i> 100% Bond Back Guarantee — free re-clean until your agent signs off</span>
+            <span class="trust-item"><i class="fa-solid fa-shield-halved trust-icon"></i> 100% Bond Back Guarantee —
+                free re-clean until your agent signs off</span>
             <span class="trust-bullet">·</span>
             <span class="trust-item"><i class="fa-solid fa-building-shield trust-icon"></i> $10M public liability</span>
             <span class="trust-bullet">·</span>
@@ -5228,7 +5274,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <span class="trust-bullet">·</span>
             <span class="trust-item"><i class="fa-solid fa-file-shield trust-icon"></i> Fully insured</span>
             <span class="trust-bullet">·</span>
-            <span class="trust-item"><i class="fa-solid fa-clipboard-check trust-icon"></i> Real estate agency checklists</span>
+            <span class="trust-item"><i class="fa-solid fa-clipboard-check trust-icon"></i> Real estate agency
+                checklists</span>
             <span class="trust-bullet">·</span>
             <span class="trust-item"><i class="fa-solid fa-calendar-check trust-icon"></i> 7 days a week</span>
             <span class="trust-bullet">·</span>
@@ -5236,7 +5283,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         <div class="mobile-trust-group" aria-hidden="true">
             <span class="trust-item"><i class="fa-solid fa-star trust-icon-star"></i> 4.9 Verified rating</span>
             <span class="trust-bullet">·</span>
-            <span class="trust-item"><i class="fa-solid fa-shield-halved trust-icon"></i> 100% Bond Back Guarantee — free re-clean until your agent signs off</span>
+            <span class="trust-item"><i class="fa-solid fa-shield-halved trust-icon"></i> 100% Bond Back Guarantee —
+                free re-clean until your agent signs off</span>
             <span class="trust-bullet">·</span>
             <span class="trust-item"><i class="fa-solid fa-building-shield trust-icon"></i> $10M public liability</span>
             <span class="trust-bullet">·</span>
@@ -5244,7 +5292,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <span class="trust-bullet">·</span>
             <span class="trust-item"><i class="fa-solid fa-file-shield trust-icon"></i> Fully insured</span>
             <span class="trust-bullet">·</span>
-            <span class="trust-item"><i class="fa-solid fa-clipboard-check trust-icon"></i> Real estate agency checklists</span>
+            <span class="trust-item"><i class="fa-solid fa-clipboard-check trust-icon"></i> Real estate agency
+                checklists</span>
             <span class="trust-bullet">·</span>
             <span class="trust-item"><i class="fa-solid fa-calendar-check trust-icon"></i> 7 days a week</span>
             <span class="trust-bullet">·</span>
@@ -5276,7 +5325,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             <div class="quote-step-title">
                                 01 &middot; Price Match Guarantee
                             </div>
-                            <p class="quote-step-desc">Found it cheaper? We'll beat it by 5%. Send us a written quote for the same scope and we'll beat it by 5%. Terms Apply.</p>
+                            <p class="quote-step-desc">Found it cheaper? We'll beat it by 5%. Send us a written quote
+                                for the same scope and we'll beat it by 5%. Terms Apply.</p>
                         </div>
                     </div>
 
@@ -5286,7 +5336,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             <div class="quote-step-title">
                                 02 100% Bond Back Guarantee
                             </div>
-                            <p class="quote-step-desc">If your agent isn't happy, we're not finished. Found anything within 72 hours of our clean and we come back and fix it free.</p>
+                            <p class="quote-step-desc">If your agent isn't happy, we're not finished. Found anything
+                                within 72 hours of our clean and we come back and fix it free.</p>
                         </div>
                     </div>
                 </div>
@@ -5318,7 +5369,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                         <div class="calc-step-dots">
                             <span class="calc-step-dot" :class="{ 'active': step === 1, 'completed': step > 1 }"></span>
                             <span class="calc-step-dot" :class="{ 'active': step === 2, 'completed': step > 2 }"></span>
-                            <span class="calc-step-dot" :class="{ 'active': step === 3, 'completed': step === 3 }"></span>
+                            <span class="calc-step-dot"
+                                :class="{ 'active': step === 3, 'completed': step === 3 }"></span>
                         </div>
                     </div>
                     <div class="calc-progress-track">
@@ -5431,7 +5483,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="calc-step-panel" x-show="step === 2" x-cloak>
                         <span class="calc-widget-eyebrow">Almost there</span>
                         <h3 class="calc-widget-title">Step 2 — Timing &amp; Contact</h3>
-                        <p class="calc-widget-subtitle">Enter your preferred date, time slot, and contact details to reveal your price.</p>
+                        <p class="calc-widget-subtitle">Enter your preferred date, time slot, and contact details to
+                            reveal your price.</p>
 
                         <!-- Preferred Date -->
                         <div class="calc-form-group">
@@ -5439,9 +5492,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                                 <i class="fa-regular fa-calendar-check"></i>
                                 <span>Preferred Date</span>
                             </label>
-                            <input type="date" id="calc-pref-date" class="calc-form-input"
-                                x-model="preferredDate" :min="minDate" @change="clearError('date')"
-                                :class="{ 'has-error': errors.date }">
+                            <input type="date" id="calc-pref-date" class="calc-form-input" x-model="preferredDate"
+                                :min="minDate" @change="clearError('date')" :class="{ 'has-error': errors.date }">
                             <span class="calc-form-error" x-show="errors.date" x-text="errors.date" x-cloak></span>
                         </div>
 
@@ -5475,10 +5527,11 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                                 <i class="fa-regular fa-user"></i>
                                 <span>First Name</span>
                             </label>
-                            <input type="text" id="calc-first-name" class="calc-form-input"
-                                placeholder="e.g. Sarah" x-model="firstName" @input="clearError('firstName')"
+                            <input type="text" id="calc-first-name" class="calc-form-input" placeholder="e.g. Sarah"
+                                x-model="firstName" @input="clearError('firstName')"
                                 :class="{ 'has-error': errors.firstName }">
-                            <span class="calc-form-error" x-show="errors.firstName" x-text="errors.firstName" x-cloak></span>
+                            <span class="calc-form-error" x-show="errors.firstName" x-text="errors.firstName"
+                                x-cloak></span>
                         </div>
 
                         <div class="calc-form-group">
@@ -5486,9 +5539,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                                 <i class="fa-solid fa-phone"></i>
                                 <span>Mobile Number</span>
                             </label>
-                            <input type="tel" id="calc-phone" class="calc-form-input"
-                                placeholder="e.g. 0412 345 678" x-model="phone" @input="clearError('phone')"
-                                :class="{ 'has-error': errors.phone }">
+                            <input type="tel" id="calc-phone" class="calc-form-input" placeholder="e.g. 0412 345 678"
+                                x-model="phone" @input="clearError('phone')" :class="{ 'has-error': errors.phone }">
                             <span class="calc-form-error" x-show="errors.phone" x-text="errors.phone" x-cloak></span>
                         </div>
 
@@ -5519,7 +5571,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <!-- Step 3 — Price Reveal                    -->
                     <!-- ════════════════════════════════════════ -->
                     <div class="calc-step-panel" x-show="step === 3" x-cloak>
-                        <span class="calc-widget-eyebrow">Fixed &amp; Transparent</span>
+                        <span class="calc-widget-eyebrow">Instant &amp; Transparent</span>
                         <h3 class="calc-widget-title">Step 3 — Price Reveal</h3>
 
                         <!-- Summary Details Card -->
@@ -5529,7 +5581,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                                 <span class="calc-summary-val" x-text="propertySummary"></span>
                             </div>
                             <div class="calc-summary-row">
-                                <span class="calc-summary-label"><i class="fa-regular fa-calendar"></i> Date &amp; Time</span>
+                                <span class="calc-summary-label"><i class="fa-regular fa-calendar"></i> Date &amp;
+                                    Time</span>
                                 <span class="calc-summary-val" x-text="dateTimeSummary"></span>
                             </div>
                             <div class="calc-summary-row" x-show="selectedAddonsCount > 0">
@@ -5558,7 +5611,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                                     </svg>
                                 </div>
                                 <div class="calc-result-info">
-                                    <span class="calc-result-label">Total Fixed Price</span>
+                                    <span class="calc-result-label">Estimated Total Quote</span>
                                     <span class="calc-result-incgst">Inc. GST - No hidden fees</span>
                                 </div>
                             </div>
@@ -5566,7 +5619,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                                 <svg class="calc-sparkle-star" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
                                 </svg>
-                                <div class="calc-result-price" x-ref="priceDisplay" x-text="'$' + totalPrice">$244</div>
+                                <div class="calc-result-price" x-ref="priceDisplay" x-text="'$' + totalPrice">$259</div>
                             </div>
                         </div>
 
@@ -5590,7 +5643,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             </div>
 
                             <p class="calc-confirm-message">
-                                Our team will call you in <strong>15 minutes</strong> to confirm your booking and secure your scheduled arrival slot.
+                                Our team will call you in <strong>15 minutes</strong> to confirm your booking and secure
+                                your scheduled arrival slot.
                             </p>
 
                             <div class="calc-confirm-pills">
@@ -5627,7 +5681,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
 <section class="agency-strip-section">
     <div class="agency-strip-header reveal-fade-up">
         <span class="agency-strip-title">
-            <i class="fa-solid fa-building-circle-check"></i> Real Estate Agency Checklists Followed &amp; Accepted Across Sydney
+            <i class="fa-solid fa-building-circle-check"></i> Real Estate Agency Checklists Followed &amp; Accepted
+            Across Sydney
         </span>
     </div>
     <div class="agency-strip-marquee">
@@ -5672,13 +5727,14 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 End of Lease <span class="highlight">Cleaning Packages</span>
             </h2>
             <p class="package-list-subheading">
-                Fixed-price move-out packages tailored to your Sydney property size with 100% bond back guarantee.
+                Comprehensive move-out packages tailored to your Sydney property size with 100% bond back guarantee.
             </p>
         </div>
 
         <div class="package-list-stack reveal-stagger">
             {% for package in packages %}
-            <a href="#calc-widget" class="package-list-card{% if forloop.counter == 2 %} is-popular{% endif %}" aria-label="Select {{ package.name }}">
+            <a href="#calc-widget" class="package-list-card{% if forloop.counter == 2 %} is-popular{% endif %}"
+                aria-label="Select {{ package.name }}">
                 {% if forloop.counter == 2 %}
                 <span class="package-card-popular-badge">MOST POPULAR</span>
                 {% endif %}
@@ -5748,7 +5804,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         <div class="google-trust-badge">
             <span class="reviews-badge-icon"><i class="fa-solid fa-circle-check"></i></span>
             <span class="google-badge-stars">★★★★★</span>
-            <span class="google-badge-text">4.9 Verified Rating <span class="google-badge-count">(350+ Reviews)</span></span>
+            <span class="google-badge-text">4.9 Verified Rating <span class="google-badge-count">(350+
+                    Reviews)</span></span>
         </div>
         <h2 class="reviews-heading">Loved by tenants and real estate agents.</h2>
         <p class="reviews-subheading">
@@ -5757,8 +5814,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     </div>
 
     <!-- Interactive Slider Container -->
-    <div class="reviews-slider-container"
-        x-data="{
+    <div class="reviews-slider-container" x-data="{
             currentIndex: 0,
             maxIndex: 3,
             autoSlideTimer: null,
@@ -5873,12 +5929,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     track.scrollLeft = this.scrollLeftStart - walk;
                 });
             }
-        }"
-        @mouseenter="pause()"
-        @mouseleave="resume()"
-        @touchstart.passive="pause()"
-        @touchend.passive="setTimeout(() => resume(), 3000)"
-    >
+        }" @mouseenter="pause()" @mouseleave="resume()" @touchstart.passive="pause()"
+        @touchend.passive="setTimeout(() => resume(), 3000)">
         <!-- Top Navigation Bar (Prev / Next Buttons) -->
         <div class="reviews-top-bar">
             <button type="button" class="reviews-nav-btn prev" @click="prev()" aria-label="Previous Reviews">
@@ -5890,19 +5942,18 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         </div>
 
         <!-- Reviews Slider Track -->
-        <div class="reviews-slider-track"
-            x-ref="reviewsTrack"
-            @scroll.debounce.100ms="onScroll($event)"
-        >
+        <div class="reviews-slider-track" x-ref="reviewsTrack" @scroll.debounce.100ms="onScroll($event)">
             <!-- Review 1: Priya M. -->
             <div class="review-card">
                 <div>
                     <div class="review-card-header">
-                        <img src="{% static 'images/reviews/priya_m.jpg' %}" alt="Priya M." class="review-image" loading="lazy">
+                        <img src="{% static 'images/reviews/priya_m.jpg' %}" alt="Priya M." class="review-image"
+                            loading="lazy">
                         <div class="review-meta">
                             <div class="review-name-row">
                                 <span class="review-author">Priya M.</span>
-                                <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                                <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i>
+                                    Verified</span>
                             </div>
                             <span class="review-suburb"><i class="fa-solid fa-location-dot"></i> Parramatta</span>
                             <div class="review-stars-row" aria-label="5 out of 5 stars">
@@ -5915,11 +5966,15 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                         </div>
                     </div>
                     <div class="review-body">
-                        <p class="review-text">"Had two other quotes and FinalClean wasn't the cheapest at first. Sent them the other quote and they beat it by 5% like they said on the website, no arguing about it. Honestly didn't expect them to actually honour it. Clean was great too, bond of $3850 came back in full."</p>
+                        <p class="review-text">"Had two other quotes and FinalClean wasn't the cheapest at first. Sent
+                            them the other quote and they beat it by 5% like they said on the website, no arguing about
+                            it. Honestly didn't expect them to actually honour it. Clean was great too, bond of $3850
+                            came back in full."</p>
                     </div>
                 </div>
                 <div class="review-card-footer">
-                    <span class="review-outcome-tag"><i class="fa-solid fa-shield-halved"></i> $3,850 Bond Back in Full</span>
+                    <span class="review-outcome-tag"><i class="fa-solid fa-shield-halved"></i> $3,850 Bond Back in
+                        Full</span>
                     <span class="review-verified-source"><i class="fa-solid fa-circle-check"></i> Verified</span>
                 </div>
             </div>
@@ -5928,11 +5983,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="review-card">
                 <div>
                     <div class="review-card-header">
-                        <img src="{% static 'images/reviews/jason_k.jpg' %}" alt="Jason K." class="review-image" loading="lazy">
+                        <img src="{% static 'images/reviews/jason_k.jpg' %}" alt="Jason K." class="review-image"
+                            loading="lazy">
                         <div class="review-meta">
                             <div class="review-name-row">
                                 <span class="review-author">Jason K.</span>
-                                <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                                <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i>
+                                    Verified</span>
                             </div>
                             <span class="review-suburb"><i class="fa-solid fa-location-dot"></i> Marrickville</span>
                             <div class="review-stars-row" aria-label="5 out of 5 stars">
@@ -5945,11 +6002,15 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                         </div>
                     </div>
                     <div class="review-body">
-                        <p class="review-text">"Agent flagged the shower screen and one of the window tracks after the inspection. Messaged FinalClean that afternoon and they were back the next morning to sort it out, didn't charge me anything. Got the whole $2,850 bond back. That guarantee is the real thing, not just words on a website."</p>
+                        <p class="review-text">"Agent flagged the shower screen and one of the window tracks after the
+                            inspection. Messaged FinalClean that afternoon and they were back the next morning to sort
+                            it out, didn't charge me anything. Got the whole $2,850 bond back. That guarantee is the
+                            real thing, not just words on a website."</p>
                     </div>
                 </div>
                 <div class="review-card-footer">
-                    <span class="review-outcome-tag"><i class="fa-solid fa-rotate-left"></i> Free Re-clean &amp; Bond Saved</span>
+                    <span class="review-outcome-tag"><i class="fa-solid fa-rotate-left"></i> Free Re-clean &amp; Bond
+                        Saved</span>
                     <span class="review-verified-source"><i class="fa-solid fa-circle-check"></i> Verified</span>
                 </div>
             </div>
@@ -5958,11 +6019,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="review-card">
                 <div>
                     <div class="review-card-header">
-                        <img src="{% static 'images/reviews/summer.jpg' %}" alt="Summer" class="review-image" loading="lazy">
+                        <img src="{% static 'images/reviews/summer.jpg' %}" alt="Summer" class="review-image"
+                            loading="lazy">
                         <div class="review-meta">
                             <div class="review-name-row">
                                 <span class="review-author">Summer</span>
-                                <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                                <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i>
+                                    Verified</span>
                             </div>
                             <span class="review-suburb"><i class="fa-solid fa-location-dot"></i> Ryde</span>
                             <div class="review-stars-row" aria-label="4 out of 5 stars">
@@ -5975,11 +6038,15 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                         </div>
                     </div>
                     <div class="review-body">
-                        <p class="review-text">"Spent an entire weekend trying to do it myself and the oven and bathroom just would not come up. Rang FinalClean on Friday half expecting to be told next week, they came Sunday morning. Should've just called them at the start and saved myself two days. Worth every cent."</p>
+                        <p class="review-text">"Spent an entire weekend trying to do it myself and the oven and bathroom
+                            just would not come up. Rang FinalClean on Friday half expecting to be told next week, they
+                            came Sunday morning. Should've just called them at the start and saved myself two days.
+                            Worth every cent."</p>
                     </div>
                 </div>
                 <div class="review-card-footer">
-                    <span class="review-outcome-tag"><i class="fa-solid fa-calendar-check"></i> Sunday Rescue Clean</span>
+                    <span class="review-outcome-tag"><i class="fa-solid fa-calendar-check"></i> Sunday Rescue
+                        Clean</span>
                     <span class="review-verified-source"><i class="fa-solid fa-circle-check"></i> Verified</span>
                 </div>
             </div>
@@ -5988,11 +6055,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="review-card">
                 <div>
                     <div class="review-card-header">
-                        <img src="{% static 'images/reviews/ahmed_r.jpg' %}" alt="Ahmed R." class="review-image" loading="lazy">
+                        <img src="{% static 'images/reviews/ahmed_r.jpg' %}" alt="Ahmed R." class="review-image"
+                            loading="lazy">
                         <div class="review-meta">
                             <div class="review-name-row">
                                 <span class="review-author">Ahmed R.</span>
-                                <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                                <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i>
+                                    Verified</span>
                             </div>
                             <span class="review-suburb"><i class="fa-solid fa-location-dot"></i> Blacktown</span>
                             <div class="review-stars-row" aria-label="5 out of 5 stars">
@@ -6005,7 +6074,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                         </div>
                     </div>
                     <div class="review-body">
-                        <p class="review-text">"Rang around five or six places and FinalClean came in cheapest for what was actually included. Most of the others wanted extra for the oven and windows. Good price and they turned up when they said they would, which is more than I can say for the last lot I used."</p>
+                        <p class="review-text">"Rang around five or six places and FinalClean came in cheapest for what
+                            was actually included. Most of the others wanted extra for the oven and windows. Good price
+                            and they turned up when they said they would, which is more than I can say for the last lot
+                            I used."</p>
                     </div>
                 </div>
                 <div class="review-card-footer">
@@ -6018,11 +6090,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="review-card">
                 <div>
                     <div class="review-card-header">
-                        <img src="{% static 'images/reviews/venny.jpg' %}" alt="Venny" class="review-image" loading="lazy">
+                        <img src="{% static 'images/reviews/venny.jpg' %}" alt="Venny" class="review-image"
+                            loading="lazy">
                         <div class="review-meta">
                             <div class="review-name-row">
                                 <span class="review-author">Venny</span>
-                                <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                                <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i>
+                                    Verified</span>
                             </div>
                             <span class="review-suburb"><i class="fa-solid fa-location-dot"></i> Chatswood</span>
                             <div class="review-stars-row" aria-label="5 out of 5 stars">
@@ -6035,11 +6109,15 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                         </div>
                     </div>
                     <div class="review-body">
-                        <p class="review-text">"Property manager did the final inspection and actually commented on how good the place looked, said it was better than when I moved in. She's been picky about everything for three years so that was a shock. Bond released within the week, no deductions."</p>
+                        <p class="review-text">"Property manager did the final inspection and actually commented on how
+                            good the place looked, said it was better than when I moved in. She's been picky about
+                            everything for three years so that was a shock. Bond released within the week, no
+                            deductions."</p>
                     </div>
                 </div>
                 <div class="review-card-footer">
-                    <span class="review-outcome-tag"><i class="fa-solid fa-circle-check"></i> 100% Full Bond Released</span>
+                    <span class="review-outcome-tag"><i class="fa-solid fa-circle-check"></i> 100% Full Bond
+                        Released</span>
                     <span class="review-verified-source"><i class="fa-solid fa-circle-check"></i> Verified</span>
                 </div>
             </div>
@@ -6048,11 +6126,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="review-card">
                 <div>
                     <div class="review-card-header">
-                        <img src="{% static 'images/reviews/piek_d.jpg' %}" alt="Piek D." class="review-image" loading="lazy">
+                        <img src="{% static 'images/reviews/piek_d.jpg' %}" alt="Piek D." class="review-image"
+                            loading="lazy">
                         <div class="review-meta">
                             <div class="review-name-row">
                                 <span class="review-author">Piek D.</span>
-                                <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                                <span class="review-verified-badge"><i class="fa-solid fa-circle-check"></i>
+                                    Verified</span>
                             </div>
                             <span class="review-suburb"><i class="fa-solid fa-location-dot"></i> Liverpool</span>
                             <div class="review-stars-row" aria-label="4 out of 5 stars">
@@ -6065,11 +6145,15 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                         </div>
                     </div>
                     <div class="review-body">
-                        <p class="review-text">"Called in the evening and someone rang me straight back with a price, didn't have to wait around for a quote like the other mobs. Kitchen came up spotless. Only reason it's not five stars is they ran about 40 mins late on the day, but they let me know."</p>
+                        <p class="review-text">"Called in the evening and someone rang me straight back with a price,
+                            didn't have to wait around for a quote like the other mobs. Kitchen came up spotless. Only
+                            reason it's not five stars is they ran about 40 mins late on the day, but they let me know."
+                        </p>
                     </div>
                 </div>
                 <div class="review-card-footer">
-                    <span class="review-outcome-tag"><i class="fa-solid fa-sparkles"></i> Spotless Kitchen &amp; Prompt Call</span>
+                    <span class="review-outcome-tag"><i class="fa-solid fa-sparkles"></i> Spotless Kitchen &amp; Prompt
+                        Call</span>
                     <span class="review-verified-source"><i class="fa-solid fa-circle-check"></i> Verified</span>
                 </div>
             </div>
@@ -6078,12 +6162,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
         <!-- Pagination Dots -->
         <div class="reviews-dots-container">
             <template x-for="i in (maxIndex + 1)" :key="i">
-                <button type="button"
-                    class="reviews-dot"
-                    :class="{ 'active': currentIndex === (i - 1) }"
-                    @click="goTo(i - 1)"
-                    :aria-label="'Go to review slide ' + i"
-                ></button>
+                <button type="button" class="reviews-dot" :class="{ 'active': currentIndex === (i - 1) }"
+                    @click="goTo(i - 1)" :aria-label="'Go to review slide ' + i"></button>
             </template>
         </div>
     </div>
@@ -6103,7 +6183,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 <span class="gradient-text">Withhold Bonds Over.</span>
             </h2>
             <p class="watch-us-subtext">
-                Real estate exit inspections focus on high-scrutiny areas. We deep clean each to the agent's sign-off standard with timestamped before &amp; after proof.
+                Real estate exit inspections focus on high-scrutiny areas. We deep clean each to the agent's sign-off
+                standard with timestamped before &amp; after proof.
             </p>
             <div class="scope-slider-hint">
                 <i class="fa-solid fa-arrows-left-right"></i> Move slider by hand to compare Before &amp; After
@@ -6120,12 +6201,14 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="scope-slider-divider">
                         <div class="scope-slider-handle"><i class="fa-solid fa-arrows-left-right"></i></div>
                     </div>
-                    <input type="range" min="0" max="100" value="50" class="scope-range-slider" aria-label="Compare before and after for oven">
+                    <input type="range" min="0" max="100" value="50" class="scope-range-slider"
+                        aria-label="Compare before and after for oven">
                     <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
-                    <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
+                    <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i>
+                        AFTER</span>
                 </div>
                 <div class="scope-card-body">
-                    <h3 class="scope-card-title">Oven &amp; Rangehood</h3>
+                    <h3 class="scope-card-title">Oven</h3>
                 </div>
             </div>
 
@@ -6137,12 +6220,14 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="scope-slider-divider">
                         <div class="scope-slider-handle"><i class="fa-solid fa-arrows-left-right"></i></div>
                     </div>
-                    <input type="range" min="0" max="100" value="50" class="scope-range-slider" aria-label="Compare before and after for shower grout">
+                    <input type="range" min="0" max="100" value="50" class="scope-range-slider"
+                        aria-label="Compare before and after for shower grout">
                     <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
-                    <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
+                    <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i>
+                        AFTER</span>
                 </div>
                 <div class="scope-card-body">
-                    <h3 class="scope-card-title">Shower Grout &amp; Screens</h3>
+                    <h3 class="scope-card-title">Bathroom</h3>
                 </div>
             </div>
 
@@ -6154,12 +6239,14 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="scope-slider-divider">
                         <div class="scope-slider-handle"><i class="fa-solid fa-arrows-left-right"></i></div>
                     </div>
-                    <input type="range" min="0" max="100" value="50" class="scope-range-slider" aria-label="Compare before and after for carpet">
+                    <input type="range" min="0" max="100" value="50" class="scope-range-slider"
+                        aria-label="Compare before and after for carpet">
                     <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
-                    <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
+                    <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i>
+                        AFTER</span>
                 </div>
                 <div class="scope-card-body">
-                    <h3 class="scope-card-title">Steam Carpet Cleaning</h3>
+                    <h3 class="scope-card-title">Carpet</h3>
                 </div>
             </div>
 
@@ -6171,12 +6258,14 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <div class="scope-slider-divider">
                         <div class="scope-slider-handle"><i class="fa-solid fa-arrows-left-right"></i></div>
                     </div>
-                    <input type="range" min="0" max="100" value="50" class="scope-range-slider" aria-label="Compare before and after for window tracks">
+                    <input type="range" min="0" max="100" value="50" class="scope-range-slider"
+                        aria-label="Compare before and after for window tracks">
                     <span class="scope-media-badge scope-badge-before"><i class="fa-solid fa-circle"></i> BEFORE</span>
-                    <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i> AFTER</span>
+                    <span class="scope-media-badge scope-badge-after"><i class="fa-solid fa-circle-check"></i>
+                        AFTER</span>
                 </div>
                 <div class="scope-card-body">
-                    <h3 class="scope-card-title">Window Tracks &amp; Sills</h3>
+                    <h3 class="scope-card-title">Cabinets Interior</h3>
                 </div>
             </div>
         </div>
@@ -6248,11 +6337,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 <i class="fa-solid fa-clipboard-check"></i> Real Estate Agent Standard
             </span>
             <h2 class="watch-us-work-heading">
-                Real Estate Approved<br>
+                The Complete End of Lease<br>
                 <span class="gradient-text">Exit Cleaning Checklist</span>
             </h2>
             <p class="checklist-subtext">
-                Every FinalClean end of lease service follows this checklist as standard, backed by our 72-hour Bond-Back Guarantee. Items marked with a heavy-duty note may attract an extra charge — always shown and agreed with you before we start.
+                Every FinalClean end of lease service follows this checklist as standard, backed by our 72-hour
+                Bond-Back Guarantee. Items marked with a heavy-duty note may attract an extra charge — always shown and
+                agreed with you before we start.
             </p>
             <div class="checklist-header-actions">
                 <span class="checklist-guarantee-tag">
@@ -6268,10 +6359,12 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                     <i class="fa-solid fa-arrows-left-right"></i> Swipe or slide to explore all 6 cleaning zones
                 </span>
                 <div class="checklist-slider-arrows">
-                    <button type="button" class="checklist-arrow-btn" @click="prev()" :disabled="currentIndex === 0" aria-label="Previous checklist zone">
+                    <button type="button" class="checklist-arrow-btn" @click="prev()" :disabled="currentIndex === 0"
+                        aria-label="Previous checklist zone">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
-                    <button type="button" class="checklist-arrow-btn" @click="next()" :disabled="currentIndex >= maxIndex" aria-label="Next checklist zone">
+                    <button type="button" class="checklist-arrow-btn" @click="next()"
+                        :disabled="currentIndex >= maxIndex" aria-label="Next checklist zone">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
@@ -6282,7 +6375,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 <!-- Card 1: Kitchen -->
                 <article class="checklist-card">
                     <div class="checklist-card-media">
-                        <img src="/static/images/checklist_kitchen.jpg" alt="Kitchen end of lease clean" class="checklist-card-img" width="320" height="180" loading="lazy">
+                        <img src="/static/images/checklist_kitchen.jpg" alt="Kitchen end of lease clean"
+                            class="checklist-card-img" width="320" height="180" loading="lazy">
                         <span class="checklist-card-badge"><i class="fa-solid fa-kitchen-set"></i> Kitchen</span>
                         <span class="checklist-card-item-count">9 items</span>
                     </div>
@@ -6291,19 +6385,32 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             <h3 class="checklist-card-title">Kitchen</h3>
                             <p class="checklist-card-subtitle">Oven &amp; Rangehood Included as Standard</p>
                             <ul class="checklist-card-points">
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Oven cleaned and degreased inside and out, including trays and racks</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Stovetop / cooktop and grill cleaned</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Rangehood and filter cleaned</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Splashback and benchtops cleaned and sanitised</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Sink and taps cleaned and polished</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Cabinets and drawers cleaned inside and out</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Dishwasher cleaned inside and out</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Exterior of all appliances wiped</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Space behind and around accessible appliances wiped</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Oven
+                                        cleaned and degreased inside and out, including trays and racks</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Stovetop
+                                        / cooktop and grill cleaned</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Rangehood
+                                        and filter cleaned</span></li>
+                                <li class="checklist-card-point"><i
+                                        class="fa-solid fa-circle-check"></i><span>Splashback and benchtops cleaned and
+                                        sanitised</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Sink and
+                                        taps cleaned and polished</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Cabinets
+                                        and drawers cleaned inside and out</span></li>
+                                <li class="checklist-card-point"><i
+                                        class="fa-solid fa-circle-check"></i><span>Dishwasher cleaned inside and
+                                        out</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Exterior
+                                        of all appliances wiped</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Space
+                                        behind and around accessible appliances wiped</span></li>
                             </ul>
                         </div>
                         <div class="checklist-condition-box">
-                            <strong><i class="fa-solid fa-circle-exclamation"></i> Heavy-duty condition:</strong> If the kitchen has heavy grease, staining or built-up grime, extra attention is required. We'll show you the cost before we start — never a surprise on the day.
+                            <strong><i class="fa-solid fa-circle-exclamation"></i> Heavy-duty condition:</strong> If the
+                            kitchen has heavy grease, staining or built-up grime, extra attention is required. We'll
+                            show you the cost before we start.
                         </div>
                     </div>
                 </article>
@@ -6311,7 +6418,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 <!-- Card 2: Bathroom(s) & Toilet -->
                 <article class="checklist-card">
                     <div class="checklist-card-media">
-                        <img src="/static/images/checklist_bathroom.jpg" alt="Bathroom and toilet end of lease clean" class="checklist-card-img" width="320" height="180" loading="lazy">
+                        <img src="/static/images/checklist_bathroom.jpg" alt="Bathroom and toilet end of lease clean"
+                            class="checklist-card-img" width="320" height="180" loading="lazy">
                         <span class="checklist-card-badge"><i class="fa-solid fa-bath"></i> Bathroom</span>
                         <span class="checklist-card-item-count">8 items</span>
                     </div>
@@ -6320,18 +6428,28 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             <h3 class="checklist-card-title">Bathroom(s) &amp; Toilet</h3>
                             <p class="checklist-card-subtitle">Descaling &amp; Disinfection Included</p>
                             <ul class="checklist-card-points">
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Toilet cleaned and disinfected inside, outside and behind</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Shower and/or bathtub scrubbed, descaled and disinfected</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Shower screen cleaned</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Vanity, basin and taps cleaned and polished</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Mirrors cleaned</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Cabinets and drawers cleaned inside and out</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Exhaust fan dusted (accessible areas)</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Mineral deposits and soap scum scrubbed where accessible</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Toilet
+                                        cleaned and disinfected inside, outside and behind</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Shower
+                                        and/or bathtub scrubbed, descaled and disinfected</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Shower
+                                        screen cleaned</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Vanity,
+                                        basin and taps cleaned and polished</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Mirrors
+                                        cleaned</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Cabinets
+                                        and drawers cleaned inside and out</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Exhaust
+                                        fan dusted (accessible areas)</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Mineral
+                                        deposits and soap scum scrubbed where accessible</span></li>
                             </ul>
                         </div>
                         <div class="checklist-condition-box">
-                            <strong><i class="fa-solid fa-circle-exclamation"></i> Heavy-duty condition:</strong> If the bathroom has mould or excessive soap residue, extra attention is required. We'll show you the cost before we start — never a surprise on the day.
+                            <strong><i class="fa-solid fa-circle-exclamation"></i> Heavy-duty condition:</strong> If the
+                            bathroom has mould or excessive soap residue, extra attention is required. We'll show you
+                            the cost before we start.
                         </div>
                     </div>
                 </article>
@@ -6339,7 +6457,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 <!-- Card 3: Bedrooms, Living & Common Areas -->
                 <article class="checklist-card">
                     <div class="checklist-card-media">
-                        <img src="/static/images/checklist_bedroom.jpg" alt="Bedrooms and living room clean" class="checklist-card-img" width="320" height="180" loading="lazy">
+                        <img src="/static/images/checklist_bedroom.jpg" alt="Bedrooms and living room clean"
+                            class="checklist-card-img" width="320" height="180" loading="lazy">
                         <span class="checklist-card-badge"><i class="fa-solid fa-bed"></i> Bedrooms &amp; Living</span>
                         <span class="checklist-card-item-count">10 items</span>
                     </div>
@@ -6348,16 +6467,26 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             <h3 class="checklist-card-title">Bedrooms, Living &amp; Common Areas</h3>
                             <p class="checklist-card-subtitle">Full Interior Surfaces &amp; Wardrobes</p>
                             <ul class="checklist-card-points">
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Dust and wipe all surfaces, ledges, fixtures and fittings</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Dust and wipe ceiling fans</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Vacuum carpets; vacuum and mop all hard floors</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Wipe skirting boards, doors, door frames and handles</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Wipe switches and power points</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Clean internal windows, sills and tracks</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Clean mirrors and glass surfaces</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Clean wardrobes and built-in robes inside and out, including tracks</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Wipe cupboard, cabinet and drawer exteriors and interiors</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Remove cobwebs from accessible internal areas</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Dust and
+                                        wipe all surfaces, ledges, fixtures and fittings</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Dust and
+                                        wipe ceiling fans</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Vacuum
+                                        carpets; vacuum and mop all hard floors</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Wipe
+                                        skirting boards, doors, door frames and handles</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Wipe
+                                        switches and power points</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Clean
+                                        internal windows, sills and tracks</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Clean
+                                        mirrors and glass surfaces</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Clean
+                                        wardrobes and built-in robes inside and out, including tracks</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Wipe
+                                        cupboard, cabinet and drawer exteriors and interiors</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Remove
+                                        cobwebs from accessible internal areas</span></li>
                             </ul>
                         </div>
                     </div>
@@ -6366,7 +6495,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 <!-- Card 4: Laundry -->
                 <article class="checklist-card">
                     <div class="checklist-card-media">
-                        <img src="/static/images/checklist_laundry.jpg" alt="Laundry room clean" class="checklist-card-img" width="320" height="180" loading="lazy">
+                        <img src="/static/images/checklist_laundry.jpg" alt="Laundry room clean"
+                            class="checklist-card-img" width="320" height="180" loading="lazy">
                         <span class="checklist-card-badge"><i class="fa-solid fa-soap"></i> Laundry</span>
                         <span class="checklist-card-item-count">5 items</span>
                     </div>
@@ -6375,11 +6505,16 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             <h3 class="checklist-card-title">Laundry</h3>
                             <p class="checklist-card-subtitle">Sinks, Cabinets &amp; Dryer Filters</p>
                             <ul class="checklist-card-points">
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Sink, taps and benchtop cleaned</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Cabinets and drawers cleaned inside and out</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Washer / dryer wiped down inside and out</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Dust and lint removed; dryer filter cleaned (if accessible)</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Floors vacuumed and mopped</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Sink,
+                                        taps and benchtop cleaned</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Cabinets
+                                        and drawers cleaned inside and out</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Washer /
+                                        dryer wiped down inside and out</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Dust and
+                                        lint removed; dryer filter cleaned (if accessible)</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Floors
+                                        vacuumed and mopped</span></li>
                             </ul>
                         </div>
                     </div>
@@ -6388,8 +6523,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 <!-- Card 5: Entry & Hallway -->
                 <article class="checklist-card">
                     <div class="checklist-card-media">
-                        <img src="/static/images/checklist_entry.jpg" alt="Entry and hallway clean" class="checklist-card-img" width="320" height="180" loading="lazy">
-                        <span class="checklist-card-badge"><i class="fa-solid fa-door-open"></i> Entry &amp; Hallway</span>
+                        <img src="/static/images/checklist_entry.jpg" alt="Entry and hallway clean"
+                            class="checklist-card-img" width="320" height="180" loading="lazy">
+                        <span class="checklist-card-badge"><i class="fa-solid fa-door-open"></i> Entry &amp;
+                            Hallway</span>
                         <span class="checklist-card-item-count">4 items</span>
                     </div>
                     <div class="checklist-card-body">
@@ -6397,10 +6534,14 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             <h3 class="checklist-card-title">Entry &amp; Hallway</h3>
                             <p class="checklist-card-subtitle">Handrails, Doors &amp; Corridors</p>
                             <ul class="checklist-card-points">
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Floors vacuumed and mopped</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Skirting boards and handrails wiped</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Doors and door frames wiped</span></li>
-                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Cobwebs removed</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Floors
+                                        vacuumed and mopped</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Skirting
+                                        boards and handrails wiped</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Doors and
+                                        door frames wiped</span></li>
+                                <li class="checklist-card-point"><i class="fa-solid fa-circle-check"></i><span>Cobwebs
+                                        removed</span></li>
                             </ul>
                         </div>
                     </div>
@@ -6409,8 +6550,10 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 <!-- Card 6: Optional Add-Ons -->
                 <article class="checklist-card">
                     <div class="checklist-card-media">
-                        <img src="/static/images/checklist_addons.jpg" alt="Optional add-on services" class="checklist-card-img" width="320" height="180" loading="lazy">
-                        <span class="checklist-card-badge checklist-card-badge--addon"><i class="fa-solid fa-circle-plus"></i> Optional Add-Ons</span>
+                        <img src="/static/images/checklist_addons.jpg" alt="Optional add-on services"
+                            class="checklist-card-img" width="320" height="180" loading="lazy">
+                        <span class="checklist-card-badge checklist-card-badge--addon"><i
+                                class="fa-solid fa-circle-plus"></i> Optional Add-Ons</span>
                         <span class="checklist-card-item-count">7 extras</span>
                     </div>
                     <div class="checklist-card-body">
@@ -6419,37 +6562,47 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             <p class="checklist-card-subtitle">Tailor Your End of Lease Package</p>
                             <ul class="checklist-addons-list">
                                 <li class="checklist-addon-item">
-                                    <div class="checklist-addon-left"><i class="fa-solid fa-spray-can-sparkles"></i><span>Carpet steam cleaning</span></div>
-                                    <span class="checklist-addon-price">From $XX</span>
+                                    <div class="checklist-addon-left"><i
+                                            class="fa-solid fa-spray-can-sparkles"></i><span>Carpet steam
+                                            cleaning</span></div>
+                                    <span class="checklist-addon-price">$99</span>
                                 </li>
                                 <li class="checklist-addon-item">
-                                    <div class="checklist-addon-left"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Wall spot cleaning &amp; wall wash</span></div>
-                                    <span class="checklist-addon-price">From $XX</span>
+                                    <div class="checklist-addon-left"><i
+                                            class="fa-solid fa-wand-magic-sparkles"></i><span>Wall spot cleaning &amp;
+                                            wall wash</span></div>
+                                    <span class="checklist-addon-price">$40/hr
+                                    </span>
                                 </li>
                                 <li class="checklist-addon-item">
-                                    <div class="checklist-addon-left"><i class="fa-solid fa-snowflake"></i><span>White goods (fridge / freezer)</span></div>
-                                    <span class="checklist-addon-price">From $XX</span>
+                                    <div class="checklist-addon-left"><i class="fa-solid fa-snowflake"></i><span>White
+                                            goods (fridge / freezer)</span></div>
+                                    <span class="checklist-addon-price">$49
+                                    </span>
                                 </li>
                                 <li class="checklist-addon-item">
-                                    <div class="checklist-addon-left"><i class="fa-solid fa-bars"></i><span>Blinds cleaning</span></div>
-                                    <span class="checklist-addon-price">From $XX</span>
+                                    <div class="checklist-addon-left"><i class="fa-solid fa-bars"></i><span>Blinds
+                                            cleaning</span></div>
+                                    <span class="checklist-addon-price">From $9</span>
                                 </li>
                                 <li class="checklist-addon-item">
-                                    <div class="checklist-addon-left"><i class="fa-solid fa-window-maximize"></i><span>External window cleaning</span></div>
-                                    <span class="checklist-addon-price">From $XX</span>
+                                    <div class="checklist-addon-left"><i
+                                            class="fa-solid fa-window-maximize"></i><span>External window
+                                            cleaning</span></div>
+                                    <span class="checklist-addon-price">$25</span>
                                 </li>
                                 <li class="checklist-addon-item">
-                                    <div class="checklist-addon-left"><i class="fa-solid fa-umbrella-beach"></i><span>Balcony / patio / deck</span></div>
-                                    <span class="checklist-addon-price">From $XX</span>
+                                    <div class="checklist-addon-left"><i
+                                            class="fa-solid fa-umbrella-beach"></i><span>Balcony / patio / deck</span>
+                                    </div>
+                                    <span class="checklist-addon-price">$29/$59</span>
                                 </li>
                                 <li class="checklist-addon-item">
-                                    <div class="checklist-addon-left"><i class="fa-solid fa-warehouse"></i><span>Garage sweep &amp; tidy</span></div>
-                                    <span class="checklist-addon-price">From $XX</span>
+                                    <div class="checklist-addon-left"><i class="fa-solid fa-warehouse"></i><span>Garage
+                                            sweep &amp; tidy</span></div>
+                                    <span class="checklist-addon-price">$49</span>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="checklist-addons-note-box">
-                            Add-ons are priced and agreed with you at booking — nothing is added on cleaning day without your approval. Ask us about our Price Match Guarantee if you've received a comparable written quote.
                         </div>
                     </div>
                 </article>
@@ -6458,7 +6611,8 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <!-- Dots Indicators -->
             <div class="checklist-dots-wrap">
                 <template x-for="i in (maxIndex + 1)" :key="i">
-                    <button type="button" class="checklist-dot" :class="{ 'active': currentIndex === (i - 1) }" @click="goTo(i - 1)" :aria-label="'Go to slide ' + i"></button>
+                    <button type="button" class="checklist-dot" :class="{ 'active': currentIndex === (i - 1) }"
+                        @click="goTo(i - 1)" :aria-label="'Go to slide ' + i"></button>
                 </template>
             </div>
         </div>
@@ -6475,7 +6629,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             fill="#f8fbff"></path>
     </svg>
 </div>
-<section class="comparison-section">
+<section class="comparison-section" id="why-choose-us">
     <svg class="comp-star comp-star-1" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
     </svg>
@@ -6501,8 +6655,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <h2 class="comparison-heading">
                 What Makes <span>Final Clean</span> Different?
             </h2>
-            <p class="comparison-subheading">We go beyond standard cleaning to deliver a spotless experience every
-                time.</p>
+            <p class="comparison-subheading">We go beyond standard cleaning to deliver a spotless experience every time.</p>
         </div>
 
         <div class="comp-card reveal-zoom">
@@ -6515,14 +6668,14 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             <circle cx="12" cy="12" r="10" />
                             <polyline points="12 6 12 12 16 14" />
                         </svg></div>
-                    Quick 60-Second Booking
+                    Instant price online in 60 seconds
                 </div>
                 <div class="comp-cell">
                     <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                         </svg></div>
-                    Transparent Fixed Pricing
+                    Price Match Guarantee &mdash; beat any written quote by 5%
                 </div>
                 <div class="comp-cell">
                     <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -6530,27 +6683,23 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             <circle cx="12" cy="8" r="7" />
                             <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
                         </svg></div>
-                    100% Satisfaction Guarantee
+                    100% Bond Back Guarantee &mdash; free re-clean until your agent signs off
                 </div>
                 <div class="comp-cell">
                     <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                            <line x1="16" y1="2" x2="16" y2="6" />
-                            <line x1="8" y1="2" x2="8" y2="6" />
-                            <line x1="3" y1="10" x2="21" y2="10" />
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            <circle cx="8.5" cy="8.5" r="1.5" />
+                            <polyline points="21 15 16 10 5 21" />
                         </svg></div>
-                    Schedule Online, Cancel Anytime
+                    Before &amp; after photo report, sent to you first
                 </div>
                 <div class="comp-cell">
                     <div class="comp-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
                         </svg></div>
-                    Trusted by 5000+ Families
+                    Carpet steam cleaning
                 </div>
             </div>
 
@@ -6592,22 +6741,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                         </svg></div>
                 </div>
                 <div class="comp-cell">
-                    <div class="ico-check-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg></div>
+                    <span class="comp-addon-badge-blue">Add-on</span>
                 </div>
             </div>
 
-            <!-- Right Column (Standard) -->
+            <!-- Right Column (Often charged extra) -->
             <div class="comp-col comp-col-right">
-                <div class="comp-cell-th">Standard<br>Cleaning Companies</div>
-                <div class="comp-cell">
-                    <div class="ico-check-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg></div>
-                </div>
+                <div class="comp-cell-th">Often charged<br>extra</div>
                 <div class="comp-cell">
                     <div class="ico-cross-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -6623,11 +6763,7 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                         </svg></div>
                 </div>
                 <div class="comp-cell">
-                    <div class="ico-cross-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg></div>
+                    <span class="comp-text-tag">Varies</span>
                 </div>
                 <div class="comp-cell">
                     <div class="ico-cross-grey"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -6635,6 +6771,9 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
                         </svg></div>
+                </div>
+                <div class="comp-cell">
+                    <span class="comp-text-tag">Add-on</span>
                 </div>
             </div>
         </div>
@@ -6786,12 +6925,13 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
                 Got Questions?
             </div>
             <h2 class="premium-faq-title">We've got<br>answers.</h2>
-            <p class="premium-faq-text">Everything you need to know about our end-of-lease cleaning service, pricing, and bond back guarantee.</p>
+            <p class="premium-faq-text">Everything you need to know about our end-of-lease cleaning service, pricing,
+                and bond back guarantee.</p>
             <a href="tel:0279889050" class="premium-faq-contact">
                 <div class="contact-icon">
                     <i class="fa-solid fa-phone"></i>
                 </div>
-                Call 02 7988 9050
+                Call 0466033914
             </a>
         </div>
 
@@ -6817,19 +6957,32 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
             <div class="premium-faq-item" :class="activeIndex === 1 ? 'premium-faq-item--open' : ''">
                 <button class="premium-faq-btn" @click="activeIndex === 1 ? activeIndex = null : activeIndex = 1">
                     <span class="premium-faq-btn-text">How is my price calculated?</span>
-                    <span class="premium-faq-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    <span class="premium-faq-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg></span>
                 </button>
                 <div class="premium-faq-answer" x-show="activeIndex === 1" x-collapse>
-                    <div class="premium-faq-answer-inner">Your price is based on the number of bedrooms and bathrooms in your property. Every quote automatically includes our complete end-of-lease checklist — including oven deep clean, rangehood, internal windows, cupboards, and skirting boards. You only pay extra if you select optional add-ons like steam carpet cleaning.</div>
+                    <div class="premium-faq-answer-inner">Your price is based on the number of bedrooms and bathrooms in
+                        your property. Every quote automatically includes our complete end-of-lease checklist —
+                        including oven deep clean, rangehood, internal windows, cupboards, and skirting boards. You only
+                        pay extra if you select optional add-ons like steam carpet cleaning.</div>
                 </div>
             </div>
             <div class="premium-faq-item" :class="activeIndex === 2 ? 'premium-faq-item--open' : ''">
                 <button class="premium-faq-btn" @click="activeIndex === 2 ? activeIndex = null : activeIndex = 2">
                     <span class="premium-faq-btn-text">What happens if the property needs heavy-duty cleaning?</span>
-                    <span class="premium-faq-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    <span class="premium-faq-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg></span>
                 </button>
                 <div class="premium-faq-answer" x-show="activeIndex === 2" x-collapse>
-                    <div class="premium-faq-answer-inner">Our standard fixed price covers normal wear and end-of-lease residue. If a property requires extreme grease removal, heavy pet soiling, excess rubbish disposal, or mould remediation beyond standard tenancy wear, our team will inspect the site upon arrival and discuss any necessary adjustments with you upfront before starting work. No surprise charges.</div>
+                    <div class="premium-faq-answer-inner">Our standard quote covers normal wear and end-of-lease
+                        residue. If a property requires extreme grease removal, heavy pet soiling, excess rubbish
+                        disposal, or mould remediation beyond standard tenancy wear, our team will inspect the site upon
+                        arrival and discuss any necessary adjustments with you upfront before starting work. No surprise
+                        charges.</div>
                 </div>
             </div>
             {% endfor %}
@@ -6837,569 +6990,589 @@ Before & after photos included. Book online in 60 seconds. From $329 inc. GST.{%
     </div>
 </section>
 
-    {% endblock %}
+{% endblock %}
 
 
 
-    {% block extra_js %}
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Counter Animation
-            const counters = document.querySelectorAll('.counter-val');
-            const observer = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const el = entry.target;
-                        const target = parseFloat(el.getAttribute('data-target'));
-                        const isFloat = el.getAttribute('data-target').includes('.');
-                        const duration = 2000;
-                        const startTime = performance.now();
+{% block extra_js %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter-val');
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseFloat(el.getAttribute('data-target'));
+                    const isFloat = el.getAttribute('data-target').includes('.');
+                    const duration = 2000;
+                    const startTime = performance.now();
 
-                        const updateCounter = (currentTime) => {
-                            const elapsed = currentTime - startTime;
-                            const progress = Math.min(elapsed / duration, 1);
-                            const ease = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+                    const updateCounter = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const ease = 1 - Math.pow(1 - progress, 4); // easeOutQuart
 
-                            let currentVal = target * ease;
+                        let currentVal = target * ease;
 
-                            if (isFloat) {
-                                el.innerText = currentVal.toFixed(1);
-                            } else {
-                                el.innerText = Math.floor(currentVal).toLocaleString();
-                            }
+                        if (isFloat) {
+                            el.innerText = currentVal.toFixed(1);
+                        } else {
+                            el.innerText = Math.floor(currentVal).toLocaleString();
+                        }
 
-                            if (progress < 1) {
-                                requestAnimationFrame(updateCounter);
-                            } else {
-                                el.innerText = isFloat ? target.toFixed(1) : target.toLocaleString();
-                            }
-                        };
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            el.innerText = isFloat ? target.toFixed(1) : target.toLocaleString();
+                        }
+                    };
 
-                        requestAnimationFrame(updateCounter);
-                        obs.unobserve(el);
-                    }
-                });
-            }, { threshold: 0.5 });
+                    requestAnimationFrame(updateCounter);
+                    obs.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
 
-            counters.forEach(counter => observer.observe(counter));
+        counters.forEach(counter => observer.observe(counter));
+    });
+
+    (function () {
+        const section = document.getElementById('hero-slider');
+        const stage = document.getElementById('hero-slider-stage') || section;
+        const after = document.getElementById('hero-after');
+        const handle = document.getElementById('slider-handle');
+
+        if (!stage || !after || !handle) return;
+
+        // Current rendered position and target position (both 0–100)
+        let current = 10;   // start left
+        let target = 10;
+        let rafId = null;
+        let mouseInside = false;
+        let userInteracted = false;
+
+        let LERP = 0.025; // slow for intro sweep; switches to 0.07 on mouse enter
+
+        const applyPos = (pct) => {
+            after.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+            handle.style.left = pct + '%';
+        };
+
+        // rAF loop — smoothly lerp current toward target
+        const tick = () => {
+            current += (target - current) * LERP;
+
+            applyPos(current);
+
+            // Keep looping while there's meaningful difference
+            if (Math.abs(target - current) > 0.05) {
+                rafId = requestAnimationFrame(tick);
+            } else {
+                current = target;
+                applyPos(current);
+                rafId = null;
+            }
+        };
+
+        const startLoop = () => {
+            if (!rafId) rafId = requestAnimationFrame(tick);
+        };
+
+        const updateTargetFromCoord = (clientX) => {
+            const rect = stage.getBoundingClientRect();
+            let pct = ((clientX - rect.left) / rect.width) * 100;
+            target = Math.min(Math.max(pct, 5), 95);
+            startLoop();
+        };
+
+        // ── Auto-animate on load: sweep 12% → 85% → 25% → 50% ──
+        applyPos(current);
+        setTimeout(() => { target = 85; startLoop(); }, 500);
+        setTimeout(() => { target = 25; startLoop(); }, 2200);
+        setTimeout(() => { target = 50; startLoop(); }, 3800);
+
+        // ── Mouse follow: update target on mousemove ──
+        section.addEventListener('mousemove', (e) => {
+            mouseInside = true;
+            if (!userInteracted) {
+                userInteracted = true;
+                LERP = 0.07; // snappy mode on interaction
+            }
+            updateTargetFromCoord(e.clientX);
         });
 
-        (function () {
-            const section = document.getElementById('hero-slider');
-            const stage = document.getElementById('hero-slider-stage') || section;
-            const after = document.getElementById('hero-after');
-            const handle = document.getElementById('slider-handle');
+        // ── Touch follow: drag horizontally on stage without breaking vertical scroll ──
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isDraggingSlider = false;
 
-            if (!stage || !after || !handle) return;
-
-            // Current rendered position and target position (both 0–100)
-            let current = 10;   // start left
-            let target = 10;
-            let rafId = null;
-            let mouseInside = false;
-            let userInteracted = false;
-
-            let LERP = 0.025; // slow for intro sweep; switches to 0.07 on mouse enter
-
-            const applyPos = (pct) => {
-                after.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
-                handle.style.left = pct + '%';
-            };
-
-            // rAF loop — smoothly lerp current toward target
-            const tick = () => {
-                current += (target - current) * LERP;
-
-                applyPos(current);
-
-                // Keep looping while there's meaningful difference
-                if (Math.abs(target - current) > 0.05) {
-                    rafId = requestAnimationFrame(tick);
-                } else {
-                    current = target;
-                    applyPos(current);
-                    rafId = null;
-                }
-            };
-
-            const startLoop = () => {
-                if (!rafId) rafId = requestAnimationFrame(tick);
-            };
-
-            const updateTargetFromCoord = (clientX) => {
-                const rect = stage.getBoundingClientRect();
-                let pct = ((clientX - rect.left) / rect.width) * 100;
-                target = Math.min(Math.max(pct, 5), 95);
-                startLoop();
-            };
-
-            // ── Auto-animate on load: sweep 12% → 85% → 25% → 50% ──
-            applyPos(current);
-            setTimeout(() => { target = 85; startLoop(); }, 500);
-            setTimeout(() => { target = 25; startLoop(); }, 2200);
-            setTimeout(() => { target = 50; startLoop(); }, 3800);
-
-            // ── Mouse follow: update target on mousemove ──
-            section.addEventListener('mousemove', (e) => {
-                mouseInside = true;
-                if (!userInteracted) {
-                    userInteracted = true;
-                    LERP = 0.07; // snappy mode on interaction
-                }
-                updateTargetFromCoord(e.clientX);
-            });
-
-            // ── Touch follow: drag horizontally on stage without breaking vertical scroll ──
-            let touchStartX = 0;
-            let touchStartY = 0;
-            let isDraggingSlider = false;
-
-            stage.addEventListener('touchstart', (e) => {
-                if (e.touches.length === 1) {
-                    touchStartX = e.touches[0].clientX;
-                    touchStartY = e.touches[0].clientY;
-                    isDraggingSlider = false;
-                }
-            }, { passive: true });
-
-            stage.addEventListener('touchmove', (e) => {
-                if (e.touches.length !== 1) return;
-                const touchX = e.touches[0].clientX;
-                const touchY = e.touches[0].clientY;
-                const dx = Math.abs(touchX - touchStartX);
-                const dy = Math.abs(touchY - touchStartY);
-
-                // Detect horizontal drag intent vs vertical scroll
-                if (!isDraggingSlider && dx > 8 && dx > dy * 1.1) {
-                    isDraggingSlider = true;
-                    userInteracted = true;
-                    LERP = 0.22; // fast direct response on mobile drag
-                }
-
-                if (isDraggingSlider) {
-                    updateTargetFromCoord(touchX);
-                }
-            }, { passive: true });
-
-            stage.addEventListener('touchend', () => {
+        stage.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
                 isDraggingSlider = false;
-            }, { passive: true });
+            }
+        }, { passive: true });
 
-            // Direct touch on slider handle or drag button
-            handle.addEventListener('touchmove', (e) => {
-                if (e.touches.length === 1) {
-                    LERP = 0.25;
-                    updateTargetFromCoord(e.touches[0].clientX);
+        stage.addEventListener('touchmove', (e) => {
+            if (e.touches.length !== 1) return;
+            const touchX = e.touches[0].clientX;
+            const touchY = e.touches[0].clientY;
+            const dx = Math.abs(touchX - touchStartX);
+            const dy = Math.abs(touchY - touchStartY);
+
+            // Detect horizontal drag intent vs vertical scroll
+            if (!isDraggingSlider && dx > 8 && dx > dy * 1.1) {
+                isDraggingSlider = true;
+                userInteracted = true;
+                LERP = 0.22; // fast direct response on mobile drag
+            }
+
+            if (isDraggingSlider) {
+                updateTargetFromCoord(touchX);
+            }
+        }, { passive: true });
+
+        stage.addEventListener('touchend', () => {
+            isDraggingSlider = false;
+        }, { passive: true });
+
+        // Direct touch/drag on slider handle or drag button
+        const dragBtn = document.getElementById('drag-btn');
+        const onDirectTouchStart = (e) => {
+            userInteracted = true;
+            isDraggingSlider = true;
+            LERP = 0.35;
+            if (e.touches && e.touches.length === 1) {
+                updateTargetFromCoord(e.touches[0].clientX);
+            }
+        };
+        const onDirectTouchMove = (e) => {
+            if (e.touches && e.touches.length === 1) {
+                LERP = 0.35;
+                updateTargetFromCoord(e.touches[0].clientX);
+            }
+        };
+        if (dragBtn) {
+            dragBtn.addEventListener('touchstart', onDirectTouchStart, { passive: true });
+            dragBtn.addEventListener('touchmove', onDirectTouchMove, { passive: true });
+        }
+        handle.addEventListener('touchstart', onDirectTouchStart, { passive: true });
+        handle.addEventListener('touchmove', onDirectTouchMove, { passive: true });
+
+        // ── When mouse leaves, slowly glide back to 50% ──
+        section.addEventListener('mouseleave', () => {
+            mouseInside = false;
+            setTimeout(() => { if (!mouseInside) { target = 50; startLoop(); } }, 800);
+        });
+    })();
+
+    // ════════════════════════════════════════
+    // Scroll Reveal for Packages
+    // ════════════════════════════════════════
+    (function () {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
                 }
-            }, { passive: true });
-
-            // ── When mouse leaves, slowly glide back to 50% ──
-            section.addEventListener('mouseleave', () => {
-                mouseInside = false;
-                setTimeout(() => { if (!mouseInside) { target = 50; startLoop(); } }, 800);
             });
-        })();
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-        // ════════════════════════════════════════
-        // Scroll Reveal for Packages
-        // ════════════════════════════════════════
-        (function () {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                    }
-                });
-            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.package-card-stack').forEach((card) => {
+            observer.observe(card);
+        });
+    })();
+    // ════════════════════════════════════════
+    // Watch Us Work — Automatic Before/After Magic Line
+    // (Driven via hardware-accelerated CSS marquee & keyframe sweep)
+    // ════════════════════════════════════════
 
-            document.querySelectorAll('.package-card-stack').forEach((card) => {
-                observer.observe(card);
-            });
-        })();
-        // ════════════════════════════════════════
-        // Watch Us Work — Automatic Before/After Magic Line
-        // (Driven via hardware-accelerated CSS marquee & keyframe sweep)
-        // ════════════════════════════════════════
+    // ════════════════════════════════════════
+    // Instant Price Calculator — Pricing Formula
+    // Price = 259 + 82(Bedrooms - 1) + 34(Bathrooms - 1)
+    // ════════════════════════════════════════
+    function getQuote(bedrooms, bathrooms) {
+        const base = 259;
+        const perBedroom = 82;
+        const perBathroom = 34;
+        const b = Math.max(1, parseInt(bedrooms) || 1);
+        const ba = Math.max(1, parseInt(bathrooms) || 1);
+        const price = base + perBedroom * (b - 1) + perBathroom * (ba - 1);
+        if (b === 1 && ba === 1) return 259;
+        return Math.round(price / 5) * 5; // round to nearest $5 for display
+    }
 
-        // ════════════════════════════════════════
-        // Instant Price Calculator (Alpine.js)
-        // ════════════════════════════════════════
-        function instantCalc() {
-            // Pricing config injected by Django — no API call needed
-            const BASE_FEE = {{ pricing_cfg.base_fee|default:"150" }};
-            const BEDROOM_PRICE = {{ pricing_cfg.bedroom_price|default:"49" }};
-            const BATHROOM_PRICE = {{ pricing_cfg.bathroom_price|default:"30" }};
-            const LIVING_PRICE = {{ pricing_cfg.living_area_price|default:"15" }};
-            const BALCONY_PRICE = {{ pricing_cfg.balcony_price|default:"10" }};
-            const BOOK_URL = "{% url 'bookings:multi_step_booking' %}";
+    function instantCalc() {
+        const BOOK_URL = "{% url 'bookings:multi_step_booking' %}";
 
-            return {
-                step: 1,
-                bedrooms: 1,
-                bathrooms: 1,
-                living_areas: 1,
-                balconies: 0,
-                selectedAddons: {},
-                selectedAddonNames: {},
-                preferredDate: '',
-                preferredTime: '8-9AM',
-                firstName: '',
-                phone: '',
-                email: '',
-                minDate: '',
-                errors: {},
+        return {
+            step: 1,
+            bedrooms: 1,
+            bathrooms: 1,
+            living_areas: 1,
+            balconies: 0,
+            selectedAddons: {},
+            selectedAddonNames: {},
+            preferredDate: '',
+            preferredTime: '8-9AM',
+            firstName: '',
+            phone: '',
+            email: '',
+            minDate: '',
+            errors: {},
 
-                get totalPrice() {
-                    let base = BASE_FEE
-                        + (this.bedrooms * BEDROOM_PRICE)
-                        + (this.bathrooms * BATHROOM_PRICE)
-                        + (this.living_areas * LIVING_PRICE)
-                        + (this.balconies * BALCONY_PRICE);
+            get baseQuote() {
+                return getQuote(this.bedrooms, this.bathrooms);
+            },
 
-                    let addonsTotal = 0;
-                    for (let id in this.selectedAddons) {
-                        addonsTotal += this.selectedAddons[id];
-                    }
-                    return Math.round(base + addonsTotal);
-                },
+            get totalPrice() {
+                let base = getQuote(this.bedrooms, this.bathrooms);
+                let addonsTotal = 0;
+                for (let id in this.selectedAddons) {
+                    addonsTotal += this.selectedAddons[id];
+                }
+                return Math.round(base + addonsTotal);
+            },
 
-                get propertySummary() {
-                    return `${this.bedrooms} Bed • ${this.bathrooms} Bath`;
-                },
+        get propertySummary() {
+            return `${this.bedrooms} Bed • ${this.bathrooms} Bath`;
+        },
 
-                get dateTimeSummary() {
-                    let d = this.preferredDate || 'Tomorrow';
-                    let t = this.preferredTime === '8-9AM' ? '8:00 - 9:00 AM' : '3:00 - 4:00 PM';
-                    return `${d} (${t})`;
-                },
+        get dateTimeSummary() {
+            let d = this.preferredDate || 'Tomorrow';
+            let t = this.preferredTime === '8-9AM' ? '8:00 - 9:00 AM' : '3:00 - 4:00 PM';
+            return `${d} (${t})`;
+        },
 
-                get selectedAddonsCount() {
-                    return Object.keys(this.selectedAddons).length;
-                },
+        get selectedAddonsCount() {
+            return Object.keys(this.selectedAddons).length;
+        },
 
-                get addonsSummary() {
-                    let names = Object.values(this.selectedAddonNames);
-                    if (names.length === 0) return 'None';
-                    if (names.length <= 2) return names.join(', ');
-                    return `${names.slice(0, 2).join(', ')} +${names.length - 2} more`;
-                },
+        get addonsSummary() {
+            let names = Object.values(this.selectedAddonNames);
+            if (names.length === 0) return 'None';
+            if (names.length <= 2) return names.join(', ');
+            return `${names.slice(0, 2).join(', ')} +${names.length - 2} more`;
+        },
 
-                get contactSummary() {
-                    let parts = [];
-                    if (this.firstName) parts.push(this.firstName);
-                    if (this.phone) parts.push(this.phone);
-                    return parts.join(' • ') || 'Contact provided';
-                },
+        get contactSummary() {
+            let parts = [];
+            if (this.firstName) parts.push(this.firstName);
+            if (this.phone) parts.push(this.phone);
+            return parts.join(' • ') || 'Contact provided';
+        },
 
-                get bookUrl() {
-                    let params = new URLSearchParams();
-                    params.set('bedrooms', this.bedrooms);
-                    params.set('bathrooms', this.bathrooms);
-                    params.set('living', this.living_areas);
-                    params.set('balconies', this.balconies);
-                    if (this.preferredDate) params.set('date', this.preferredDate);
-                    if (this.preferredTime) params.set('time', this.preferredTime);
-                    if (this.firstName) params.set('name', this.firstName);
-                    if (this.phone) params.set('phone', this.phone);
-                    if (this.email) params.set('email', this.email);
-                    let addonIds = Object.keys(this.selectedAddons).join(',');
-                    if (addonIds) params.set('addons', addonIds);
-                    return `${BOOK_URL}?${params.toString()}`;
-                },
+        get bookUrl() {
+            let params = new URLSearchParams();
+            params.set('bedrooms', this.bedrooms);
+            params.set('bathrooms', this.bathrooms);
+            params.set('living', this.living_areas);
+            params.set('balconies', this.balconies);
+            if (this.preferredDate) params.set('date', this.preferredDate);
+            if (this.preferredTime) params.set('time', this.preferredTime);
+            if (this.firstName) params.set('name', this.firstName);
+            if (this.phone) params.set('phone', this.phone);
+            if (this.email) params.set('email', this.email);
+            let addonIds = Object.keys(this.selectedAddons).join(',');
+            if (addonIds) params.set('addons', addonIds);
+            return `${BOOK_URL}?${params.toString()}`;
+        },
 
-                goToStep(s) {
-                    if (s < 1 || s > 3) return;
-                    this.step = s;
-                },
+        goToStep(s) {
+            if (s < 1 || s > 3) return;
+            this.step = s;
+        },
 
-                clearError(field) {
-                    if (this.errors[field]) {
-                        delete this.errors[field];
-                    }
-                },
+        clearError(field) {
+            if (this.errors[field]) {
+                delete this.errors[field];
+            }
+        },
 
-                validateAndShowPrice() {
-                    this.errors = {};
-                    if (!this.preferredDate) {
-                        this.errors.date = 'Please choose your preferred date.';
-                    }
-                    if (!this.firstName || this.firstName.trim().length === 0) {
-                        this.errors.firstName = 'Please enter your first name.';
-                    }
-                    if (!this.phone || this.phone.trim().length < 8) {
-                        this.errors.phone = 'Please enter a valid mobile number.';
-                    }
-                    if (!this.email || !this.email.includes('@')) {
-                        this.errors.email = 'Please enter a valid email address.';
-                    }
+        validateAndShowPrice() {
+            this.errors = {};
+            if (!this.preferredDate) {
+                this.errors.date = 'Please choose your preferred date.';
+            }
+            if (!this.firstName || this.firstName.trim().length === 0) {
+                this.errors.firstName = 'Please enter your first name.';
+            }
+            if (!this.phone || this.phone.trim().length < 8) {
+                this.errors.phone = 'Please enter a valid mobile number.';
+            }
+            if (!this.email || !this.email.includes('@')) {
+                this.errors.email = 'Please enter a valid email address.';
+            }
 
-                    if (Object.keys(this.errors).length === 0) {
-                        this.step = 3;
-                        this._bump();
-                    }
-                },
+            if (Object.keys(this.errors).length === 0) {
+                this.step = 3;
+                this._bump();
+            }
+        },
 
-                incr(field) {
-                    this[field]++;
-                    this._bump();
-                },
+        incr(field) {
+            this[field]++;
+            this._bump();
+        },
 
-                decr(field) {
-                    const minimums = { bedrooms: 1, bathrooms: 1, living_areas: 1, balconies: 0 };
-                    if (this[field] > minimums[field]) {
-                        this[field]--;
-                        this._bump();
-                    }
-                },
+        decr(field) {
+            const minimums = { bedrooms: 1, bathrooms: 1, living_areas: 1, balconies: 0 };
+            if (this[field] > minimums[field]) {
+                this[field]--;
+                this._bump();
+            }
+        },
 
-                toggleAddon(id, price, name) {
-                    const copy = Object.assign({}, this.selectedAddons);
-                    const nameCopy = Object.assign({}, this.selectedAddonNames);
-                    if (copy[id] !== undefined) {
-                        delete copy[id];
-                        delete nameCopy[id];
-                    } else {
-                        copy[id] = parseFloat(price);
-                        nameCopy[id] = name || 'Add-on';
-                    }
-                    this.selectedAddons = copy;
-                    this.selectedAddonNames = nameCopy;
-                    this._bump();
-                },
+        toggleAddon(id, price, name) {
+            const copy = Object.assign({}, this.selectedAddons);
+            const nameCopy = Object.assign({}, this.selectedAddonNames);
+            if (copy[id] !== undefined) {
+                delete copy[id];
+                delete nameCopy[id];
+            } else {
+                copy[id] = parseFloat(price);
+                nameCopy[id] = name || 'Add-on';
+            }
+            this.selectedAddons = copy;
+            this.selectedAddonNames = nameCopy;
+            this._bump();
+        },
 
-                isAddonSelected(id) {
-                    return this.selectedAddons[id] !== undefined;
-                },
+        isAddonSelected(id) {
+            return this.selectedAddons[id] !== undefined;
+        },
 
-                _bump() {
-                    const el = this.$refs.priceDisplay;
-                    if (!el) return;
-                    el.classList.remove('calc-price-bump');
-                    void el.offsetWidth;  // reflow to restart animation
-                    el.classList.add('calc-price-bump');
-                },
+        _bump() {
+            const el = this.$refs.priceDisplay;
+            if (!el) return;
+            el.classList.remove('calc-price-bump');
+            void el.offsetWidth;  // reflow to restart animation
+            el.classList.add('calc-price-bump');
+        },
 
-                calcInit() {
-                    const tomorrow = new Date();
-                    tomorrow.setDate(tomorrow.getDate() + 1);
-                    const yyyy = tomorrow.getFullYear();
-                    const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
-                    const dd = String(tomorrow.getDate()).padStart(2, '0');
-                    this.minDate = `${yyyy}-${mm}-${dd}`;
-                    this.preferredDate = this.minDate;
-                },
-            };
+        calcInit() {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const yyyy = tomorrow.getFullYear();
+            const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+            const dd = String(tomorrow.getDate()).padStart(2, '0');
+            this.minDate = `${yyyy}-${mm}-${dd}`;
+            this.preferredDate = this.minDate;
+        },
+    };
         }
 
-        // ════════════════════════════════════════
-        // Add-ons Card Marquee & Manual Drag Scroll
-        // ════════════════════════════════════════
-        (function initAddonsMarquee() {
-            const track = document.getElementById('calc-addons-track');
-            if (!track) return;
+    // ════════════════════════════════════════
+    // Add-ons Card Marquee & Manual Drag Scroll
+    // ════════════════════════════════════════
+    (function initAddonsMarquee() {
+        const track = document.getElementById('calc-addons-track');
+        if (!track) return;
 
-            let isDown = false;
-            let startX = 0;
-            let scrollLeftStart = 0;
-            let isPaused = false;
-            let resumeTimer = null;
-            let rafId = null;
-            const SPEED = 0.65; // pixels per frame
+        let isDown = false;
+        let startX = 0;
+        let scrollLeftStart = 0;
+        let isPaused = false;
+        let resumeTimer = null;
+        let rafId = null;
+        const SPEED = 0.65; // pixels per frame
 
-            function getLoopWidth() {
-                return track.scrollWidth / 3;
-            }
+        function getLoopWidth() {
+            return track.scrollWidth / 3;
+        }
 
-            function tick() {
-                if (!isPaused && !isDown) {
-                    track.scrollLeft += SPEED;
-                    const loopWidth = getLoopWidth();
-                    if (loopWidth > 0 && track.scrollLeft >= loopWidth * 2) {
-                        track.scrollLeft -= loopWidth;
-                    }
-                }
-                rafId = requestAnimationFrame(tick);
-            }
-
-            // Start loop after layout has settled
-            setTimeout(() => {
+        function tick() {
+            if (!isPaused && !isDown) {
+                track.scrollLeft += SPEED;
                 const loopWidth = getLoopWidth();
-                if (loopWidth > 0 && track.scrollLeft < loopWidth * 0.5) {
-                    track.scrollLeft = loopWidth * 0.5;
+                if (loopWidth > 0 && track.scrollLeft >= loopWidth * 2) {
+                    track.scrollLeft -= loopWidth;
                 }
-                rafId = requestAnimationFrame(tick);
-            }, 300);
+            }
+            rafId = requestAnimationFrame(tick);
+        }
 
-            // Pause on hover
-            track.addEventListener('mouseenter', () => {
-                isPaused = true;
-            });
+        // Start loop after layout has settled
+        setTimeout(() => {
+            const loopWidth = getLoopWidth();
+            if (loopWidth > 0 && track.scrollLeft < loopWidth * 0.5) {
+                track.scrollLeft = loopWidth * 0.5;
+            }
+            rafId = requestAnimationFrame(tick);
+        }, 300);
 
-            track.addEventListener('mouseleave', () => {
-                if (!isDown) {
-                    isPaused = false;
-                }
-            });
+        // Pause on hover
+        track.addEventListener('mouseenter', () => {
+            isPaused = true;
+        });
 
-            // Drag to scroll (mouse)
-            track.addEventListener('mousedown', (e) => {
-                isDown = true;
-                isPaused = true;
-                window._addonsHasDragged = false;
-                track.classList.add('is-dragging');
-                startX = e.pageX - track.offsetLeft;
-                scrollLeftStart = track.scrollLeft;
-            });
+        track.addEventListener('mouseleave', () => {
+            if (!isDown) {
+                isPaused = false;
+            }
+        });
 
-            window.addEventListener('mouseup', () => {
-                if (isDown) {
-                    isDown = false;
-                    track.classList.remove('is-dragging');
-                    clearTimeout(resumeTimer);
-                    resumeTimer = setTimeout(() => {
-                        isPaused = false;
-                    }, 1500);
-                }
-            });
+        // Drag to scroll (mouse)
+        track.addEventListener('mousedown', (e) => {
+            isDown = true;
+            isPaused = true;
+            window._addonsHasDragged = false;
+            track.classList.add('is-dragging');
+            startX = e.pageX - track.offsetLeft;
+            scrollLeftStart = track.scrollLeft;
+        });
 
-            track.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                const x = e.pageX - track.offsetLeft;
-                const walk = (x - startX);
-                if (Math.abs(walk) > 4) {
-                    window._addonsHasDragged = true;
-                }
-                e.preventDefault();
-                track.scrollLeft = scrollLeftStart - walk;
-
-                // Loop wrap while dragging
-                const loopWidth = getLoopWidth();
-                if (loopWidth > 0) {
-                    if (track.scrollLeft >= loopWidth * 2) track.scrollLeft -= loopWidth;
-                    else if (track.scrollLeft <= loopWidth * 0.2) track.scrollLeft += loopWidth;
-                }
-            });
-
-            // Touch support for mobile swipe
-            track.addEventListener('touchstart', () => {
-                isPaused = true;
-                clearTimeout(resumeTimer);
-            }, { passive: true });
-
-            track.addEventListener('touchend', () => {
-                clearTimeout(resumeTimer);
-                resumeTimer = setTimeout(() => {
-                    isPaused = false;
-                }, 1800);
-            }, { passive: true });
-
-            // Wheel horizontal scroll
-            track.addEventListener('wheel', (e) => {
-                isPaused = true;
+        window.addEventListener('mouseup', () => {
+            if (isDown) {
+                isDown = false;
+                track.classList.remove('is-dragging');
                 clearTimeout(resumeTimer);
                 resumeTimer = setTimeout(() => {
                     isPaused = false;
                 }, 1500);
-
-                const loopWidth = getLoopWidth();
-                if (loopWidth > 0) {
-                    if (track.scrollLeft >= loopWidth * 2) track.scrollLeft -= loopWidth;
-                    else if (track.scrollLeft <= loopWidth * 0.2) track.scrollLeft += loopWidth;
-                }
-            }, { passive: true });
-        })();
-
-        // Smooth scroll to calculator on clicking any 'Get Your Price' / '#calc-widget' link
-        document.addEventListener('click', function (e) {
-            const link = e.target.closest('a[href="#calc-widget"], a[href="/#calc-widget"]');
-            if (!link) return;
-            const target = document.getElementById('calc-widget');
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                if (window.history && window.history.pushState) {
-                    window.history.pushState(null, '', '#calc-widget');
-                }
             }
         });
 
-        // Smooth scroll if landing with #calc-widget in hash
-        if (window.location.hash === '#calc-widget') {
-            window.addEventListener('load', function () {
-                setTimeout(function () {
-                    const target = document.getElementById('calc-widget');
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }, 150);
-            });
+        track.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX);
+            if (Math.abs(walk) > 4) {
+                window._addonsHasDragged = true;
+            }
+            e.preventDefault();
+            track.scrollLeft = scrollLeftStart - walk;
+
+            // Loop wrap while dragging
+            const loopWidth = getLoopWidth();
+            if (loopWidth > 0) {
+                if (track.scrollLeft >= loopWidth * 2) track.scrollLeft -= loopWidth;
+                else if (track.scrollLeft <= loopWidth * 0.2) track.scrollLeft += loopWidth;
+            }
+        });
+
+        // Touch support for mobile swipe
+        track.addEventListener('touchstart', () => {
+            isPaused = true;
+            clearTimeout(resumeTimer);
+        }, { passive: true });
+
+        track.addEventListener('touchend', () => {
+            clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => {
+                isPaused = false;
+            }, 1800);
+        }, { passive: true });
+
+        // Wheel horizontal scroll
+        track.addEventListener('wheel', (e) => {
+            isPaused = true;
+            clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => {
+                isPaused = false;
+            }, 1500);
+
+            const loopWidth = getLoopWidth();
+            if (loopWidth > 0) {
+                if (track.scrollLeft >= loopWidth * 2) track.scrollLeft -= loopWidth;
+                else if (track.scrollLeft <= loopWidth * 0.2) track.scrollLeft += loopWidth;
+            }
+        }, { passive: true });
+    })();
+
+    // Smooth scroll to calculator on clicking any 'Get Your Price' / '#calc-widget' link
+    document.addEventListener('click', function (e) {
+        const link = e.target.closest('a[href="#calc-widget"], a[href="/#calc-widget"]');
+        if (!link) return;
+        const target = document.getElementById('calc-widget');
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (window.history && window.history.pushState) {
+                window.history.pushState(null, '', '#calc-widget');
+            }
         }
+    });
 
-        // Interactive Hand-Movable Before/After Sliders for 4 Bond Risk Cards
-        (function() {
-            var mediaCards = document.querySelectorAll('.scope-card-media');
-            mediaCards.forEach(function(media) {
-                var range = media.querySelector('.scope-range-slider');
-                if (!range) return;
-
-                function updateSliderPos(pct) {
-                    var val = Math.max(0, Math.min(100, Math.round(pct)));
-                    media.style.setProperty('--split-pos', val + '%');
-                    if (range.value != val) {
-                        range.value = val;
-                    }
+    // Smooth scroll if landing with #calc-widget in hash
+    if (window.location.hash === '#calc-widget') {
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                const target = document.getElementById('calc-widget');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
+            }, 150);
+        });
+    }
 
-                range.addEventListener('input', function() {
-                    media.style.setProperty('--split-pos', this.value + '%');
-                });
+    // Interactive Hand-Movable Before/After Sliders for 4 Bond Risk Cards
+    (function () {
+        var mediaCards = document.querySelectorAll('.scope-card-media');
+        mediaCards.forEach(function (media) {
+            var range = media.querySelector('.scope-range-slider');
+            if (!range) return;
 
-                var isDragging = false;
-
-                function getClientX(e) {
-                    if (e.touches && e.touches.length > 0) return e.touches[0].clientX;
-                    return e.clientX;
+            function updateSliderPos(pct) {
+                var val = Math.max(0, Math.min(100, Math.round(pct)));
+                media.style.setProperty('--split-pos', val + '%');
+                if (range.value != val) {
+                    range.value = val;
                 }
+            }
 
-                function onMove(e) {
-                    if (!isDragging) return;
-                    var rect = media.getBoundingClientRect();
-                    var cx = getClientX(e);
-                    if (cx === undefined) return;
-                    var pct = ((cx - rect.left) / rect.width) * 100;
-                    updateSliderPos(pct);
-                }
-
-                function onEnd() {
-                    if (!isDragging) return;
-                    isDragging = false;
-                    window.removeEventListener('pointermove', onMove);
-                    window.removeEventListener('pointerup', onEnd);
-                    window.removeEventListener('pointercancel', onEnd);
-                    window.removeEventListener('touchmove', onMove);
-                    window.removeEventListener('touchend', onEnd);
-                }
-
-                media.addEventListener('pointerdown', function(e) {
-                    isDragging = true;
-                    var rect = media.getBoundingClientRect();
-                    var pct = ((e.clientX - rect.left) / rect.width) * 100;
-                    updateSliderPos(pct);
-                    window.addEventListener('pointermove', onMove);
-                    window.addEventListener('pointerup', onEnd);
-                    window.addEventListener('pointercancel', onEnd);
-                });
-
-                media.addEventListener('touchstart', function(e) {
-                    if (!e.touches || e.touches.length === 0) return;
-                    isDragging = true;
-                    var rect = media.getBoundingClientRect();
-                    var pct = ((e.touches[0].clientX - rect.left) / rect.width) * 100;
-                    updateSliderPos(pct);
-                    window.addEventListener('touchmove', onMove, { passive: true });
-                    window.addEventListener('touchend', onEnd, { passive: true });
-                }, { passive: true });
+            range.addEventListener('input', function () {
+                media.style.setProperty('--split-pos', this.value + '%');
             });
-        })();
-    </script>
-    {% endblock %}
+
+            var isDragging = false;
+
+            function getClientX(e) {
+                if (e.touches && e.touches.length > 0) return e.touches[0].clientX;
+                return e.clientX;
+            }
+
+            function onMove(e) {
+                if (!isDragging) return;
+                var rect = media.getBoundingClientRect();
+                var cx = getClientX(e);
+                if (cx === undefined) return;
+                var pct = ((cx - rect.left) / rect.width) * 100;
+                updateSliderPos(pct);
+            }
+
+            function onEnd() {
+                if (!isDragging) return;
+                isDragging = false;
+                window.removeEventListener('pointermove', onMove);
+                window.removeEventListener('pointerup', onEnd);
+                window.removeEventListener('pointercancel', onEnd);
+                window.removeEventListener('touchmove', onMove);
+                window.removeEventListener('touchend', onEnd);
+            }
+
+            media.addEventListener('pointerdown', function (e) {
+                isDragging = true;
+                var rect = media.getBoundingClientRect();
+                var pct = ((e.clientX - rect.left) / rect.width) * 100;
+                updateSliderPos(pct);
+                window.addEventListener('pointermove', onMove);
+                window.addEventListener('pointerup', onEnd);
+                window.addEventListener('pointercancel', onEnd);
+            });
+
+            media.addEventListener('touchstart', function (e) {
+                if (!e.touches || e.touches.length === 0) return;
+                isDragging = true;
+                var rect = media.getBoundingClientRect();
+                var pct = ((e.touches[0].clientX - rect.left) / rect.width) * 100;
+                updateSliderPos(pct);
+                window.addEventListener('touchmove', onMove, { passive: true });
+                window.addEventListener('touchend', onEnd, { passive: true });
+            }, { passive: true });
+        });
+    })();
+</script>
+{% endblock %}

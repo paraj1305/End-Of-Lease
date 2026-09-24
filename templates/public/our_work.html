@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block title %}Our Work — Real Bond-Back Results | End of Lease Cleaning{% endblock %}
-{% block meta_description %}Explore 10 real before and after transformations from our Sydney end-of-lease cleans. From grease-caked ovens to crystal shower screens, see how we guarantee 100% bond returns.{% endblock %}
+{% block meta_description %}Explore 10 real before and after transformations from our Sydney end-of-lease cleans. From
+grease-caked ovens to crystal shower screens, see how we guarantee 100% bond returns.{% endblock %}
 
 {% block extra_head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,7 +18,8 @@
             <div class="work-pill">Proven Results</div>
             <h1 class="work-hero-title">Real Cleans. <span class="accent">100% Bond Back.</span></h1>
             <p class="work-hero-sub">
-                Hover over any card below to compare before &amp; after results from our Sydney cleans. Every clean strictly adheres to the official real estate agent handover checklist.
+                Hover over any card below to compare before &amp; after results from our Sydney cleans. Every clean
+                strictly adheres to the official real estate agent handover checklist.
             </p>
         </div>
     </section>
@@ -27,25 +29,40 @@
         <div class="work-trust-inner reveal-stagger">
             <div class="work-trust-item">
                 <div class="work-trust-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
                 </div>
                 <span>100% Bond Return Rate</span>
             </div>
             <div class="work-trust-item">
                 <div class="work-trust-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M9 12l2 2 4-4" />
+                    </svg>
                 </div>
                 <span>72-Hr Free Re-clean Warranty</span>
             </div>
             <div class="work-trust-item">
                 <div class="work-trust-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                        <circle cx="12" cy="13" r="4" />
+                    </svg>
                 </div>
                 <span>Unretouched Genuine Photos</span>
             </div>
             <div class="work-trust-item">
                 <div class="work-trust-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
                 </div>
                 <span>2,300+ Sydney Homes Handed Over</span>
             </div>
@@ -57,19 +74,24 @@
         <button class="work-filter-btn" :class="{ 'is-active': activeFilter === 'all' }" @click="activeFilter = 'all'">
             All Transformations (10)
         </button>
-        <button class="work-filter-btn" :class="{ 'is-active': activeFilter === 'kitchen' }" @click="activeFilter = 'kitchen'">
+        <button class="work-filter-btn" :class="{ 'is-active': activeFilter === 'kitchen' }"
+            @click="activeFilter = 'kitchen'">
             Kitchen &amp; Appliances (3)
         </button>
-        <button class="work-filter-btn" :class="{ 'is-active': activeFilter === 'bathroom' }" @click="activeFilter = 'bathroom'">
+        <button class="work-filter-btn" :class="{ 'is-active': activeFilter === 'bathroom' }"
+            @click="activeFilter = 'bathroom'">
             Bathroom &amp; Laundry (2)
         </button>
-        <button class="work-filter-btn" :class="{ 'is-active': activeFilter === 'carpet' }" @click="activeFilter = 'carpet'">
+        <button class="work-filter-btn" :class="{ 'is-active': activeFilter === 'carpet' }"
+            @click="activeFilter = 'carpet'">
             Carpet &amp; Floors (2)
         </button>
-        <button class="work-filter-btn" :class="{ 'is-active': activeFilter === 'windows' }" @click="activeFilter = 'windows'">
+        <button class="work-filter-btn" :class="{ 'is-active': activeFilter === 'windows' }"
+            @click="activeFilter = 'windows'">
             Windows &amp; Balcony (2)
         </button>
-        <button class="work-filter-btn" :class="{ 'is-active': activeFilter === 'walls' }" @click="activeFilter = 'walls'">
+        <button class="work-filter-btn" :class="{ 'is-active': activeFilter === 'walls' }"
+            @click="activeFilter = 'walls'">
             Walls &amp; Wardrobes (1)
         </button>
     </div>
@@ -110,7 +132,8 @@
                     </div>
                     <h3 class="work-card-title">1. Heavy Oven &amp; Cooktop De-carbonising</h3>
                     <p class="work-card-desc">
-                        Baked-on carbon residue, oil drippings, and burnt grease on glass door stripped down to bare chrome enamel.
+                        Baked-on carbon residue, oil drippings, and burnt grease on glass door stripped down to bare
+                        chrome enamel.
                     </p>
                     <div class="work-card-footer">
                         <span class="work-detail-item"><i class="fa-regular fa-clock"></i> 2.5h Deep Dip</span>
@@ -192,7 +215,8 @@
                     </div>
                     <h3 class="work-card-title">3. High-Traffic Hallway Carpet Steam Clean</h3>
                     <p class="work-card-desc">
-                        Deep mud tracks, stubborn furniture indentations, and drink spills hot-water extracted with hospital-grade sanitiser.
+                        Deep mud tracks, stubborn furniture indentations, and drink spills hot-water extracted with
+                        hospital-grade sanitiser.
                     </p>
                     <div class="work-card-footer">
                         <span class="work-detail-item"><i class="fa-solid fa-certificate"></i> Carpet Receipt</span>
@@ -233,7 +257,8 @@
                     </div>
                     <h3 class="work-card-title">4. Rangehood Mesh Degreasing &amp; Canopy</h3>
                     <p class="work-card-desc">
-                        Heavy yellow cooking oils inside aluminum filtration mesh dissolved; stainless canopy micro-buffed streak-free.
+                        Heavy yellow cooking oils inside aluminum filtration mesh dissolved; stainless canopy
+                        micro-buffed streak-free.
                     </p>
                     <div class="work-card-footer">
                         <span class="work-detail-item"><i class="fa-solid fa-fire-burner"></i> Filters Degreased</span>
@@ -274,7 +299,8 @@
                     </div>
                     <h3 class="work-card-title">5. Sliding Window Tracks &amp; Double Glazing</h3>
                     <p class="work-card-desc">
-                        Black mold gunk, bug debris, and grit deep in track channels vacuumed, steam-blasted, and wiped pristine.
+                        Black mold gunk, bug debris, and grit deep in track channels vacuumed, steam-blasted, and wiped
+                        pristine.
                     </p>
                     <div class="work-card-footer">
                         <span class="work-detail-item"><i class="fa-solid fa-bars"></i> Track Extraction</span>
@@ -351,12 +377,14 @@
 
                 <div class="work-card-body">
                     <div class="work-card-meta">
-                        <span class="work-room-pill"><i class="fa-solid fa-paint-roller"></i> Walls &amp; Skirting</span>
+                        <span class="work-room-pill"><i class="fa-solid fa-paint-roller"></i> Walls &amp;
+                            Skirting</span>
                         <span class="work-pass-badge"><i class="fa-solid fa-circle-check"></i> Passed</span>
                     </div>
                     <h3 class="work-card-title">7. Black Shoe Scuffs &amp; Door Frame Marks</h3>
                     <p class="work-card-desc">
-                        Hallway shoe marks, dark furniture rubs, and finger smudges removed with sugar-soap sponges without damaging wall paint.
+                        Hallway shoe marks, dark furniture rubs, and finger smudges removed with sugar-soap sponges
+                        without damaging wall paint.
                     </p>
                     <div class="work-card-footer">
                         <span class="work-detail-item"><i class="fa-solid fa-eraser"></i> Paint-Safe Formula</span>
@@ -397,11 +425,14 @@
                     </div>
                     <h3 class="work-card-title">8. Toilet Bowl Descaling &amp; Disinfection</h3>
                     <p class="work-card-desc">
-                        Hard water scale in U-bend, under-rim calcium staining, and hinges descaled and sterilised with hospital-grade disinfectant.
+                        Hard water scale in U-bend, under-rim calcium staining, and hinges descaled and sterilised with
+                        hospital-grade disinfectant.
                     </p>
                     <div class="work-card-footer">
-                        <span class="work-detail-item"><i class="fa-solid fa-shield-virus"></i> 99.9% Bacteria Kill</span>
-                        <span class="work-detail-item"><i class="fa-solid fa-wand-magic-sparkles"></i> Polish Finish</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-shield-virus"></i> 99.9% Bacteria
+                            Kill</span>
+                        <span class="work-detail-item"><i class="fa-solid fa-wand-magic-sparkles"></i> Polish
+                            Finish</span>
                     </div>
                 </div>
             </div>
@@ -438,7 +469,8 @@
                     </div>
                     <h3 class="work-card-title">9. Inside Cupboards, Drawers &amp; Shelves</h3>
                     <p class="work-card-desc">
-                        Food crumbs, oil residue in corner joints, and sticky shelf lining removed inside and out from all kitchen cabinetry.
+                        Food crumbs, oil residue in corner joints, and sticky shelf lining removed inside and out from
+                        all kitchen cabinetry.
                     </p>
                     <div class="work-card-footer">
                         <span class="work-detail-item"><i class="fa-solid fa-layer-group"></i> Inside &amp; Out</span>
@@ -479,7 +511,8 @@
                     </div>
                     <h3 class="work-card-title">10. Hardwood Timber Floor Wash &amp; Buff</h3>
                     <p class="work-card-desc">
-                        Heavy foot traffic dust, sticky residues, and dull marks lifted with pH-neutral wood care formulas, leaving a satin glow.
+                        Heavy foot traffic dust, sticky residues, and dull marks lifted with pH-neutral wood care
+                        formulas, leaving a satin glow.
                     </p>
                     <div class="work-card-footer">
                         <span class="work-detail-item"><i class="fa-solid fa-shield-halved"></i> Timber Safe</span>
@@ -497,7 +530,8 @@
             <div class="work-section-pill">Inspection Standards</div>
             <h2 class="work-section-title">Why Property Managers <span class="highlight">Love Our Cleans</span></h2>
             <p class="work-section-desc">
-                We clean according to the official Real Estate Institute handover checklist. If your property manager flags any item, we come back and re-clean for free within 72 hours.
+                We clean according to the official Real Estate Institute handover checklist. If your property manager
+                flags any item, we come back and re-clean for free within 72 hours.
             </p>
         </div>
 
@@ -505,22 +539,26 @@
             <div class="work-check-card">
                 <div class="work-check-icon"><i class="fa-solid fa-clipboard-check"></i></div>
                 <h4 class="work-check-title">Comprehensive Checklist</h4>
-                <p class="work-check-text">Every room, appliance, fixture, and track is checked against agency exit standards.</p>
+                <p class="work-check-text">Every room, appliance, fixture, and track is checked against agency exit
+                    standards.</p>
             </div>
             <div class="work-check-card">
                 <div class="work-check-icon"><i class="fa-solid fa-camera"></i></div>
                 <h4 class="work-check-title">Photo Documentation</h4>
-                <p class="work-check-text">High-resolution timestamped before &amp; after photos sent directly to you for peace of mind.</p>
+                <p class="work-check-text">High-resolution timestamped before &amp; after photos sent directly to you
+                    for peace of mind.</p>
             </div>
             <div class="work-check-card">
                 <div class="work-check-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
                 <h4 class="work-check-title">72-Hr Re-clean Guarantee</h4>
-                <p class="work-check-text">If any spot is missed during the landlord inspection, we rectify it within 72 hours at no cost.</p>
+                <p class="work-check-text">If any spot is missed during the landlord inspection, we rectify it within 72
+                    hours at no cost.</p>
             </div>
             <div class="work-check-card">
                 <div class="work-check-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
                 <h4 class="work-check-title">Agent-Approved Invoices</h4>
-                <p class="work-check-text">Itemized receipts and carpet steam cleaning certificates provided for bond release.</p>
+                <p class="work-check-text">Itemized receipts and carpet steam cleaning certificates provided for bond
+                    release.</p>
             </div>
         </div>
     </section>
@@ -534,11 +572,11 @@
             </div>
             <div class="work-cta-actions">
                 <a href="{% url 'bookings:multi_step_booking' %}" class="btn-cta-primary">
-                    <span>Get Fixed Price &rarr;</span>
+                    <span>Get Instant Quote &rarr;</span>
                 </a>
                 <a href="tel:0279889050" class="btn-cta-phone">
                     <i class="fa-solid fa-phone"></i>
-                    <span>02 7988 9050</span>
+                    <span>0466033914</span>
                 </a>
             </div>
         </div>
@@ -549,84 +587,84 @@
 
 {% block extra_js %}
 <script>
-function ourWorkPage() {
-    return {
-        activeFilter: 'all',
-        matchesFilter(category) {
-            if (this.activeFilter === 'all') return true;
-            return this.activeFilter === category;
-        }
-    };
-}
-
-// ═════════════════════════════════════════════════════════════════
-// 60FPS LERP Slider Animation (Identical smooth engine as Home Page)
-// ═════════════════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', () => {
-    const containers = document.querySelectorAll('.ba-container');
-
-    containers.forEach((container, idx) => {
-        let current = 25 + (idx % 4) * 15; // Staggered initial positions
-        let target = 75;
-        let isHovered = false;
-        let rafId = null;
-
-        const LERP_HOVER = 0.09; // Buttery smooth, responsive mouse tracking (like home hero)
-        const LERP_AUTO  = 0.018; // Silky auto-scanning glide
-
-        const applyPos = (pct) => {
-            container.style.setProperty('--pos', `${pct.toFixed(2)}%`);
-        };
-
-        const tick = () => {
-            const lerp = isHovered ? LERP_HOVER : LERP_AUTO;
-            current += (target - current) * lerp;
-            applyPos(current);
-
-            // In auto-mode, ping-pong when reaching ends
-            if (!isHovered) {
-                if (Math.abs(target - current) < 2.0) {
-                    target = (target > 50) ? 18 : 82;
-                }
+    function ourWorkPage() {
+        return {
+            activeFilter: 'all',
+            matchesFilter(category) {
+                if (this.activeFilter === 'all') return true;
+                return this.activeFilter === category;
             }
+        };
+    }
 
+    // ═════════════════════════════════════════════════════════════════
+    // 60FPS LERP Slider Animation (Identical smooth engine as Home Page)
+    // ═════════════════════════════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', () => {
+        const containers = document.querySelectorAll('.ba-container');
+
+        containers.forEach((container, idx) => {
+            let current = 25 + (idx % 4) * 15; // Staggered initial positions
+            let target = 75;
+            let isHovered = false;
+            let rafId = null;
+
+            const LERP_HOVER = 0.09; // Buttery smooth, responsive mouse tracking (like home hero)
+            const LERP_AUTO = 0.018; // Silky auto-scanning glide
+
+            const applyPos = (pct) => {
+                container.style.setProperty('--pos', `${pct.toFixed(2)}%`);
+            };
+
+            const tick = () => {
+                const lerp = isHovered ? LERP_HOVER : LERP_AUTO;
+                current += (target - current) * lerp;
+                applyPos(current);
+
+                // In auto-mode, ping-pong when reaching ends
+                if (!isHovered) {
+                    if (Math.abs(target - current) < 2.0) {
+                        target = (target > 50) ? 18 : 82;
+                    }
+                }
+
+                rafId = requestAnimationFrame(tick);
+            };
+
+            // Start 60fps rAF loop
             rafId = requestAnimationFrame(tick);
-        };
 
-        // Start 60fps rAF loop
-        rafId = requestAnimationFrame(tick);
+            // Hover follow: smooth cursor tracking (no click needed)
+            const handleMove = (clientX) => {
+                isHovered = true;
+                const rect = container.getBoundingClientRect();
+                let pct = ((clientX - rect.left) / rect.width) * 100;
+                target = Math.min(Math.max(pct, 2), 98);
+            };
 
-        // Hover follow: smooth cursor tracking (no click needed)
-        const handleMove = (clientX) => {
-            isHovered = true;
-            const rect = container.getBoundingClientRect();
-            let pct = ((clientX - rect.left) / rect.width) * 100;
-            target = Math.min(Math.max(pct, 2), 98);
-        };
+            container.addEventListener('mousemove', (e) => handleMove(e.clientX));
+            container.addEventListener('mouseenter', (e) => handleMove(e.clientX));
 
-        container.addEventListener('mousemove', (e) => handleMove(e.clientX));
-        container.addEventListener('mouseenter', (e) => handleMove(e.clientX));
+            // Touch follow for mobile
+            container.addEventListener('touchstart', (e) => {
+                handleMove(e.touches[0].clientX);
+            }, { passive: true });
 
-        // Touch follow for mobile
-        container.addEventListener('touchstart', (e) => {
-            handleMove(e.touches[0].clientX);
-        }, { passive: true });
+            container.addEventListener('touchmove', (e) => {
+                handleMove(e.touches[0].clientX);
+            }, { passive: true });
 
-        container.addEventListener('touchmove', (e) => {
-            handleMove(e.touches[0].clientX);
-        }, { passive: true });
+            // Resume auto-glide on leave / touch end
+            container.addEventListener('mouseleave', () => {
+                isHovered = false;
+                target = current > 50 ? 18 : 82;
+            });
 
-        // Resume auto-glide on leave / touch end
-        container.addEventListener('mouseleave', () => {
-            isHovered = false;
-            target = current > 50 ? 18 : 82;
-        });
-
-        container.addEventListener('touchend', () => {
-            isHovered = false;
-            target = current > 50 ? 18 : 82;
+            container.addEventListener('touchend', () => {
+                isHovered = false;
+                target = current > 50 ? 18 : 82;
+            });
         });
     });
-});
 </script>
 {% endblock %}
