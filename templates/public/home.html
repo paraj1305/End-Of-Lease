@@ -1685,6 +1685,14 @@ Before & after photos included. Book online in 60 seconds. From $259 inc. GST.{%
         background: #fef2f2;
     }
 
+    textarea.calc-form-input,
+    .calc-form-textarea {
+        resize: vertical;
+        min-height: 68px;
+        line-height: 1.45;
+        font-family: inherit;
+    }
+
     .calc-form-error {
         font-size: 11px;
         font-weight: 600;
@@ -2134,6 +2142,26 @@ Before & after photos included. Book online in 60 seconds. From $259 inc. GST.{%
         font-size: 13px;
     }
 
+    .calc-confirm-condition-note {
+        font-size: 11.5px;
+        color: #64748b;
+        line-height: 1.45;
+        margin: 8px 0 6px;
+        padding-top: 8px;
+        border-top: 1px dashed #e2e8f0;
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+        text-align: left;
+    }
+
+    .calc-confirm-condition-note i {
+        color: var(--color-primary, #2563eb);
+        font-size: 12px;
+        margin-top: 2px;
+        flex-shrink: 0;
+    }
+
     .calc-confirm-actions {
         display: flex;
         justify-content: center;
@@ -2469,14 +2497,13 @@ Before & after photos included. Book online in 60 seconds. From $259 inc. GST.{%
         pointer-events: none;
     }
 
-    .scope-layer-before {
+    .scope-layer-after {
         z-index: 1;
-        filter: brightness(0.85) contrast(1.1);
+        pointer-events: none;
     }
 
-    .scope-layer-after {
+    .scope-layer-before {
         z-index: 2;
-        filter: brightness(1.08) contrast(1.02);
         clip-path: inset(0 calc(100% - var(--split-pos, 50%)) 0 0);
         will-change: clip-path;
         pointer-events: none;
@@ -2600,31 +2627,27 @@ Before & after photos included. Book online in 60 seconds. From $259 inc. GST.{%
 
     /* Images */
     .scope-img-kitchen-before {
-        background-image: url('/static/images/oven_before.png');
+        background-image: url('/static/images/b-f/oven_before.webp');
     }
 
     .scope-img-kitchen-after {
-        background-image: url('/static/images/oven_after.png');
+        background-image: url('/static/images/b-f/oven_after.webp');
     }
 
     .scope-img-bath-before {
         background-image: url('/static/images/b-f/bathroom_before.jpeg');
-        filter: sepia(0.25) hue-rotate(-20deg) brightness(0.85);
     }
 
     .scope-img-bath-after {
         background-image: url('/static/images/b-f/bathroom_after.jpeg');
-        filter: brightness(1.1) contrast(1.05);
     }
 
     .scope-img-living-before {
         background-image: url('/static/images/b-f/carpet_before.webp');
-        filter: contrast(1.2) brightness(0.8);
     }
 
     .scope-img-living-after {
         background-image: url('/static/images/b-f/carpet_after.webp');
-        filter: brightness(1.12);
     }
 
     .scope-img-window-before {
@@ -5555,6 +5578,17 @@ Before & after photos included. Book online in 60 seconds. From $259 inc. GST.{%
                             <span class="calc-form-error" x-show="errors.email" x-text="errors.email" x-cloak></span>
                         </div>
 
+                        <!-- Additional Note -->
+                        <div class="calc-form-group">
+                            <label class="calc-form-label" for="calc-notes">
+                                <i class="fa-regular fa-comment-dots"></i>
+                                <span>Additional Note</span>
+                            </label>
+                            <textarea id="calc-notes" class="calc-form-input calc-form-textarea"
+                                placeholder="Access instructions, parking details, pet notes, priority areas, etc. (Optional)"
+                                x-model="additionalNotes" rows="2"></textarea>
+                        </div>
+
                         <div class="calc-step-actions">
                             <button type="button" class="calc-step-back-btn" @click="goToStep(1)">
                                 <i class="fa-solid fa-arrow-left"></i>
@@ -5592,6 +5626,10 @@ Before & after photos included. Book online in 60 seconds. From $259 inc. GST.{%
                             <div class="calc-summary-row">
                                 <span class="calc-summary-label"><i class="fa-regular fa-user"></i> Contact</span>
                                 <span class="calc-summary-val" x-text="contactSummary"></span>
+                            </div>
+                            <div class="calc-summary-row" x-show="additionalNotes && additionalNotes.trim().length > 0">
+                                <span class="calc-summary-label"><i class="fa-regular fa-comment-dots"></i> Note</span>
+                                <span class="calc-summary-val" x-text="additionalNotes"></span>
                             </div>
                             <a href="javascript:void(0)" class="calc-edit-link" @click="goToStep(1)">
                                 <i class="fa-solid fa-pen-to-square"></i> Edit Details
@@ -5660,6 +5698,11 @@ Before & after photos included. Book online in 60 seconds. From $259 inc. GST.{%
                                     <span>Found it cheaper? We'll beat it by 5%</span>
                                 </div>
                             </div>
+
+                            <p class="calc-confirm-condition-note">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>Final pricing may vary based on your property's condition, since every home is a little unique and could need extra attention.</span>
+                            </p>
 
                             <div class="calc-confirm-actions">
                                 <button type="button" class="calc-confirm-restart-btn" @click="goToStep(1)">
@@ -7220,6 +7263,7 @@ Before & after photos included. Book online in 60 seconds. From $259 inc. GST.{%
             firstName: '',
             phone: '',
             email: '',
+            additionalNotes: '',
             minDate: '',
             errors: {},
 
@@ -7275,6 +7319,7 @@ Before & after photos included. Book online in 60 seconds. From $259 inc. GST.{%
             if (this.firstName) params.set('name', this.firstName);
             if (this.phone) params.set('phone', this.phone);
             if (this.email) params.set('email', this.email);
+            if (this.additionalNotes) params.set('notes', this.additionalNotes);
             let addonIds = Object.keys(this.selectedAddons).join(',');
             if (addonIds) params.set('addons', addonIds);
             return `${BOOK_URL}?${params.toString()}`;

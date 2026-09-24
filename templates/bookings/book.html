@@ -1524,7 +1524,7 @@
                             <label for="special_instructions">Notes <span
                                     style="font-weight:400; text-transform:none; letter-spacing:0;">(Optional)</span></label>
                             <textarea id="special_instructions" name="special_instructions" class="field-input" rows="3"
-                                placeholder="Access code, pets, parking info..."></textarea>
+                                placeholder="Access code, pets, parking info...">{{ request.GET.notes|default:'' }}</textarea>
                         </div>
                         <div class="field full">
                             <label class="terms-agreement-wrap" for="terms_agree">
