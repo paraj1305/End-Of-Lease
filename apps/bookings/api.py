@@ -1,8 +1,10 @@
+import json
 from django.http import JsonResponse
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.csrf import csrf_exempt
 from .services.availability import get_availability_for_month, get_date_status
 from .services.pricing import calculate_booking_price
-from .models import CleaningPackage, AddOnService, TimeSlot
+from .models import CleaningPackage, AddOnService, TimeSlot, QuoteInquiry
 from decimal import Decimal
 from django.shortcuts import get_object_or_404
 import datetime
@@ -73,3 +75,88 @@ def price_calculation_api(request):
         'deposit_amount': str(pricing['deposit_amount']),
         'remaining_amount': str(pricing['remaining_amount'])
     })
+
+
+@csrf_exempt
+@require_POST
+def create_quote_inquiry_api(request):
+    """
+    Saves an inquiry submitted from the step form (Instant Quote Calculator).
+    Accepts JSON payload or standard form POST.
+    """
+    try:
+        if request.content_type == 'application/json':
+            data = json.loads(request.body.decode('utf-8'))
+        else:
+            data = request.POST
+
+        first_name = (data.get('firstName') or data.get('first_name') or '').strip()
+        phone = (data.get('phone') or '').strip()
+        email = (data.get('email') or '').strip()
+
+        if not first_name or not phone:
+            return JsonResponse({'success': False, 'error': 'Name and phone number are required.'}, status=400)
+
+        preferred_date_raw = data.get('preferredDate') or data.get('preferred_date') or None
+        preferred_date = None
+        if preferred_date_raw:
+            try:
+                preferred_date = datetime.datetime.strptime(preferred_date_raw, '%Y-%m-%d').date()
+            except ValueError:
+                preferred_date = None
+
+        preferred_time = (data.get('preferredTime') or data.get('preferred_time') or '').strip()
+        try:
+            bedrooms = int(data.get('bedrooms', 1))
+        except (ValueError, TypeError):
+            bedrooms = 1
+        try:
+            bathrooms = int(data.get('bathrooms', 1))
+        except (ValueError, TypeError):
+            bathrooms = 1
+        try:
+            living_areas = int(data.get('living_areas', 1))
+        except (ValueError, TypeError):
+            living_areas = 1
+        try:
+            balconies = int(data.get('balconies', 0))
+        except (ValueError, TypeError):
+            balconies = 0
+
+        selected_addons = data.get('selectedAddons') or data.get('selected_addons') or {}
+        if isinstance(selected_addons, str):
+            try:
+                selected_addons = json.loads(selected_addons)
+            except Exception:
+                selected_addons = {}
+
+        additional_notes = (data.get('additionalNotes') or data.get('notes') or '').strip()
+        try:
+            estimated_price = Decimal(str(data.get('totalPrice') or data.get('estimated_price') or 0))
+        except Exception:
+            estimated_price = Decimal('0.00')
+
+        inquiry = QuoteInquiry.objects.create(
+            first_name=first_name[:150],
+            phone=phone[:30],
+            email=email,
+            preferred_date=preferred_date,
+            preferred_time=preferred_time[:50],
+            bedrooms=bedrooms,
+            bathrooms=bathrooms,
+            living_areas=living_areas,
+            balconies=balconies,
+            selected_addons=selected_addons,
+            additional_notes=additional_notes,
+            estimated_price=estimated_price,
+            status='new',
+        )
+
+        return JsonResponse({
+            'success': True,
+            'inquiry_id': inquiry.id,
+            'message': 'Inquiry successfully saved to database.'
+        })
+    except Exception as ex:
+        return JsonResponse({'success': False, 'error': str(ex)}, status=500)
+

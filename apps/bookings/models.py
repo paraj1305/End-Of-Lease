@@ -216,3 +216,44 @@ class BookingAddOn(models.Model):
 
     def __str__(self):
         return f"{self.addon.name} for {self.booking.reference}"
+
+
+class QuoteInquiry(models.Model):
+    STATUS_CHOICES = [
+        ('new', 'New Lead'),
+        ('contacted', 'Contacted / Called'),
+        ('converted', 'Converted to Booking'),
+        ('closed', 'Closed / Lost'),
+    ]
+
+    first_name = models.CharField(max_length=150)
+    phone = models.CharField(max_length=30)
+    email = models.EmailField(blank=True)
+
+    preferred_date = models.DateField(null=True, blank=True)
+    preferred_time = models.CharField(max_length=50, blank=True)
+
+    bedrooms = models.IntegerField(default=1)
+    bathrooms = models.IntegerField(default=1)
+    living_areas = models.IntegerField(default=1)
+    balconies = models.IntegerField(default=0)
+
+    selected_addons = models.JSONField(default=dict, blank=True, help_text="Selected add-on details")
+    additional_notes = models.TextField(blank=True)
+
+    estimated_price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='new')
+    admin_notes = models.TextField(blank=True, help_text="Internal notes regarding callback or follow-up")
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Quote Inquiry'
+        verbose_name_plural = 'Quote Inquiries'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"Inquiry #{self.id} — {self.first_name} ({self.phone}) — ${self.estimated_price}"
+

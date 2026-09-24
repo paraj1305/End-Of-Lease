@@ -9,6 +9,7 @@ urlpatterns = [
     path('api/availability/', api.availability_api, name='api_availability'),
     path('api/timeslots/', api.timeslots_api, name='api_timeslots'),
     path('api/price/', api.price_calculation_api, name='api_price'),
+    path('api/quote-inquiry/', api.create_quote_inquiry_api, name='api_create_quote_inquiry'),
 
     # Quick single-page booking (legacy)
     path('book/quick/<slug:package_slug>/', views.quick_book, name='quick_book'),

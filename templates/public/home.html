@@ -7266,6 +7266,7 @@ Before & after photos included. Book online in 60 seconds. From $259 inc. GST.{%
             additionalNotes: '',
             minDate: '',
             errors: {},
+            inquiryId: null,
 
             get baseQuote() {
                 return getQuote(this.bedrooms, this.bathrooms);
@@ -7354,6 +7355,40 @@ Before & after photos included. Book online in 60 seconds. From $259 inc. GST.{%
             if (Object.keys(this.errors).length === 0) {
                 this.step = 3;
                 this._bump();
+                this.saveInquiryToDatabase();
+            }
+        },
+
+        async saveInquiryToDatabase() {
+            try {
+                const payload = {
+                    firstName: this.firstName,
+                    phone: this.phone,
+                    email: this.email,
+                    preferredDate: this.preferredDate,
+                    preferredTime: this.preferredTime,
+                    bedrooms: this.bedrooms,
+                    bathrooms: this.bathrooms,
+                    living_areas: this.living_areas,
+                    balconies: this.balconies,
+                    selectedAddons: this.selectedAddonNames,
+                    additionalNotes: this.additionalNotes,
+                    totalPrice: this.totalPrice
+                };
+
+                const res = await fetch("{% url 'bookings:api_create_quote_inquiry' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data && data.success) {
+                    this.inquiryId = data.inquiry_id;
+                }
+            } catch (err) {
+                console.warn('Quote inquiry background save:', err);
             }
         },
 

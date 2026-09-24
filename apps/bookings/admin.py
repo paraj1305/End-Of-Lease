@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CleaningPackage, AddOnService, TimeSlot, BlockedDate, Booking, BookingAddOn, PricingConfig
+from .models import CleaningPackage, AddOnService, TimeSlot, BlockedDate, Booking, BookingAddOn, PricingConfig, QuoteInquiry
 
 @admin.register(CleaningPackage)
 class CleaningPackageAdmin(admin.ModelAdmin):
@@ -77,3 +77,43 @@ class BookingAdmin(admin.ModelAdmin):
             'fields': ('created_at', 'updated_at', 'deposit_paid_at')
         }),
     )
+
+
+@admin.register(QuoteInquiry)
+class QuoteInquiryAdmin(admin.ModelAdmin):
+    list_display = (
+        'id', 'first_name', 'phone', 'email', 'property_summary',
+        'estimated_price_display', 'preferred_date', 'preferred_time',
+        'status', 'created_at'
+    )
+    list_filter = ('status', 'preferred_date', 'created_at')
+    search_fields = ('first_name', 'phone', 'email', 'additional_notes', 'admin_notes')
+    list_editable = ('status',)
+    readonly_fields = ('created_at', 'updated_at')
+
+    fieldsets = (
+        ('Lead Details', {
+            'fields': ('first_name', 'phone', 'email', 'status', 'admin_notes')
+        }),
+        ('Timing Preference', {
+            'fields': ('preferred_date', 'preferred_time')
+        }),
+        ('Property Specs', {
+            'fields': ('bedrooms', 'bathrooms', 'living_areas', 'balconies')
+        }),
+        ('Add-ons & Notes', {
+            'fields': ('selected_addons', 'additional_notes', 'estimated_price')
+        }),
+        ('Timestamps', {
+            'fields': ('created_at', 'updated_at')
+        }),
+    )
+
+    @admin.display(description="Property")
+    def property_summary(self, obj):
+        return f"{obj.bedrooms}B / {obj.bathrooms}Ba"
+
+    @admin.display(description="Quote ($)")
+    def estimated_price_display(self, obj):
+        return f"${obj.estimated_price:.2f}"
+
